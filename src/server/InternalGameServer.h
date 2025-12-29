@@ -14,19 +14,24 @@ class InternalGameServer {
     std::atomic<bool> keepRunning;
     SOCKET listenSocket;
 
+
     std::vector<ClientContext> clients;
     uint8_t nextPlayerId = 1;
 
 public:
     InternalGameServer() : keepRunning(false), listenSocket(INVALID_SOCKET) {};
 
+    std::atomic<long long> tick = 0;
+
     void start(int port);
     void stop();
 
 private:
     void handleNewConnection();
-    void handleClientData(const ClientContext& client);
+    void handleClientData(ClientContext& client);
     void disconnectClient(size_t index);
+
+    void processPacket(ClientContext& client, PacketType type, std::vector<char>& payload);
 
     template<typename T>
     static void sendPacket(SOCKET sock, PacketType type, const T &data);

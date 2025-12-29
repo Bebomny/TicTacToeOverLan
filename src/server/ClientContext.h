@@ -6,6 +6,8 @@
 #include <vector>
 #include <winsock2.h>
 
+#include "../common/GameDefinitions.h"
+
 #pragma comment(lib, "Ws2_32.lib")
 
 enum class ClientSetupPhase {
@@ -18,13 +20,14 @@ enum class ClientSetupPhase {
 struct ClientContext {
     SOCKET socket;
     uint8_t playerId;
-    int32_t playerToken;
-    std::string playerName;
-    ClientSetupPhase setupPhase;
+    mutable int32_t playerToken;
+    mutable PieceType pieceType;
+    mutable std::string playerName;
 
-    std::vector<char> receiveBuffer;
+    mutable ClientSetupPhase setupPhase;
 
-public:
+    mutable std::vector<char> receiveBuffer {};
+
     mutable bool markedForDeletion = false;
 };
 

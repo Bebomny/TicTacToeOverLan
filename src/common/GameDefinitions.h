@@ -1,7 +1,3 @@
-//
-// Created by lukas on 27/12/2025.
-//
-
 #ifndef TICTACTOEOVERLAN_GAMEDEFINITIONS_H
 #define TICTACTOEOVERLAN_GAMEDEFINITIONS_H
 #include <cstdint>

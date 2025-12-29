@@ -6,6 +6,7 @@
 
 constexpr static WORD REQ_SOCK_VERSION = MAKEWORD(2,2); //The websocket version to use, windows requires it to be specified before creating sockets
 constexpr static int DEFAULT_BUFFER_LEN = 4096;
+constexpr static int MAX_PLAYER_NAME_LENGTH = 32;
 
 /**
  * The enum containing all packet types
@@ -42,19 +43,20 @@ struct ServerHelloPacket {
 struct SetupReqPacket {
   uint8_t playerId;
   int32_t initialToken; //A client generated token, for later validating moves;
-  std::string playerName;
+  char playerName[MAX_PLAYER_NAME_LENGTH];
 };
 
 struct SetupAckPacket {
   int32_t generatedAuthToken;
   uint8_t playerId;
-  std::string playerName;
+  char playerName[MAX_PLAYER_NAME_LENGTH];
+  PieceType pieceType;
 };
 
 struct NewPlayerJoinPacket {
   uint8_t newPlayerId;
   PieceType newPlayerPieceType;
-  std::string newPlayerName;
+  char newPlayerName[MAX_PLAYER_NAME_LENGTH];
 };
 
 struct PlayerDisconnectedPacket {

@@ -39,11 +39,14 @@ public:
     sf::RenderWindow window;
     sf::Font font;
     ClientState clientState;
+    bool debugEnabled = true; //TODO:make this switch via a button press
 
     //Server Connection
     InternalGameServer serverLogic; // The logic object
     std::thread serverThread;   // The handle to the execution
     std::string userInputIP;
+    std::string serverAddress;
+    std::string serverPort;
     bool hosting = false;
 
 
@@ -78,6 +81,7 @@ private:
     void renderMenu();
     void renderGameRoom();
     void renderGame();
+    void renderDebugMenu();
 
     void startInternalServerThread();
     void stopInternalServerThread();

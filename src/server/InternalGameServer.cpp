@@ -6,8 +6,9 @@
 #include "../common/NetworkProtocol.h"
 #include "../common/Utils.h"
 
-void InternalGameServer::start(int port) {
+void InternalGameServer::start(const int port) {
     keepRunning = true;
+    nextPlayerId = 1;
 
     //Socket and network setup
     WSADATA wsadata;
@@ -26,7 +27,7 @@ void InternalGameServer::start(int port) {
 
     while (keepRunning) {
         //packets and logic
-        std::printf(ANSI_CYAN "[InternalServer] Hello from the server!\n" ANSI_RESET);
+        // std::printf(ANSI_CYAN "[InternalServer] Hello from the server!\n" ANSI_RESET);
 
         fd_set readSet;
         FD_ZERO(&readSet);
@@ -42,6 +43,8 @@ void InternalGameServer::start(int port) {
         timeout.tv_usec = 10000;
 
         const int socketCount = select(0, &readSet, nullptr, nullptr, &timeout);
+        // printf("SocketCount: %d\n", socketCount);
+
 
         if (socketCount > 0) {
             if (FD_ISSET(listenSocket, &readSet)) {
@@ -60,7 +63,9 @@ void InternalGameServer::start(int port) {
             [](const ClientContext &c) { return c.markedForDeletion; }
         );
 
-        std::this_thread::sleep_for(std::chrono_literals::operator ""ms(1000));
+        //Calculate this based on how much time the processing took, set at 20 TPS initially -> 50ms per loop
+        // std::this_thread::sleep_for(std::chrono_literals::operator ""ms(1000));
+        tick++;
     }
 
     //Cleanup
@@ -69,7 +74,7 @@ void InternalGameServer::start(int port) {
     WSACleanup();
 }
 
-void InternalGameServer::handleNewConnection() {
+void InternalGameServer::handleNewConnection() { //TODO: reject new connections if a game is already in progress
     const SOCKET newSocket = accept(listenSocket, nullptr, nullptr);
 
     ClientContext newClient;
@@ -80,13 +85,17 @@ void InternalGameServer::handleNewConnection() {
     ServerHelloPacket helloPacket;
     helloPacket.playerId = newClient.playerId;
 
-    sendPacket(newClient.socket, PacketType::SERVER_HELLO, &helloPacket);
+    sendPacket<ServerHelloPacket>(newClient.socket, PacketType::SERVER_HELLO, helloPacket);
     newClient.setupPhase = ClientSetupPhase::HELLO_SENT;
+
+    clients.push_back(std::move(newClient));
 }
 
-void InternalGameServer::handleClientData(const ClientContext &client) {
+void InternalGameServer::handleClientData(ClientContext &client) {
     char buffer[DEFAULT_BUFFER_LEN];
     int bytesRead = recv(client.socket, buffer, sizeof(buffer), 0);
+
+    printf(ANSI_YELLOW "[InternalServer] Got some new data!\n" ANSI_RESET);
 
     if (bytesRead <= 0) {
         //Error or 0 means disconnected
@@ -95,13 +104,99 @@ void InternalGameServer::handleClientData(const ClientContext &client) {
         //TODO: broadcast player disconnect
     }
 
-    //TODO: logic goes here
+    client.receiveBuffer.insert(client.receiveBuffer.end(), buffer, buffer + bytesRead);
+
+    //Packet parsing
+    while (!client.markedForDeletion) {
+        if (client.receiveBuffer.size() < sizeof(PacketHeader)) {
+            break; //Not enough data, wait for next recv
+        }
+
+        const auto* pendingHeader = reinterpret_cast<PacketHeader *>(client.receiveBuffer.data());
+        size_t totalPacketSize = sizeof(PacketHeader) + pendingHeader->payloadSize;
+
+        if (client.receiveBuffer.size() < totalPacketSize) {
+            break; //Still not enough data for the whole packet, wait for the next recv
+        }
+
+        // Here we have a valid packet
+        std::vector<char> payload {};
+        payload.clear();
+        if (pendingHeader->payloadSize > 0) {
+            payload.insert(
+                payload.end(),
+                client.receiveBuffer.begin() + sizeof(PacketHeader),
+                client.receiveBuffer.begin() + totalPacketSize);
+        }
+
+        this->processPacket(client, pendingHeader->type, payload);
+
+        client.receiveBuffer.erase(client.receiveBuffer.begin(), client.receiveBuffer.begin() + totalPacketSize);
+    }
 }
+
+void InternalGameServer::processPacket(ClientContext &client, const PacketType type, std::vector<char>& payload) {
+    //TODO: logic goes here
+    //Packets: SETUP_REQ, SETTINGS_CHANGE_REQ, MOVE_REQ
+    printf(ANSI_CYAN "[InternalServer] Received packet of type %hhd from client with ID: %hhu\n" ANSI_RESET, type, client.playerId);
+    switch (type) {
+        default: {
+            printf(ANSI_RED "[InternalServer] Unknown packet received! Type: %hhd, Data: [%s]", type, &payload);
+            break;
+        }
+        case PacketType::SETUP_REQ: {
+            const auto *packet = reinterpret_cast<SetupReqPacket *>(payload.data());
+            client.setupPhase = ClientSetupPhase::SETUP_REQ_RECV;
+
+            //Respond with a generated token
+            int clientAuthToken = packet->initialToken / 3; //TODO: change this, and generate them based on the current time and server token
+            auto clientPieceType = static_cast<PieceType>(packet->playerId); //TODO: verify if the piece is available and stuff
+            //TODO: validate the playername here
+            printf(ANSI_CYAN "[InternalServer] Received SETUP_ACK with parameters [%hhu, %s, %d]\n" ANSI_RESET, packet->playerId, packet->playerName, packet->initialToken);
+
+            SetupAckPacket setupAckPacket {};
+            setupAckPacket.generatedAuthToken = clientAuthToken;
+            setupAckPacket.playerId = packet->playerId;
+
+            memset(setupAckPacket.playerName, 0, MAX_PLAYER_NAME_LENGTH);
+            strncpy(setupAckPacket.playerName, packet->playerName, MAX_PLAYER_NAME_LENGTH-1);
+            // setupAckPacket.playerName = packet->playerName;
+            setupAckPacket.pieceType = clientPieceType;
+
+            printf(ANSI_CYAN "[InternalServer] Sending SETUP_ACK packet to client with ID: %d\n" ANSI_RESET, packet->playerId);
+            this->sendPacket(client.socket, PacketType::SETUP_ACK, setupAckPacket);
+
+            //Add to playerlist - modify the client context (Or a separate active player list?)
+            client.playerToken = clientAuthToken;
+            client.pieceType = clientPieceType;
+            client.playerName = packet->playerName;
+
+            //broadcast new player joined packet
+            NewPlayerJoinPacket newPlayerJoinPacket {};
+            newPlayerJoinPacket.newPlayerId = client.playerId;
+            newPlayerJoinPacket.newPlayerPieceType = clientPieceType;
+            memset(newPlayerJoinPacket.newPlayerName, 0, MAX_PLAYER_NAME_LENGTH);
+            strncpy(newPlayerJoinPacket.newPlayerName, client.playerName.c_str(), MAX_PLAYER_NAME_LENGTH-1);
+            // newPlayerJoinPacket.newPlayerName = client.playerName;
+
+            this->broadcastPacket(PacketType::NEW_PLAYER_JOIN, newPlayerJoinPacket);
+
+            client.setupPhase = ClientSetupPhase::SET_UP;
+            break;
+        }
+    }
+}
+
+void InternalGameServer::disconnectClient(size_t index) {
+    //TODO:
+}
+
+
 
 template<typename T>
 void InternalGameServer::broadcastPacket(const PacketType type, const T &data) {
     for (const auto &client: clients) {
-        this->sendPacket(client, type, data);
+        this->sendPacket(client.socket, type, data);
     }
 }
 
@@ -112,7 +207,7 @@ void InternalGameServer::sendPacket(const SOCKET sock, const PacketType type, co
     std::vector<char> buffer;
     buffer.reserve(sizeof(PacketHeader) + sizeof(T));
 
-    PacketHeader header;
+    PacketHeader header {};
     header.type = type;
     header.payloadSize = sizeof(T);
 
@@ -141,4 +236,5 @@ void InternalGameServer::sendPacket(const SOCKET sock, const PacketType type, co
 
 void InternalGameServer::stop() {
     keepRunning = false;
+    nextPlayerId = 1;
 }
