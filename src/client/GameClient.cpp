@@ -26,6 +26,8 @@ GameClient::GameClient() {
     boardData.turn = 0;
     boardData.currentPlayerId = 0;
     this->initializeGameBoard();
+    playerCount = 0;
+    players = {};
 
     window.create(sf::VideoMode({1500, 600}), "TicTacToe Ultimate Editionn");
     window.setFramerateLimit(60);
@@ -129,7 +131,7 @@ void GameClient::update() {
                 printf(ANSI_CYAN "[GameClient] Assigned player ID: %hhu\n" ANSI_RESET, packet->playerId);
 
                 // Send the SETUP_REQ packet
-                SetupReqPacket setupReqPacket;
+                SetupReqPacket setupReqPacket {};
                 setupReqPacket.playerId = playerId;
                 memset(setupReqPacket.playerName, 0, MAX_PLAYER_NAME_LENGTH);
                 strncpy(setupReqPacket.playerName, playerName.c_str(), MAX_PLAYER_NAME_LENGTH-1);
@@ -151,11 +153,27 @@ void GameClient::update() {
                 //TODO: check if the playerId is the same as ours
                 const auto *packet = reinterpret_cast<SetupAckPacket *>(payload.data());
                 authToken = packet->generatedAuthToken;
-                playerName = packet->playerName;
-                //This technically isn't necessary, but I should at least check if the server is happy with the chosen name
                 pieceType = packet->pieceType;
+                //This technically isn't necessary, but I should at least check if the server is happy with the chosen name
+                playerName = packet->playerName;
+
+                boardData.boardSize = packet->boardSize;
+                boardData.winConditionLength = packet->winConditionLength;
+
+                playerCount = packet->playerCount;
+                players = {};
+                //TODO: Fix sometimes the playerName comes as random gibberish, no idea why. Probably something in the server packet formation;
+                for (const auto player : packet->players) {
+                    if (player.playerId == NULL) {
+                        continue;
+                    }
+                    printf("[%hhu, %s, %hhd, %hhd, %hhd]\n", player.playerId, player.playerName, player.piece, player.myTurn, player.isMe);
+                    players.push_back(player);
+
+                }
+
                 setupPhase = SetupPhase::CONNECTED;
-                printf(ANSI_CYAN "[GameClient] Generated AuthToken: %d Other: [%s, %hhd]\n" ANSI_RESET, authToken, playerName.c_str(), pieceType);
+                printf(ANSI_CYAN "[GameClient] Generated AuthToken: %d Other: [name:%s, id:%hhd]\n" ANSI_RESET, authToken, playerName.c_str(), pieceType);
                 break;
             }
 
@@ -165,13 +183,19 @@ void GameClient::update() {
                 // }
 
                 //TODO: Check for duplicates and check if its me
+                printf(ANSI_CYAN "[GameClient] Got NEW_PLAYER_JOIN packet!\n" ANSI_RESET);
                 const auto *packet = reinterpret_cast<NewPlayerJoinPacket *>(payload.data());
+
                 Player newPlayer{};
                 newPlayer.playerId = packet->newPlayerId;
-                newPlayer.playerName = packet->newPlayerName;
+                // newPlayer.playerName = packet->newPlayerName;
+                memset(newPlayer.playerName, 0, MAX_PLAYER_NAME_LENGTH);
+                strncpy(newPlayer.playerName, packet->newPlayerName, MAX_PLAYER_NAME_LENGTH-1);
                 newPlayer.piece = packet->newPlayerPieceType;
                 newPlayer.isMe = playerId == packet->newPlayerId;
                 newPlayer.myTurn = false;
+                // If a player with this id already exists overwrite it
+                std::erase_if(players, [packet](const Player &player) { return packet->newPlayerId == player.playerId; });
                 players.push_back(newPlayer);
                 break;
             }
@@ -361,21 +385,21 @@ void GameClient::renderDebugMenu() {
     text.move({0, textYOffset});
     window.draw(text);
 
-    // std::string playerString = std::format("Players[%d]: [", players.size());
-    // for (auto player : players) {
-    //     std::stringstream ss;
-    //     ss << "{"
-    //        << static_cast<int>(player.playerId) << ", "
-    //        << player.playerName << ", "
-    //        << static_cast<int>(player.piece)
-    //        << "}";
-    //
-    //     playerString += ss.str();
-    // }
-    // playerString += "]";
-    // text.setString(playerString);
-    // text.move({0, textYOffset});
-    // window.draw(text);
+    std::string playerString = std::format("Players[{}]: [", players.size());
+    for (auto player : players) {
+        std::stringstream ss;
+        ss << "{"
+           << static_cast<int>(player.playerId) << ", "
+           << player.playerName << ", "
+           << static_cast<int>(player.piece)
+           << "}";
+
+        playerString += ss.str();
+    }
+    playerString += "]";
+    text.setString(playerString);
+    text.move({0, textYOffset});
+    window.draw(text);
 
     //Internal Server stuff
     if (hosting) {

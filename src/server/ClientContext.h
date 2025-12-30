@@ -7,6 +7,7 @@
 #include <winsock2.h>
 
 #include "../common/GameDefinitions.h"
+#include "../common/NetworkProtocol.h"
 
 #pragma comment(lib, "Ws2_32.lib")
 
@@ -22,7 +23,8 @@ struct ClientContext {
     uint8_t playerId;
     mutable int32_t playerToken;
     mutable PieceType pieceType;
-    mutable std::string playerName;
+    mutable char playerName[MAX_PLAYER_NAME_LENGTH];
+    mutable int32_t playerWins;
 
     mutable ClientSetupPhase setupPhase;
 

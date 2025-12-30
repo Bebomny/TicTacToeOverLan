@@ -59,6 +59,7 @@ public:
 
     //The board
     BoardData boardData {};
+    uint8_t playerCount;
     std::vector<Player> players;
     std::vector<Move> moves;
     bool isMyTurn = false;

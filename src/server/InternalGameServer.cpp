@@ -3,12 +3,18 @@
 #include <cstdio>
 #include <thread>
 
+#include "ServerUtils.h"
 #include "../common/NetworkProtocol.h"
 #include "../common/Utils.h"
 
 void InternalGameServer::start(const int port) {
     keepRunning = true;
     nextPlayerId = 1;
+
+    //GameState preparation
+    //TODO: move this to a reset fuction
+    boardData.boardSize = 3;
+
 
     //Socket and network setup
     WSADATA wsadata;
@@ -65,7 +71,7 @@ void InternalGameServer::start(const int port) {
 
         //Calculate this based on how much time the processing took, set at 20 TPS initially -> 50ms per loop
         // std::this_thread::sleep_for(std::chrono_literals::operator ""ms(1000));
-        tick++;
+        ++tick;
     }
 
     //Cleanup
@@ -81,6 +87,7 @@ void InternalGameServer::handleNewConnection() { //TODO: reject new connections 
     newClient.setupPhase = ClientSetupPhase::NEW_CONNECTION;
     newClient.socket = newSocket;
     newClient.playerId = nextPlayerId++;
+    newClient.playerWins = 0;
 
     ServerHelloPacket helloPacket;
     helloPacket.playerId = newClient.playerId;
@@ -149,14 +156,26 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             client.setupPhase = ClientSetupPhase::SETUP_REQ_RECV;
 
             //Respond with a generated token
-            int clientAuthToken = packet->initialToken / 3; //TODO: change this, and generate them based on the current time and server token
-            auto clientPieceType = static_cast<PieceType>(packet->playerId); //TODO: verify if the piece is available and stuff
+            const int clientAuthToken = packet->initialToken / 3; //TODO: change this, and generate them based on the current time and server token
+            const auto clientPieceType = static_cast<PieceType>(packet->playerId); //TODO: verify if the piece is available and stuff
             //TODO: validate the playername here
             printf(ANSI_CYAN "[InternalServer] Received SETUP_ACK with parameters [%hhu, %s, %d]\n" ANSI_RESET, packet->playerId, packet->playerName, packet->initialToken);
 
             SetupAckPacket setupAckPacket {};
             setupAckPacket.generatedAuthToken = clientAuthToken;
             setupAckPacket.playerId = packet->playerId;
+            //TODO: boardsize, winconditionlength and current players
+            setupAckPacket.boardSize = boardData.boardSize;
+            setupAckPacket.winConditionLength = boardData.winConditionLength;
+            setupAckPacket.playerCount = 0;
+            for (const auto &playerContext : clients) {
+                if (setupAckPacket.playerCount >= MAX_PLAYERS) {
+                    break;
+                }
+                setupAckPacket.players[setupAckPacket.playerCount] =
+                    ServerUtils::clientContextToPlayer(playerContext, client.playerId);
+                setupAckPacket.playerCount++;
+            }
 
             memset(setupAckPacket.playerName, 0, MAX_PLAYER_NAME_LENGTH);
             strncpy(setupAckPacket.playerName, packet->playerName, MAX_PLAYER_NAME_LENGTH-1);
@@ -169,14 +188,17 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             //Add to playerlist - modify the client context (Or a separate active player list?)
             client.playerToken = clientAuthToken;
             client.pieceType = clientPieceType;
-            client.playerName = packet->playerName;
+            // client.playerName = packet->playerName;
+
+            memset(client.playerName, 0, MAX_PLAYER_NAME_LENGTH);
+            strncpy(client.playerName, packet->playerName, MAX_PLAYER_NAME_LENGTH-1);
 
             //broadcast new player joined packet
             NewPlayerJoinPacket newPlayerJoinPacket {};
             newPlayerJoinPacket.newPlayerId = client.playerId;
             newPlayerJoinPacket.newPlayerPieceType = clientPieceType;
             memset(newPlayerJoinPacket.newPlayerName, 0, MAX_PLAYER_NAME_LENGTH);
-            strncpy(newPlayerJoinPacket.newPlayerName, client.playerName.c_str(), MAX_PLAYER_NAME_LENGTH-1);
+            strncpy(newPlayerJoinPacket.newPlayerName, client.playerName, MAX_PLAYER_NAME_LENGTH-1);
             // newPlayerJoinPacket.newPlayerName = client.playerName;
 
             this->broadcastPacket(PacketType::NEW_PLAYER_JOIN, newPlayerJoinPacket);

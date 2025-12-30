@@ -2,11 +2,13 @@
 #define TICTACTOEOVERLAN_NETWORKPROTOCOL_H
 #include <cstdint>
 
-#include "GameDefinitions.h"
+#include "../common/GameDefinitions.h"
 
-constexpr static WORD REQ_SOCK_VERSION = MAKEWORD(2,2); //The websocket version to use, windows requires it to be specified before creating sockets
+constexpr static WORD REQ_SOCK_VERSION = MAKEWORD(2, 2);
+//The websocket version to use, windows requires it to be specified before creating sockets
 constexpr static int DEFAULT_BUFFER_LEN = 4096;
 constexpr static int MAX_PLAYER_NAME_LENGTH = 32;
+constexpr static int MAX_PLAYERS = 6;
 
 /**
  * The enum containing all packet types
@@ -51,6 +53,12 @@ struct SetupAckPacket {
   uint8_t playerId;
   char playerName[MAX_PLAYER_NAME_LENGTH];
   PieceType pieceType;
+  //TODO: send the initial board settings here too
+  uint8_t boardSize;
+  uint8_t winConditionLength;
+  // std::vector<Player> players;
+  uint8_t playerCount;
+  Player players[MAX_PLAYERS];
 };
 
 struct NewPlayerJoinPacket {
@@ -73,7 +81,7 @@ struct SettingsChangeReqPacket {
 struct BoardStateUpdatePacket {
   BoardData boardData;
   Move lastMove;
-  std::vector<Player> players;
+  Player players[MAX_PLAYERS];
 };
 
 #pragma pack(pop)

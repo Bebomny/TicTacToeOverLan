@@ -14,12 +14,19 @@ class InternalGameServer {
     std::atomic<bool> keepRunning;
     SOCKET listenSocket;
 
-
     std::vector<ClientContext> clients;
     uint8_t nextPlayerId = 1;
 
+    //Game State
+    BoardData boardData;
+    std::vector<Move> moves;
+    // The clientContexts also hold player data and state
+
 public:
-    InternalGameServer() : keepRunning(false), listenSocket(INVALID_SOCKET) {};
+    InternalGameServer():
+    keepRunning(false),
+    listenSocket(INVALID_SOCKET),
+    boardData({{}, 3, 3, 0, 1}) {};
 
     std::atomic<long long> tick = 0;
 

@@ -24,7 +24,9 @@ add_executable(TicTacToeOverLan src/main.cpp
         src/common/Utils.h
         src/server/InternalGameServer.cpp
         src/server/InternalGameServer.h
-        src/server/ClientContext.h)
+        src/server/ClientContext.h
+        src/server/ServerUtils.cpp
+        src/server/ServerUtils.h)
 
 target_link_libraries(TicTacToeOverLan PRIVATE Ws2_32)
 target_link_libraries(TicTacToeOverLan PRIVATE SFML::Graphics)

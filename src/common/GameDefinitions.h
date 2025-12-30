@@ -2,7 +2,6 @@
 #define TICTACTOEOVERLAN_GAMEDEFINITIONS_H
 #include <cstdint>
 #include <vector>
-
 /**
  * The available Piece Types. Used from Top to Bottom, selected by the player number
  */
@@ -19,7 +18,7 @@ enum class PieceType : uint8_t {
 struct Player {
     PieceType piece;
     uint8_t playerId;
-    std::string playerName;
+    char playerName[32]; //Circular dependencies here move to a variable later
     bool myTurn;
     bool isMe;
 };
