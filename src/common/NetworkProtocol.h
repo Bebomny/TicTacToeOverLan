@@ -1,6 +1,7 @@
 #ifndef TICTACTOEOVERLAN_NETWORKPROTOCOL_H
 #define TICTACTOEOVERLAN_NETWORKPROTOCOL_H
 #include <cstdint>
+#include <winsock2.h>
 
 #include "../common/GameDefinitions.h"
 

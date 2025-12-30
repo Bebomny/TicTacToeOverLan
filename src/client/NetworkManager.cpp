@@ -1,6 +1,6 @@
 #include "NetworkManager.h"
 
-bool NetworkManager::connectToServer(const std::string &address, const std::string &port = "27015") {
+int NetworkManager::connectToServer(const std::string &address, const std::string &port = "27015") {
 
     conPhase = ConnectionPhase::DISCONNECTED;
 

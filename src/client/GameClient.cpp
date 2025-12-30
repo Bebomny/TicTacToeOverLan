@@ -3,6 +3,7 @@
 #include <thread>
 
 #include "SFML/Graphics/Text.hpp"
+#include "ui/ButtonBuilder.h"
 
 GameClient::GameClient() {
     clientState = ClientState::MENU;
@@ -36,6 +37,7 @@ GameClient::GameClient() {
     if (!font.openFromFile("../resources/JetBrainsMono-Regular.ttf")) {
         printf(ANSI_RED "[GameClient] Failed to load font\n" ANSI_RESET);
     }
+    ButtonBuilder::initFont(font);
     printf(ANSI_GREEN "[GameClient] Setup finished!\n" ANSI_RESET);
 }
 
@@ -48,6 +50,13 @@ void GameClient::run() {
 }
 
 void GameClient::handleInput() {
+    const sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+    //Update buttons
+    for (const auto &btn : menuButtons) {
+        btn->update(mousePos);
+    }
+
     while (const std::optional event = window.pollEvent()) {
         if (event->is<sf::Event::Closed>()) {
             window.close();
@@ -62,24 +71,28 @@ void GameClient::handleInput() {
 
         switch (clientState) {
             case ClientState::MENU:
-                this->handleMenuInput(event);
+                this->handleMenuInput(event, mousePos);
                 break;
 
             case ClientState::GAME_ROOM:
-                this->handleGameRoomInput(event);
+                this->handleGameRoomInput(event, mousePos);
                 break;
 
             case ClientState::GAME:
-                this->handleGameInput(event);
+                this->handleGameInput(event, mousePos);
                 break;
         }
     }
 }
 
-void GameClient::handleMenuInput(const std::optional<sf::Event> &event) {
+void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
+    for (const auto &btn : menuButtons) {
+        btn->handleEvent(event, mousePos);
+    }
+
+    //Remove this later
     if (const auto keyEvent = event->getIf<sf::Event::KeyPressed>()) {
         if (keyEvent->code == sf::Keyboard::Key::Enter) {
-            printf(ANSI_CYAN "[GameClient] Internal Server is starting...\n" ANSI_RESET);
             if (hosting == false) {
                 hosting = true;
                 this->startInternalServerThread();
@@ -90,25 +103,16 @@ void GameClient::handleMenuInput(const std::optional<sf::Event> &event) {
         }
 
         if (keyEvent->code == sf::Keyboard::Key::RShift) {
-            //TODO: Validate user input here
-
-            std::string serverIP = userInputIP;
-            serverAddress = strtok(serverIP.data(), ":");
-            serverPort = strtok(nullptr, ":");
-
-            printf(ANSI_CYAN "[GameClient] Connecting to a server at %s... [%s, %s]\n" ANSI_RESET,
-                userInputIP.c_str(), serverAddress.c_str(), serverPort.c_str());
-
-            networkManager.connectToServer(serverAddress, serverPort);
+            this->connectAndSetup();
         }
     }
 }
 
-void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event) {
+void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
     //TODO:
 }
 
-void GameClient::handleGameInput(const std::optional<sf::Event> &event) {
+void GameClient::handleGameInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
     //TODO:
 }
 
@@ -125,7 +129,6 @@ void GameClient::update() {
                 // }
                 printf(ANSI_CYAN "[GameClient] Got Server Hello packet!\n" ANSI_RESET);
                 setupPhase = SetupPhase::SETTING_UP;
-                // clientState = ClientState::GAME_ROOM; //TODO: here the client is already in the gameroom, but for testing purposes I'll leave it out
                 const auto *packet = reinterpret_cast<ServerHelloPacket *>(payload.data());
                 playerId = packet->playerId;
                 printf(ANSI_CYAN "[GameClient] Assigned player ID: %hhu\n" ANSI_RESET, packet->playerId);
@@ -238,13 +241,28 @@ void GameClient::render() {
 void GameClient::renderMenu() {
     //TODO:
     constexpr sf::Vector2f mainMenuPosition{16, 16}; //left corner
+    constexpr int textSize = 20;
+    constexpr int textYOffset{textSize + textSize / 2};
     sf::Text text(font);
 
     text.setString("Hello there!");
-    text.setCharacterSize(20);
+    text.setCharacterSize(textSize);
     text.setFillColor(sf::Color(TEXT_COLOR));
     text.setPosition({mainMenuPosition.x + 20, mainMenuPosition.y + 20});
     window.draw(text);
+
+    text.setString("Player name: " + playerName);
+    text.move({0, textYOffset});
+    window.draw(text);
+
+    text.setString("Server Address: " + userInputIP);
+    text.move({0, textYOffset});
+    window.draw(text);
+
+    // Render buttons
+    for (const auto & btn : menuButtons) {
+        btn->render(window);
+    }
 }
 
 void GameClient::renderGameRoom() {
@@ -413,18 +431,38 @@ void GameClient::renderDebugMenu() {
     }
 }
 
+void GameClient::connectAndSetup() {
+    //TODO: Validate user input here
+
+    std::string serverIP = userInputIP;
+    serverAddress = strtok(serverIP.data(), ":");
+    serverPort = strtok(nullptr, ":");
+
+    printf(ANSI_CYAN "[GameClient] Connecting to a server at %s... [%s, %s]\n" ANSI_RESET,
+        userInputIP.c_str(), serverAddress.c_str(), serverPort.c_str());
+
+    int conResult = networkManager.connectToServer(serverAddress, serverPort);
+    if (conResult == 0 || conResult == 1) {
+        clientState = ClientState::GAME_ROOM;
+    } else {
+        clientState = ClientState::MENU;
+        printf(ANSI_RED "[GameClient] Failed to connect at %s...\n" ANSI_RESET, userInputIP.c_str());
+    }
+}
 
 void GameClient::sendMove(uint8_t posX, uint8_t posY) {
     //TODO:
 }
 
 void GameClient::startInternalServerThread() {
+    printf(ANSI_CYAN "[GameClient] Internal Server is starting...\n" ANSI_RESET);
     serverThread = std::thread([this]() {
         serverLogic.start(27015);
     });
 }
 
 void GameClient::stopInternalServerThread() {
+    printf(ANSI_YELLOW "[GameClient] Internal Server is stopping...\n" ANSI_RESET);
     serverLogic.stop();
 
     if (serverThread.joinable()) {

@@ -7,6 +7,7 @@
 #include "../server/InternalGameServer.h"
 #include "SFML/Graphics/Font.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "ui/ButtonWidget.h"
 
 enum class SetupPhase : uint8_t {
     DISCONNECTED,
@@ -39,7 +40,8 @@ public:
     sf::RenderWindow window;
     sf::Font font;
     ClientState clientState;
-    bool debugEnabled = true; //TODO:make this switch via a button press
+    std::vector<std::unique_ptr<ButtonWidget>> menuButtons;
+    bool debugEnabled = true;
 
     //Server Connection
     InternalGameServer serverLogic; // The logic object
@@ -75,9 +77,9 @@ private:
     void update();
     void render();
 
-    void handleMenuInput(const std::optional<sf::Event> &event);
-    void handleGameRoomInput(const std::optional<sf::Event> &event);
-    void handleGameInput(const std::optional<sf::Event> &event);
+    void handleMenuInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);
+    void handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);
+    void handleGameInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);
 
     void renderMenu();
     void renderGameRoom();
@@ -86,6 +88,8 @@ private:
 
     void startInternalServerThread();
     void stopInternalServerThread();
+
+    void connectAndSetup();
 
     void initializeGameBoard();
 

@@ -1,0 +1,59 @@
+#include "ButtonWidget.h"
+
+#include "../../common/Utils.h"
+#include "SFML/Graphics/RenderTarget.hpp"
+
+ButtonWidget::ButtonWidget(
+    float x, float y, float width, float height,
+    std::string btnText, sf::Font &font,
+    std::function<void()> onClickCallback,
+    sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor) : text(font) {
+
+    shape.setPosition(sf::Vector2f(x, y));
+    shape.setSize(sf::Vector2f(width, height));
+    shape.setFillColor(idleColor);
+    // shape.setOutlineThickness(2);
+    // shape.setOutlineColor(BACKGROUND_COLOR);
+
+    text.setFont(font);
+    text.setString(btnText);
+    text.setFillColor(TEXT_COLOR);
+    text.setCharacterSize(20); //Also pass to the constructor???
+
+    const sf::FloatRect bounds = text.getGlobalBounds();
+    text.setOrigin({
+        bounds.position.x + bounds.size.x / 2.0f,
+        bounds.position.y + bounds.size.y / 2.0f
+    });
+    text.setPosition({x + width / 2.0f, y + height / 2.0f});
+}
+
+bool ButtonWidget::handleEvent(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
+    if (const auto pressEvent = event->getIf<sf::Event::MouseButtonReleased>()) {
+        if (pressEvent->button == sf::Mouse::Button::Left) {
+            sf::Vector2f mPos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+            if (shape.getGlobalBounds().contains(mPos)) {
+                if (onClick) onClick();
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void ButtonWidget::update(const sf::Vector2i &mousePos) {
+    sf::Vector2f mPos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+    if (shape.getGlobalBounds().contains(mPos)) {
+        shape.setFillColor(hoverColor);
+    } else {
+        shape.setFillColor(idleColor);
+    }
+}
+
+void ButtonWidget::render(sf::RenderTarget &window) {
+    window.draw(shape);
+    window.draw(text);
+}
+
+
+

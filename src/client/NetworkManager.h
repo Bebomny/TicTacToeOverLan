@@ -22,7 +22,7 @@ public:
     SOCKET clientSocket;
     std::vector<char> receiveBuffer;
 
-    bool connectToServer(const std::string &address, const std::string &port);
+    int connectToServer(const std::string &address, const std::string &port);
     bool pollPacket(PacketHeader &outHeader, std::vector<char> &outPayload);
 
     template<typename T>
