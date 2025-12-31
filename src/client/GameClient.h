@@ -43,6 +43,11 @@ public:
     std::vector<std::unique_ptr<ButtonWidget>> menuButtons;
     bool debugEnabled = true;
 
+    //Menu Coordinates - move to separate screen(view?) objects later
+    constexpr static sf::Vector2f mainMenuPosition{36, 36}; //left corner
+    constexpr static int menuTextSize = 20;
+    constexpr static int menuTextYOffset{menuTextSize + menuTextSize / 2};
+
     //Server Connection
     InternalGameServer serverLogic; // The logic object
     std::thread serverThread;   // The handle to the execution
@@ -50,7 +55,6 @@ public:
     std::string serverAddress;
     std::string serverPort;
     bool hosting = false;
-
 
     //The player
     uint8_t playerId;
@@ -76,6 +80,10 @@ private:
     void handleInput();
     void update();
     void render();
+
+    void initMenuWidgets();
+    void initGameRoomWidgets();
+    void initGameWidgets();
 
     void handleMenuInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);
     void handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);

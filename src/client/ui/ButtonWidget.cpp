@@ -4,21 +4,27 @@
 #include "SFML/Graphics/RenderTarget.hpp"
 
 ButtonWidget::ButtonWidget(
-    float x, float y, float width, float height,
-    std::string btnText, sf::Font &font,
-    std::function<void()> onClickCallback,
-    sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor) : text(font) {
+    const float x, const float y, const float width, const float height,
+    const std::string &btnText, const int textSize, const sf::Font &font,
+    const std::function<void()> &onClickCallback,
+    const sf::Color idleColor, const sf::Color hoverColor, const sf::Color activeColor) : text(font) {
+
+    this->idleColor = idleColor;
+    this->hoverColor = hoverColor;
+    this->activeColor = activeColor;
+
+    this->onClick = onClickCallback;
 
     shape.setPosition(sf::Vector2f(x, y));
     shape.setSize(sf::Vector2f(width, height));
     shape.setFillColor(idleColor);
-    // shape.setOutlineThickness(2);
-    // shape.setOutlineColor(BACKGROUND_COLOR);
+    shape.setOutlineThickness(2);
+    shape.setOutlineColor(sf::Color(hoverColor));
 
     text.setFont(font);
     text.setString(btnText);
-    text.setFillColor(TEXT_COLOR);
-    text.setCharacterSize(20); //Also pass to the constructor???
+    text.setFillColor(sf::Color(TEXT_COLOR));
+    text.setCharacterSize(textSize); //Also pass to the constructor???
 
     const sf::FloatRect bounds = text.getGlobalBounds();
     text.setOrigin({

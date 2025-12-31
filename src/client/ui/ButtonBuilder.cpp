@@ -1,4 +1,9 @@
 #include "ButtonBuilder.h"
+#include "ButtonWidget.h"
+
+float ButtonBuilder::prevPosX = 0.0f;
+float ButtonBuilder::prevPosY = 0.0f;
+sf::Font ButtonBuilder::sharedFont;
 
 ButtonBuilder::ButtonBuilder(const std::string &text, const std::function<void()> &onClickCallback) {
     this->font = &sharedFont;
@@ -38,6 +43,12 @@ ButtonBuilder &ButtonBuilder::setText(std::string text) {
     return *this;
 }
 
+ButtonBuilder &ButtonBuilder::setTextSize(int textSize) {
+    this->textSize = textSize;
+    return *this;
+}
+
+
 ButtonBuilder &ButtonBuilder::setColors(sf::Color idle, sf::Color hover, sf::Color active) {
     this->idle = idle;
     this->hover = hover;
@@ -49,10 +60,10 @@ std::unique_ptr<ButtonWidget> ButtonBuilder::build() {
     prevPosX = this->posX;
     prevPosY = this->posY;
 
-    if (!this->font) throw std::runtime_error("[ButtonBuilder] No font available!");
+    if (!this->font) throw std::runtime_error("[ButtonBuilder] No fonts available!");
 
     return std::make_unique<ButtonWidget>(
-        posX, posY, width, height, text, *font, onClickCallback, idle, hover, active);
+        posX, posY, width, height, text, textSize, *font, onClickCallback, idle, hover, active);
 }
 
 

@@ -20,8 +20,8 @@ class ButtonWidget {
 
 public:
     ButtonWidget(float x, float y, float width, float height,
-        std::string btnText, sf::Font &font,
-        std::function<void()> onClickCallback,
+        const std::string &btnText, int textSize, const sf::Font &font,
+        const std::function<void()> &onClickCallback,
         sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 
     static ButtonBuilder builder(std::string text, std::function<void()> onClick) {

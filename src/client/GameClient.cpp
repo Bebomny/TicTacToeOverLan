@@ -8,7 +8,7 @@
 GameClient::GameClient() {
     clientState = ClientState::MENU;
     userInputIP = "localhost:27015";
-    playerName = "Player1";
+    playerName = "Player";
     setupPhase = SetupPhase::DISCONNECTED;
 
     //Later updated by the server
@@ -38,7 +38,50 @@ GameClient::GameClient() {
         printf(ANSI_RED "[GameClient] Failed to load font\n" ANSI_RESET);
     }
     ButtonBuilder::initFont(font);
+
+    //TODO: move to separate Screen objects,
+    this->initMenuWidgets();
+    this->initGameRoomWidgets();
+    this->initGameWidgets();
+
     printf(ANSI_GREEN "[GameClient] Setup finished!\n" ANSI_RESET);
+}
+
+void GameClient::initMenuWidgets() {
+    // Host Button
+    menuButtons.push_back(ButtonWidget::builder(
+        "HOST",
+        [this]() {
+            if (hosting == false) {
+                hosting = true;
+                this->startInternalServerThread();
+            } else if (hosting == true) {
+                hosting = false;
+                this->stopInternalServerThread();
+            }
+        })
+    .setPosition(mainMenuPosition.x, mainMenuPosition.y + 3 * menuTextYOffset + 3)
+    .build());
+
+    // Connect button
+    menuButtons.push_back(ButtonWidget::builder(
+        "Connect",
+        [this]() {
+            this->connectAndSetup();
+        })
+        .setPosition(mainMenuPosition.x, mainMenuPosition.y + 2 * menuTextYOffset + 1)
+        .setSize(100, 24)
+        .build()
+        );
+
+}
+
+void GameClient::initGameRoomWidgets() {
+    //TODO:
+}
+
+void GameClient::initGameWidgets() {
+    //TODO:
 }
 
 void GameClient::run() {
@@ -90,7 +133,7 @@ void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf
         btn->handleEvent(event, mousePos);
     }
 
-    //Remove this later
+    //Remove this later //Debug code
     if (const auto keyEvent = event->getIf<sf::Event::KeyPressed>()) {
         if (keyEvent->code == sf::Keyboard::Key::Enter) {
             if (hosting == false) {
@@ -106,6 +149,7 @@ void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf
             this->connectAndSetup();
         }
     }
+    //
 }
 
 void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
@@ -240,23 +284,20 @@ void GameClient::render() {
 
 void GameClient::renderMenu() {
     //TODO:
-    constexpr sf::Vector2f mainMenuPosition{16, 16}; //left corner
-    constexpr int textSize = 20;
-    constexpr int textYOffset{textSize + textSize / 2};
     sf::Text text(font);
 
-    text.setString("Hello there!");
-    text.setCharacterSize(textSize);
+    text.setString((hosting ? "You are the host!" : "Hello there!"));
+    text.setCharacterSize(menuTextSize);
     text.setFillColor(sf::Color(TEXT_COLOR));
-    text.setPosition({mainMenuPosition.x + 20, mainMenuPosition.y + 20});
+    text.setPosition({mainMenuPosition.x, mainMenuPosition.y});
     window.draw(text);
 
     text.setString("Player name: " + playerName);
-    text.move({0, textYOffset});
+    text.move({0, menuTextYOffset});
     window.draw(text);
 
     text.setString("Server Address: " + userInputIP);
-    text.move({0, textYOffset});
+    text.move({110, menuTextYOffset});
     window.draw(text);
 
     // Render buttons
