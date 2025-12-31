@@ -16,6 +16,30 @@
 #define SECONDARY_COLOR {170, 188, 181}
 #define ACCENT_COLOR {142, 166, 165}
 
+#include "GameDefinitions.h"
 
+class Utils {
+public:
+    static std::string pieceTypeToString(const PieceType piece) {
+        switch (piece) {
+            case PieceType::EMPTY:
+                return "EMPTY";
+            case PieceType::CROSS:
+                return "Cross";
+            case PieceType::CIRCLE:
+                return "Circle";
+            case PieceType::TRIANGLE:
+                return "Triangle";
+            case PieceType::SQUARE:
+                return "Square";
+            case PieceType::DIAMOND:
+                return "Diamond";
+            case PieceType::OCTAGON:
+                return "Octagon";
+        }
+
+        return "Empty";
+    }
+};
 
 #endif //TICTACTOEOVERLAN_UTILS_H

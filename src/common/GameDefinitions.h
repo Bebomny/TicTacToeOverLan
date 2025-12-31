@@ -2,6 +2,10 @@
 #define TICTACTOEOVERLAN_GAMEDEFINITIONS_H
 #include <cstdint>
 #include <vector>
+
+static uint8_t MAX_BOARD_SIZE = 32;
+static uint8_t MAX_WIN_CONDITION_LENGTH = 32;
+
 /**
  * The available Piece Types. Used from Top to Bottom, selected by the player number
  */

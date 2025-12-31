@@ -22,6 +22,7 @@ enum class PacketType : uint8_t {
   PLAYER_DISCONNECTED,
   SETTINGS_CHANGE_REQ,
   SETTINGS_UPDATE,
+  GAME_START_REQ,
   GAME_START,
   MOVE_REQ,
   BOARD_STATE_UPDATE,
@@ -76,7 +77,12 @@ struct SettingsChangeReqPacket {
   uint8_t playerId;
   int32_t authToken;
   uint8_t newBoardSize;
-  uint8_t winConditionLength;
+  uint8_t newWinConditionLength;
+};
+
+struct SettingsUpdatePacket {
+  uint8_t newBoardSize;
+  uint8_t newWinConditionLength;
 };
 
 struct BoardStateUpdatePacket {

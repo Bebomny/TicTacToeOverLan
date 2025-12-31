@@ -13,7 +13,7 @@ class ButtonWidget;
 class ButtonBuilder {
 private:
     float posX = 0, posY = 0;
-    float width = 120, height = 25;
+    float width = 121, height = 24;
     std::string text = "Button";
     int textSize = 20;
     sf::Color idle = sf::Color(PRIMARY_COLOR);

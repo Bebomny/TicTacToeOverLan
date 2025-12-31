@@ -10,7 +10,7 @@
 
 class ButtonWidget {
     sf::RectangleShape shape;
-    sf::Text text;
+
 
     sf::Color idleColor; // Primary
     sf::Color hoverColor; // Accent
@@ -19,6 +19,8 @@ class ButtonWidget {
     std::function<void()> onClick;
 
 public:
+    sf::Text text;
+
     ButtonWidget(float x, float y, float width, float height,
         const std::string &btnText, int textSize, const sf::Font &font,
         const std::function<void()> &onClickCallback,

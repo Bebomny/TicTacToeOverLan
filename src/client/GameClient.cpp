@@ -1,5 +1,6 @@
 #include "GameClient.h"
 
+#include <ranges>
 #include <thread>
 
 #include "SFML/Graphics/Text.hpp"
@@ -49,35 +50,129 @@ GameClient::GameClient() {
 
 void GameClient::initMenuWidgets() {
     // Host Button
-    menuButtons.push_back(ButtonWidget::builder(
-        "HOST",
-        [this]() {
-            if (hosting == false) {
-                hosting = true;
-                this->startInternalServerThread();
-            } else if (hosting == true) {
-                hosting = false;
-                this->stopInternalServerThread();
-            }
-        })
-    .setPosition(mainMenuPosition.x, mainMenuPosition.y + 3 * menuTextYOffset + 3)
-    .build());
+    menuButtons.insert({
+            "host",
+            ButtonWidget::builder(
+                "HOST",
+                [this]() {
+                    if (hosting == false) {
+                        hosting = true;
+                        this->startInternalServerThread();
+                    } else if (hosting == true) {
+                        hosting = false;
+                        this->stopInternalServerThread();
+                    }
+                })
+            .setPosition(mainMenuPosition.x, mainMenuPosition.y + 3 * defaultWidgetYOffset + 3)
+            .build()
+        }
+    );
 
     // Connect button
-    menuButtons.push_back(ButtonWidget::builder(
-        "Connect",
-        [this]() {
-            this->connectAndSetup();
-        })
-        .setPosition(mainMenuPosition.x, mainMenuPosition.y + 2 * menuTextYOffset + 1)
-        .setSize(100, 24)
-        .build()
-        );
-
+    menuButtons.insert({
+            "connect",
+            ButtonWidget::builder(
+                "Connect",
+                [this]() {
+                    this->connectAndSetup();
+                })
+            .setPosition(mainMenuPosition.x, mainMenuPosition.y + 2 * defaultWidgetYOffset + 1)
+            .setSize(100, 24)
+            .build()
+        }
+    );
 }
 
 void GameClient::initGameRoomWidgets() {
-    //TODO:
+    // Start game button
+    gameRoomButtons.insert({
+        "start", ButtonWidget::builder(
+            "Start",
+            [this]() {
+                this->startGame();
+            })
+        .setPosition(gameRoomPosition.x, gameRoomPosition.y + 5 * defaultWidgetYOffset)
+        .setTextSize(26)
+        .build()
+    });
+
+    // +- buttons for boardSize - validated on the server
+    gameRoomButtons.insert({
+        "boardsizeplus",
+        ButtonWidget::builder(
+            "+",
+            [this]() {
+                SettingsChangeReqPacket changeReq {};
+                changeReq.playerId = playerId;
+                changeReq.authToken = authToken;
+                changeReq.newBoardSize = boardData.boardSize + 1;
+                changeReq.newWinConditionLength = boardData.winConditionLength;
+
+                printf(ANSI_CYAN "[GameClient] Sending settings change request packet with increased boardSize by 1\n" ANSI_RESET);
+                this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
+            })
+        .setPosition(202, gameRoomPosition.y + 2 * defaultWidgetYOffset+1)
+        .setSize(24, 24)
+        .build()
+    });
+
+    gameRoomButtons.insert({
+        "boardsizeminus",
+        ButtonWidget::builder(
+            "-",
+            [this]() {
+                SettingsChangeReqPacket changeReq {};
+                changeReq.playerId = playerId;
+                changeReq.authToken = authToken;
+                changeReq.newBoardSize = boardData.boardSize - 1;
+                changeReq.newWinConditionLength = boardData.winConditionLength;
+
+                printf(ANSI_CYAN "[GameClient] Sending settings change request packet with decreased boardSize by 1\n" ANSI_RESET);
+                this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
+            })
+        .setPosition(232, gameRoomPosition.y + 2 * defaultWidgetYOffset+1)
+        .setSize(24, 24)
+        .build()
+    });
+
+    //+- buttons for win condition length - validated on the server
+    gameRoomButtons.insert({
+        "winconditionplus",
+        ButtonWidget::builder(
+            "+",
+            [this]() {
+                SettingsChangeReqPacket changeReq {};
+                changeReq.playerId = playerId;
+                changeReq.authToken = authToken;
+                changeReq.newBoardSize = boardData.boardSize;
+                changeReq.newWinConditionLength = boardData.winConditionLength + 1;
+
+                printf(ANSI_CYAN "[GameClient] Sending settings change request packet with increased win condition length by 1\n" ANSI_RESET);
+                this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
+            })
+        .setPosition(284, gameRoomPosition.y + 3 * defaultWidgetYOffset+1)
+        .setSize(24, 24)
+        .build()
+    });
+
+    gameRoomButtons.insert({
+        "winconditionminus",
+        ButtonWidget::builder(
+            "-",
+            [this]() {
+                SettingsChangeReqPacket changeReq {};
+                changeReq.playerId = playerId;
+                changeReq.authToken = authToken;
+                changeReq.newBoardSize = boardData.boardSize;
+                changeReq.newWinConditionLength = boardData.winConditionLength - 1;
+
+                printf(ANSI_CYAN "[GameClient] Sending settings change request packet with decreased win condition length by 1\n" ANSI_RESET);
+                this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
+            })
+        .setPosition(314, gameRoomPosition.y + 3 * defaultWidgetYOffset+1)
+        .setSize(24, 24)
+        .build()
+    });
 }
 
 void GameClient::initGameWidgets() {
@@ -96,7 +191,14 @@ void GameClient::handleInput() {
     const sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
     //Update buttons
-    for (const auto &btn : menuButtons) {
+    for (const auto &btn: menuButtons | std::views::values) {
+        btn->update(mousePos);
+    }
+
+    for (const auto & [id, btn]: gameRoomButtons) {
+        if (!hosting && (id == "Start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+            continue;
+        }
         btn->update(mousePos);
     }
 
@@ -129,7 +231,7 @@ void GameClient::handleInput() {
 }
 
 void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
-    for (const auto &btn : menuButtons) {
+    for (const auto &btn: menuButtons | std::views::values) {
         btn->handleEvent(event, mousePos);
     }
 
@@ -153,7 +255,13 @@ void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf
 }
 
 void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
-    //TODO:
+    //TODO: add disconnect
+    for (const auto &[id, btn]: gameRoomButtons) {
+        if (!hosting && (id == "Start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+            continue;
+        }
+        btn->handleEvent(event, mousePos);
+    }
 }
 
 void GameClient::handleGameInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
@@ -168,9 +276,9 @@ void GameClient::update() {
         //S2C packets: SERVER_HELLO, SETUP_ACK[x], NEW_PLAYER_JOIN, SETTINGS_UPDATE, GAME_START, BOARD_STATE_UPDATE, GAME_END
         switch (header.type) {
             case PacketType::SERVER_HELLO: {
-                // if (clientState != ClientState::GAME_ROOM) {
-                //     printf(ANSI_RED "Client isnt in the game room state, but we received a SERVER_HELLO packet\n" ANSI_RESET);
-                // }
+                if (clientState != ClientState::GAME_ROOM) {
+                    printf(ANSI_RED "Client isnt in the game room state, but we received a SERVER_HELLO packet\n" ANSI_RESET);
+                }
                 printf(ANSI_CYAN "[GameClient] Got Server Hello packet!\n" ANSI_RESET);
                 setupPhase = SetupPhase::SETTING_UP;
                 const auto *packet = reinterpret_cast<ServerHelloPacket *>(payload.data());
@@ -178,10 +286,10 @@ void GameClient::update() {
                 printf(ANSI_CYAN "[GameClient] Assigned player ID: %hhu\n" ANSI_RESET, packet->playerId);
 
                 // Send the SETUP_REQ packet
-                SetupReqPacket setupReqPacket {};
+                SetupReqPacket setupReqPacket{};
                 setupReqPacket.playerId = playerId;
                 memset(setupReqPacket.playerName, 0, MAX_PLAYER_NAME_LENGTH);
-                strncpy(setupReqPacket.playerName, playerName.c_str(), MAX_PLAYER_NAME_LENGTH-1);
+                strncpy(setupReqPacket.playerName, playerName.c_str(), MAX_PLAYER_NAME_LENGTH - 1);
                 setupReqPacket.initialToken = initialToken;
 
                 printf(
@@ -193,9 +301,9 @@ void GameClient::update() {
             }
 
             case PacketType::SETUP_ACK: {
-                // if (clientState != ClientState::GAME_ROOM) {
-                //     printf(ANSI_RED "Client isn't in the game room state, but we received a SETUP_ACK packet\n" ANSI_RESET);
-                // }
+                if (clientState != ClientState::GAME_ROOM) {
+                    printf(ANSI_RED "Client isn't in the game room state, but we received a SETUP_ACK packet\n" ANSI_RESET);
+                }
                 printf(ANSI_CYAN "[GameClient] Got SETUP_ACK packet!\n" ANSI_RESET);
                 //TODO: check if the playerId is the same as ours
                 const auto *packet = reinterpret_cast<SetupAckPacket *>(payload.data());
@@ -210,24 +318,25 @@ void GameClient::update() {
                 playerCount = packet->playerCount;
                 players = {};
                 //TODO: Fix sometimes the playerName comes as random gibberish, no idea why. Probably something in the server packet formation;
-                for (const auto player : packet->players) {
+                for (const auto player: packet->players) {
                     if (player.playerId == NULL) {
                         continue;
                     }
-                    printf("[%hhu, %s, %hhd, %hhd, %hhd]\n", player.playerId, player.playerName, player.piece, player.myTurn, player.isMe);
+                    printf("[%hhu, %s, %hhd, %hhd, %hhd]\n", player.playerId, player.playerName, player.piece,
+                           player.myTurn, player.isMe);
                     players.push_back(player);
-
                 }
 
                 setupPhase = SetupPhase::CONNECTED;
-                printf(ANSI_CYAN "[GameClient] Generated AuthToken: %d Other: [name:%s, id:%hhd]\n" ANSI_RESET, authToken, playerName.c_str(), pieceType);
+                printf(ANSI_CYAN "[GameClient] Generated AuthToken: %d Other: [name:%s, id:%hhd]\n" ANSI_RESET,
+                       authToken, playerName.c_str(), pieceType);
                 break;
             }
 
             case PacketType::NEW_PLAYER_JOIN: {
-                // if (clientState != ClientState::GAME_ROOM) {
-                //     printf(ANSI_RED "Client isn't in the game room state, but we received a NEW_PLAYER_JOIN packet\n" ANSI_RESET);
-                // }
+                if (clientState != ClientState::GAME_ROOM) {
+                    printf(ANSI_RED "Client isn't in the game room state, but we received a NEW_PLAYER_JOIN packet\n" ANSI_RESET);
+                }
 
                 //TODO: Check for duplicates and check if its me
                 printf(ANSI_CYAN "[GameClient] Got NEW_PLAYER_JOIN packet!\n" ANSI_RESET);
@@ -237,13 +346,24 @@ void GameClient::update() {
                 newPlayer.playerId = packet->newPlayerId;
                 // newPlayer.playerName = packet->newPlayerName;
                 memset(newPlayer.playerName, 0, MAX_PLAYER_NAME_LENGTH);
-                strncpy(newPlayer.playerName, packet->newPlayerName, MAX_PLAYER_NAME_LENGTH-1);
+                strncpy(newPlayer.playerName, packet->newPlayerName, MAX_PLAYER_NAME_LENGTH - 1);
                 newPlayer.piece = packet->newPlayerPieceType;
                 newPlayer.isMe = playerId == packet->newPlayerId;
                 newPlayer.myTurn = false;
                 // If a player with this id already exists overwrite it
-                std::erase_if(players, [packet](const Player &player) { return packet->newPlayerId == player.playerId; });
+                std::erase_if(
+                    players, [packet](const Player &player) { return packet->newPlayerId == player.playerId; });
                 players.push_back(newPlayer);
+                break;
+            }
+
+            case PacketType::SETTINGS_UPDATE: {
+                const auto *packet = reinterpret_cast<SettingsUpdatePacket *>(payload.data());
+                printf(ANSI_CYAN "[GameClient] Got SETTINGS_UPDATE packet!\n" ANSI_RESET);
+                printf(ANSI_GREEN "[GameClient] New Board Size: %hhu, New Win Condition Length: %hhu\n" ANSI_RESET,
+                    packet->newBoardSize, packet->newWinConditionLength);
+                boardData.boardSize = packet->newBoardSize;
+                boardData.winConditionLength = packet->newWinConditionLength;
                 break;
             }
 
@@ -277,8 +397,7 @@ void GameClient::render() {
             this->renderGame();
             break;
     }
-
-
+    
     window.display();
 }
 
@@ -287,27 +406,82 @@ void GameClient::renderMenu() {
     sf::Text text(font);
 
     text.setString((hosting ? "You are the host!" : "Hello there!"));
-    text.setCharacterSize(menuTextSize);
+    text.setCharacterSize(defaultTextSize);
     text.setFillColor(sf::Color(TEXT_COLOR));
     text.setPosition({mainMenuPosition.x, mainMenuPosition.y});
     window.draw(text);
 
     text.setString("Player name: " + playerName);
-    text.move({0, menuTextYOffset});
+    text.move({0, defaultWidgetYOffset});
     window.draw(text);
 
     text.setString("Server Address: " + userInputIP);
-    text.move({110, menuTextYOffset});
+    text.move({110, defaultWidgetYOffset});
     window.draw(text);
 
     // Render buttons
-    for (const auto & btn : menuButtons) {
+    for (const auto &btn: menuButtons | std::views::values) {
         btn->render(window);
     }
 }
 
 void GameClient::renderGameRoom() {
     //TODO:
+    sf::Text text(font);
+
+    // Player name
+    text.setString("Player name: " + playerName);
+    text.setCharacterSize(defaultTextSize);
+    text.setFillColor(sf::Color(TEXT_COLOR));
+    text.setPosition({gameRoomPosition.x, gameRoomPosition.y});
+    window.draw(text);
+
+    // Am I the Host
+    text.setString((hosting ? "You are the host!" : "Someone else is hosting!"));
+    text.move({0, defaultWidgetYOffset});
+    window.draw(text);
+
+    // Board Size
+    text.setString("Board Size: " + std::to_string(boardData.boardSize));
+    text.move({0, defaultWidgetYOffset});
+    window.draw(text);
+
+    // Win Condition Length
+    text.setString("Required in a row: " + std::to_string(boardData.winConditionLength));
+    text.move({0, defaultWidgetYOffset});
+    window.draw(text);
+
+    // space
+    text.move({0, defaultWidgetYOffset});
+
+    // Start button for the host - initialized in the button widgets
+    text.move({0, defaultWidgetYOffset});
+
+    // space
+    text.move({0, defaultWidgetYOffset});
+
+    // Players
+    text.setString("Players[" + std::to_string(players.size()) + ", " + std::to_string(playerCount) + "]:");
+    text.move({0, defaultWidgetYOffset});
+    window.draw(text);
+
+    for (const auto &player: players) {
+        std::string pNameString = player.playerName;
+        std::string piece = Utils::pieceTypeToString(player.piece);
+        text.setString("Name: " + pNameString
+                       + "  ID: " + std::to_string(player.playerId)
+                       + "  Piece: " + piece);
+        text.move({0, defaultWidgetYOffset});
+        window.draw(text);
+    }
+
+    // Render buttons
+    for (const auto &[id, btn] : gameRoomButtons) {
+        if (!hosting && (id == "Start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+            continue;
+        }
+        btn->render(window);
+    }
 }
 
 void GameClient::renderGame() {
@@ -445,13 +619,13 @@ void GameClient::renderDebugMenu() {
     window.draw(text);
 
     std::string playerString = std::format("Players[{}]: [", players.size());
-    for (auto player : players) {
+    for (auto player: players) {
         std::stringstream ss;
         ss << "{"
-           << static_cast<int>(player.playerId) << ", "
-           << player.playerName << ", "
-           << static_cast<int>(player.piece)
-           << "}";
+                << static_cast<int>(player.playerId) << ", "
+                << player.playerName << ", "
+                << static_cast<int>(player.piece)
+                << "}";
 
         playerString += ss.str();
     }
@@ -463,7 +637,7 @@ void GameClient::renderDebugMenu() {
     //Internal Server stuff
     if (hosting) {
         text.setString("Internal Game Server Debug");
-        text.move({0, textYOffset*2});
+        text.move({0, textYOffset * 2});
         window.draw(text);
 
         text.setString("Current Tick: " + std::to_string(serverLogic.tick));
@@ -480,7 +654,7 @@ void GameClient::connectAndSetup() {
     serverPort = strtok(nullptr, ":");
 
     printf(ANSI_CYAN "[GameClient] Connecting to a server at %s... [%s, %s]\n" ANSI_RESET,
-        userInputIP.c_str(), serverAddress.c_str(), serverPort.c_str());
+           userInputIP.c_str(), serverAddress.c_str(), serverPort.c_str());
 
     int conResult = networkManager.connectToServer(serverAddress, serverPort);
     if (conResult == 0 || conResult == 1) {
@@ -490,6 +664,11 @@ void GameClient::connectAndSetup() {
         printf(ANSI_RED "[GameClient] Failed to connect at %s...\n" ANSI_RESET, userInputIP.c_str());
     }
 }
+
+void GameClient::startGame() {
+    //TODO:
+}
+
 
 void GameClient::sendMove(uint8_t posX, uint8_t posY) {
     //TODO:
@@ -528,7 +707,9 @@ void GameClient::initializeGameBoard() {
 }
 
 GameClient::~GameClient() {
-    stopInternalServerThread();
+    if (hosting) {
+        stopInternalServerThread();
+    }
 }
 
 

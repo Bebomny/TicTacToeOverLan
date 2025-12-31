@@ -14,7 +14,7 @@ void InternalGameServer::start(const int port) {
     //GameState preparation
     //TODO: move this to a reset fuction
     boardData.boardSize = 3;
-
+    boardData.winConditionLength = 3;
 
     //Socket and network setup
     WSADATA wsadata;
@@ -204,6 +204,41 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             this->broadcastPacket(PacketType::NEW_PLAYER_JOIN, newPlayerJoinPacket);
 
             client.setupPhase = ClientSetupPhase::SET_UP;
+            break;
+        }
+
+        case PacketType::SETTINGS_CHANGE_REQ: {
+            const auto *packet = reinterpret_cast<SettingsChangeReqPacket *>(payload.data());
+            printf(ANSI_CYAN "[InternalServer] Received SETTINGS_CHANGE_REQ packet from %hhu with params: [size: %hhu, winCon: %hhu]!\n" ANSI_RESET,
+                packet->playerId, packet->newBoardSize, packet->newWinConditionLength);
+
+            //Validate
+            bool updated = false;
+            // 0 < BoardSize < MAX_BOARD_SIZE
+            if (packet->newBoardSize > 0 && packet->newBoardSize <= MAX_BOARD_SIZE && boardData.boardSize != packet->newBoardSize) {
+                printf(ANSI_GREEN "[InternalServer] BoardSize updated from %hhu to %hhu\n" ANSI_RESET, boardData.boardSize, packet->newBoardSize);
+                boardData.boardSize = packet->newBoardSize;
+                boardData.winConditionLength = std::min(boardData.winConditionLength, boardData.boardSize);
+                updated = true;
+            }
+
+            // 0 < WinConditionLength < BoardSize
+            if (packet->newWinConditionLength > 0 && packet->newWinConditionLength <= boardData.boardSize && boardData.winConditionLength != packet->newWinConditionLength) {
+                printf(ANSI_GREEN "[InternalServer] WinConditionLength updated from %hhu to %hhu\n" ANSI_RESET, boardData.winConditionLength, packet->newWinConditionLength);
+                boardData.winConditionLength = packet->newWinConditionLength;
+                updated = true;
+            }
+
+            //Send update packet if necessary
+            if (updated) {
+                SettingsUpdatePacket settingsUpdatePacket {};
+                settingsUpdatePacket.newBoardSize = boardData.boardSize;
+                settingsUpdatePacket.newWinConditionLength = boardData.winConditionLength;
+
+                printf(ANSI_CYAN "[InternalServer] Broadcasting new board settings!\n" ANSI_RESET);
+                this->broadcastPacket(PacketType::SETTINGS_UPDATE, settingsUpdatePacket);
+            }
+
             break;
         }
     }

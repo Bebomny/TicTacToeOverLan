@@ -1,6 +1,7 @@
 #ifndef TICTACTOEOVERLAN_GAMECLIENT_H
 #define TICTACTOEOVERLAN_GAMECLIENT_H
 #include <cstdint>
+#include <map>
 #include <thread>
 
 #include "NetworkManager.h"
@@ -40,13 +41,15 @@ public:
     sf::RenderWindow window;
     sf::Font font;
     ClientState clientState;
-    std::vector<std::unique_ptr<ButtonWidget>> menuButtons;
+    std::map<std::string, std::unique_ptr<ButtonWidget>> menuButtons;
+    std::map<std::string, std::unique_ptr<ButtonWidget>> gameRoomButtons;
     bool debugEnabled = true;
 
     //Menu Coordinates - move to separate screen(view?) objects later
     constexpr static sf::Vector2f mainMenuPosition{36, 36}; //left corner
-    constexpr static int menuTextSize = 20;
-    constexpr static int menuTextYOffset{menuTextSize + menuTextSize / 2};
+    constexpr static sf::Vector2f gameRoomPosition{36, 36}; //left corner
+    constexpr static int defaultTextSize = 20;
+    constexpr static int defaultWidgetYOffset{defaultTextSize + defaultTextSize / 2};
 
     //Server Connection
     InternalGameServer serverLogic; // The logic object
@@ -98,6 +101,8 @@ private:
     void stopInternalServerThread();
 
     void connectAndSetup();
+
+    void startGame();
 
     void initializeGameBoard();
 
