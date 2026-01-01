@@ -25,6 +25,8 @@ struct ClientContext {
     mutable PieceType pieceType;
     mutable char playerName[MAX_PLAYER_NAME_LENGTH];
     mutable int32_t playerWins;
+    mutable bool isHost;
+    mutable bool myTurn;
 
     mutable ClientSetupPhase setupPhase;
 

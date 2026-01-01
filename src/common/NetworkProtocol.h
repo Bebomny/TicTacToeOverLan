@@ -48,6 +48,7 @@ struct SetupReqPacket {
   uint8_t playerId;
   int32_t initialToken; //A client generated token, for later validating moves;
   char playerName[MAX_PLAYER_NAME_LENGTH];
+  bool isHost;
 };
 
 struct SetupAckPacket {
@@ -58,6 +59,7 @@ struct SetupAckPacket {
   //TODO: send the initial board settings here too
   uint8_t boardSize;
   uint8_t winConditionLength;
+  uint16_t round;
   // std::vector<Player> players;
   uint8_t playerCount;
   Player players[MAX_PLAYERS];
@@ -67,6 +69,7 @@ struct NewPlayerJoinPacket {
   uint8_t newPlayerId;
   PieceType newPlayerPieceType;
   char newPlayerName[MAX_PLAYER_NAME_LENGTH];
+  bool isHost;
 };
 
 struct PlayerDisconnectedPacket {
@@ -85,10 +88,43 @@ struct SettingsUpdatePacket {
   uint8_t newWinConditionLength;
 };
 
+struct GameStartRequestPacket {
+  uint8_t requestingPlayerId;
+};
+
+struct GameStartPacket {
+  BoardSquare grid[TOTAL_BOARD_AREA];
+  uint8_t requestedByPlayerId;
+  uint8_t finalBoardSize;
+  uint8_t finalWinConditionLength;
+  uint8_t round;
+  uint8_t turn;
+  uint8_t startingPlayerId;
+  uint8_t playerCount;
+};
+
 struct BoardStateUpdatePacket {
-  BoardData boardData;
+  BoardSquare grid[TOTAL_BOARD_AREA];
+  uint8_t boardSize;
+  uint8_t winConditionLength;
+  uint16_t round;
+  uint16_t turn;
+  uint8_t actingPlayerId;
   Move lastMove;
+  uint8_t playerCount;
   Player players[MAX_PLAYERS];
+};
+
+struct MoveRequestPacket {
+  uint8_t playerId;
+  uint8_t x, y;
+  uint16_t turn;
+  PieceType piece;
+};
+
+struct GameEndPacket {
+  bool win;
+  uint8_t winningPlayerId;
 };
 
 #pragma pack(pop)

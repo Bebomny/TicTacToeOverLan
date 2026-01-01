@@ -30,7 +30,11 @@ add_executable(TicTacToeOverLan src/main.cpp
         src/client/ui/ButtonWidget.cpp
         src/client/ui/ButtonWidget.h
         src/client/ui/ButtonBuilder.cpp
-        src/client/ui/ButtonBuilder.h)
+        src/client/ui/ButtonBuilder.h
+        src/client/ui/BoardRenderer.cpp
+        src/client/ui/BoardRenderer.h
+        src/server/WinValidator.cpp
+        src/server/WinValidator.h)
 
 target_link_libraries(TicTacToeOverLan PRIVATE Ws2_32)
 target_link_libraries(TicTacToeOverLan PRIVATE SFML::Graphics)

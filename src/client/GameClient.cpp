@@ -4,6 +4,7 @@
 #include <thread>
 
 #include "SFML/Graphics/Text.hpp"
+#include "ui/BoardRenderer.h"
 #include "ui/ButtonBuilder.h"
 
 GameClient::GameClient() {
@@ -26,13 +27,14 @@ GameClient::GameClient() {
     boardData.boardSize = 3;
     boardData.winConditionLength = 3;
     boardData.turn = 0;
-    boardData.currentPlayerId = 0;
-    this->initializeGameBoard();
+    boardData.actingPlayerId = 0;
+    Utils::initializeGameBoard(boardData);
     playerCount = 0;
     players = {};
 
     window.create(sf::VideoMode({1500, 600}), "TicTacToe Ultimate Editionn");
     window.setFramerateLimit(60);
+    boardDrawArea = {{300.0f, 30.0f}, {500.0f, 500.0f}};
 
     //TODO: adjust the file name here
     if (!font.openFromFile("../resources/JetBrainsMono-Regular.ttf")) {
@@ -102,14 +104,9 @@ void GameClient::initGameRoomWidgets() {
         ButtonWidget::builder(
             "+",
             [this]() {
-                SettingsChangeReqPacket changeReq {};
-                changeReq.playerId = playerId;
-                changeReq.authToken = authToken;
-                changeReq.newBoardSize = boardData.boardSize + 1;
-                changeReq.newWinConditionLength = boardData.winConditionLength;
-
-                printf(ANSI_CYAN "[GameClient] Sending settings change request packet with increased boardSize by 1\n" ANSI_RESET);
-                this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
+                this->requestBoardSettingsUpdate(
+                    boardData.boardSize + 1,
+                    boardData.winConditionLength);
             })
         .setPosition(202, gameRoomPosition.y + 2 * defaultWidgetYOffset+1)
         .setSize(24, 24)
@@ -121,14 +118,9 @@ void GameClient::initGameRoomWidgets() {
         ButtonWidget::builder(
             "-",
             [this]() {
-                SettingsChangeReqPacket changeReq {};
-                changeReq.playerId = playerId;
-                changeReq.authToken = authToken;
-                changeReq.newBoardSize = boardData.boardSize - 1;
-                changeReq.newWinConditionLength = boardData.winConditionLength;
-
-                printf(ANSI_CYAN "[GameClient] Sending settings change request packet with decreased boardSize by 1\n" ANSI_RESET);
-                this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
+                this->requestBoardSettingsUpdate(
+                    boardData.boardSize - 1,
+                    boardData.winConditionLength);
             })
         .setPosition(232, gameRoomPosition.y + 2 * defaultWidgetYOffset+1)
         .setSize(24, 24)
@@ -141,14 +133,9 @@ void GameClient::initGameRoomWidgets() {
         ButtonWidget::builder(
             "+",
             [this]() {
-                SettingsChangeReqPacket changeReq {};
-                changeReq.playerId = playerId;
-                changeReq.authToken = authToken;
-                changeReq.newBoardSize = boardData.boardSize;
-                changeReq.newWinConditionLength = boardData.winConditionLength + 1;
-
-                printf(ANSI_CYAN "[GameClient] Sending settings change request packet with increased win condition length by 1\n" ANSI_RESET);
-                this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
+                this->requestBoardSettingsUpdate(
+                    boardData.boardSize,
+                    boardData.winConditionLength + 1);
             })
         .setPosition(284, gameRoomPosition.y + 3 * defaultWidgetYOffset+1)
         .setSize(24, 24)
@@ -160,14 +147,9 @@ void GameClient::initGameRoomWidgets() {
         ButtonWidget::builder(
             "-",
             [this]() {
-                SettingsChangeReqPacket changeReq {};
-                changeReq.playerId = playerId;
-                changeReq.authToken = authToken;
-                changeReq.newBoardSize = boardData.boardSize;
-                changeReq.newWinConditionLength = boardData.winConditionLength - 1;
-
-                printf(ANSI_CYAN "[GameClient] Sending settings change request packet with decreased win condition length by 1\n" ANSI_RESET);
-                this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
+                this->requestBoardSettingsUpdate(
+                    boardData.boardSize,
+                    boardData.winConditionLength - 1);
             })
         .setPosition(314, gameRoomPosition.y + 3 * defaultWidgetYOffset+1)
         .setSize(24, 24)
@@ -196,7 +178,7 @@ void GameClient::handleInput() {
     }
 
     for (const auto & [id, btn]: gameRoomButtons) {
-        if (!hosting && (id == "Start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
             continue;
         }
         btn->update(mousePos);
@@ -257,7 +239,7 @@ void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf
 void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
     //TODO: add disconnect
     for (const auto &[id, btn]: gameRoomButtons) {
-        if (!hosting && (id == "Start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
             continue;
         }
         btn->handleEvent(event, mousePos);
@@ -265,7 +247,16 @@ void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, cons
 }
 
 void GameClient::handleGameInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
-    //TODO:
+    if (const auto& btnEvent = event->getIf<sf::Event::MouseButtonPressed>()) {
+        if (isMyTurn && btnEvent->button == sf::Mouse::Button::Left) {
+            sf::Vector2i gridPos = BoardRenderer::getSquareAt(mousePos, boardData, boardDrawArea);
+
+            if (gridPos.x != -1 || gridPos.y != -1) {
+                printf(ANSI_GREEN "[GameClient] Clicked square at: [%d, %d]\n" ANSI_RESET, gridPos.x, gridPos.y);
+                this->sendMove(gridPos.x, gridPos.y);
+            }
+        }
+    }
 }
 
 void GameClient::update() {
@@ -273,13 +264,17 @@ void GameClient::update() {
     std::vector<char> payload;
 
     while (networkManager.pollPacket(header, payload)) {
-        //S2C packets: SERVER_HELLO, SETUP_ACK[x], NEW_PLAYER_JOIN, SETTINGS_UPDATE, GAME_START, BOARD_STATE_UPDATE, GAME_END
+        //S2C packets: SERVER_HELLO[x], SETUP_ACK[x], NEW_PLAYER_JOIN[x], SETTINGS_UPDATE[x], GAME_START, BOARD_STATE_UPDATE, GAME_END
         switch (header.type) {
+            default: {
+                printf(ANSI_RED "[GameClient] Unknown packet received! Type: %hhd, Data: [%s]", header.type, &payload);
+                break;
+            }
             case PacketType::SERVER_HELLO: {
                 if (clientState != ClientState::GAME_ROOM) {
                     printf(ANSI_RED "Client isnt in the game room state, but we received a SERVER_HELLO packet\n" ANSI_RESET);
                 }
-                printf(ANSI_CYAN "[GameClient] Got Server Hello packet!\n" ANSI_RESET);
+                printf(ANSI_CYAN "[GameClient] Got a Server Hello packet!\n" ANSI_RESET);
                 setupPhase = SetupPhase::SETTING_UP;
                 const auto *packet = reinterpret_cast<ServerHelloPacket *>(payload.data());
                 playerId = packet->playerId;
@@ -291,6 +286,7 @@ void GameClient::update() {
                 memset(setupReqPacket.playerName, 0, MAX_PLAYER_NAME_LENGTH);
                 strncpy(setupReqPacket.playerName, playerName.c_str(), MAX_PLAYER_NAME_LENGTH - 1);
                 setupReqPacket.initialToken = initialToken;
+                setupReqPacket.isHost = hosting;
 
                 printf(
                     ANSI_CYAN "[GameClient] Sending SETUP_REQ packet with [pid:%hhu] [pName:%s] [initialToken:%d]\n"
@@ -304,7 +300,7 @@ void GameClient::update() {
                 if (clientState != ClientState::GAME_ROOM) {
                     printf(ANSI_RED "Client isn't in the game room state, but we received a SETUP_ACK packet\n" ANSI_RESET);
                 }
-                printf(ANSI_CYAN "[GameClient] Got SETUP_ACK packet!\n" ANSI_RESET);
+                printf(ANSI_CYAN "[GameClient] Got a SETUP_ACK packet!\n" ANSI_RESET);
                 //TODO: check if the playerId is the same as ours
                 const auto *packet = reinterpret_cast<SetupAckPacket *>(payload.data());
                 authToken = packet->generatedAuthToken;
@@ -314,6 +310,7 @@ void GameClient::update() {
 
                 boardData.boardSize = packet->boardSize;
                 boardData.winConditionLength = packet->winConditionLength;
+                boardData.round = packet->round;
 
                 playerCount = packet->playerCount;
                 players = {};
@@ -328,6 +325,7 @@ void GameClient::update() {
                 }
 
                 setupPhase = SetupPhase::CONNECTED;
+                gamePhase = GamePhase::WAITING_ROOM;
                 printf(ANSI_CYAN "[GameClient] Generated AuthToken: %d Other: [name:%s, id:%hhd]\n" ANSI_RESET,
                        authToken, playerName.c_str(), pieceType);
                 break;
@@ -338,8 +336,8 @@ void GameClient::update() {
                     printf(ANSI_RED "Client isn't in the game room state, but we received a NEW_PLAYER_JOIN packet\n" ANSI_RESET);
                 }
 
-                //TODO: Check for duplicates and check if its me
-                printf(ANSI_CYAN "[GameClient] Got NEW_PLAYER_JOIN packet!\n" ANSI_RESET);
+                //TODO: Check for duplicates and check if its me(The player requesting the setup exchange)
+                printf(ANSI_CYAN "[GameClient] Got a NEW_PLAYER_JOIN packet!\n" ANSI_RESET);
                 const auto *packet = reinterpret_cast<NewPlayerJoinPacket *>(payload.data());
 
                 Player newPlayer{};
@@ -350,16 +348,19 @@ void GameClient::update() {
                 newPlayer.piece = packet->newPlayerPieceType;
                 newPlayer.isMe = playerId == packet->newPlayerId;
                 newPlayer.myTurn = false;
+                newPlayer.wins = 0;
+                newPlayer.isHost = packet->isHost;
                 // If a player with this id already exists overwrite it
                 std::erase_if(
                     players, [packet](const Player &player) { return packet->newPlayerId == player.playerId; });
                 players.push_back(newPlayer);
+                playerCount = players.size();
                 break;
             }
 
             case PacketType::SETTINGS_UPDATE: {
                 const auto *packet = reinterpret_cast<SettingsUpdatePacket *>(payload.data());
-                printf(ANSI_CYAN "[GameClient] Got SETTINGS_UPDATE packet!\n" ANSI_RESET);
+                printf(ANSI_CYAN "[GameClient] Got a SETTINGS_UPDATE packet!\n" ANSI_RESET);
                 printf(ANSI_GREEN "[GameClient] New Board Size: %hhu, New Win Condition Length: %hhu\n" ANSI_RESET,
                     packet->newBoardSize, packet->newWinConditionLength);
                 boardData.boardSize = packet->newBoardSize;
@@ -369,10 +370,97 @@ void GameClient::update() {
 
             case PacketType::PLAYER_DISCONNECTED: {
                 const auto *packet = reinterpret_cast<PlayerDisconnectedPacket *>(payload.data());
-                //TODO: handle disconnect?? pause game?? Check if the disconnected player is me - this shouldnt happen
+                printf(ANSI_YELLOW "[GameClient] Player with ID %hhu has disconnected\n" ANSI_RESET, packet->playerId);
+                //TODO: handle disconnect?? pause game?? Check if the disconnected player is me - this shouldn't happen
                 std::erase_if(players, [packet](const Player &player) {
                     return player.playerId == packet->playerId;
                 });
+                playerCount = players.size();
+                break;
+            }
+
+            case PacketType::GAME_START: {
+                const auto *packet = reinterpret_cast<GameStartPacket *>(payload.data());
+                printf(ANSI_GREEN "[GameClient] The Game is starting... Started by player with ID %hhu\n" ANSI_RESET,
+                    packet->requestedByPlayerId);
+
+                boardData.boardSize = packet->finalBoardSize;
+                boardData.winConditionLength = packet->finalWinConditionLength;
+                boardData.round = packet->round;
+                boardData.turn = packet->turn;
+                boardData.actingPlayerId = packet->startingPlayerId;
+                for (auto & player : players) {
+                    if (player.playerId == packet->startingPlayerId) {
+                        player.myTurn = true;
+                    }
+                }
+
+                Utils::initializeGameBoard(boardData);
+                Utils::deserializeBoard(packet->grid, boardData);
+
+                clientState = ClientState::GAME;
+                gamePhase = (playerId == packet->startingPlayerId ? GamePhase::MY_TURN : GamePhase::NOT_MY_TURN);
+                isMyTurn = playerId == packet->startingPlayerId;
+
+                // std::string boardString = "Grid: [";
+                // for (auto &row : boardData.grid) {
+                //     for (auto &column : row) {
+                //         boardString += Utils::pieceTypeToString(column.piece) + ",";
+                //     }
+                // }
+                // boardString += "]";
+                // printf("%s\n", boardString.c_str());
+
+                break;
+            }
+            case PacketType::BOARD_STATE_UPDATE: {
+                const auto *packet = reinterpret_cast<BoardStateUpdatePacket *>(payload.data());
+                printf(ANSI_CYAN "[GameClient] Got a BOARD_STATE_UPDATE packet!\n" ANSI_RESET);
+                if (clientState != ClientState::GAME) {
+                    printf(ANSI_RED "Client isn't in the game state, but we received a BOARD_STATE_UPDATE packet\n" ANSI_RESET);
+                    break;
+                }
+
+                //update board
+                //TODO: check if gamesettings still match
+                Utils::deserializeBoard(packet->grid, boardData);
+
+                //Debug
+                // std::string boardString = "Grid: [";
+                // for (auto &row : boardData.grid) {
+                //     for (auto &column : row) {
+                //         boardString += Utils::pieceTypeToString(column.piece) + ",";
+                //     }
+                // }
+                // boardString += "]";
+                // printf("[GameClient] %s\n", boardString.c_str());
+                ////////////
+
+                boardData.round = packet->round;
+                boardData.turn = packet->turn;
+                boardData.actingPlayerId = packet->actingPlayerId;
+                lastMove = packet->lastMove;
+                moves.push_back(packet->lastMove);
+
+                isMyTurn = playerId == packet->actingPlayerId;
+
+                //update players
+                players.clear();
+                for (int i = 0; i < packet->playerCount; ++i) {
+                    players.push_back(packet->players[i]);
+                }
+                break;
+            }
+
+            case PacketType::GAME_END: {
+                const auto *packet = reinterpret_cast<GameEndPacket *>(payload.data());
+                //TODO: check for win bool, if it wasnt a premature end because of an error or smth
+                printf(ANSI_GREEN "[GameClient] Player with ID %hhu won the round!\n" ANSI_RESET, packet->winningPlayerId);
+                gamePhase = GamePhase::WAITING_ROOM;
+                clientState = ClientState::GAME_ROOM;
+
+                //TODO: display something
+
                 break;
             }
         }
@@ -468,16 +556,18 @@ void GameClient::renderGameRoom() {
     for (const auto &player: players) {
         std::string pNameString = player.playerName;
         std::string piece = Utils::pieceTypeToString(player.piece);
+        std::string isHost = (player.isHost ? "  HOST" : "");
         text.setString("Name: " + pNameString
                        + "  ID: " + std::to_string(player.playerId)
-                       + "  Piece: " + piece);
+                       + "  Piece: " + piece
+                       + isHost);
         text.move({0, defaultWidgetYOffset});
         window.draw(text);
     }
 
     // Render buttons
     for (const auto &[id, btn] : gameRoomButtons) {
-        if (!hosting && (id == "Start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
             continue;
         }
         btn->render(window);
@@ -486,11 +576,15 @@ void GameClient::renderGameRoom() {
 
 void GameClient::renderGame() {
     //TODO:
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    sf::Vector2i hoveredGridPos = BoardRenderer::getSquareAt(mousePos, boardData, boardDrawArea);
+
+    BoardRenderer::render(window, boardData, boardDrawArea, isMyTurn, hoveredGridPos);
 }
 
 void GameClient::renderDebugMenu() {
     const sf::Vector2u debugMenuPosition{window.getSize().x - 500, 16}; //left corner
-    constexpr int textSize = 16;
+    constexpr int textSize = 14;
     constexpr int textYOffset{textSize + textSize / 2};
 
     sf::Text text(font);
@@ -625,6 +719,8 @@ void GameClient::renderDebugMenu() {
                 << static_cast<int>(player.playerId) << ", "
                 << player.playerName << ", "
                 << static_cast<int>(player.piece)
+                << ", W" << static_cast<int>(player.wins)
+                << (player.isHost ? ", H" : "")
                 << "}";
 
         playerString += ss.str();
@@ -640,9 +736,45 @@ void GameClient::renderDebugMenu() {
         text.move({0, textYOffset * 2});
         window.draw(text);
 
-        text.setString("Current Tick: " + std::to_string(serverLogic.tick));
+        text.setString("Current Tick: " + std::to_string(serverLogic.getTick()));
         text.move({0, textYOffset});
         window.draw(text);
+
+        //nextplayerid
+        text.setString("NextPlayerID: " + std::to_string(serverLogic.getNextPlayerId()));
+        text.move({0, textYOffset});
+        window.draw(text);
+
+        //turn
+        text.setString("Turn: " + std::to_string(serverLogic.getCurrentTurn()));
+        text.move({0, textYOffset});
+        window.draw(text);
+
+        //hostingplayer
+        text.setString("HostingPlayerID: " + std::to_string(serverLogic.getHostingPlayerId()));
+        text.move({0, textYOffset});
+        window.draw(text);
+
+        //game settings
+        const auto& [srvBoardSize, srvWinConLength] = serverLogic.getBoardSettings();
+        std::string gameSettings =
+            "Game Settings[BoardSize: " + std::to_string(srvBoardSize) +
+                ", WinConLength: " + std::to_string(srvWinConLength) + "]";
+        text.setString(gameSettings);
+        text.move({0, textYOffset});
+        window.draw(text);
+
+        //available pieces
+        std::string availablePiecesString = "AvPieces[";
+        for (const auto & piece : serverLogic.getAllAvailablePieces()) {
+            availablePiecesString += Utils::pieceTypeToString(piece) + ",";
+        }
+        availablePiecesString += "]";
+        text.setString(availablePiecesString);
+        text.move({0, textYOffset});
+        window.draw(text);
+
+        //moves
     }
 }
 
@@ -665,13 +797,36 @@ void GameClient::connectAndSetup() {
     }
 }
 
-void GameClient::startGame() {
-    //TODO:
+void GameClient::requestBoardSettingsUpdate(const uint8_t newBoardSize, const uint8_t newWinConditionLength) {
+    SettingsChangeReqPacket changeReq {};
+    changeReq.playerId = playerId;
+    changeReq.authToken = authToken;
+    changeReq.newBoardSize = newBoardSize;
+    changeReq.newWinConditionLength = newWinConditionLength;
+
+    printf(ANSI_CYAN "[GameClient] Sending settings change request packet with [boardSize: %hhu, winLength: %hhu]\n" ANSI_RESET, newBoardSize, newWinConditionLength);
+    this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
 }
 
 
+void GameClient::startGame() {
+    printf(ANSI_CYAN "[GameClient] Sending Start Game Request!\n" ANSI_RESET);
+    GameStartRequestPacket startReq {};
+    startReq.requestingPlayerId = playerId;
+
+    this->networkManager.sendPacket(PacketType::GAME_START_REQ, startReq);
+}
+
 void GameClient::sendMove(uint8_t posX, uint8_t posY) {
-    //TODO:
+    printf(ANSI_GREEN "[GameClient] Sending move packet with [x:%hhu, y:%hhu]]\n" ANSI_RESET, posX, posY);
+    MoveRequestPacket moveReq {};
+    moveReq.playerId = playerId;
+    moveReq.x = posX;
+    moveReq.y = posY;
+    moveReq.turn = boardData.turn;
+    moveReq.piece = pieceType;
+
+    this->networkManager.sendPacket(PacketType::MOVE_REQ, moveReq);
 }
 
 void GameClient::startInternalServerThread() {
@@ -688,22 +843,6 @@ void GameClient::stopInternalServerThread() {
     if (serverThread.joinable()) {
         serverThread.join();
     }
-}
-
-void GameClient::initializeGameBoard() {
-    std::vector<std::vector<BoardSquare> > grid;
-
-    for (int i = 0; i < boardData.boardSize; ++i) {
-        std::vector<BoardSquare> row;
-        for (int j = 0; j < boardData.boardSize; ++j) {
-            BoardSquare square{};
-            square.piece = PieceType::EMPTY;
-            row.push_back(square);
-        }
-        grid.push_back(row);
-    }
-
-    boardData.grid = grid;
 }
 
 GameClient::~GameClient() {

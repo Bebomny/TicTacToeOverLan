@@ -41,6 +41,7 @@ public:
     sf::RenderWindow window;
     sf::Font font;
     ClientState clientState;
+    sf::FloatRect boardDrawArea;
     std::map<std::string, std::unique_ptr<ButtonWidget>> menuButtons;
     std::map<std::string, std::unique_ptr<ButtonWidget>> gameRoomButtons;
     bool debugEnabled = true;
@@ -71,6 +72,7 @@ public:
     uint8_t playerCount;
     std::vector<Player> players;
     std::vector<Move> moves;
+    Move lastMove;
     bool isMyTurn = false;
 
     GameClient();
@@ -102,9 +104,9 @@ private:
 
     void connectAndSetup();
 
-    void startGame();
+    void requestBoardSettingsUpdate(uint8_t newBoardSize, uint8_t newWinConditionLength);
 
-    void initializeGameBoard();
+    void startGame();
 
     void sendMove(uint8_t posX, uint8_t posY);
 };

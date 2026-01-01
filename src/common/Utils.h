@@ -17,6 +17,7 @@
 #define ACCENT_COLOR {142, 166, 165}
 
 #include "GameDefinitions.h"
+#include "string"
 
 class Utils {
 public:
@@ -39,6 +40,48 @@ public:
         }
 
         return "Empty";
+    }
+
+    static void initializeGameBoard(BoardData &board) {
+        std::vector<std::vector<BoardSquare>> grid;
+
+        for (int i = 0; i < board.boardSize; ++i) {
+            std::vector<BoardSquare> row;
+            for (int j = 0; j < board.boardSize; ++j) {
+                BoardSquare square{};
+                square.piece = PieceType::EMPTY;
+                row.push_back(square);
+            }
+            grid.push_back(row);
+        }
+
+        board.grid = grid;
+    }
+
+    static void serializeBoard(const BoardData &inputBoard, BoardSquare *outputBoard, int bufferSize) {
+        int totalSquares = inputBoard.boardSize * inputBoard.boardSize;
+        int limit = std::min(totalSquares, bufferSize);
+
+        for (int y = 0; y < inputBoard.boardSize; ++y) {
+            for (int x = 0; x < inputBoard.boardSize; ++x) {
+                int flatIndex = y * inputBoard.boardSize + x;
+
+                if (flatIndex >= limit) return;
+
+                outputBoard[flatIndex] = inputBoard.getSquareAt(x, y);
+            }
+        }
+    }
+
+    static void deserializeBoard(const BoardSquare* inputBoard, BoardData &outputBoard) {
+        int totalSquares = outputBoard.boardSize * outputBoard.boardSize;
+
+        for (int i = 0; i < totalSquares; ++i) {
+            int x = i % outputBoard.boardSize;
+            int y = i / outputBoard.boardSize;
+
+            outputBoard.setSquareAt(x, y, inputBoard[i]);
+        }
     }
 };
 
