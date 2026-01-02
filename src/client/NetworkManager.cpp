@@ -60,6 +60,14 @@ int NetworkManager::connectToServer(const std::string &address, const std::strin
     return startResult;
 }
 
+void NetworkManager::disconnect() {
+    shutdown(clientSocket, SD_SEND);
+    closesocket(clientSocket);
+    clientSocket = INVALID_SOCKET;
+    WSACleanup();
+}
+
+
 // template<typename T>
 // void NetworkManager::sendPacket(const PacketType type, const T &data) {
 //     if (conPhase != ConnectionPhase::ESTABLISHED) {

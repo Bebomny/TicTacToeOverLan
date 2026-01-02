@@ -18,6 +18,7 @@ GameClient::GameClient() {
     //Later updated by the server
     // initialToken = std::chrono::high_resolution_clock::now().time_since_epoch().count();
     initialToken = 2137696969;
+    authToken = -1;
     playerId = 1;
     pieceType = PieceType::EMPTY;
 
@@ -33,6 +34,8 @@ GameClient::GameClient() {
     Utils::initializeGameBoard(boardData);
     playerCount = 0;
     players = {};
+    lastMove = {};
+    gameEndPlayer = {};
 
     window.create(sf::VideoMode({1500, 600}), "TicTacToe Ultimate Editionn");
     window.setFramerateLimit(60);
@@ -43,7 +46,6 @@ GameClient::GameClient() {
     }
     ButtonBuilder::initFont(font);
 
-    //TODO: move to separate Screen objects,
     this->initMenuWidgets();
     this->initGameRoomWidgets();
     this->initGameWidgets();
@@ -94,9 +96,23 @@ void GameClient::initGameRoomWidgets() {
             [this]() {
                 this->startGame(true);
             })
-        .setPosition(GAME_ROOM_POSITION.x, GAME_ROOM_POSITION.y + 5 * DEFAULT_WIDGET_Y_OFFSET)
+        .setPosition(GAME_ROOM_POSITION.x, GAME_ROOM_POSITION.y + 5 * DEFAULT_WIDGET_Y_OFFSET - 8.0f)
         .setTextSize(26)
+        .setHeight(40)
         .setDisplayCondition([this]() {return this->hosting;})
+        .build()
+    });
+
+    gameRoomButtons.insert({
+        "disconnect",
+        ButtonWidget::builder(
+            "Disconnect",
+            [this]() {
+                this->disconnect();
+            })
+        .setPosition(GAME_ROOM_POSITION.x + 141.0f, GAME_ROOM_POSITION.y + 5 * DEFAULT_WIDGET_Y_OFFSET - 8.0f)
+        .setTextSize(26)
+        .setSize(201, 40)
         .build()
     });
 
@@ -110,7 +126,7 @@ void GameClient::initGameRoomWidgets() {
                     boardData.boardSize + 1,
                     boardData.winConditionLength);
             })
-        .setPosition(202, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
+        .setPosition(212, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
         .setDisplayCondition([this]() {return this->hosting;})
         .build()
@@ -125,7 +141,7 @@ void GameClient::initGameRoomWidgets() {
                     boardData.boardSize - 1,
                     boardData.winConditionLength);
             })
-        .setPosition(232, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
+        .setPosition(242, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
         .setDisplayCondition([this]() {return this->hosting;})
         .build()
@@ -141,7 +157,7 @@ void GameClient::initGameRoomWidgets() {
                     boardData.boardSize,
                     boardData.winConditionLength + 1);
             })
-        .setPosition(284, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
+        .setPosition(294, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
         .setDisplayCondition([this]() {return this->hosting;})
         .build()
@@ -156,7 +172,7 @@ void GameClient::initGameRoomWidgets() {
                     boardData.boardSize,
                     boardData.winConditionLength - 1);
             })
-        .setPosition(314, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
+        .setPosition(324, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
         .setDisplayCondition([this]() {return this->hosting;})
         .build()
@@ -164,7 +180,6 @@ void GameClient::initGameRoomWidgets() {
 }
 
 void GameClient::initGameWidgets() {
-    //TODO:
     gameButtons.insert({
         "playagain",
         ButtonWidget::builder(
@@ -310,7 +325,7 @@ void GameClient::update() {
         //S2C packets: SERVER_HELLO[x], SETUP_ACK[x], NEW_PLAYER_JOIN[x], SETTINGS_UPDATE[x], GAME_START, BOARD_STATE_UPDATE, GAME_END
         switch (header.type) {
             default: {
-                printf(ANSI_RED "[GameClient] Unknown packet received! Type: %hhd, Data: [%s]", header.type, &payload);
+                printf(ANSI_RED "[GameClient] Unknown packet received! Type: %hhd\n", header.type);
                 break;
             }
             case PacketType::SERVER_HELLO: {
@@ -361,9 +376,8 @@ void GameClient::update() {
 
                 playerCount = packet->playerCount;
                 players = {};
-                //TODO: Fix sometimes the playerName comes as random gibberish, no idea why. Probably something in the server packet formation;
                 for (const auto player: packet->players) {
-                    if (player.playerId == NULL) {
+                    if (player.playerId == 0) {
                         continue;
                     }
                     printf("[%hhu, %s, %hhd, %hhd, %hhd]\n", player.playerId, player.playerName, player.piece,
@@ -629,19 +643,19 @@ void GameClient::renderGameRoom() {
     window.draw(text);
 
     for (const auto &player: players) {
-        std::string pNameString = player.playerName;
-        std::string piece = Utils::pieceTypeToString(player.piece);
-        std::string isHost = (player.isHost ? "  HOST" : "");
-        text.setString("Name: " + pNameString
-                       + "  ID: " + std::to_string(player.playerId)
-                       + "  Piece: " + piece
-                       + isHost);
+        std::string playerString = "Name: ";
+        playerString.append(player.playerName)
+        .append("  ID: ").append(std::to_string(player.playerId))
+        .append("  Piece: ").append(Utils::pieceTypeToString(player.piece))
+        .append(player.isHost ? "  HOST" : "");
+
+        text.setString(playerString);
         text.move({0, DEFAULT_WIDGET_Y_OFFSET});
         window.draw(text);
     }
 
     // Render buttons
-    for (const auto &[id, btn]: gameRoomButtons) {
+    for (const auto &btn: gameRoomButtons | std::views::values) {
         btn->render(window);
     }
 }
@@ -745,7 +759,7 @@ void GameClient::renderGame() {
             ++offset;
         }
 
-        //TODO: If the client isnt the host draw text with "Waiting for the host"
+
         if (!hosting) {
             sf::Text waitingForHostText(font);
             waitingForHostText.setCharacterSize(24);
@@ -1023,6 +1037,14 @@ void GameClient::connectAndSetup() {
         printf(ANSI_RED "[GameClient] Failed to connect at %s...\n" ANSI_RESET, userInputIP.c_str());
     }
 }
+
+void GameClient::disconnect() {
+    this->networkManager.disconnect();
+    setupPhase = SetupPhase::DISCONNECTED;
+    gamePhase = GamePhase::UNKNOWN;
+    clientState = ClientState::MENU;
+}
+
 
 void GameClient::requestBoardSettingsUpdate(const uint8_t newBoardSize, const uint8_t newWinConditionLength) {
     SettingsChangeReqPacket changeReq{};

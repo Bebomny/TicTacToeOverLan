@@ -86,7 +86,6 @@ public:
     bool isMyTurn = false;
     FinishReason finishReason;
     Player gameEndPlayer;
-    // Player winningPlayer;
 
     GameClient();
 
@@ -116,6 +115,7 @@ private:
     void stopInternalServerThread();
 
     void connectAndSetup();
+    void disconnect();
 
     void requestBoardSettingsUpdate(uint8_t newBoardSize, uint8_t newWinConditionLength);
 

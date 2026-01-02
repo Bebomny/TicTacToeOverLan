@@ -48,7 +48,7 @@ public:
         for (int i = 0; i < board.boardSize; ++i) {
             std::vector<BoardSquare> row;
             for (int j = 0; j < board.boardSize; ++j) {
-                BoardSquare square{};
+                BoardSquare square {};
                 square.piece = PieceType::EMPTY;
                 row.push_back(square);
             }

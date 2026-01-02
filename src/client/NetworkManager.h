@@ -23,6 +23,7 @@ public:
     std::vector<char> receiveBuffer;
 
     int connectToServer(const std::string &address, const std::string &port);
+    void disconnect();
     bool pollPacket(PacketHeader &outHeader, std::vector<char> &outPayload);
 
     template<typename T>

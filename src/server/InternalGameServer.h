@@ -15,6 +15,7 @@ class InternalGameServer {
     std::atomic<bool> keepRunning;
     SOCKET listenSocket;
     std::atomic<long long> tick = 0;
+    std::atomic<long long> lastTickTime = 0;
 
     // std::map<uint8_t, ClientContext> clients;
     std::vector<ClientContext> clients;
