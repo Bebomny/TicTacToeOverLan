@@ -33,10 +33,10 @@ public:
                 return "Triangle";
             case PieceType::SQUARE:
                 return "Square";
-            case PieceType::DIAMOND:
-                return "Diamond";
             case PieceType::OCTAGON:
                 return "Octagon";
+            case PieceType::HEXAGON:
+                return "Hexagon";
         }
 
         return "Empty";

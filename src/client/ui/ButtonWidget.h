@@ -11,7 +11,6 @@
 class ButtonWidget {
     sf::RectangleShape shape;
 
-
     sf::Color idleColor; // Primary
     sf::Color hoverColor; // Accent
     sf::Color activeColor; // Secondary

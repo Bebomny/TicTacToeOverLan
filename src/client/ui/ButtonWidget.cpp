@@ -1,5 +1,7 @@
 #include "ButtonWidget.h"
 
+#include <cmath>
+
 #include "../../common/Utils.h"
 #include "SFML/Graphics/RenderTarget.hpp"
 
@@ -24,14 +26,17 @@ ButtonWidget::ButtonWidget(
     text.setFont(font);
     text.setString(btnText);
     text.setFillColor(sf::Color(TEXT_COLOR));
-    text.setCharacterSize(textSize); //Also pass to the constructor???
+    text.setCharacterSize(textSize);
 
     const sf::FloatRect bounds = text.getGlobalBounds();
     text.setOrigin({
-        bounds.position.x + bounds.size.x / 2.0f,
-        bounds.position.y + bounds.size.y / 2.0f
+        std::floor(bounds.position.x + bounds.size.x / 2.0f),
+        std::floor(bounds.position.y + bounds.size.y / 2.0f)
     });
-    text.setPosition({x + width / 2.0f, y + height / 2.0f});
+    text.setPosition({
+        std::floor(x + width / 2.0f),
+        std::floor(y + height / 2.0f)
+    });
 }
 
 bool ButtonWidget::handleEvent(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {

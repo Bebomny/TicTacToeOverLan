@@ -22,6 +22,7 @@ enum class GamePhase : uint8_t {
     WAITING_ROOM,
     MY_TURN,
     NOT_MY_TURN,
+    GAME_FINISHED
 };
 
 enum class ClientState : uint8_t {
@@ -41,16 +42,25 @@ public:
     sf::RenderWindow window;
     sf::Font font;
     ClientState clientState;
-    sf::FloatRect boardDrawArea;
     std::map<std::string, std::unique_ptr<ButtonWidget>> menuButtons;
     std::map<std::string, std::unique_ptr<ButtonWidget>> gameRoomButtons;
+    std::map<std::string, std::unique_ptr<ButtonWidget>> gameButtons;
     bool debugEnabled = true;
 
     //Menu Coordinates - move to separate screen(view?) objects later
-    constexpr static sf::Vector2f mainMenuPosition{36, 36}; //left corner
-    constexpr static sf::Vector2f gameRoomPosition{36, 36}; //left corner
-    constexpr static int defaultTextSize = 20;
-    constexpr static int defaultWidgetYOffset{defaultTextSize + defaultTextSize / 2};
+    constexpr static sf::Vector2f MAIN_MENU_POSITION{36, 36}; //left corner
+    constexpr static sf::Vector2f GAME_ROOM_POSITION{36, 36}; //left corner
+    constexpr static int DEFAULT_TEXT_SIZE = 20;
+    constexpr static int DEFAULT_WIDGET_Y_OFFSET{DEFAULT_TEXT_SIZE + DEFAULT_TEXT_SIZE / 2};
+    constexpr static sf::FloatRect BOARD_DRAW_AREA = {
+        {300.0f, 30.0f},
+        {500.0f, 500.0f}
+    };
+    constexpr static sf::FloatRect WIN_TEXT_DRAW_AREA= {{
+        BOARD_DRAW_AREA.position.x - 50.0f,
+        BOARD_DRAW_AREA.position.y + (BOARD_DRAW_AREA.size.y / 2.0f) - 150.0f},
+        {600.0f, 300.0f}
+    };
 
     //Server Connection
     InternalGameServer serverLogic; // The logic object
@@ -74,6 +84,9 @@ public:
     std::vector<Move> moves;
     Move lastMove;
     bool isMyTurn = false;
+    FinishReason finishReason;
+    Player gameEndPlayer;
+    // Player winningPlayer;
 
     GameClient();
 
@@ -106,7 +119,7 @@ private:
 
     void requestBoardSettingsUpdate(uint8_t newBoardSize, uint8_t newWinConditionLength);
 
-    void startGame();
+    void startGame(bool newGame);
 
     void sendMove(uint8_t posX, uint8_t posY);
 };

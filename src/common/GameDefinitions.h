@@ -16,8 +16,15 @@ enum class PieceType : uint8_t {
     CIRCLE,
     TRIANGLE,
     SQUARE,
-    DIAMOND,
-    OCTAGON
+    OCTAGON,
+    HEXAGON
+};
+
+enum class FinishReason : uint8_t {
+    NONE,
+    PLAYER_WIN,
+    PLAYER_DISCONNECT,
+    OTHER
 };
 
 struct Player {

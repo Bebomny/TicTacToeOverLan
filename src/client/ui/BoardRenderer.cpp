@@ -1,9 +1,12 @@
 #include "BoardRenderer.h"
 
+#include <cmath>
+
 #include "SFML/Graphics/CircleShape.hpp"
 #include "SFML/Graphics/RectangleShape.hpp"
 
-void BoardRenderer::render(sf::RenderTarget &window, const BoardData &board, const sf::FloatRect &drawArea, const bool myTurn, sf::Vector2i highlightedSquare) {
+void BoardRenderer::render(sf::RenderTarget &window, const BoardData &board, const sf::FloatRect &drawArea,
+                           const bool myTurn, sf::Vector2i highlightedSquare) {
     int sideLength = board.boardSize;
 
     if (sideLength == 0) return;
@@ -45,26 +48,39 @@ void BoardRenderer::render(sf::RenderTarget &window, const BoardData &board, con
     }
 }
 
-void BoardRenderer::drawPiece(sf::RenderTarget &window, PieceType piece, float x, float y, float size) {
-    float padding = size * 0.2f;
-    float actualSize = size - (2 * padding);
+void BoardRenderer::drawPiece(sf::RenderTarget &window, const PieceType piece, const float x, const float y,
+                              const float size) {
+    const float padding = size * 0.2f;
+    const float actualSize = size - (2 * padding);
 
     switch (piece) {
         case PieceType::CROSS: {
             sf::RectangleShape line({static_cast<float>(actualSize * std::numbers::sqrt2), 5.0f});
-            line.rotate(sf::degrees(45));
-            line.setPosition({x + padding, y + padding});
+
+            // Line 1
+            const sf::FloatRect bounds = line.getLocalBounds();
+            line.setOrigin({
+                std::floor(bounds.position.x + bounds.size.x / 2.0f),
+                std::floor(bounds.position.y + bounds.size.y / 2.0f)
+            });
+            line.setPosition({
+                std::floor(x + size / 2.0f),
+                std::floor(y + size / 2.0f)
+            });
+
             line.setFillColor(sf::Color(TEXT_COLOR));
+            line.rotate(sf::degrees(45));
             window.draw(line);
 
+            // Line 2
             line.rotate(sf::degrees(90));
-            line.move({actualSize, 0.0f});
             window.draw(line);
+
             break;
         }
 
         case PieceType::CIRCLE: {
-            sf::CircleShape circle(actualSize/2.0f);
+            sf::CircleShape circle(std::floor(actualSize / 2.0f));
             circle.setPosition({x + padding, y + padding});
             circle.setOutlineThickness(4);
             circle.setOutlineColor(sf::Color(TEXT_COLOR)); //TODO: highlight the local players pieces?
@@ -73,12 +89,103 @@ void BoardRenderer::drawPiece(sf::RenderTarget &window, PieceType piece, float x
 
             break;
         }
-            //TODO: add more pieces
+
+        case PieceType::TRIANGLE: {
+            sf::CircleShape circle(std::floor(actualSize / 1.5f), 3);
+
+            // Center it
+            const sf::FloatRect bounds = circle.getLocalBounds();
+            circle.setOrigin({
+                std::floor(bounds.position.x + bounds.size.x / 2.0f),
+                std::floor(bounds.position.y + bounds.size.y / 2.0f)
+            });
+            circle.setPosition({
+                std::floor(x + size / 2.0f),
+                std::floor(y + size / 2.0f)
+            });
+
+            // circle.setPosition({x + padding, y + padding});
+            circle.setOutlineThickness(4);
+            circle.setOutlineColor(sf::Color(TEXT_COLOR));
+            circle.setFillColor(sf::Color::Transparent);
+            window.draw(circle);
+
+            break;
+        }
+
+        case PieceType::SQUARE: {
+            sf::CircleShape circle(std::floor(actualSize / 1.5f), 4);
+
+            // Center it
+            const sf::FloatRect bounds = circle.getLocalBounds();
+            circle.setOrigin({
+                std::floor(bounds.position.x + bounds.size.x / 2.0f),
+                std::floor(bounds.position.y + bounds.size.y / 2.0f)
+            });
+            circle.setPosition({
+                std::floor(x + size / 2.0f),
+                std::floor(y + size / 2.0f)
+            });
+
+            // circle.setPosition({x + padding, y + padding});
+            circle.setOutlineThickness(4);
+            circle.setOutlineColor(sf::Color(TEXT_COLOR));
+            circle.setFillColor(sf::Color::Transparent);
+            circle.rotate(sf::degrees(45));
+            window.draw(circle);
+
+            break;
+        }
+
+        case PieceType::OCTAGON: {
+            sf::CircleShape circle(std::floor(actualSize / 1.5f), 5);
+
+            // Center it
+            const sf::FloatRect bounds = circle.getLocalBounds();
+            circle.setOrigin({
+                std::floor(bounds.position.x + bounds.size.x / 2.0f),
+                std::floor(bounds.position.y + bounds.size.y / 2.0f)
+            });
+            circle.setPosition({
+                std::floor(x + size / 2.0f),
+                std::floor(y + size / 2.0f)
+            });
+
+            // circle.setPosition({x + padding, y + padding});
+            circle.setOutlineThickness(4);
+            circle.setOutlineColor(sf::Color(TEXT_COLOR));
+            circle.setFillColor(sf::Color::Transparent);
+            window.draw(circle);
+            break;
+        }
+
+        case PieceType::HEXAGON: {
+            sf::CircleShape circle(std::floor(actualSize / 1.5f), 6);
+
+            // Center it
+            const sf::FloatRect bounds = circle.getLocalBounds();
+            circle.setOrigin({
+                std::floor(bounds.position.x + bounds.size.x / 2.0f),
+                std::floor(bounds.position.y + bounds.size.y / 2.0f)
+            });
+            circle.setPosition({
+                std::floor(x + size / 2.0f),
+                std::floor(y + size / 2.0f)
+            });
+
+            // circle.setPosition({x + padding, y + padding});
+            circle.setOutlineThickness(4);
+            circle.setOutlineColor(sf::Color(TEXT_COLOR));
+            circle.setFillColor(sf::Color::Transparent);
+            window.draw(circle);
+            break;
+        }
     }
 }
 
 
-sf::Vector2i BoardRenderer::getSquareAt(const sf::Vector2i &mousePos, const BoardData &board, const sf::FloatRect &drawArea) {
+sf::Vector2i BoardRenderer::getSquareAt(const sf::Vector2i &mousePos, const BoardData &board,
+                                        const sf::FloatRect &drawArea) {
     int sideLength = board.boardSize;
 
     if (sideLength == 0) return {-1, -1};

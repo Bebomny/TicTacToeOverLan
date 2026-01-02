@@ -45,6 +45,7 @@ public:
     uint8_t getHostingPlayerId();
     std::tuple<uint8_t, uint8_t> getBoardSettings();
     std::vector<PieceType> getAllAvailablePieces();
+    std::vector<Player> getPlayers();
 
 private:
     void handleNewConnection();

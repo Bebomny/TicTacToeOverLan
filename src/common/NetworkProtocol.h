@@ -26,6 +26,7 @@ enum class PacketType : uint8_t {
   GAME_START,
   MOVE_REQ,
   BOARD_STATE_UPDATE,
+  BACK_TO_GAME_ROOM,
   GAME_END
 };
 
@@ -90,6 +91,7 @@ struct SettingsUpdatePacket {
 
 struct GameStartRequestPacket {
   uint8_t requestingPlayerId;
+  bool newGame;
 };
 
 struct GameStartPacket {
@@ -122,9 +124,14 @@ struct MoveRequestPacket {
   PieceType piece;
 };
 
+struct BackToGameRoomPacket {
+  uint8_t playerId;
+};
+
 struct GameEndPacket {
-  bool win;
-  uint8_t winningPlayerId;
+  FinishReason reason;
+  uint8_t playerId;
+  Player player;
 };
 
 #pragma pack(pop)

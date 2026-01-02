@@ -20,8 +20,8 @@ void InternalGameServer::start(const int port) {
     boardData.round = 0;
     Utils::initializeGameBoard(boardData);
     availablePieces = {
+        PieceType::HEXAGON,
         PieceType::OCTAGON,
-        PieceType::DIAMOND,
         PieceType::SQUARE,
         PieceType::TRIANGLE,
         PieceType::CIRCLE,
@@ -119,7 +119,7 @@ void InternalGameServer::handleClientData(ClientContext &client) {
     char buffer[DEFAULT_BUFFER_LEN];
     int bytesRead = recv(client.socket, buffer, sizeof(buffer), 0);
 
-    printf(ANSI_YELLOW "[InternalServer] Got some new data!\n" ANSI_RESET);
+    // printf(ANSI_YELLOW "[InternalServer] Got some new data!\n" ANSI_RESET);
 
     if (bytesRead <= 0) {
         //Error or 0 means disconnected
@@ -276,8 +276,8 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
 
         case PacketType::GAME_START_REQ: {
             const auto *packet = reinterpret_cast<GameStartRequestPacket *>(payload.data());
-            printf(ANSI_CYAN "[InternalServer] Got game start request from player with id %hhu\n" ANSI_RESET,
-                packet->requestingPlayerId);
+            printf(ANSI_CYAN "[InternalServer] Got a%s game start request from player with id %hhu\n" ANSI_RESET,
+                (packet->newGame ? " new" : ""), packet->requestingPlayerId);
 
             if (packet->requestingPlayerId != hostingPlayerId) {
                 printf(ANSI_RED "[InternalServer] Somehow got a game start request from a client that isn't the host! "
@@ -290,6 +290,12 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             boardData.actingPlayerId = 1; //this->getNextActingPlayerId()
             boardData.turn = 0;
 
+            //TODO: [Idea] Make this reset via a button on the host instead?
+            if (packet->newGame) {
+                for (auto & ctx : clients) {
+                    ctx.playerWins = 0;
+                }
+            }
 
             GameStartPacket gameStartPacket {};
             gameStartPacket.requestedByPlayerId = hostingPlayerId;
@@ -335,22 +341,51 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             square.playerId = packet->playerId;
             square.turnPlaced = boardData.turn;
             square.piece = packet->piece;
-            printf(ANSI_YELLOW "Square:[ID: %hhu, Turn: %d, Piece: %s]\n" ANSI_RESET,
-                square.playerId, square.turnPlaced, Utils::pieceTypeToString(square.piece).c_str());
             boardData.setSquareAt(packet->x, packet->y, square);
 
             //For the move history
             Move move(packet->piece, packet->playerId, boardData.turn, packet->x, packet->y);
             moves.push_back(std::move(move));
 
-            //TODO: Check win condition here
+            //Update the board state
+            boardData.turn += 1;
+            boardData.actingPlayerId = this->getNextActingPlayerId();
+
+            // Broadcast the updated state
+            BoardStateUpdatePacket boardUpdate {};
+            Utils::serializeBoard(boardData, boardUpdate.grid, TOTAL_BOARD_AREA);
+            boardUpdate.boardSize = boardData.boardSize;
+            boardUpdate.winConditionLength = boardData.winConditionLength;
+            boardUpdate.round = boardData.round;
+            boardUpdate.turn = boardData.turn;
+            boardUpdate.actingPlayerId = boardData.actingPlayerId;
+            boardUpdate.lastMove = move;
+            boardUpdate.playerCount = 0;
+            for (auto &playerContext : clients) {
+                if (boardUpdate.playerCount >= MAX_PLAYERS) {
+                    break;
+                }
+
+                playerContext.myTurn = playerContext.playerId == boardData.actingPlayerId;
+
+                boardUpdate.players[boardUpdate.playerCount] =
+                    ServerUtils::clientContextToPlayer(playerContext, client.playerId);
+                boardUpdate.playerCount++;
+            }
+
+            printf(ANSI_CYAN "[InternalServer] Broadcasting board state update packets!\n" ANSI_RESET);
+            this->broadcastPacket(PacketType::BOARD_STATE_UPDATE, boardUpdate);
+
+
             bool gameFinished = WinValidator::checkWin(boardData, packet->x, packet->y);
             // bool gameFinished = false;
             if (gameFinished) {
                 printf(ANSI_GREEN "[InternalServer] Player with ID %hhu won the round!\n" ANSI_RESET, packet->playerId);
-                for (auto & ctx : clients) {
+                ClientContext *winningClient;
+                for (auto &ctx : clients) {
                     if (ctx.playerId == packet->playerId) {
                         ctx.playerWins += 1;
+                        winningClient = &ctx;
                         break;
                     }
                 }
@@ -358,42 +393,20 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
 
                 //Broadcast game finish
                 GameEndPacket gameEndPacket {};
-                gameEndPacket.win = true;
-                gameEndPacket.winningPlayerId = packet->playerId;
+                gameEndPacket.reason = FinishReason::PLAYER_WIN;
+                gameEndPacket.playerId = packet->playerId;
+                gameEndPacket.player = ServerUtils::clientContextToPlayer(*winningClient, 0);
 
                 this->broadcastPacket(PacketType::GAME_END, gameEndPacket);
-            } else {
-                //Update the board state
-                boardData.turn += 1;
-                boardData.actingPlayerId = this->getNextActingPlayerId();
-
-                // Broadcast the updated state
-                BoardStateUpdatePacket boardUpdate {};
-                Utils::serializeBoard(boardData, boardUpdate.grid, TOTAL_BOARD_AREA);
-                boardUpdate.boardSize = boardData.boardSize;
-                boardUpdate.winConditionLength = boardData.winConditionLength;
-                boardUpdate.round = boardData.round;
-                boardUpdate.turn = boardData.turn;
-                boardUpdate.actingPlayerId = boardData.actingPlayerId;
-                boardUpdate.lastMove = move;
-                boardUpdate.playerCount = 0;
-                for (auto &playerContext : clients) {
-                    if (boardUpdate.playerCount >= MAX_PLAYERS) {
-                        break;
-                    }
-
-                    playerContext.myTurn = playerContext.playerId == boardData.actingPlayerId;
-
-                    boardUpdate.players[boardUpdate.playerCount] =
-                        ServerUtils::clientContextToPlayer(playerContext, client.playerId);
-                    boardUpdate.playerCount++;
-                }
-
-                printf(ANSI_CYAN "[InternalServer] Broadcasting board state update packets!\n" ANSI_RESET);
-                this->broadcastPacket(PacketType::BOARD_STATE_UPDATE, boardUpdate);
             }
-
             break;
+        }
+
+        case PacketType::BACK_TO_GAME_ROOM: {
+            const auto *packet = reinterpret_cast<BackToGameRoomPacket *>(payload.data());
+            printf(ANSI_CYAN "[InternalServer] Got a BACK_TO_GAME_ROOM packet, relaying to all clients.\n" ANSI_RESET);
+            // Relay the packet
+            this->broadcastPacket(PacketType::BACK_TO_GAME_ROOM, packet);
         }
     }
 }
@@ -496,4 +509,14 @@ std::tuple<uint8_t, uint8_t> InternalGameServer::getBoardSettings() {
 std::vector<PieceType> InternalGameServer::getAllAvailablePieces() {
     return availablePieces;
 }
+
+std::vector<Player> InternalGameServer::getPlayers() {
+    std::vector<Player> players;
+    players.reserve(clients.size());
+    for (auto &client : clients) {
+        players.push_back(ServerUtils::clientContextToPlayer(client, 0));
+    }
+    return players;
+}
+
 

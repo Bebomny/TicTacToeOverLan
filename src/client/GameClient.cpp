@@ -1,5 +1,6 @@
 #include "GameClient.h"
 
+#include <cmath>
 #include <ranges>
 #include <thread>
 
@@ -12,6 +13,7 @@ GameClient::GameClient() {
     userInputIP = "localhost:27015";
     playerName = "Player";
     setupPhase = SetupPhase::DISCONNECTED;
+    finishReason = FinishReason::NONE;
 
     //Later updated by the server
     // initialToken = std::chrono::high_resolution_clock::now().time_since_epoch().count();
@@ -34,7 +36,6 @@ GameClient::GameClient() {
 
     window.create(sf::VideoMode({1500, 600}), "TicTacToe Ultimate Editionn");
     window.setFramerateLimit(60);
-    boardDrawArea = {{300.0f, 30.0f}, {500.0f, 500.0f}};
 
     //TODO: adjust the file name here
     if (!font.openFromFile("../resources/JetBrainsMono-Regular.ttf")) {
@@ -65,7 +66,7 @@ void GameClient::initMenuWidgets() {
                         this->stopInternalServerThread();
                     }
                 })
-            .setPosition(mainMenuPosition.x, mainMenuPosition.y + 3 * defaultWidgetYOffset + 3)
+            .setPosition(MAIN_MENU_POSITION.x, MAIN_MENU_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 3)
             .build()
         }
     );
@@ -78,7 +79,7 @@ void GameClient::initMenuWidgets() {
                 [this]() {
                     this->connectAndSetup();
                 })
-            .setPosition(mainMenuPosition.x, mainMenuPosition.y + 2 * defaultWidgetYOffset + 1)
+            .setPosition(MAIN_MENU_POSITION.x, MAIN_MENU_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
             .setSize(100, 24)
             .build()
         }
@@ -91,9 +92,9 @@ void GameClient::initGameRoomWidgets() {
         "start", ButtonWidget::builder(
             "Start",
             [this]() {
-                this->startGame();
+                this->startGame(true);
             })
-        .setPosition(gameRoomPosition.x, gameRoomPosition.y + 5 * defaultWidgetYOffset)
+        .setPosition(GAME_ROOM_POSITION.x, GAME_ROOM_POSITION.y + 5 * DEFAULT_WIDGET_Y_OFFSET)
         .setTextSize(26)
         .build()
     });
@@ -108,7 +109,7 @@ void GameClient::initGameRoomWidgets() {
                     boardData.boardSize + 1,
                     boardData.winConditionLength);
             })
-        .setPosition(202, gameRoomPosition.y + 2 * defaultWidgetYOffset+1)
+        .setPosition(202, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
         .build()
     });
@@ -122,7 +123,7 @@ void GameClient::initGameRoomWidgets() {
                     boardData.boardSize - 1,
                     boardData.winConditionLength);
             })
-        .setPosition(232, gameRoomPosition.y + 2 * defaultWidgetYOffset+1)
+        .setPosition(232, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
         .build()
     });
@@ -137,7 +138,7 @@ void GameClient::initGameRoomWidgets() {
                     boardData.boardSize,
                     boardData.winConditionLength + 1);
             })
-        .setPosition(284, gameRoomPosition.y + 3 * defaultWidgetYOffset+1)
+        .setPosition(284, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
         .build()
     });
@@ -151,7 +152,7 @@ void GameClient::initGameRoomWidgets() {
                     boardData.boardSize,
                     boardData.winConditionLength - 1);
             })
-        .setPosition(314, gameRoomPosition.y + 3 * defaultWidgetYOffset+1)
+        .setPosition(314, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
         .build()
     });
@@ -159,6 +160,39 @@ void GameClient::initGameRoomWidgets() {
 
 void GameClient::initGameWidgets() {
     //TODO:
+    gameButtons.insert({
+        "playagain",
+        ButtonWidget::builder(
+            "Play Again",
+            [this]() {
+                //Send a game start request
+                this->startGame(false);
+            })
+        .setPosition(
+            WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f - 350.0f,
+            WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y - 70.0f)
+        .setSize(300.0f, 50.0f)
+        .setTextSize(24)
+        .build()
+    });
+
+    gameButtons.insert({
+        "backtoroom",
+        ButtonWidget::builder(
+            "Back to the Game Room",
+            [this]() {
+                BackToGameRoomPacket backPacket {};
+                backPacket.playerId = playerId;
+
+                this->networkManager.sendPacket(PacketType::BACK_TO_GAME_ROOM, backPacket);
+            })
+        .setPosition(
+            WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f + 50.0f,
+            WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y - 70.0f)
+        .setSize(300.0f, 50.0f)
+        .setTextSize(24)
+        .build()
+    });
 }
 
 void GameClient::run() {
@@ -177,8 +211,16 @@ void GameClient::handleInput() {
         btn->update(mousePos);
     }
 
-    for (const auto & [id, btn]: gameRoomButtons) {
-        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+    for (const auto &[id, btn]: gameRoomButtons) {
+        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" ||
+                         id == "winconditionminus")) {
+            continue;
+        }
+        btn->update(mousePos);
+    }
+
+    for (const auto &[id, btn]: gameButtons) {
+        if (!hosting || (gamePhase != GamePhase::GAME_FINISHED && (id == "playagain" || id == "backtoroom"))) {
             continue;
         }
         btn->update(mousePos);
@@ -239,7 +281,8 @@ void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf
 void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
     //TODO: add disconnect
     for (const auto &[id, btn]: gameRoomButtons) {
-        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" ||
+                         id == "winconditionminus")) {
             continue;
         }
         btn->handleEvent(event, mousePos);
@@ -247,15 +290,22 @@ void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, cons
 }
 
 void GameClient::handleGameInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
-    if (const auto& btnEvent = event->getIf<sf::Event::MouseButtonPressed>()) {
+    if (const auto &btnEvent = event->getIf<sf::Event::MouseButtonPressed>()) {
         if (isMyTurn && btnEvent->button == sf::Mouse::Button::Left) {
-            sf::Vector2i gridPos = BoardRenderer::getSquareAt(mousePos, boardData, boardDrawArea);
+            sf::Vector2i gridPos = BoardRenderer::getSquareAt(mousePos, boardData, BOARD_DRAW_AREA);
 
-            if (gridPos.x != -1 || gridPos.y != -1) {
+            if ((gridPos.x != -1 || gridPos.y != -1) && gamePhase != GamePhase::GAME_FINISHED) {
                 printf(ANSI_GREEN "[GameClient] Clicked square at: [%d, %d]\n" ANSI_RESET, gridPos.x, gridPos.y);
                 this->sendMove(gridPos.x, gridPos.y);
             }
         }
+    }
+
+    for (const auto &[id, btn]: gameButtons) {
+        if (!hosting || (gamePhase != GamePhase::GAME_FINISHED && (id == "playagain" || id == "backtoroom"))) {
+            continue;
+        }
+        btn->handleEvent(event, mousePos);
     }
 }
 
@@ -272,7 +322,9 @@ void GameClient::update() {
             }
             case PacketType::SERVER_HELLO: {
                 if (clientState != ClientState::GAME_ROOM) {
-                    printf(ANSI_RED "Client isnt in the game room state, but we received a SERVER_HELLO packet\n" ANSI_RESET);
+                    printf(
+                        ANSI_RED "Client isnt in the game room state, but we received a SERVER_HELLO packet\n"
+                        ANSI_RESET);
                 }
                 printf(ANSI_CYAN "[GameClient] Got a Server Hello packet!\n" ANSI_RESET);
                 setupPhase = SetupPhase::SETTING_UP;
@@ -298,7 +350,9 @@ void GameClient::update() {
 
             case PacketType::SETUP_ACK: {
                 if (clientState != ClientState::GAME_ROOM) {
-                    printf(ANSI_RED "Client isn't in the game room state, but we received a SETUP_ACK packet\n" ANSI_RESET);
+                    printf(
+                        ANSI_RED "Client isn't in the game room state, but we received a SETUP_ACK packet\n"
+                        ANSI_RESET);
                 }
                 printf(ANSI_CYAN "[GameClient] Got a SETUP_ACK packet!\n" ANSI_RESET);
                 //TODO: check if the playerId is the same as ours
@@ -333,7 +387,9 @@ void GameClient::update() {
 
             case PacketType::NEW_PLAYER_JOIN: {
                 if (clientState != ClientState::GAME_ROOM) {
-                    printf(ANSI_RED "Client isn't in the game room state, but we received a NEW_PLAYER_JOIN packet\n" ANSI_RESET);
+                    printf(
+                        ANSI_RED "Client isn't in the game room state, but we received a NEW_PLAYER_JOIN packet\n"
+                        ANSI_RESET);
                 }
 
                 //TODO: Check for duplicates and check if its me(The player requesting the setup exchange)
@@ -362,7 +418,7 @@ void GameClient::update() {
                 const auto *packet = reinterpret_cast<SettingsUpdatePacket *>(payload.data());
                 printf(ANSI_CYAN "[GameClient] Got a SETTINGS_UPDATE packet!\n" ANSI_RESET);
                 printf(ANSI_GREEN "[GameClient] New Board Size: %hhu, New Win Condition Length: %hhu\n" ANSI_RESET,
-                    packet->newBoardSize, packet->newWinConditionLength);
+                       packet->newBoardSize, packet->newWinConditionLength);
                 boardData.boardSize = packet->newBoardSize;
                 boardData.winConditionLength = packet->newWinConditionLength;
                 break;
@@ -382,14 +438,14 @@ void GameClient::update() {
             case PacketType::GAME_START: {
                 const auto *packet = reinterpret_cast<GameStartPacket *>(payload.data());
                 printf(ANSI_GREEN "[GameClient] The Game is starting... Started by player with ID %hhu\n" ANSI_RESET,
-                    packet->requestedByPlayerId);
+                       packet->requestedByPlayerId);
 
                 boardData.boardSize = packet->finalBoardSize;
                 boardData.winConditionLength = packet->finalWinConditionLength;
                 boardData.round = packet->round;
                 boardData.turn = packet->turn;
                 boardData.actingPlayerId = packet->startingPlayerId;
-                for (auto & player : players) {
+                for (auto &player: players) {
                     if (player.playerId == packet->startingPlayerId) {
                         player.myTurn = true;
                     }
@@ -417,7 +473,9 @@ void GameClient::update() {
                 const auto *packet = reinterpret_cast<BoardStateUpdatePacket *>(payload.data());
                 printf(ANSI_CYAN "[GameClient] Got a BOARD_STATE_UPDATE packet!\n" ANSI_RESET);
                 if (clientState != ClientState::GAME) {
-                    printf(ANSI_RED "Client isn't in the game state, but we received a BOARD_STATE_UPDATE packet\n" ANSI_RESET);
+                    printf(
+                        ANSI_RED "Client isn't in the game state, but we received a BOARD_STATE_UPDATE packet\n"
+                        ANSI_RESET);
                     break;
                 }
 
@@ -452,12 +510,36 @@ void GameClient::update() {
                 break;
             }
 
+            case PacketType::BACK_TO_GAME_ROOM: {
+                printf(ANSI_CYAN "[GameClient] Got a BACK_TO_GAME_ROOM packet, going back.\n" ANSI_RESET);
+                clientState = ClientState::GAME_ROOM;
+                gamePhase = GamePhase::WAITING_ROOM;
+                break;
+            }
+
             case PacketType::GAME_END: {
                 const auto *packet = reinterpret_cast<GameEndPacket *>(payload.data());
                 //TODO: check for win bool, if it wasnt a premature end because of an error or smth
-                printf(ANSI_GREEN "[GameClient] Player with ID %hhu won the round!\n" ANSI_RESET, packet->winningPlayerId);
-                gamePhase = GamePhase::WAITING_ROOM;
-                clientState = ClientState::GAME_ROOM;
+                printf(ANSI_GREEN "[GameClient] Player with ID %hhu won the round!\n" ANSI_RESET,
+                       packet->playerId);
+
+                //TODO: a banner with the winning player, a button to restart and a button to get back to the game_room
+
+                // gamePhase = GamePhase::WAITING_ROOM;
+                // clientState = ClientState::GAME_ROOM;
+                gamePhase = GamePhase::GAME_FINISHED;
+                finishReason = packet->reason;
+                gameEndPlayer = packet->player;
+                std::erase_if(players, [packet](const Player &player) {
+                    return player.playerId == packet->playerId;
+                });
+                players.push_back(packet->player);
+                // const auto it = std::ranges::find_if(players, [packet](const Player &p) {return p.playerId == packet->playerId;});
+                // if (it == players.end()) {
+                //     // Couldn't find any matching players
+                //     break;
+                // }
+                // winningPlayer = *it;
 
                 //TODO: display something
 
@@ -485,7 +567,7 @@ void GameClient::render() {
             this->renderGame();
             break;
     }
-    
+
     window.display();
 }
 
@@ -494,17 +576,17 @@ void GameClient::renderMenu() {
     sf::Text text(font);
 
     text.setString((hosting ? "You are the host!" : "Hello there!"));
-    text.setCharacterSize(defaultTextSize);
+    text.setCharacterSize(DEFAULT_TEXT_SIZE);
     text.setFillColor(sf::Color(TEXT_COLOR));
-    text.setPosition({mainMenuPosition.x, mainMenuPosition.y});
+    text.setPosition({MAIN_MENU_POSITION.x, MAIN_MENU_POSITION.y});
     window.draw(text);
 
     text.setString("Player name: " + playerName);
-    text.move({0, defaultWidgetYOffset});
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
     window.draw(text);
 
     text.setString("Server Address: " + userInputIP);
-    text.move({110, defaultWidgetYOffset});
+    text.move({110, DEFAULT_WIDGET_Y_OFFSET});
     window.draw(text);
 
     // Render buttons
@@ -519,38 +601,38 @@ void GameClient::renderGameRoom() {
 
     // Player name
     text.setString("Player name: " + playerName);
-    text.setCharacterSize(defaultTextSize);
+    text.setCharacterSize(DEFAULT_TEXT_SIZE);
     text.setFillColor(sf::Color(TEXT_COLOR));
-    text.setPosition({gameRoomPosition.x, gameRoomPosition.y});
+    text.setPosition({GAME_ROOM_POSITION.x, GAME_ROOM_POSITION.y});
     window.draw(text);
 
     // Am I the Host
     text.setString((hosting ? "You are the host!" : "Someone else is hosting!"));
-    text.move({0, defaultWidgetYOffset});
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
     window.draw(text);
 
     // Board Size
     text.setString("Board Size: " + std::to_string(boardData.boardSize));
-    text.move({0, defaultWidgetYOffset});
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
     window.draw(text);
 
     // Win Condition Length
     text.setString("Required in a row: " + std::to_string(boardData.winConditionLength));
-    text.move({0, defaultWidgetYOffset});
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
     window.draw(text);
 
     // space
-    text.move({0, defaultWidgetYOffset});
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
 
     // Start button for the host - initialized in the button widgets
-    text.move({0, defaultWidgetYOffset});
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
 
     // space
-    text.move({0, defaultWidgetYOffset});
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
 
     // Players
     text.setString("Players[" + std::to_string(players.size()) + ", " + std::to_string(playerCount) + "]:");
-    text.move({0, defaultWidgetYOffset});
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
     window.draw(text);
 
     for (const auto &player: players) {
@@ -561,13 +643,14 @@ void GameClient::renderGameRoom() {
                        + "  ID: " + std::to_string(player.playerId)
                        + "  Piece: " + piece
                        + isHost);
-        text.move({0, defaultWidgetYOffset});
+        text.move({0, DEFAULT_WIDGET_Y_OFFSET});
         window.draw(text);
     }
 
     // Render buttons
-    for (const auto &[id, btn] : gameRoomButtons) {
-        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" || id == "winconditionminus")) {
+    for (const auto &[id, btn]: gameRoomButtons) {
+        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" ||
+                         id == "winconditionminus")) {
             continue;
         }
         btn->render(window);
@@ -577,9 +660,111 @@ void GameClient::renderGameRoom() {
 void GameClient::renderGame() {
     //TODO:
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-    sf::Vector2i hoveredGridPos = BoardRenderer::getSquareAt(mousePos, boardData, boardDrawArea);
+    sf::Vector2i hoveredGridPos = BoardRenderer::getSquareAt(mousePos, boardData, BOARD_DRAW_AREA);
 
-    BoardRenderer::render(window, boardData, boardDrawArea, isMyTurn, hoveredGridPos);
+    BoardRenderer::render(window, boardData, BOARD_DRAW_AREA, isMyTurn, hoveredGridPos);
+
+    if (gamePhase == GamePhase::GAME_FINISHED) {
+        sf::RectangleShape rect(WIN_TEXT_DRAW_AREA.size);
+        rect.setPosition(WIN_TEXT_DRAW_AREA.position);
+        rect.setFillColor(sf::Color(BACKGROUND_COLOR));
+        window.draw(rect);
+
+        sf::Text gameEndText(font);
+        gameEndText.setCharacterSize(28);
+        gameEndText.setFillColor(sf::Color(TEXT_COLOR));
+
+        switch (finishReason) {
+            default: {
+                gameEndText.setString("Game Ended Reason Unknown");
+                break;
+            }
+
+            case FinishReason::PLAYER_WIN: {
+                // Player {} playing {} has won the round!
+                std::string pNameString = gameEndPlayer.playerName;
+                std::string winString = "Player[" + std::to_string(gameEndPlayer.playerId) + "] " + pNameString
+                + " playing " + Utils::pieceTypeToString(gameEndPlayer.piece) + " has won the round!";
+                gameEndText.setString(winString);
+                break;
+            }
+
+            case FinishReason::PLAYER_DISCONNECT: {
+                // Player {} has disconnected
+                std::string pNameString = gameEndPlayer.playerName;
+                std::string disconnectString = "Player[" + std::to_string(gameEndPlayer.playerId) + "] " + pNameString
+                + " playing " + Utils::pieceTypeToString(gameEndPlayer.piece) + " has disconnected!";
+                gameEndText.setString(disconnectString);
+                break;
+            }
+        }
+
+        //Center the text
+        sf::FloatRect gameEndBounds = gameEndText.getGlobalBounds();
+        gameEndText.setOrigin({
+            std::floor(gameEndBounds.position.x + gameEndBounds.size.x / 2.0f),
+            std::floor(gameEndBounds.position.y + gameEndBounds.size.y / 2.0f)
+        });
+        gameEndText.setPosition({
+            std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
+            std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f
+        });
+        window.draw(gameEndText);
+
+        //TODO: display current score:
+        sf::Text scoreBoardText(font);
+        scoreBoardText.setCharacterSize(24);
+        scoreBoardText.setFillColor(sf::Color(TEXT_COLOR));
+        scoreBoardText.setString("Score Board");
+        //Center the text <- pack into a function
+        sf::FloatRect scoreBoardBounds = scoreBoardText.getGlobalBounds();
+        scoreBoardText.setOrigin({
+            std::floor(scoreBoardBounds.position.x + scoreBoardBounds.size.x / 2.0f),
+            std::floor(scoreBoardBounds.position.y + scoreBoardBounds.size.y / 2.0f)
+        });
+        scoreBoardText.setPosition({
+            std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
+            std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f + DEFAULT_WIDGET_Y_OFFSET + 8.0f
+        });
+        window.draw(scoreBoardText);
+
+
+        int offset = 1;
+        for (const auto &player: players) {
+            sf::Text scoreText(font);
+            scoreText.setCharacterSize(DEFAULT_TEXT_SIZE);
+            scoreText.setFillColor(sf::Color(TEXT_COLOR));
+
+            std::string pNameString = player.playerName;
+            std::string scoreString = playerName + " " + Utils::pieceTypeToString(player.piece) + " Wins: " + std::to_string(player.wins);
+            scoreText.setString(scoreString);
+
+            //Center the text
+            sf::FloatRect scoreBounds = scoreText.getGlobalBounds();
+            scoreText.setOrigin({
+                std::floor(scoreBounds.position.x + scoreBounds.size.x / 2.0f),
+                std::floor(scoreBounds.position.y + scoreBounds.size.y / 2.0f)
+            });
+
+            scoreText.setPosition({
+                std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
+                std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f + DEFAULT_WIDGET_Y_OFFSET + 8.0f + ((DEFAULT_WIDGET_Y_OFFSET - 6) * offset)
+            });
+
+            // scoreText.move({0, static_cast<float>(defaultWidgetYOffset * offset)});
+            window.draw(scoreText);
+            ++offset;
+        }
+
+        //TODO: If the client isnt the host draw text with "Waiting for the host"
+    }
+
+    for (const auto &[id, btn]: gameButtons) {
+        if (!hosting || (gamePhase != GamePhase::GAME_FINISHED && (id == "playagain" || id == "backtoroom"))) {
+            continue;
+        }
+        btn->render(window);
+    }
 }
 
 void GameClient::renderDebugMenu() {
@@ -630,11 +815,11 @@ void GameClient::renderDebugMenu() {
         case PieceType::SQUARE:
             pieceTypeText += "[4] Square";
             break;
-        case PieceType::DIAMOND:
-            pieceTypeText += "[5] Diamond";
-            break;
         case PieceType::OCTAGON:
-            pieceTypeText += "[6] Octagon";
+            pieceTypeText += "[5] Octagon";
+            break;
+        case PieceType::HEXAGON:
+            pieceTypeText += "[6] Hexagon";
             break;
     }
     text.setString(pieceTypeText);
@@ -707,8 +892,30 @@ void GameClient::renderDebugMenu() {
         case GamePhase::NOT_MY_TURN:
             gamePhaseString += "[3] Not My Turn";
             break;
+        case GamePhase::GAME_FINISHED:
+            gamePhaseString += "[4] Game Finished";
+            break;
     }
     text.setString(gamePhaseString);
+    text.move({0, textYOffset});
+    window.draw(text);
+
+    std::string finishReasonString = "Finish Reason: ";
+    switch (finishReason) {
+        case FinishReason::NONE:
+            finishReasonString += "[0] None";
+            break;
+        case FinishReason::PLAYER_WIN:
+            finishReasonString += "[1] Player Win";
+            break;
+        case FinishReason::PLAYER_DISCONNECT:
+            finishReasonString += "[2] Player Disconnect";
+            break;
+        case FinishReason::OTHER:
+            finishReasonString += "[3] Other";
+            break;
+    }
+    text.setString(finishReasonString);
     text.move({0, textYOffset});
     window.draw(text);
 
@@ -756,9 +963,9 @@ void GameClient::renderDebugMenu() {
         window.draw(text);
 
         //game settings
-        const auto& [srvBoardSize, srvWinConLength] = serverLogic.getBoardSettings();
+        const auto &[srvBoardSize, srvWinConLength] = serverLogic.getBoardSettings();
         std::string gameSettings =
-            "Game Settings[BoardSize: " + std::to_string(srvBoardSize) +
+                "Game Settings[BoardSize: " + std::to_string(srvBoardSize) +
                 ", WinConLength: " + std::to_string(srvWinConLength) + "]";
         text.setString(gameSettings);
         text.move({0, textYOffset});
@@ -766,11 +973,28 @@ void GameClient::renderDebugMenu() {
 
         //available pieces
         std::string availablePiecesString = "AvPieces[";
-        for (const auto & piece : serverLogic.getAllAvailablePieces()) {
+        for (const auto &piece: serverLogic.getAllAvailablePieces()) {
             availablePiecesString += Utils::pieceTypeToString(piece) + ",";
         }
         availablePiecesString += "]";
         text.setString(availablePiecesString);
+        text.move({0, textYOffset});
+        window.draw(text);
+
+        //players
+        std::string playersString = "Players[";
+        for (const auto &player : serverLogic.getPlayers()) {
+            std::stringstream ss;
+            ss << "{"
+            << static_cast<int>(player.playerId) << ", "
+            << player.playerName << ", "
+            << static_cast<int>(player.piece) << ", w"
+            << static_cast<int>(player.wins) << ", "
+            << (player.myTurn ? "T" : "F") << "}";
+            playersString += ss.str();
+        }
+        playersString += "]";
+        text.setString(playersString);
         text.move({0, textYOffset});
         window.draw(text);
 
@@ -798,28 +1022,31 @@ void GameClient::connectAndSetup() {
 }
 
 void GameClient::requestBoardSettingsUpdate(const uint8_t newBoardSize, const uint8_t newWinConditionLength) {
-    SettingsChangeReqPacket changeReq {};
+    SettingsChangeReqPacket changeReq{};
     changeReq.playerId = playerId;
     changeReq.authToken = authToken;
     changeReq.newBoardSize = newBoardSize;
     changeReq.newWinConditionLength = newWinConditionLength;
 
-    printf(ANSI_CYAN "[GameClient] Sending settings change request packet with [boardSize: %hhu, winLength: %hhu]\n" ANSI_RESET, newBoardSize, newWinConditionLength);
+    printf(
+        ANSI_CYAN "[GameClient] Sending settings change request packet with [boardSize: %hhu, winLength: %hhu]\n"
+        ANSI_RESET, newBoardSize, newWinConditionLength);
     this->networkManager.sendPacket(PacketType::SETTINGS_CHANGE_REQ, changeReq);
 }
 
 
-void GameClient::startGame() {
+void GameClient::startGame(bool newGame) {
     printf(ANSI_CYAN "[GameClient] Sending Start Game Request!\n" ANSI_RESET);
-    GameStartRequestPacket startReq {};
+    GameStartRequestPacket startReq{};
     startReq.requestingPlayerId = playerId;
+    startReq.newGame = newGame;
 
     this->networkManager.sendPacket(PacketType::GAME_START_REQ, startReq);
 }
 
 void GameClient::sendMove(uint8_t posX, uint8_t posY) {
     printf(ANSI_GREEN "[GameClient] Sending move packet with [x:%hhu, y:%hhu]]\n" ANSI_RESET, posX, posY);
-    MoveRequestPacket moveReq {};
+    MoveRequestPacket moveReq{};
     moveReq.playerId = playerId;
     moveReq.x = posX;
     moveReq.y = posY;
