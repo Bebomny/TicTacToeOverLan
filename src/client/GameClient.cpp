@@ -737,7 +737,7 @@ void GameClient::renderGame() {
 
             scoreText.setPosition({
                 std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
-                std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f + DEFAULT_WIDGET_Y_OFFSET + 8.0f + ((DEFAULT_WIDGET_Y_OFFSET - 6) * offset)
+                std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f + DEFAULT_WIDGET_Y_OFFSET + 12.0f + ((DEFAULT_WIDGET_Y_OFFSET - 6.0f) * offset)
             });
 
             // scoreText.move({0, static_cast<float>(defaultWidgetYOffset * offset)});
@@ -746,6 +746,23 @@ void GameClient::renderGame() {
         }
 
         //TODO: If the client isnt the host draw text with "Waiting for the host"
+        if (!hosting) {
+            sf::Text waitingForHostText(font);
+            waitingForHostText.setCharacterSize(24);
+            waitingForHostText.setFillColor(sf::Color(TEXT_COLOR));
+            waitingForHostText.setString("Waiting for Host");
+
+            sf::FloatRect waitingForHostBounds = waitingForHostText.getGlobalBounds();
+            waitingForHostText.setOrigin({
+                std::floor(waitingForHostBounds.position.x + waitingForHostBounds.size.x / 2.0f),
+                std::floor(waitingForHostBounds.position.y + waitingForHostBounds.size.y / 2.0f)
+            });
+            waitingForHostText.setPosition({
+                WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f,
+                WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y - 30.0f
+            });
+            window.draw(waitingForHostText);
+        }
     }
 
     for (const auto &btn: gameButtons | std::views::values) {
