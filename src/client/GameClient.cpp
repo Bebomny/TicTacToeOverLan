@@ -4,6 +4,7 @@
 #include <ranges>
 #include <thread>
 
+#include "../common/resources/JetBrainsMonoRegularFont.h"
 #include "SFML/Graphics/Text.hpp"
 #include "ui/BoardRenderer.h"
 #include "ui/ButtonBuilder.h"
@@ -16,8 +17,8 @@ GameClient::GameClient() {
     finishReason = FinishReason::NONE;
 
     //Later updated by the server
-    // initialToken = std::chrono::high_resolution_clock::now().time_since_epoch().count();
-    initialToken = 2137696969;
+    initialToken = std::chrono::high_resolution_clock::now().time_since_epoch().count() / 1000000000;
+    // initialToken = 2137696969;
     authToken = -1;
     playerId = 1;
     pieceType = PieceType::EMPTY;
@@ -40,10 +41,10 @@ GameClient::GameClient() {
     window.create(sf::VideoMode({1500, 600}), "TicTacToe Ultimate Editionn");
     window.setFramerateLimit(60);
 
-    //TODO: adjust the file name here
-    if (!font.openFromFile("../resources/JetBrainsMono-Regular.ttf")) {
-        printf(ANSI_RED "[GameClient] Failed to load font\n" ANSI_RESET);
+    if (!font.openFromMemory(JetBrainsMono_Regular, JetBrainsMono_Regular_Len)) {
+        printf(ANSI_RED "[GameClient] Failed to load embedded font\n" ANSI_RESET);
     }
+
     ButtonBuilder::initFont(font);
 
     this->initMenuWidgets();
@@ -294,7 +295,6 @@ void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf
 }
 
 void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
-    //TODO: add disconnect
     for (const auto &btn: gameRoomButtons | std::views::values) {
         btn->handleEvent(event, mousePos);
     }
@@ -363,8 +363,12 @@ void GameClient::update() {
                         ANSI_RESET);
                 }
                 printf(ANSI_CYAN "[GameClient] Got a SETUP_ACK packet!\n" ANSI_RESET);
-                //TODO: check if the playerId is the same as ours
+
                 const auto *packet = reinterpret_cast<SetupAckPacket *>(payload.data());
+                if (playerId != packet->playerId) {
+                    printf(ANSI_RED "[GameClient] Somehow got SETUP_ACK dedicated to another player! This shouldnt happen!\n" ANSI_RESET);
+                }
+
                 authToken = packet->generatedAuthToken;
                 pieceType = packet->pieceType;
                 //This technically isn't necessary, but I should at least check if the server is happy with the chosen name
@@ -399,7 +403,6 @@ void GameClient::update() {
                         ANSI_RESET);
                 }
 
-                //TODO: Check for duplicates and check if its me(The player requesting the setup exchange)
                 printf(ANSI_CYAN "[GameClient] Got a NEW_PLAYER_JOIN packet!\n" ANSI_RESET);
                 const auto *packet = reinterpret_cast<NewPlayerJoinPacket *>(payload.data());
 
@@ -434,7 +437,6 @@ void GameClient::update() {
             case PacketType::PLAYER_DISCONNECTED: {
                 const auto *packet = reinterpret_cast<PlayerDisconnectedPacket *>(payload.data());
                 printf(ANSI_YELLOW "[GameClient] Player with ID %hhu has disconnected\n" ANSI_RESET, packet->playerId);
-                //TODO: handle disconnect?? pause game?? Check if the disconnected player is me - this shouldn't happen
                 std::erase_if(players, [packet](const Player &player) {
                     return player.playerId == packet->playerId;
                 });
@@ -487,19 +489,7 @@ void GameClient::update() {
                 }
 
                 //update board
-                //TODO: check if gamesettings still match
                 Utils::deserializeBoard(packet->grid, boardData);
-
-                //Debug
-                // std::string boardString = "Grid: [";
-                // for (auto &row : boardData.grid) {
-                //     for (auto &column : row) {
-                //         boardString += Utils::pieceTypeToString(column.piece) + ",";
-                //     }
-                // }
-                // boardString += "]";
-                // printf("[GameClient] %s\n", boardString.c_str());
-                ////////////
 
                 boardData.round = packet->round;
                 boardData.turn = packet->turn;
@@ -526,14 +516,9 @@ void GameClient::update() {
 
             case PacketType::GAME_END: {
                 const auto *packet = reinterpret_cast<GameEndPacket *>(payload.data());
-                //TODO: check for win bool, if it wasnt a premature end because of an error or smth
                 printf(ANSI_GREEN "[GameClient] Player with ID %hhu won the round!\n" ANSI_RESET,
                        packet->playerId);
 
-                //TODO: a banner with the winning player, a button to restart and a button to get back to the game_room
-
-                // gamePhase = GamePhase::WAITING_ROOM;
-                // clientState = ClientState::GAME_ROOM;
                 gamePhase = GamePhase::GAME_FINISHED;
                 finishReason = packet->reason;
                 gameEndPlayer = packet->player;
@@ -541,14 +526,6 @@ void GameClient::update() {
                     return player.playerId == packet->playerId;
                 });
                 players.push_back(packet->player);
-                // const auto it = std::ranges::find_if(players, [packet](const Player &p) {return p.playerId == packet->playerId;});
-                // if (it == players.end()) {
-                //     // Couldn't find any matching players
-                //     break;
-                // }
-                // winningPlayer = *it;
-
-                //TODO: display something
 
                 break;
             }
@@ -579,7 +556,6 @@ void GameClient::render() {
 }
 
 void GameClient::renderMenu() {
-    //TODO:
     sf::Text text(font);
 
     text.setString((hosting ? "You are the host!" : "Hello there!"));
@@ -603,7 +579,6 @@ void GameClient::renderMenu() {
 }
 
 void GameClient::renderGameRoom() {
-    //TODO:
     sf::Text text(font);
 
     // Player name
@@ -661,9 +636,8 @@ void GameClient::renderGameRoom() {
 }
 
 void GameClient::renderGame() {
-    //TODO:
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-    sf::Vector2i hoveredGridPos = BoardRenderer::getSquareAt(mousePos, boardData, BOARD_DRAW_AREA);
+    const sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    const sf::Vector2i hoveredGridPos = BoardRenderer::getSquareAt(mousePos, boardData, BOARD_DRAW_AREA);
 
     BoardRenderer::render(window, boardData, BOARD_DRAW_AREA, isMyTurn, hoveredGridPos);
 
@@ -685,18 +659,22 @@ void GameClient::renderGame() {
 
             case FinishReason::PLAYER_WIN: {
                 // Player {} playing {} has won the round!
-                std::string pNameString = gameEndPlayer.playerName;
-                std::string winString = "Player[" + std::to_string(gameEndPlayer.playerId) + "] " + pNameString
-                + " playing " + Utils::pieceTypeToString(gameEndPlayer.piece) + " has won the round!";
+                std::string winString = "Player[";
+                winString.append(std::to_string(gameEndPlayer.playerId)).append("] ")
+                .append(gameEndPlayer.playerName)
+                .append(" playing ").append(Utils::pieceTypeToString(gameEndPlayer.piece))
+                .append(" has won the round!");
                 gameEndText.setString(winString);
                 break;
             }
 
             case FinishReason::PLAYER_DISCONNECT: {
                 // Player {} has disconnected
-                std::string pNameString = gameEndPlayer.playerName;
-                std::string disconnectString = "Player[" + std::to_string(gameEndPlayer.playerId) + "] " + pNameString
-                + " playing " + Utils::pieceTypeToString(gameEndPlayer.piece) + " has disconnected!";
+                std::string disconnectString = "Player[";
+                disconnectString.append(std::to_string(gameEndPlayer.playerId)).append("] ")
+                .append(gameEndPlayer.playerName)
+                .append(" playing ").append(Utils::pieceTypeToString(gameEndPlayer.piece))
+                .append(" has disconnected!");
                 gameEndText.setString(disconnectString);
                 break;
             }
@@ -714,12 +692,11 @@ void GameClient::renderGame() {
         });
         window.draw(gameEndText);
 
-        //TODO: display current score:
         sf::Text scoreBoardText(font);
         scoreBoardText.setCharacterSize(24);
         scoreBoardText.setFillColor(sf::Color(TEXT_COLOR));
         scoreBoardText.setString("Score Board");
-        //Center the text <- pack into a function
+        //Center the text <- todo: pack into a function
         sf::FloatRect scoreBoardBounds = scoreBoardText.getGlobalBounds();
         scoreBoardText.setOrigin({
             std::floor(scoreBoardBounds.position.x + scoreBoardBounds.size.x / 2.0f),
@@ -754,7 +731,6 @@ void GameClient::renderGame() {
                 std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f + DEFAULT_WIDGET_Y_OFFSET + 12.0f + ((DEFAULT_WIDGET_Y_OFFSET - 6.0f) * offset)
             });
 
-            // scoreText.move({0, static_cast<float>(defaultWidgetYOffset * offset)});
             window.draw(scoreText);
             ++offset;
         }
