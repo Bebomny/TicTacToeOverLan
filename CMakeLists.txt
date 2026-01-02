@@ -34,7 +34,10 @@ add_executable(TicTacToeOverLan src/main.cpp
         src/client/ui/BoardRenderer.cpp
         src/client/ui/BoardRenderer.h
         src/server/WinValidator.cpp
-        src/server/WinValidator.h)
+        src/server/WinValidator.h
+        src/common/RollingAverage.h
+        src/common/LongLongRollingAverage.cpp
+        src/common/LongLongRollingAverage.h)
 
 target_link_libraries(TicTacToeOverLan PRIVATE Ws2_32)
 target_link_libraries(TicTacToeOverLan PRIVATE SFML::Graphics)

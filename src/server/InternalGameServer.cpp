@@ -44,6 +44,9 @@ void InternalGameServer::start(const int port) {
     std::printf(ANSI_GREEN "[InternalServer] Listening on port %d...\n" ANSI_RESET, port);
 
     while (keepRunning) {
+        //Time measuring
+        long long startTime = std::chrono::system_clock::now().time_since_epoch().count();
+
         //packets and logic
         // std::printf(ANSI_CYAN "[InternalServer] Hello from the server!\n" ANSI_RESET);
 
@@ -87,6 +90,10 @@ void InternalGameServer::start(const int port) {
 
         //Calculate this based on how much time the processing took, set at 20 TPS initially -> 50ms per loop
         // std::this_thread::sleep_for(std::chrono_literals::operator ""ms(1000));
+        long long endTime = std::chrono::system_clock::now().time_since_epoch().count();
+        long long timeTook = endTime - startTime;
+        lastTickTime = timeTook;
+        avgTickTime.add(timeTook);
         ++tick;
     }
 
@@ -487,12 +494,12 @@ long long InternalGameServer::getTick() {
     return tick;
 }
 
-long InternalGameServer::getLastTickTime() {
-    //TODO:
+long long InternalGameServer::getLastTickTime() {
+    return lastTickTime;
 }
 
-long InternalGameServer::getAvgTickTime() {
-    //TODO:
+double InternalGameServer::getAvgTickTime() {
+    return avgTickTime.average();
 }
 
 //TODO: check if there is a need to make these variables atomic, they may crash otherwise or trigger undefined behaviour

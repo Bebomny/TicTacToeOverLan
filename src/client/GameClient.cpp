@@ -960,7 +960,13 @@ void GameClient::renderDebugMenu() {
         text.move({0, textYOffset * 2});
         window.draw(text);
 
-        text.setString("Current Tick: " + std::to_string(serverLogic.getTick()));
+        std::string tickString = std::format(
+    "Tick: {} Avg: {:.2f}ms Last: {:.2f}ms",
+            serverLogic.getTick(),
+            serverLogic.getAvgTickTime() / 1000000.0,
+            serverLogic.getLastTickTime() / 1000000.0
+        );
+        text.setString(tickString);
         text.move({0, textYOffset});
         window.draw(text);
 

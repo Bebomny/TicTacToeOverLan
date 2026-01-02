@@ -7,6 +7,7 @@
 #include <winsock2.h>
 
 #include "ClientContext.h"
+#include "../common/LongLongRollingAverage.h"
 #include "../common/NetworkProtocol.h"
 
 #pragma comment(lib, "Ws2_32.lib")
@@ -16,6 +17,7 @@ class InternalGameServer {
     SOCKET listenSocket;
     std::atomic<long long> tick = 0;
     std::atomic<long long> lastTickTime = 0;
+    LongLongRollingAverage avgTickTime{100}; //Thread-safe with mutex inside, so no need for atomic
 
     // std::map<uint8_t, ClientContext> clients;
     std::vector<ClientContext> clients;
@@ -39,8 +41,8 @@ public:
 
     //getters - for debug purposes
     long long getTick();
-    long getLastTickTime();
-    long getAvgTickTime();
+    long long getLastTickTime();
+    double getAvgTickTime();
     uint8_t getNextPlayerId();
     uint16_t getCurrentTurn();
     uint8_t getHostingPlayerId();
