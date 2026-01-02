@@ -21,6 +21,7 @@ private:
     sf::Color active = sf::Color(SECONDARY_COLOR);
     sf::Font *font = nullptr;
     std::function<void()> onClickCallback = [](){};
+    std::function<bool()> displayConditionCallback = [](){ return true; };
 
     //For the move function
     static float prevPosX, prevPosY;
@@ -45,6 +46,7 @@ public:
     ButtonBuilder& setText(std::string text);
     ButtonBuilder& setTextSize(int textSize);
     ButtonBuilder& setColors(sf::Color idle, sf::Color hover, sf::Color active);
+    ButtonBuilder& setDisplayCondition(const std::function<bool()> &displayCondition);
 
     std::unique_ptr<ButtonWidget> build();
 };

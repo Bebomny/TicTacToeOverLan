@@ -135,6 +135,12 @@ void InternalGameServer::handleClientData(ClientContext &client) {
         this->broadcastPacket(PacketType::PLAYER_DISCONNECTED, disconnectPacket);
 
         // Reset the game here back to GAME_ROOM state
+        GameEndPacket endPacket {};
+        endPacket.reason = FinishReason::PLAYER_DISCONNECT;
+        endPacket.playerId = client.playerId;
+        endPacket.player = ServerUtils::clientContextToPlayer(client, 0);
+
+        this->broadcastPacket(PacketType::GAME_END, endPacket);
 
         return;
     }

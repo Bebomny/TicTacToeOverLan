@@ -96,6 +96,7 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(GAME_ROOM_POSITION.x, GAME_ROOM_POSITION.y + 5 * DEFAULT_WIDGET_Y_OFFSET)
         .setTextSize(26)
+        .setDisplayCondition([this]() {return this->hosting;})
         .build()
     });
 
@@ -111,6 +112,7 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(202, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
+        .setDisplayCondition([this]() {return this->hosting;})
         .build()
     });
 
@@ -125,6 +127,7 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(232, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
+        .setDisplayCondition([this]() {return this->hosting;})
         .build()
     });
 
@@ -140,6 +143,7 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(284, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
+        .setDisplayCondition([this]() {return this->hosting;})
         .build()
     });
 
@@ -154,6 +158,7 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(314, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
+        .setDisplayCondition([this]() {return this->hosting;})
         .build()
     });
 }
@@ -173,6 +178,7 @@ void GameClient::initGameWidgets() {
             WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y - 70.0f)
         .setSize(300.0f, 50.0f)
         .setTextSize(24)
+        .setDisplayCondition([this]() {return this->hosting && this->gamePhase == GamePhase::GAME_FINISHED;})
         .build()
     });
 
@@ -191,6 +197,7 @@ void GameClient::initGameWidgets() {
             WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y - 70.0f)
         .setSize(300.0f, 50.0f)
         .setTextSize(24)
+        .setDisplayCondition([this]() {return this->hosting && this->gamePhase == GamePhase::GAME_FINISHED;})
         .build()
     });
 }
@@ -206,23 +213,16 @@ void GameClient::run() {
 void GameClient::handleInput() {
     const sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-    //Update buttons
+    //Update buttons //TODO: simplify this further?
     for (const auto &btn: menuButtons | std::views::values) {
         btn->update(mousePos);
     }
 
-    for (const auto &[id, btn]: gameRoomButtons) {
-        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" ||
-                         id == "winconditionminus")) {
-            continue;
-        }
+    for (const auto &btn: gameRoomButtons | std::views::values) {
         btn->update(mousePos);
     }
 
-    for (const auto &[id, btn]: gameButtons) {
-        if (!hosting || (gamePhase != GamePhase::GAME_FINISHED && (id == "playagain" || id == "backtoroom"))) {
-            continue;
-        }
+    for (const auto &btn: gameButtons | std::views::values) {
         btn->update(mousePos);
     }
 
@@ -280,11 +280,7 @@ void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf
 
 void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
     //TODO: add disconnect
-    for (const auto &[id, btn]: gameRoomButtons) {
-        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" ||
-                         id == "winconditionminus")) {
-            continue;
-        }
+    for (const auto &btn: gameRoomButtons | std::views::values) {
         btn->handleEvent(event, mousePos);
     }
 }
@@ -301,10 +297,7 @@ void GameClient::handleGameInput(const std::optional<sf::Event> &event, const sf
         }
     }
 
-    for (const auto &[id, btn]: gameButtons) {
-        if (!hosting || (gamePhase != GamePhase::GAME_FINISHED && (id == "playagain" || id == "backtoroom"))) {
-            continue;
-        }
+    for (const auto &btn: gameButtons | std::views::values) {
         btn->handleEvent(event, mousePos);
     }
 }
@@ -649,10 +642,6 @@ void GameClient::renderGameRoom() {
 
     // Render buttons
     for (const auto &[id, btn]: gameRoomButtons) {
-        if (!hosting && (id == "start" || id == "boardsizeplus" || id == "boardsizeminus" || id == "winconditionplus" ||
-                         id == "winconditionminus")) {
-            continue;
-        }
         btn->render(window);
     }
 }
@@ -759,10 +748,7 @@ void GameClient::renderGame() {
         //TODO: If the client isnt the host draw text with "Waiting for the host"
     }
 
-    for (const auto &[id, btn]: gameButtons) {
-        if (!hosting || (gamePhase != GamePhase::GAME_FINISHED && (id == "playagain" || id == "backtoroom"))) {
-            continue;
-        }
+    for (const auto &btn: gameButtons | std::views::values) {
         btn->render(window);
     }
 }

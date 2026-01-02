@@ -16,13 +16,14 @@ class ButtonWidget {
     sf::Color activeColor; // Secondary
 
     std::function<void()> onClick;
+    std::function<bool()> displayCondition;
 
 public:
     sf::Text text;
 
     ButtonWidget(float x, float y, float width, float height,
         const std::string &btnText, int textSize, const sf::Font &font,
-        const std::function<void()> &onClickCallback,
+        const std::function<void()> &onClickCallback, const std::function<bool()> &displayConditionCallback,
         sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 
     static ButtonBuilder builder(std::string text, std::function<void()> onClick) {

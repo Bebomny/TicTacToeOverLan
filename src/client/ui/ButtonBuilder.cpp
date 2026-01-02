@@ -56,6 +56,11 @@ ButtonBuilder &ButtonBuilder::setColors(sf::Color idle, sf::Color hover, sf::Col
     return *this;
 }
 
+ButtonBuilder &ButtonBuilder::setDisplayCondition(const std::function<bool()> &displayCondition) {
+    this->displayConditionCallback = displayCondition;
+    return *this;
+}
+
 std::unique_ptr<ButtonWidget> ButtonBuilder::build() {
     prevPosX = this->posX;
     prevPosY = this->posY;
@@ -63,7 +68,10 @@ std::unique_ptr<ButtonWidget> ButtonBuilder::build() {
     if (!this->font) throw std::runtime_error("[ButtonBuilder] No fonts available!");
 
     return std::make_unique<ButtonWidget>(
-        posX, posY, width, height, text, textSize, *font, onClickCallback, idle, hover, active);
+        posX, posY, width, height,
+        text, textSize, *font,
+        onClickCallback, displayConditionCallback,
+        idle, hover, active);
 }
 
 

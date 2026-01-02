@@ -8,7 +8,7 @@
 ButtonWidget::ButtonWidget(
     const float x, const float y, const float width, const float height,
     const std::string &btnText, const int textSize, const sf::Font &font,
-    const std::function<void()> &onClickCallback,
+    const std::function<void()> &onClickCallback, const std::function<bool()> &displayConditionCallback,
     const sf::Color idleColor, const sf::Color hoverColor, const sf::Color activeColor) : text(font) {
 
     this->idleColor = idleColor;
@@ -16,6 +16,7 @@ ButtonWidget::ButtonWidget(
     this->activeColor = activeColor;
 
     this->onClick = onClickCallback;
+    this->displayCondition = displayConditionCallback;
 
     shape.setPosition(sf::Vector2f(x, y));
     shape.setSize(sf::Vector2f(width, height));
@@ -40,6 +41,8 @@ ButtonWidget::ButtonWidget(
 }
 
 bool ButtonWidget::handleEvent(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
+    if (!displayCondition()) return false;
+
     if (const auto pressEvent = event->getIf<sf::Event::MouseButtonReleased>()) {
         if (pressEvent->button == sf::Mouse::Button::Left) {
             sf::Vector2f mPos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
@@ -53,6 +56,8 @@ bool ButtonWidget::handleEvent(const std::optional<sf::Event> &event, const sf::
 }
 
 void ButtonWidget::update(const sf::Vector2i &mousePos) {
+    if (!displayCondition()) return;
+
     sf::Vector2f mPos(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
     if (shape.getGlobalBounds().contains(mPos)) {
         shape.setFillColor(hoverColor);
@@ -62,6 +67,8 @@ void ButtonWidget::update(const sf::Vector2i &mousePos) {
 }
 
 void ButtonWidget::render(sf::RenderTarget &window) {
+    if (!displayCondition()) return;
+
     window.draw(shape);
     window.draw(text);
 }
