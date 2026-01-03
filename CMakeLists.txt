@@ -29,8 +29,6 @@ add_executable(TicTacToeOverLan src/main.cpp
         src/server/ServerUtils.h
         src/client/ui/ButtonWidget.cpp
         src/client/ui/ButtonWidget.h
-        src/client/ui/ButtonBuilder.cpp
-        src/client/ui/ButtonBuilder.h
         src/client/ui/BoardRenderer.cpp
         src/client/ui/BoardRenderer.h
         src/server/WinValidator.cpp

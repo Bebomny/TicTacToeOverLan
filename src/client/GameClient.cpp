@@ -7,7 +7,6 @@
 #include "../common/resources/JetBrainsMonoRegularFont.h"
 #include "SFML/Graphics/Text.hpp"
 #include "ui/BoardRenderer.h"
-#include "ui/ButtonBuilder.h"
 
 GameClient::GameClient() {
     clientState = ClientState::MENU;
