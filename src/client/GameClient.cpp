@@ -22,7 +22,7 @@ GameClient::GameClient() {
     //Later updated by the server
     initialToken = std::chrono::high_resolution_clock::now().time_since_epoch().count() / 1000000000;
     authToken = -1;
-    playerId = 1;
+    playerId = -1;
     pieceType = PieceType::EMPTY;
 
     //Debug stuff
@@ -31,7 +31,8 @@ GameClient::GameClient() {
     //Initialize the board with default settings
     boardData.boardSize = 3;
     boardData.winConditionLength = 3;
-    boardData.turn = 0;
+    boardData.round = 1;
+    boardData.turn = 1;
     boardData.actingPlayerId = 0;
     Utils::initializeGameBoard(boardData);
     playerCount = 0;
