@@ -6,19 +6,19 @@
 #include "SFML/Graphics/RectangleShape.hpp"
 
 void BoardRenderer::render(sf::RenderTarget &window, const BoardData &board, const sf::FloatRect &drawArea,
-                           const bool myTurn, sf::Vector2i highlightedSquare) {
-    int sideLength = board.boardSize;
+                           const bool myTurn, const sf::Vector2i highlightedSquare) {
+    const int sideLength = board.boardSize;
 
     if (sideLength == 0) return;
 
-    float cellWidth = drawArea.size.x / static_cast<float>(sideLength);
-    float cellHeight = drawArea.size.y / static_cast<float>(sideLength);
-    float cellSize = std::min(cellWidth, cellHeight);
+    const float cellWidth = drawArea.size.x / static_cast<float>(sideLength);
+    const float cellHeight = drawArea.size.y / static_cast<float>(sideLength);
+    const float cellSize = std::min(cellWidth, cellHeight);
 
-    float totalBoardSideLength = cellSize * sideLength;
+    const float totalBoardSideLength = cellSize * sideLength;
 
-    float startX = drawArea.position.x + (drawArea.size.x - totalBoardSideLength) / 2.0f;
-    float startY = drawArea.position.y + (drawArea.size.y - totalBoardSideLength) / 2.0f;
+    const float startX = drawArea.position.x + (drawArea.size.x - totalBoardSideLength) / 2.0f;
+    const float startY = drawArea.position.y + (drawArea.size.y - totalBoardSideLength) / 2.0f;
 
     sf::RectangleShape cellShape({cellSize, cellSize});
     cellShape.setOutlineThickness(1);
@@ -40,7 +40,7 @@ void BoardRenderer::render(sf::RenderTarget &window, const BoardData &board, con
 
             window.draw(cellShape);
 
-            PieceType piece = board.getSquareAt(x, y).piece;
+            const PieceType piece = board.getSquareAt(x, y).piece;
             if (piece != PieceType::EMPTY) {
                 drawPiece(window, piece, pixelX, pixelY, cellSize);
             }
@@ -186,18 +186,18 @@ void BoardRenderer::drawPiece(sf::RenderTarget &window, const PieceType piece, c
 
 sf::Vector2i BoardRenderer::getSquareAt(const sf::Vector2i &mousePos, const BoardData &board,
                                         const sf::FloatRect &drawArea) {
-    int sideLength = board.boardSize;
+    const int sideLength = board.boardSize;
 
     if (sideLength == 0) return {-1, -1};
 
-    float cellWidth = drawArea.size.x / static_cast<float>(sideLength);
-    float cellHeight = drawArea.size.y / static_cast<float>(sideLength);
-    float cellSize = std::min(cellWidth, cellHeight);
+    const float cellWidth = drawArea.size.x / static_cast<float>(sideLength);
+    const float cellHeight = drawArea.size.y / static_cast<float>(sideLength);
+    const float cellSize = std::min(cellWidth, cellHeight);
 
-    float totalBoardSideLength = cellSize * sideLength;
+    const float totalBoardSideLength = cellSize * sideLength;
 
-    float startX = drawArea.position.x + (drawArea.size.x - totalBoardSideLength) / 2.0f;
-    float startY = drawArea.position.y + (drawArea.size.y - totalBoardSideLength) / 2.0f;
+    const float startX = drawArea.position.x + (drawArea.size.x - totalBoardSideLength) / 2.0f;
+    const float startY = drawArea.position.y + (drawArea.size.y - totalBoardSideLength) / 2.0f;
 
     if (mousePos.x < startX || mousePos.x > startX + totalBoardSideLength ||
         mousePos.y < startY || mousePos.y > startY + totalBoardSideLength) {

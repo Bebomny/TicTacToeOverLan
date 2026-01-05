@@ -10,7 +10,7 @@
 class Widget {
     protected:
     std::function<bool()> displayCondition = []() {return true;};
-    bool active = true; //TODO: Make this a predicate too
+    bool active = true;
 
 public:
     virtual ~Widget() = default;

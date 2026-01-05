@@ -43,21 +43,20 @@ public:
     long long getTick();
     long long getLastTickTime();
     double getAvgTickTime();
-    uint8_t getNextPlayerId();
-    uint16_t getCurrentTurn();
-    uint8_t getHostingPlayerId();
+    uint8_t getNextPlayerId() const;
+    uint16_t getCurrentTurn() const;
+    uint8_t getHostingPlayerId() const;
     std::tuple<uint8_t, uint8_t> getBoardSettings();
     std::vector<PieceType> getAllAvailablePieces();
-    std::vector<Player> getPlayers();
+    std::vector<Player> getPlayers() const;
     std::vector<Move> getMoves();
 
 private:
     void handleNewConnection();
     void handleClientData(ClientContext& client);
-    void disconnectClient(size_t index);
 
     PieceType getFirstAvailablePiece();
-    uint8_t getNextActingPlayerId();
+    uint8_t getNextActingPlayerId() const;
 
     void processPacket(ClientContext& client, PacketType type, std::vector<char>& payload);
 

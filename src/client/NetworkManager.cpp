@@ -4,7 +4,7 @@ int NetworkManager::connectToServer(const std::string &address, const std::strin
 
     conPhase = ConnectionPhase::DISCONNECTED;
 
-    //Prepare the Windows socket api //TODO: move it to the common directory? or the main function?
+    //Prepare the Windows socket api
     startResult = WSAStartup(REQ_SOCK_VERSION, &wsadata);
     if (startResult != 0) {
         printf(ANSI_RED "[SockServer] WSAStartup failed with error: %d\n" ANSI_RESET, startResult);
@@ -67,59 +67,20 @@ void NetworkManager::disconnect() {
     WSACleanup();
 }
 
-
-// template<typename T>
-// void NetworkManager::sendPacket(const PacketType type, const T &data) {
-//     if (conPhase != ConnectionPhase::ESTABLISHED) {
-//         printf(ANSI_RED "[SockClient] Attempting to send packet before a connection was made \n" ANSI_RESET);
-//         return;
-//     }
-//
-//     std::vector<char> buffer;
-//     buffer.reserve(sizeof(PacketHeader) + sizeof(T));
-//
-//     PacketHeader header;
-//     header.type = type;
-//     header.payloadSize = sizeof(T);
-//
-//     const auto headerPtr = reinterpret_cast<const char*>(&header);
-//     buffer.insert(buffer.end(), headerPtr, headerPtr + sizeof(header));
-//
-//     const auto dataPtr = reinterpret_cast<const char*>(&data);
-//     buffer.insert(buffer.end(), dataPtr, dataPtr + sizeof(T));
-//
-//     int totalSent = 0;
-//     int bytesLeft = static_cast<int>(buffer.size());
-//
-//     while (totalSent < buffer.size()) {
-//         const int sent = send(clientSocket, buffer.data() + totalSent, bytesLeft, 0);
-//
-//         if (sent == -1) {
-//             // Error handling (connection lost?)
-//             printf(ANSI_RED "[SockClient] Error sending data!\n" ANSI_RESET);
-//             return;
-//         }
-//
-//         totalSent += sent;
-//         bytesLeft -= sent;
-//     }
-// }
-
 bool NetworkManager::pollPacket(PacketHeader &outHeader, std::vector<char> &outPayload) {
     char tempBuffer[DEFAULT_BUFFER_LEN];
 
-    int bytesReceived = recv(clientSocket, tempBuffer, sizeof(tempBuffer), 0);
+    const int bytesReceived = recv(clientSocket, tempBuffer, sizeof(tempBuffer), 0);
 
     if (bytesReceived > 0) {
         receiveBuffer.insert(receiveBuffer.end(), tempBuffer, tempBuffer + bytesReceived);
     } else if (bytesReceived == 0) {
-        // Connection closed by server //TODO: handle this
         conPhase = ConnectionPhase::DISCONNECTED;
         return false;
     } else {
-        int error = WSAGetLastError();
+        const int error = WSAGetLastError();
         if (error != WSAEWOULDBLOCK) {
-            // TODO: handle disconnect and an error of some sort
+            //
         }
     }
 
@@ -130,7 +91,7 @@ bool NetworkManager::pollPacket(PacketHeader &outHeader, std::vector<char> &outP
 
     const auto* pendingHeader = reinterpret_cast<PacketHeader*>(receiveBuffer.data());
 
-    size_t totalPacketSize = sizeof(PacketHeader) + pendingHeader->payloadSize;
+    const size_t totalPacketSize = sizeof(PacketHeader) + pendingHeader->payloadSize;
 
     if (receiveBuffer.size() < totalPacketSize) {
         // We have the header, but not the full data
@@ -149,4 +110,3 @@ bool NetworkManager::pollPacket(PacketHeader &outHeader, std::vector<char> &outP
     receiveBuffer.erase(receiveBuffer.begin(), receiveBuffer.begin() + totalPacketSize);
     return true;
 }
-

@@ -1,9 +1,11 @@
 #include "WinValidator.h"
 
-bool WinValidator::checkWin(const BoardData &board, int lastX, int lastY) {
-    PieceType currentPiece = board.getSquareAt(lastX, lastY).piece;
+bool WinValidator::checkWin(const BoardData &board, const int lastX, const int lastY) {
+    const PieceType currentPiece = board.getSquareAt(lastX, lastY).piece;
 
     if (currentPiece == PieceType::EMPTY) return false;
+
+    // Go in each direction and calculate the same consecutive pieces
 
     // Horizontal
     if (count(board, lastX, lastY, -1, 0) + count(board, lastX, lastY, 1, 0) + 1 >= board.winConditionLength) {
@@ -29,9 +31,8 @@ bool WinValidator::checkWin(const BoardData &board, int lastX, int lastY) {
 }
 
 
-
-int WinValidator::count(const BoardData &board, int startX, int startY, int dx, int dy) {
-    PieceType target = board.getSquareAt(startX, startY).piece;
+int WinValidator::count(const BoardData &board, const int startX, const int startY, const int dx, const int dy) {
+    const PieceType target = board.getSquareAt(startX, startY).piece;
     int count = 0;
     int x = startX + dx;
     int y = startY + dy;
@@ -50,6 +51,6 @@ int WinValidator::count(const BoardData &board, int startX, int startY, int dx, 
 }
 
 
-bool WinValidator::isValid(const BoardData &board, int x, int y) {
+bool WinValidator::isValid(const BoardData &board, const int x, const int y) {
     return x >= 0 && x < board.boardSize && y >= 0 && y < board.boardSize;
 }

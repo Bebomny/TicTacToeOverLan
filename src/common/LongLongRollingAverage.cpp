@@ -3,12 +3,12 @@
 #include <deque>
 #include <limits.h>
 
-LongLongRollingAverage::LongLongRollingAverage(int sampleSize) : sampleSize(sampleSize) {
+LongLongRollingAverage::LongLongRollingAverage(const int sampleSize) : sampleSize(sampleSize) {
     this->sampleSize = sampleSize;
     this->samples = std::deque<long long>();
 }
 
-void LongLongRollingAverage::add(long long value) {
+void LongLongRollingAverage::add(const long long value) {
     std::lock_guard<std::mutex> lock(this->mtx);
 
     this->total += value;
@@ -32,7 +32,7 @@ double LongLongRollingAverage::min() {
     std::lock_guard<std::mutex> lock(this->mtx);
 
     double min = INT_MAX;
-    for (long long &sample: samples) {
+    for (const long long &sample: samples) {
         min = std::min(static_cast<double>(sample), min);
     }
     return min;
@@ -42,7 +42,7 @@ double LongLongRollingAverage::max() {
     std::lock_guard<std::mutex> lock(this->mtx);
 
     double max = 0.0;
-    for (long long &sample: samples) {
+    for (const long long &sample: samples) {
         max = std::max(static_cast<double>(sample), max);
     }
     return max;
@@ -52,7 +52,7 @@ PackagedValues LongLongRollingAverage::getPackagedValues() {
     std::lock_guard<std::mutex> lock(this->mtx);
 
     double average = 0.0, min = INT_MAX, max = INT_MIN;
-    for (long long &sample: samples) {
+    for (const long long &sample: samples) {
         min = std::min(static_cast<double>(sample), min);
         max = std::max(static_cast<double>(sample), max);
     }

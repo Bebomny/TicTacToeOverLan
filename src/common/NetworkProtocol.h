@@ -30,7 +30,7 @@ enum class PacketType : uint8_t {
   GAME_END
 };
 
-// This is so the compiler doesnt mess with the padding in the network logic
+// This is so the compiler doesn't mess with the padding in the network logic
 #pragma pack(push, 1)
 
 /**
@@ -57,11 +57,9 @@ struct SetupAckPacket {
   uint8_t playerId;
   char playerName[MAX_PLAYER_NAME_LENGTH];
   PieceType pieceType;
-  //TODO: send the initial board settings here too
   uint8_t boardSize;
   uint8_t winConditionLength;
   uint16_t round;
-  // std::vector<Player> players;
   uint8_t playerCount;
   Player players[MAX_PLAYERS];
 };
