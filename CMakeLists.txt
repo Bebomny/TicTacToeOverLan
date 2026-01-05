@@ -39,7 +39,9 @@ add_executable(TicTacToeOverLan src/main.cpp
         src/common/resources/JetBrainsMonoRegularFont.h
         src/client/ui/TextFieldWidget.cpp
         src/client/ui/TextFieldWidget.h
-        src/client/ui/Widget.h)
+        src/client/ui/Widget.h
+        src/client/ui/DrawUtils.h
+        src/common/resources/WindowIcon.h)
 
 target_link_libraries(TicTacToeOverLan PRIVATE Ws2_32)
 target_link_libraries(TicTacToeOverLan PRIVATE SFML::Graphics)

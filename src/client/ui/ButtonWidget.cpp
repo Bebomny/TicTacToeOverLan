@@ -1,5 +1,7 @@
 #include "ButtonWidget.h"
 
+#include "DrawUtils.h"
+
 //// Builder ////
 float ButtonBuilder::prevPosX = 0.0f;
 float ButtonBuilder::prevPosY = 0.0f;
@@ -102,11 +104,7 @@ ButtonWidget::ButtonWidget(
     text.setFillColor(sf::Color(TEXT_COLOR));
     text.setCharacterSize(textSize);
 
-    const sf::FloatRect bounds = text.getGlobalBounds();
-    text.setOrigin({
-        std::floor(bounds.position.x + bounds.size.x / 2.0f),
-        std::floor(bounds.position.y + bounds.size.y / 2.0f)
-    });
+    DrawUtils::centerText(text);
     text.setPosition({
         std::floor(x + width / 2.0f),
         std::floor(y + height / 2.0f)

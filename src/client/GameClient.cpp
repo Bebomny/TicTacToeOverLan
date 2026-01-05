@@ -5,8 +5,11 @@
 #include <thread>
 
 #include "../common/resources/JetBrainsMonoRegularFont.h"
+#include "../common/resources/WindowIcon.h"
+#include "SFML/Graphics/Image.hpp"
 #include "SFML/Graphics/Text.hpp"
 #include "ui/BoardRenderer.h"
+#include "ui/DrawUtils.h"
 #include "ui/TextFieldWidget.h"
 
 GameClient::GameClient() {
@@ -18,14 +21,12 @@ GameClient::GameClient() {
 
     //Later updated by the server
     initialToken = std::chrono::high_resolution_clock::now().time_since_epoch().count() / 1000000000;
-    // initialToken = 2137696969;
     authToken = -1;
     playerId = 1;
     pieceType = PieceType::EMPTY;
 
     //Debug stuff
     std::printf(ANSI_CYAN "[GameClient] Initial token %d\n", initialToken);
-    //
 
     //Initialize the board with default settings
     boardData.boardSize = 3;
@@ -42,8 +43,16 @@ GameClient::GameClient() {
     window.setFramerateLimit(60);
     clock.start();
 
+    sf::Image icon;
+    if (!icon.loadFromMemory(TicTacToeOverLan_ICON_DATA, sizeof(TicTacToeOverLan_ICON_DATA))) {
+        printf(ANSI_RED "[GameClient] Failed to load the embedded icon\n" ANSI_RESET);
+        return;
+    }
+    window.setIcon(icon);
+
     if (!font.openFromMemory(JetBrainsMono_Regular, JetBrainsMono_Regular_Len)) {
-        printf(ANSI_RED "[GameClient] Failed to load embedded font\n" ANSI_RESET);
+        printf(ANSI_RED "[GameClient] Failed to load the embedded font\n" ANSI_RESET);
+        return;
     }
 
     ButtonBuilder::initFont(font);
@@ -301,11 +310,19 @@ void GameClient::handleInput() {
     }
 }
 
+/**
+ * This function originally handled inputs for widgets too, but after unifying them, it's a leftover.
+ * Left as is, as it may become useful later on
+ */
 void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
     // Input that is not a widget goes here
     return;
 }
 
+/**
+ * This function originally handled inputs for widgets too, but after unifying them, it's a leftover.
+ * Left as is as, it may become useful later on
+ */
 void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
     // Input that is not a widget goes here
     return;
@@ -384,7 +401,7 @@ void GameClient::update() {
                 if (playerId != packet->playerId) {
                     printf(
                         ANSI_RED
-                        "[GameClient] Somehow got SETUP_ACK dedicated to another player! This shouldnt happen!\n"
+                        "[GameClient] Somehow got SETUP_ACK dedicated to another player! This shouldn't happen!\n"
                         ANSI_RESET);
                 }
 
@@ -649,6 +666,16 @@ void GameClient::renderGame() {
     BoardRenderer::render(window, boardData, BOARD_DRAW_AREA, isMyTurn, hoveredGridPos);
 
     //TODO: Add a banner saying what piece you are playing
+    sf::Text playingAsText(font);
+    playingAsText.setString("You're playing as " + Utils::pieceTypeToString(pieceType));
+    playingAsText.setCharacterSize(28);
+    playingAsText.setFillColor(sf::Color(TEXT_COLOR));
+    DrawUtils::centerTextHorizontally(playingAsText);
+    playingAsText.setPosition({
+        std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f),
+        std::floor(WIN_TEXT_DRAW_AREA.position.y - WIN_TEXT_DRAW_AREA.size.y / 2.0f)
+    });
+    window.draw(playingAsText);
 
     if (gamePhase == GamePhase::GAME_FINISHED) {
         sf::RectangleShape rect(WIN_TEXT_DRAW_AREA.size);
@@ -689,12 +716,7 @@ void GameClient::renderGame() {
             }
         }
 
-        //Center the text
-        const sf::FloatRect gameEndBounds = gameEndText.getGlobalBounds();
-        gameEndText.setOrigin({
-            std::floor(gameEndBounds.position.x + gameEndBounds.size.x / 2.0f),
-            std::floor(gameEndBounds.position.y + gameEndBounds.size.y / 2.0f)
-        });
+        DrawUtils::centerText(gameEndText);
         gameEndText.setPosition({
             std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
             std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f
@@ -705,12 +727,7 @@ void GameClient::renderGame() {
         scoreBoardText.setCharacterSize(24);
         scoreBoardText.setFillColor(sf::Color(TEXT_COLOR));
         scoreBoardText.setString("Score Board");
-        //Center the text <- todo: pack into a function
-        const sf::FloatRect scoreBoardBounds = scoreBoardText.getGlobalBounds();
-        scoreBoardText.setOrigin({
-            std::floor(scoreBoardBounds.position.x + scoreBoardBounds.size.x / 2.0f),
-            std::floor(scoreBoardBounds.position.y + scoreBoardBounds.size.y / 2.0f)
-        });
+        DrawUtils::centerText(scoreBoardText);
         scoreBoardText.setPosition({
             std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
             std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f +
@@ -730,13 +747,7 @@ void GameClient::renderGame() {
                                       std::to_string(player.wins);
             scoreText.setString(scoreString);
 
-            //Center the text
-            const sf::FloatRect scoreBounds = scoreText.getGlobalBounds();
-            scoreText.setOrigin({
-                std::floor(scoreBounds.position.x + scoreBounds.size.x / 2.0f),
-                std::floor(scoreBounds.position.y + scoreBounds.size.y / 2.0f)
-            });
-
+            DrawUtils::centerText(scoreText);
             scoreText.setPosition({
                 std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
                 std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f +
@@ -752,13 +763,9 @@ void GameClient::renderGame() {
             sf::Text waitingForHostText(font);
             waitingForHostText.setCharacterSize(24);
             waitingForHostText.setFillColor(sf::Color(TEXT_COLOR));
-            waitingForHostText.setString("Waiting for Host");
+            waitingForHostText.setString("Waiting for the Host");
 
-            const sf::FloatRect waitingForHostBounds = waitingForHostText.getGlobalBounds();
-            waitingForHostText.setOrigin({
-                std::floor(waitingForHostBounds.position.x + waitingForHostBounds.size.x / 2.0f),
-                std::floor(waitingForHostBounds.position.y + waitingForHostBounds.size.y / 2.0f)
-            });
+            DrawUtils::centerText(waitingForHostText);
             waitingForHostText.setPosition({
                 WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f,
                 WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y - 30.0f
@@ -954,7 +961,7 @@ void GameClient::renderDebugMenu() {
         text.move({0, textYOffset});
         window.draw(text);
 
-        //nextplayerid
+        //next player id
         text.setString("NextPlayerID: " + std::to_string(serverLogic.getNextPlayerId()));
         text.move({0, textYOffset});
         window.draw(text);
@@ -964,7 +971,7 @@ void GameClient::renderDebugMenu() {
         text.move({0, textYOffset});
         window.draw(text);
 
-        //hostingplayer
+        //hosting player
         text.setString("HostingPlayerID: " + std::to_string(serverLogic.getHostingPlayerId()));
         text.move({0, textYOffset});
         window.draw(text);

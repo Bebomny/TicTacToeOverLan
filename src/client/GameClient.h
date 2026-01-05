@@ -45,18 +45,15 @@ public:
     sf::Font font;
     ClientState clientState;
     std::map<std::string, std::unique_ptr<Widget>> widgets;
-    // std::map<std::string, std::unique_ptr<Widget>> menuWidgets;
-    // std::map<std::string, std::unique_ptr<Widget>> gameRoomWidgets;
-    // std::map<std::string, std::unique_ptr<Widget>> gameWidgets;
     bool debugEnabled = true;
 
-    //Menu Coordinates - move to separate screen(view?) objects later
+    //Menu Coordinates
     constexpr static sf::Vector2f MAIN_MENU_POSITION{36, 36}; //left corner
     constexpr static sf::Vector2f GAME_ROOM_POSITION{36, 36}; //left corner
     constexpr static int DEFAULT_TEXT_SIZE = 20;
     constexpr static int DEFAULT_WIDGET_Y_OFFSET{DEFAULT_TEXT_SIZE + DEFAULT_TEXT_SIZE / 2};
     constexpr static sf::FloatRect BOARD_DRAW_AREA = {
-        {300.0f, 30.0f},
+        {300.0f, 60.0f},
         {500.0f, 500.0f}
     };
     constexpr static sf::FloatRect WIN_TEXT_DRAW_AREA= {{
@@ -102,9 +99,6 @@ private:
     void render();
 
     void initWidgets();
-    // void initMenuWidgets();
-    // void initGameRoomWidgets();
-    // void initGameWidgets();
 
     void handleMenuInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);
     void handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);
