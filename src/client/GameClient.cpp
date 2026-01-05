@@ -547,7 +547,7 @@ void GameClient::update() {
 
             case PacketType::GAME_END: {
                 const auto *packet = reinterpret_cast<GameEndPacket *>(payload.data());
-                printf(ANSI_GREEN "[GameClient] Player with ID %hhu won the round!\n" ANSI_RESET,
+                printf(ANSI_GREEN "[GameClient] Player with ID %hhu finished the round!\n" ANSI_RESET,
                        packet->playerId);
 
                 gamePhase = GamePhase::GAME_FINISHED;
@@ -556,7 +556,10 @@ void GameClient::update() {
                 std::erase_if(players, [packet](const Player &player) {
                     return player.playerId == packet->playerId;
                 });
-                players.push_back(packet->player);
+
+                if (packet->reason != FinishReason::PLAYER_DISCONNECT) {
+                    players.push_back(packet->player);
+                }
 
                 break;
             }
