@@ -2,6 +2,7 @@
 #define TICTACTOEOVERLAN_GAMECLIENT_H
 #include <cstdint>
 #include <map>
+#include <regex>
 #include <thread>
 
 #include "NetworkManager.h"
@@ -40,11 +41,13 @@ public:
 
     //Menus and windows
     sf::RenderWindow window;
+    sf::Clock clock;
     sf::Font font;
     ClientState clientState;
-    std::map<std::string, std::unique_ptr<ButtonWidget>> menuButtons;
-    std::map<std::string, std::unique_ptr<ButtonWidget>> gameRoomButtons;
-    std::map<std::string, std::unique_ptr<ButtonWidget>> gameButtons;
+    std::map<std::string, std::unique_ptr<Widget>> widgets;
+    // std::map<std::string, std::unique_ptr<Widget>> menuWidgets;
+    // std::map<std::string, std::unique_ptr<Widget>> gameRoomWidgets;
+    // std::map<std::string, std::unique_ptr<Widget>> gameWidgets;
     bool debugEnabled = true;
 
     //Menu Coordinates - move to separate screen(view?) objects later
@@ -98,9 +101,10 @@ private:
     void update();
     void render();
 
-    void initMenuWidgets();
-    void initGameRoomWidgets();
-    void initGameWidgets();
+    void initWidgets();
+    // void initMenuWidgets();
+    // void initGameRoomWidgets();
+    // void initGameWidgets();
 
     void handleMenuInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);
     void handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);

@@ -15,6 +15,7 @@
 #define PRIMARY_COLOR {128, 148, 118}
 #define SECONDARY_COLOR {170, 188, 181}
 #define ACCENT_COLOR {142, 166, 165}
+#define INACTIVE_COLOR {150, 150, 150}
 
 #include "GameDefinitions.h"
 #include "string"

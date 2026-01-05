@@ -49,6 +49,7 @@ public:
     std::tuple<uint8_t, uint8_t> getBoardSettings();
     std::vector<PieceType> getAllAvailablePieces();
     std::vector<Player> getPlayers();
+    std::vector<Move> getMoves();
 
 private:
     void handleNewConnection();

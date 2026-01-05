@@ -36,7 +36,10 @@ add_executable(TicTacToeOverLan src/main.cpp
         src/common/RollingAverage.h
         src/common/LongLongRollingAverage.cpp
         src/common/LongLongRollingAverage.h
-        src/common/resources/JetBrainsMonoRegularFont.h)
+        src/common/resources/JetBrainsMonoRegularFont.h
+        src/client/ui/TextFieldWidget.cpp
+        src/client/ui/TextFieldWidget.h
+        src/client/ui/Widget.h)
 
 target_link_libraries(TicTacToeOverLan PRIVATE Ws2_32)
 target_link_libraries(TicTacToeOverLan PRIVATE SFML::Graphics)

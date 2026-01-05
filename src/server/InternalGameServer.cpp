@@ -300,8 +300,9 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             }
 
             Utils::initializeGameBoard(boardData);
-            boardData.actingPlayerId = 1; //this->getNextActingPlayerId()
+            boardData.actingPlayerId = 1; //this->getNextActingPlayerId() //TODO: fix this make the first player in order start
             boardData.turn = 0;
+            moves.clear();
 
             //TODO: [Idea] Make this reset via a button on the host instead?
             if (packet->newGame) {
@@ -531,5 +532,10 @@ std::vector<Player> InternalGameServer::getPlayers() {
     }
     return players;
 }
+
+std::vector<Move> InternalGameServer::getMoves() {
+    return moves;
+}
+
 
 

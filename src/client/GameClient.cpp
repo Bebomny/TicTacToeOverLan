@@ -7,6 +7,7 @@
 #include "../common/resources/JetBrainsMonoRegularFont.h"
 #include "SFML/Graphics/Text.hpp"
 #include "ui/BoardRenderer.h"
+#include "ui/TextFieldWidget.h"
 
 GameClient::GameClient() {
     clientState = ClientState::MENU;
@@ -39,23 +40,48 @@ GameClient::GameClient() {
 
     window.create(sf::VideoMode({1500, 600}), "TicTacToe Ultimate Editionn");
     window.setFramerateLimit(60);
+    clock.start();
 
     if (!font.openFromMemory(JetBrainsMono_Regular, JetBrainsMono_Regular_Len)) {
         printf(ANSI_RED "[GameClient] Failed to load embedded font\n" ANSI_RESET);
     }
 
     ButtonBuilder::initFont(font);
+    TextFieldBuilder::initFont(font);
 
-    this->initMenuWidgets();
-    this->initGameRoomWidgets();
-    this->initGameWidgets();
+    this->initWidgets();
 
     printf(ANSI_GREEN "[GameClient] Setup finished!\n" ANSI_RESET);
 }
 
-void GameClient::initMenuWidgets() {
-    // Host Button
-    menuButtons.insert({
+void GameClient::initWidgets() {
+    //// Menu Widgets ////
+    // Player name Text Field
+    widgets.insert({
+        "player_name_input",
+        TextFieldWidget::builder(
+            playerName,
+            [this](const std::string &s) { this->playerName = s; })
+        .setDisplayCondition([this]() { return this->clientState == ClientState::MENU; })
+        .setPosition(MAIN_MENU_POSITION.x + 145, MAIN_MENU_POSITION.y + DEFAULT_WIDGET_Y_OFFSET - 1)
+        .setMaxChars(20)
+        .build()
+    });
+
+    // Server IP Text Field
+    widgets.insert({
+        "server_ip_input",
+        TextFieldWidget::builder(
+            userInputIP,
+            [this](const std::string &s) { this->userInputIP = s; })
+        .setDisplayCondition([this]() { return this->clientState == ClientState::MENU; })
+        .setPosition(MAIN_MENU_POSITION.x + 170, MAIN_MENU_POSITION.y + (DEFAULT_WIDGET_Y_OFFSET * 2) - 1)
+        .setMaxChars(20)
+        .build()
+    });
+
+    // Host button
+    widgets.insert({
             "host",
             ButtonWidget::builder(
                 "HOST",
@@ -68,29 +94,30 @@ void GameClient::initMenuWidgets() {
                         this->stopInternalServerThread();
                     }
                 })
-            .setPosition(MAIN_MENU_POSITION.x, MAIN_MENU_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 3)
+            .setPosition(MAIN_MENU_POSITION.x, MAIN_MENU_POSITION.y + 4 * DEFAULT_WIDGET_Y_OFFSET + 3)
+            .setDisplayCondition([this]() { return this->clientState == ClientState::MENU; })
             .build()
         }
     );
 
     // Connect button
-    menuButtons.insert({
+    widgets.insert({
             "connect",
             ButtonWidget::builder(
                 "Connect",
                 [this]() {
                     this->connectAndSetup();
                 })
-            .setPosition(MAIN_MENU_POSITION.x, MAIN_MENU_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
+            .setPosition(MAIN_MENU_POSITION.x, MAIN_MENU_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
             .setSize(100, 24)
+            .setDisplayCondition([this]() { return this->clientState == ClientState::MENU; })
             .build()
         }
     );
-}
 
-void GameClient::initGameRoomWidgets() {
+    //// Game Room Widgets ////
     // Start game button
-    gameRoomButtons.insert({
+    widgets.insert({
         "start", ButtonWidget::builder(
             "Start",
             [this]() {
@@ -99,11 +126,12 @@ void GameClient::initGameRoomWidgets() {
         .setPosition(GAME_ROOM_POSITION.x, GAME_ROOM_POSITION.y + 5 * DEFAULT_WIDGET_Y_OFFSET - 8.0f)
         .setTextSize(26)
         .setHeight(40)
-        .setDisplayCondition([this]() {return this->hosting;})
+        .setDisplayCondition([this]() { return this->hosting && this->clientState == ClientState::GAME_ROOM; })
         .build()
     });
 
-    gameRoomButtons.insert({
+    // Disconnect button
+    widgets.insert({
         "disconnect",
         ButtonWidget::builder(
             "Disconnect",
@@ -113,12 +141,13 @@ void GameClient::initGameRoomWidgets() {
         .setPosition(GAME_ROOM_POSITION.x + 141.0f, GAME_ROOM_POSITION.y + 5 * DEFAULT_WIDGET_Y_OFFSET - 8.0f)
         .setTextSize(26)
         .setSize(201, 40)
+        .setDisplayCondition([this]() { return this->clientState == ClientState::GAME_ROOM; })
         .build()
     });
 
     // +- buttons for boardSize - validated on the server
-    gameRoomButtons.insert({
-        "boardsizeplus",
+    widgets.insert({
+        "board_size_plus",
         ButtonWidget::builder(
             "+",
             [this]() {
@@ -128,12 +157,12 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(212, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
-        .setDisplayCondition([this]() {return this->hosting;})
+        .setDisplayCondition([this]() { return this->hosting && this->clientState == ClientState::GAME_ROOM; })
         .build()
     });
 
-    gameRoomButtons.insert({
-        "boardsizeminus",
+    widgets.insert({
+        "board_size_minus",
         ButtonWidget::builder(
             "-",
             [this]() {
@@ -143,13 +172,13 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(242, GAME_ROOM_POSITION.y + 2 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
-        .setDisplayCondition([this]() {return this->hosting;})
+        .setDisplayCondition([this]() { return this->hosting && this->clientState == ClientState::GAME_ROOM; })
         .build()
     });
 
     //+- buttons for win condition length - validated on the server
-    gameRoomButtons.insert({
-        "winconditionplus",
+    widgets.insert({
+        "win_condition_plus",
         ButtonWidget::builder(
             "+",
             [this]() {
@@ -159,12 +188,12 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(294, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
-        .setDisplayCondition([this]() {return this->hosting;})
+        .setDisplayCondition([this]() { return this->hosting && this->clientState == ClientState::GAME_ROOM; })
         .build()
     });
 
-    gameRoomButtons.insert({
-        "winconditionminus",
+    widgets.insert({
+        "win_condition_minus",
         ButtonWidget::builder(
             "-",
             [this]() {
@@ -174,14 +203,14 @@ void GameClient::initGameRoomWidgets() {
             })
         .setPosition(324, GAME_ROOM_POSITION.y + 3 * DEFAULT_WIDGET_Y_OFFSET + 1)
         .setSize(24, 24)
-        .setDisplayCondition([this]() {return this->hosting;})
+        .setDisplayCondition([this]() { return this->hosting && this->clientState == ClientState::GAME_ROOM; })
         .build()
     });
-}
 
-void GameClient::initGameWidgets() {
-    gameButtons.insert({
-        "playagain",
+    //// Game Widgets ////
+    // Play again button
+    widgets.insert({
+        "play_again",
         ButtonWidget::builder(
             "Play Again",
             [this]() {
@@ -193,16 +222,20 @@ void GameClient::initGameWidgets() {
             WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y - 70.0f)
         .setSize(300.0f, 50.0f)
         .setTextSize(24)
-        .setDisplayCondition([this]() {return this->hosting && this->gamePhase == GamePhase::GAME_FINISHED;})
+        .setDisplayCondition([this]() {
+            return this->hosting && this->gamePhase == GamePhase::GAME_FINISHED && this->clientState ==
+                   ClientState::GAME;
+        })
         .build()
     });
 
-    gameButtons.insert({
-        "backtoroom",
+    // Back to game room button
+    widgets.insert({
+        "back_to_game_room",
         ButtonWidget::builder(
             "Back to the Game Room",
             [this]() {
-                BackToGameRoomPacket backPacket {};
+                BackToGameRoomPacket backPacket{};
                 backPacket.playerId = playerId;
 
                 this->networkManager.sendPacket(PacketType::BACK_TO_GAME_ROOM, backPacket);
@@ -212,7 +245,10 @@ void GameClient::initGameWidgets() {
             WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y - 70.0f)
         .setSize(300.0f, 50.0f)
         .setTextSize(24)
-        .setDisplayCondition([this]() {return this->hosting && this->gamePhase == GamePhase::GAME_FINISHED;})
+        .setDisplayCondition([this]() {
+            return this->hosting && this->gamePhase == GamePhase::GAME_FINISHED && this->clientState ==
+                   ClientState::GAME;
+        })
         .build()
     });
 }
@@ -228,19 +264,6 @@ void GameClient::run() {
 void GameClient::handleInput() {
     const sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-    //Update buttons //TODO: simplify this further?
-    for (const auto &btn: menuButtons | std::views::values) {
-        btn->update(mousePos);
-    }
-
-    for (const auto &btn: gameRoomButtons | std::views::values) {
-        btn->update(mousePos);
-    }
-
-    for (const auto &btn: gameButtons | std::views::values) {
-        btn->update(mousePos);
-    }
-
     while (const std::optional event = window.pollEvent()) {
         if (event->is<sf::Event::Closed>()) {
             window.close();
@@ -250,6 +273,15 @@ void GameClient::handleInput() {
         if (const auto keyEvent = event->getIf<sf::Event::KeyPressed>()) {
             if (keyEvent->code == sf::Keyboard::Key::F3) {
                 debugEnabled = !debugEnabled;
+            }
+        }
+
+        // Handle buttons
+        // TODO: [idea] Maybe iterate backwards to let top buttons capture events first?
+        for (const auto &widget: widgets | std::views::values) {
+            if (widget->handleEvent(event, mousePos)) {
+                // The event got consumed, so we can stop processing it and go to the next
+                break;
             }
         }
 
@@ -270,39 +302,19 @@ void GameClient::handleInput() {
 }
 
 void GameClient::handleMenuInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
-    for (const auto &btn: menuButtons | std::views::values) {
-        btn->handleEvent(event, mousePos);
-    }
-
-    //Remove this later //Debug code
-    if (const auto keyEvent = event->getIf<sf::Event::KeyPressed>()) {
-        if (keyEvent->code == sf::Keyboard::Key::Enter) {
-            if (hosting == false) {
-                hosting = true;
-                this->startInternalServerThread();
-            } else if (hosting == true) {
-                hosting = false;
-                this->stopInternalServerThread();
-            }
-        }
-
-        if (keyEvent->code == sf::Keyboard::Key::RShift) {
-            this->connectAndSetup();
-        }
-    }
-    //
+    // Input that is not a widget goes here
+    return;
 }
 
 void GameClient::handleGameRoomInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
-    for (const auto &btn: gameRoomButtons | std::views::values) {
-        btn->handleEvent(event, mousePos);
-    }
+    // Input that is not a widget goes here
+    return;
 }
 
 void GameClient::handleGameInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos) {
     if (const auto &btnEvent = event->getIf<sf::Event::MouseButtonPressed>()) {
         if (isMyTurn && btnEvent->button == sf::Mouse::Button::Left) {
-            sf::Vector2i gridPos = BoardRenderer::getSquareAt(mousePos, boardData, BOARD_DRAW_AREA);
+            const sf::Vector2i gridPos = BoardRenderer::getSquareAt(mousePos, boardData, BOARD_DRAW_AREA);
 
             if ((gridPos.x != -1 || gridPos.y != -1) && gamePhase != GamePhase::GAME_FINISHED) {
                 printf(ANSI_GREEN "[GameClient] Clicked square at: [%d, %d]\n" ANSI_RESET, gridPos.x, gridPos.y);
@@ -310,13 +322,18 @@ void GameClient::handleGameInput(const std::optional<sf::Event> &event, const sf
             }
         }
     }
-
-    for (const auto &btn: gameButtons | std::views::values) {
-        btn->handleEvent(event, mousePos);
-    }
 }
 
 void GameClient::update() {
+    const sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+    const sf::Time deltaTime = clock.restart();
+
+    //Update buttons
+    for (const auto &widget: widgets | std::views::values) {
+        widget->update(deltaTime, mousePos);
+    }
+
+    // Networking
     PacketHeader header{};
     std::vector<char> payload;
 
@@ -330,7 +347,7 @@ void GameClient::update() {
             case PacketType::SERVER_HELLO: {
                 if (clientState != ClientState::GAME_ROOM) {
                     printf(
-                        ANSI_RED "Client isnt in the game room state, but we received a SERVER_HELLO packet\n"
+                        ANSI_RED "Client isn't in the game room state, but we received a SERVER_HELLO packet\n"
                         ANSI_RESET);
                 }
                 printf(ANSI_CYAN "[GameClient] Got a Server Hello packet!\n" ANSI_RESET);
@@ -365,7 +382,10 @@ void GameClient::update() {
 
                 const auto *packet = reinterpret_cast<SetupAckPacket *>(payload.data());
                 if (playerId != packet->playerId) {
-                    printf(ANSI_RED "[GameClient] Somehow got SETUP_ACK dedicated to another player! This shouldnt happen!\n" ANSI_RESET);
+                    printf(
+                        ANSI_RED
+                        "[GameClient] Somehow got SETUP_ACK dedicated to another player! This shouldnt happen!\n"
+                        ANSI_RESET);
                 }
 
                 authToken = packet->generatedAuthToken;
@@ -407,7 +427,6 @@ void GameClient::update() {
 
                 Player newPlayer{};
                 newPlayer.playerId = packet->newPlayerId;
-                // newPlayer.playerName = packet->newPlayerName;
                 memset(newPlayer.playerName, 0, MAX_PLAYER_NAME_LENGTH);
                 strncpy(newPlayer.playerName, packet->newPlayerName, MAX_PLAYER_NAME_LENGTH - 1);
                 newPlayer.piece = packet->newPlayerPieceType;
@@ -415,6 +434,7 @@ void GameClient::update() {
                 newPlayer.myTurn = false;
                 newPlayer.wins = 0;
                 newPlayer.isHost = packet->isHost;
+
                 // If a player with this id already exists overwrite it
                 std::erase_if(
                     players, [packet](const Player &player) { return packet->newPlayerId == player.playerId; });
@@ -428,6 +448,7 @@ void GameClient::update() {
                 printf(ANSI_CYAN "[GameClient] Got a SETTINGS_UPDATE packet!\n" ANSI_RESET);
                 printf(ANSI_GREEN "[GameClient] New Board Size: %hhu, New Win Condition Length: %hhu\n" ANSI_RESET,
                        packet->newBoardSize, packet->newWinConditionLength);
+
                 boardData.boardSize = packet->newBoardSize;
                 boardData.winConditionLength = packet->newWinConditionLength;
                 break;
@@ -436,6 +457,7 @@ void GameClient::update() {
             case PacketType::PLAYER_DISCONNECTED: {
                 const auto *packet = reinterpret_cast<PlayerDisconnectedPacket *>(payload.data());
                 printf(ANSI_YELLOW "[GameClient] Player with ID %hhu has disconnected\n" ANSI_RESET, packet->playerId);
+
                 std::erase_if(players, [packet](const Player &player) {
                     return player.playerId == packet->playerId;
                 });
@@ -466,15 +488,6 @@ void GameClient::update() {
                 gamePhase = (playerId == packet->startingPlayerId ? GamePhase::MY_TURN : GamePhase::NOT_MY_TURN);
                 isMyTurn = playerId == packet->startingPlayerId;
 
-                // std::string boardString = "Grid: [";
-                // for (auto &row : boardData.grid) {
-                //     for (auto &column : row) {
-                //         boardString += Utils::pieceTypeToString(column.piece) + ",";
-                //     }
-                // }
-                // boardString += "]";
-                // printf("%s\n", boardString.c_str());
-
                 break;
             }
             case PacketType::BOARD_STATE_UPDATE: {
@@ -503,6 +516,7 @@ void GameClient::update() {
                 for (int i = 0; i < packet->playerCount; ++i) {
                     players.push_back(packet->players[i]);
                 }
+
                 break;
             }
 
@@ -535,10 +549,6 @@ void GameClient::update() {
 void GameClient::render() {
     window.clear(sf::Color(BACKGROUND_COLOR));
 
-    if (debugEnabled) {
-        this->renderDebugMenu();
-    }
-
     switch (clientState) {
         case ClientState::MENU:
             this->renderMenu();
@@ -549,6 +559,14 @@ void GameClient::render() {
         case ClientState::GAME:
             this->renderGame();
             break;
+    }
+
+    for (const auto &widget: widgets | std::views::values) {
+        widget->render(window);
+    }
+
+    if (debugEnabled) {
+        this->renderDebugMenu();
     }
 
     window.display();
@@ -563,18 +581,13 @@ void GameClient::renderMenu() {
     text.setPosition({MAIN_MENU_POSITION.x, MAIN_MENU_POSITION.y});
     window.draw(text);
 
-    text.setString("Player name: " + playerName);
+    text.setString("Player name:"); // + playerName
     text.move({0, DEFAULT_WIDGET_Y_OFFSET});
     window.draw(text);
 
-    text.setString("Server Address: " + userInputIP);
-    text.move({110, DEFAULT_WIDGET_Y_OFFSET});
+    text.setString("Server Address:"); // + userInputIP
+    text.move({0, DEFAULT_WIDGET_Y_OFFSET});
     window.draw(text);
-
-    // Render buttons
-    for (const auto &btn: menuButtons | std::views::values) {
-        btn->render(window);
-    }
 }
 
 void GameClient::renderGameRoom() {
@@ -619,18 +632,13 @@ void GameClient::renderGameRoom() {
     for (const auto &player: players) {
         std::string playerString = "Name: ";
         playerString.append(player.playerName)
-        .append("  ID: ").append(std::to_string(player.playerId))
-        .append("  Piece: ").append(Utils::pieceTypeToString(player.piece))
-        .append(player.isHost ? "  HOST" : "");
+                .append("  ID: ").append(std::to_string(player.playerId))
+                .append("  Piece: ").append(Utils::pieceTypeToString(player.piece))
+                .append(player.isHost ? "  HOST" : "");
 
         text.setString(playerString);
         text.move({0, DEFAULT_WIDGET_Y_OFFSET});
         window.draw(text);
-    }
-
-    // Render buttons
-    for (const auto &btn: gameRoomButtons | std::views::values) {
-        btn->render(window);
     }
 }
 
@@ -639,6 +647,8 @@ void GameClient::renderGame() {
     const sf::Vector2i hoveredGridPos = BoardRenderer::getSquareAt(mousePos, boardData, BOARD_DRAW_AREA);
 
     BoardRenderer::render(window, boardData, BOARD_DRAW_AREA, isMyTurn, hoveredGridPos);
+
+    //TODO: Add a banner saying what piece you are playing
 
     if (gamePhase == GamePhase::GAME_FINISHED) {
         sf::RectangleShape rect(WIN_TEXT_DRAW_AREA.size);
@@ -660,9 +670,9 @@ void GameClient::renderGame() {
                 // Player {} playing {} has won the round!
                 std::string winString = "Player[";
                 winString.append(std::to_string(gameEndPlayer.playerId)).append("] ")
-                .append(gameEndPlayer.playerName)
-                .append(" playing ").append(Utils::pieceTypeToString(gameEndPlayer.piece))
-                .append(" has won the round!");
+                        .append(gameEndPlayer.playerName)
+                        .append(" playing ").append(Utils::pieceTypeToString(gameEndPlayer.piece))
+                        .append(" has won the round!");
                 gameEndText.setString(winString);
                 break;
             }
@@ -671,16 +681,16 @@ void GameClient::renderGame() {
                 // Player {} has disconnected
                 std::string disconnectString = "Player[";
                 disconnectString.append(std::to_string(gameEndPlayer.playerId)).append("] ")
-                .append(gameEndPlayer.playerName)
-                .append(" playing ").append(Utils::pieceTypeToString(gameEndPlayer.piece))
-                .append(" has disconnected!");
+                        .append(gameEndPlayer.playerName)
+                        .append(" playing ").append(Utils::pieceTypeToString(gameEndPlayer.piece))
+                        .append(" has disconnected!");
                 gameEndText.setString(disconnectString);
                 break;
             }
         }
 
         //Center the text
-        sf::FloatRect gameEndBounds = gameEndText.getGlobalBounds();
+        const sf::FloatRect gameEndBounds = gameEndText.getGlobalBounds();
         gameEndText.setOrigin({
             std::floor(gameEndBounds.position.x + gameEndBounds.size.x / 2.0f),
             std::floor(gameEndBounds.position.y + gameEndBounds.size.y / 2.0f)
@@ -696,14 +706,15 @@ void GameClient::renderGame() {
         scoreBoardText.setFillColor(sf::Color(TEXT_COLOR));
         scoreBoardText.setString("Score Board");
         //Center the text <- todo: pack into a function
-        sf::FloatRect scoreBoardBounds = scoreBoardText.getGlobalBounds();
+        const sf::FloatRect scoreBoardBounds = scoreBoardText.getGlobalBounds();
         scoreBoardText.setOrigin({
             std::floor(scoreBoardBounds.position.x + scoreBoardBounds.size.x / 2.0f),
             std::floor(scoreBoardBounds.position.y + scoreBoardBounds.size.y / 2.0f)
         });
         scoreBoardText.setPosition({
             std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
-            std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f + DEFAULT_WIDGET_Y_OFFSET + 8.0f
+            std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f +
+            DEFAULT_WIDGET_Y_OFFSET + 8.0f
         });
         window.draw(scoreBoardText);
 
@@ -715,11 +726,12 @@ void GameClient::renderGame() {
             scoreText.setFillColor(sf::Color(TEXT_COLOR));
 
             std::string pNameString = player.playerName;
-            std::string scoreString = playerName + " " + Utils::pieceTypeToString(player.piece) + " Wins: " + std::to_string(player.wins);
+            std::string scoreString = playerName + " " + Utils::pieceTypeToString(player.piece) + " Wins: " +
+                                      std::to_string(player.wins);
             scoreText.setString(scoreString);
 
             //Center the text
-            sf::FloatRect scoreBounds = scoreText.getGlobalBounds();
+            const sf::FloatRect scoreBounds = scoreText.getGlobalBounds();
             scoreText.setOrigin({
                 std::floor(scoreBounds.position.x + scoreBounds.size.x / 2.0f),
                 std::floor(scoreBounds.position.y + scoreBounds.size.y / 2.0f)
@@ -727,7 +739,8 @@ void GameClient::renderGame() {
 
             scoreText.setPosition({
                 std::floor(WIN_TEXT_DRAW_AREA.position.x + WIN_TEXT_DRAW_AREA.size.x / 2.0f) + 1.0f,
-                std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f + DEFAULT_WIDGET_Y_OFFSET + 12.0f + ((DEFAULT_WIDGET_Y_OFFSET - 6.0f) * offset)
+                std::floor(WIN_TEXT_DRAW_AREA.position.y + WIN_TEXT_DRAW_AREA.size.y / 7.0f) - 4.0f +
+                DEFAULT_WIDGET_Y_OFFSET + 12.0f + ((DEFAULT_WIDGET_Y_OFFSET - 6.0f) * offset)
             });
 
             window.draw(scoreText);
@@ -741,7 +754,7 @@ void GameClient::renderGame() {
             waitingForHostText.setFillColor(sf::Color(TEXT_COLOR));
             waitingForHostText.setString("Waiting for Host");
 
-            sf::FloatRect waitingForHostBounds = waitingForHostText.getGlobalBounds();
+            const sf::FloatRect waitingForHostBounds = waitingForHostText.getGlobalBounds();
             waitingForHostText.setOrigin({
                 std::floor(waitingForHostBounds.position.x + waitingForHostBounds.size.x / 2.0f),
                 std::floor(waitingForHostBounds.position.y + waitingForHostBounds.size.y / 2.0f)
@@ -752,10 +765,6 @@ void GameClient::renderGame() {
             });
             window.draw(waitingForHostText);
         }
-    }
-
-    for (const auto &btn: gameButtons | std::views::values) {
-        btn->render(window);
     }
 }
 
@@ -936,7 +945,7 @@ void GameClient::renderDebugMenu() {
         window.draw(text);
 
         std::string tickString = std::format(
-    "Tick: {} Avg: {:.2f}ms Last: {:.2f}ms",
+            "Tick: {} Avg: {:.2f}ms Last: {:.2f}ms",
             serverLogic.getTick(),
             serverLogic.getAvgTickTime() / 1000000.0,
             serverLogic.getLastTickTime() / 1000000.0
@@ -981,14 +990,14 @@ void GameClient::renderDebugMenu() {
 
         //players
         std::string playersString = "Players[";
-        for (const auto &player : serverLogic.getPlayers()) {
+        for (const auto &player: serverLogic.getPlayers()) {
             std::stringstream ss;
             ss << "{"
-            << static_cast<int>(player.playerId) << ", "
-            << player.playerName << ", "
-            << static_cast<int>(player.piece) << ", w"
-            << static_cast<int>(player.wins) << ", "
-            << (player.myTurn ? "T" : "F") << "}";
+                    << static_cast<int>(player.playerId) << ", "
+                    << player.playerName << ", "
+                    << static_cast<int>(player.piece) << ", w"
+                    << static_cast<int>(player.wins) << ", "
+                    << (player.myTurn ? "T" : "F") << "}";
             playersString += ss.str();
         }
         playersString += "]";
@@ -997,15 +1006,43 @@ void GameClient::renderDebugMenu() {
         window.draw(text);
 
         //moves
+        std::string moveString = "Moves[";
+        for (const auto &move: serverLogic.getMoves()) {
+            std::stringstream ss;
+            ss << "{"
+                    << static_cast<int>(move.playerId)
+                    << ", X" << static_cast<int>(move.posX)
+                    << ", Y" << static_cast<int>(move.posY)
+                    << ", T" << static_cast<int>(move.turnPlaced)
+                    << ", " << Utils::pieceTypeToString(move.piece)
+                    << "}";
+            moveString += ss.str();
+        }
+        moveString += "]";
+        text.setString(moveString);
+        text.move({0, textYOffset});
+        window.draw(text);
     }
 }
 
 void GameClient::connectAndSetup() {
-    //TODO: Validate user input here
-
-    std::string serverIP = userInputIP;
-    serverAddress = strtok(serverIP.data(), ":");
-    serverPort = strtok(nullptr, ":");
+    //^((?:\D+).\w{2,8}|(?:\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))):(\d{1,5}\b)$
+    // Examples:
+    // 192.168.2.32:27015 <- valid -> Group 1: 192.168.2.32 Group 2: 27015
+    // domain.example.com:27015 <- valid -> Group 1: domain.example.com Group 2: 27015
+    // 129.212.913.123:12312 <- invalid
+    // localhost:27015 <- valid -> Group 1: localhost Group 2: 27015
+    static std::regex SERVER_IP_PATTERN(
+        R"(^((?:\D+).\w{2,8}|(?:\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))):(\d{1,5}\b)$)");
+    if (std::smatch matches; std::regex_match(userInputIP, matches, SERVER_IP_PATTERN)) {
+        serverAddress = matches[1].str();
+        serverPort = matches[2].str();
+    } else {
+        printf(
+            ANSI_RED "[GameClient] Please input a valid server address in the format: {ip/address}:{port}\n"
+            ANSI_RESET);
+        return;
+    }
 
     printf(ANSI_CYAN "[GameClient] Connecting to a server at %s... [%s, %s]\n" ANSI_RESET,
            userInputIP.c_str(), serverAddress.c_str(), serverPort.c_str());
@@ -1067,10 +1104,18 @@ void GameClient::startInternalServerThread() {
     serverThread = std::thread([this]() {
         serverLogic.start(27015);
     });
+
+    const auto widget = reinterpret_cast<TextFieldWidget *>(widgets["server_ip_input"].get());
+    widget->setActive(false);
+    widget->setText("localhost:27015");
 }
 
 void GameClient::stopInternalServerThread() {
     printf(ANSI_YELLOW "[GameClient] Internal Server is stopping...\n" ANSI_RESET);
+
+    const auto widget = reinterpret_cast<TextFieldWidget *>(widgets["server_ip_input"].get());
+    widget->setActive(true);
+
     serverLogic.stop();
 
     if (serverThread.joinable()) {
