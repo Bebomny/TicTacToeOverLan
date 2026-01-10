@@ -20,8 +20,18 @@
 #include "GameDefinitions.h"
 #include "string"
 
+/**
+ * @brief General purpose helper functions for Game Logic and Networking.
+ * <br> Contains static methods for string conversion and memory management relating to the board state.
+ */
 class Utils {
 public:
+    /**
+     * @brief Converts a PieceType enum value to a human-readable string.
+     *
+     * @param piece The enum value to convert.
+     * @return A string representation (e.g., "Cross", "Circle", "Empty").
+     */
     static std::string pieceTypeToString(const PieceType piece) {
         switch (piece) {
             case PieceType::EMPTY:
@@ -43,13 +53,20 @@ public:
         return "Empty";
     }
 
+    /**
+     * @brief Allocates and resets the game grid.
+     * <br> Resizes the 2D `grid` vector within `BoardData` based on the configured `boardSize`
+     * and fills every cell with `PieceType::EMPTY`.
+     *
+     * @param board The BoardData structure to initialize.
+     */
     static void initializeGameBoard(BoardData &board) {
-        std::vector<std::vector<BoardSquare>> grid;
+        std::vector<std::vector<BoardSquare> > grid;
 
         for (int i = 0; i < board.boardSize; ++i) {
             std::vector<BoardSquare> row;
             for (int j = 0; j < board.boardSize; ++j) {
-                BoardSquare square {};
+                BoardSquare square{};
                 square.piece = PieceType::EMPTY;
                 row.push_back(square);
             }
@@ -59,6 +76,16 @@ public:
         board.grid = grid;
     }
 
+    /**
+     * @brief Flattens the 2D dynamic grid into a 1D static array for networking.
+     * <br> Converts the logical `std::vector<std::vector<...>>` structure into a continuous
+     * block of memory suitable for packet structs.
+     * <br> Mapping: `index = y * width + x`
+     *
+     * @param inputBoard The source logical board containing the 2D vector grid.
+     * @param outputBoard Pointer to the destination flat array (usually inside a Packet struct).
+     * @param bufferSize The maximum size of the output buffer to prevent overflows.
+     */
     static void serializeBoard(const BoardData &inputBoard, BoardSquare *outputBoard, int bufferSize) {
         int totalSquares = inputBoard.boardSize * inputBoard.boardSize;
         int limit = std::min(totalSquares, bufferSize);
@@ -74,7 +101,16 @@ public:
         }
     }
 
-    static void deserializeBoard(const BoardSquare* inputBoard, BoardData &outputBoard) {
+    /**
+     * @brief Reconstructs the 2D grid from a received 1D network array.
+     * <br> Reverses the serialization process, mapping the linear index back to X/Y coordinates
+     * and updating the local `BoardData` state.
+     * <br> Mapping: `x = index % width`, `y = index / width`
+     *
+     * @param inputBoard Pointer to the source flat array from a received Packet.
+     * @param outputBoard Reference to the local BoardData to update.
+     */
+    static void deserializeBoard(const BoardSquare *inputBoard, BoardData &outputBoard) {
         int totalSquares = outputBoard.boardSize * outputBoard.boardSize;
 
         for (int i = 0; i < totalSquares; ++i) {

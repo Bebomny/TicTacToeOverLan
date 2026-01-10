@@ -10,7 +10,8 @@ TextFieldBuilder::TextFieldBuilder() {
     this->font = &sharedFont;
 }
 
-TextFieldBuilder::TextFieldBuilder(const std::string &initialText, const std::function<void(const std::string &)> &onTextChangeCallback) {
+TextFieldBuilder::TextFieldBuilder(const std::string &initialText,
+                                   const std::function<void(const std::string &)> &onTextChangeCallback) {
     this->font = &sharedFont;
     this->initialText = initialText;
     this->onTextChange = onTextChangeCallback;
@@ -61,7 +62,7 @@ TextFieldBuilder &TextFieldBuilder::setColors(sf::Color idle, sf::Color focus, s
     return *this;
 }
 
-TextFieldBuilder &TextFieldBuilder::setOnTextChange(const std::function<void(const std::string&)> &onTextChange) {
+TextFieldBuilder &TextFieldBuilder::setOnTextChange(const std::function<void(const std::string &)> &onTextChange) {
     this->onTextChange = onTextChange;
     return *this;
 }
@@ -91,15 +92,17 @@ std::unique_ptr<TextFieldWidget> TextFieldBuilder::build() {
 }
 
 
-
 //// Widget ////
 const sf::Time TextFieldWidget::cursorBlickTime = sf::milliseconds(500);
 
 TextFieldWidget::TextFieldWidget(float x, float y, float width, float height,
-    const std::function<void(const std::string&)> &onTextChangeCallback, const std::function<bool()> &displayCondition,
-    const sf::Font &font, const sf::Color idleColor, const sf::Color focusColor, const sf::Color textColor, const sf::Color inactiveColor,
-    const size_t maxChars, const std::string &initialText) : renderText(font) , maxChars(maxChars), idleColor(idleColor), focusColor(focusColor), textColor(textColor), inactiveColor(inactiveColor) {
-
+                                 const std::function<void(const std::string &)> &onTextChangeCallback,
+                                 const std::function<bool()> &displayCondition,
+                                 const sf::Font &font, const sf::Color idleColor, const sf::Color focusColor,
+                                 const sf::Color textColor, const sf::Color inactiveColor,
+                                 const size_t maxChars, const std::string &initialText) : renderText(font),
+    maxChars(maxChars), idleColor(idleColor), focusColor(focusColor), textColor(textColor),
+    inactiveColor(inactiveColor) {
     this->onTextChange = onTextChangeCallback;
     this->displayCondition = displayCondition;
 

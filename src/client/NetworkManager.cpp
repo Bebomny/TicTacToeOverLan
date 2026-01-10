@@ -1,7 +1,6 @@
 #include "NetworkManager.h"
 
 int NetworkManager::connectToServer(const std::string &address, const std::string &port = "27015") {
-
     conPhase = ConnectionPhase::DISCONNECTED;
 
     //Prepare the Windows socket api
@@ -28,7 +27,7 @@ int NetworkManager::connectToServer(const std::string &address, const std::strin
         return startResult;
     }
 
-    printf(ANSI_CYAN "[SockClient] Result %p" ANSI_RESET "\n",result->ai_addr);
+    printf(ANSI_CYAN "[SockClient] Result %p" ANSI_RESET "\n", result->ai_addr);
 
     //Create the socket
     clientSocket = INVALID_SOCKET;
@@ -89,7 +88,7 @@ bool NetworkManager::pollPacket(PacketHeader &outHeader, std::vector<char> &outP
         return false;
     }
 
-    const auto* pendingHeader = reinterpret_cast<PacketHeader*>(receiveBuffer.data());
+    const auto *pendingHeader = reinterpret_cast<PacketHeader *>(receiveBuffer.data());
 
     const size_t totalPacketSize = sizeof(PacketHeader) + pendingHeader->payloadSize;
 

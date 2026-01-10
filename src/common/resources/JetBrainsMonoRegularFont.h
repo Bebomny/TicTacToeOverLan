@@ -4,8 +4,8 @@
 static const int JetBrainsMono_Regular_Len = 273900;
 
 /**
- * The font coppied into memory, so I dont have to package the .ttf file with the binary
- * Array size is 273900
+ * @brief The font coppied into memory, so I dont have to package the .ttf file with the binary
+ * <br> Array size is 273900
  */
 static const byte JetBrainsMono_Regular[] = {
   0x00, 0x01, 0x00, 0x00, 0x00, 0x11, 0x01, 0x00, 0x00, 0x04, 0x00, 0x10, 0x47, 0x44, 0x45, 0x46,

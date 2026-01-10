@@ -76,8 +76,8 @@ void InternalGameServer::start(const int port) {
 
         std::erase_if(
             clients,
-            [](const ClientContext& c) {return c.markedForDeletion;}
-            );
+            [](const ClientContext &c) { return c.markedForDeletion; }
+        );
 
         //Calculate this based on how much time the processing took, set at 20 TPS initially -> 50ms per loop
         // std::this_thread::sleep_for(std::chrono_literals::operator ""ms(1000));
@@ -94,7 +94,8 @@ void InternalGameServer::start(const int port) {
     WSACleanup();
 }
 
-void InternalGameServer::handleNewConnection() { //TODO: reject new connections if a game is already in progress
+void InternalGameServer::handleNewConnection() {
+    //TODO: reject new connections if a game is already in progress
     const SOCKET newSocket = accept(listenSocket, nullptr, nullptr);
 
     ClientContext newClient;
@@ -125,12 +126,12 @@ void InternalGameServer::handleClientData(ClientContext &client) {
         closesocket(client.socket);
         client.socket = INVALID_SOCKET;
 
-        PlayerDisconnectedPacket disconnectPacket {};
+        PlayerDisconnectedPacket disconnectPacket{};
         disconnectPacket.playerId = client.playerId;
         this->broadcastPacket(PacketType::PLAYER_DISCONNECTED, disconnectPacket);
 
         // Reset the game here back to GAME_ROOM state
-        GameEndPacket endPacket {};
+        GameEndPacket endPacket{};
         endPacket.reason = FinishReason::PLAYER_DISCONNECT;
         endPacket.playerId = client.playerId;
         endPacket.player = ServerUtils::clientContextToPlayer(client, 0);
@@ -148,7 +149,7 @@ void InternalGameServer::handleClientData(ClientContext &client) {
             break; //Not enough data, wait for next recv
         }
 
-        const auto* pendingHeader = reinterpret_cast<PacketHeader *>(client.receiveBuffer.data());
+        const auto *pendingHeader = reinterpret_cast<PacketHeader *>(client.receiveBuffer.data());
         const size_t totalPacketSize = sizeof(PacketHeader) + pendingHeader->payloadSize;
 
         if (client.receiveBuffer.size() < totalPacketSize) {
@@ -156,7 +157,7 @@ void InternalGameServer::handleClientData(ClientContext &client) {
         }
 
         // Here we have a valid packet
-        std::vector<char> payload {};
+        std::vector<char> payload{};
         payload.clear();
         if (pendingHeader->payloadSize > 0) {
             payload.insert(
@@ -171,10 +172,11 @@ void InternalGameServer::handleClientData(ClientContext &client) {
     }
 }
 
-void InternalGameServer::processPacket(ClientContext &client, const PacketType type, std::vector<char>& payload) {
+void InternalGameServer::processPacket(ClientContext &client, const PacketType type, std::vector<char> &payload) {
     //TODO: logic goes here
     //Packets: SETUP_REQ, SETTINGS_CHANGE_REQ, MOVE_REQ
-    printf(ANSI_CYAN "[InternalServer] Received packet of type %hhd from client with ID: %hhu\n" ANSI_RESET, type, client.playerId);
+    printf(ANSI_CYAN "[InternalServer] Received packet of type %hhd from client with ID: %hhu\n" ANSI_RESET, type,
+           client.playerId);
     switch (type) {
         default: {
             printf(ANSI_RED "[InternalServer] Unknown packet received! Type: %hhd", type);
@@ -189,16 +191,17 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             //Respond with a generated token
             const int clientAuthToken = packet->initialToken / 3;
             const auto clientPieceType = this->getFirstAvailablePiece();
-            printf(ANSI_CYAN "[InternalServer] Received SETUP_ACK with parameters [%hhu, %s, %d]\n" ANSI_RESET, packet->playerId, packet->playerName, packet->initialToken);
+            printf(ANSI_CYAN "[InternalServer] Received SETUP_ACK with parameters [%hhu, %s, %d]\n" ANSI_RESET,
+                   packet->playerId, packet->playerName, packet->initialToken);
 
             //Add to playerlist - modify the client context (Or a separate active player list?)
             client.playerToken = clientAuthToken;
             client.pieceType = clientPieceType;
             client.playerWins = 0;
             memset(client.playerName, 0, MAX_PLAYER_NAME_LENGTH);
-            strncpy(client.playerName, packet->playerName, MAX_PLAYER_NAME_LENGTH-1);
+            strncpy(client.playerName, packet->playerName, MAX_PLAYER_NAME_LENGTH - 1);
 
-            SetupAckPacket setupAckPacket {};
+            SetupAckPacket setupAckPacket{};
             setupAckPacket.generatedAuthToken = clientAuthToken;
             setupAckPacket.playerId = packet->playerId;
             setupAckPacket.boardSize = boardData.boardSize;
@@ -210,24 +213,25 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
                     break;
                 }
                 setupAckPacket.players[setupAckPacket.playerCount] =
-                    ServerUtils::clientContextToPlayer(playerContext, client.playerId);
+                        ServerUtils::clientContextToPlayer(playerContext, client.playerId);
                 setupAckPacket.playerCount++;
             }
 
             memset(setupAckPacket.playerName, 0, MAX_PLAYER_NAME_LENGTH);
-            strncpy(setupAckPacket.playerName, client.playerName, MAX_PLAYER_NAME_LENGTH-1);
+            strncpy(setupAckPacket.playerName, client.playerName, MAX_PLAYER_NAME_LENGTH - 1);
             setupAckPacket.pieceType = clientPieceType;
 
-            printf(ANSI_CYAN "[InternalServer] Sending SETUP_ACK packet to client with ID: %d\n" ANSI_RESET, packet->playerId);
+            printf(ANSI_CYAN "[InternalServer] Sending SETUP_ACK packet to client with ID: %d\n" ANSI_RESET,
+                   packet->playerId);
             this->sendPacket(client.socket, PacketType::SETUP_ACK, setupAckPacket);
 
             // Broadcast new player joined packet
-            NewPlayerJoinPacket newPlayerJoinPacket {};
+            NewPlayerJoinPacket newPlayerJoinPacket{};
             newPlayerJoinPacket.newPlayerId = client.playerId;
             newPlayerJoinPacket.newPlayerPieceType = clientPieceType;
             newPlayerJoinPacket.isHost = client.isHost;
             memset(newPlayerJoinPacket.newPlayerName, 0, MAX_PLAYER_NAME_LENGTH);
-            strncpy(newPlayerJoinPacket.newPlayerName, client.playerName, MAX_PLAYER_NAME_LENGTH-1);
+            strncpy(newPlayerJoinPacket.newPlayerName, client.playerName, MAX_PLAYER_NAME_LENGTH - 1);
 
             this->broadcastPacket(PacketType::NEW_PLAYER_JOIN, newPlayerJoinPacket);
 
@@ -237,35 +241,44 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
 
         case PacketType::SETTINGS_CHANGE_REQ: {
             const auto *packet = reinterpret_cast<SettingsChangeReqPacket *>(payload.data());
-            printf(ANSI_CYAN "[InternalServer] Received SETTINGS_CHANGE_REQ packet from %hhu with params: [size: %hhu, winCon: %hhu]!\n" ANSI_RESET,
+            printf(
+                ANSI_CYAN
+                "[InternalServer] Received SETTINGS_CHANGE_REQ packet from %hhu with params: [size: %hhu, winCon: %hhu]!\n"
+                ANSI_RESET,
                 packet->playerId, packet->newBoardSize, packet->newWinConditionLength);
 
             if (packet->playerId != hostingPlayerId) {
-                printf(ANSI_RED "[InternalServer] Somehow got a game settings change request from a client that isn't the host! "
-                                "This shouldn't happen! [request: %hhu != host: %hhu]\n" ANSI_RESET,
-                                packet->playerId, hostingPlayerId);
+                printf(
+                    ANSI_RED
+                    "[InternalServer] Somehow got a game settings change request from a client that isn't the host! "
+                    "This shouldn't happen! [request: %hhu != host: %hhu]\n" ANSI_RESET,
+                    packet->playerId, hostingPlayerId);
                 break;
             }
 
             bool updated = false;
             // 0 < BoardSize < MAX_BOARD_SIZE
-            if (packet->newBoardSize > 0 && packet->newBoardSize <= MAX_BOARD_SIZE && boardData.boardSize != packet->newBoardSize) {
-                printf(ANSI_GREEN "[InternalServer] BoardSize updated from %hhu to %hhu\n" ANSI_RESET, boardData.boardSize, packet->newBoardSize);
+            if (packet->newBoardSize > 0 && packet->newBoardSize <= MAX_BOARD_SIZE && boardData.boardSize != packet->
+                newBoardSize) {
+                printf(ANSI_GREEN "[InternalServer] BoardSize updated from %hhu to %hhu\n" ANSI_RESET,
+                       boardData.boardSize, packet->newBoardSize);
                 boardData.boardSize = packet->newBoardSize;
                 boardData.winConditionLength = std::min(boardData.winConditionLength, boardData.boardSize);
                 updated = true;
             }
 
             // 0 < WinConditionLength < BoardSize
-            if (packet->newWinConditionLength > 0 && packet->newWinConditionLength <= boardData.boardSize && boardData.winConditionLength != packet->newWinConditionLength) {
-                printf(ANSI_GREEN "[InternalServer] WinConditionLength updated from %hhu to %hhu\n" ANSI_RESET, boardData.winConditionLength, packet->newWinConditionLength);
+            if (packet->newWinConditionLength > 0 && packet->newWinConditionLength <= boardData.boardSize && boardData.
+                winConditionLength != packet->newWinConditionLength) {
+                printf(ANSI_GREEN "[InternalServer] WinConditionLength updated from %hhu to %hhu\n" ANSI_RESET,
+                       boardData.winConditionLength, packet->newWinConditionLength);
                 boardData.winConditionLength = packet->newWinConditionLength;
                 updated = true;
             }
 
             //Send update packet if necessary
             if (updated) {
-                SettingsUpdatePacket settingsUpdatePacket {};
+                SettingsUpdatePacket settingsUpdatePacket{};
                 settingsUpdatePacket.newBoardSize = boardData.boardSize;
                 settingsUpdatePacket.newWinConditionLength = boardData.winConditionLength;
 
@@ -279,12 +292,12 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
         case PacketType::GAME_START_REQ: {
             const auto *packet = reinterpret_cast<GameStartRequestPacket *>(payload.data());
             printf(ANSI_CYAN "[InternalServer] Got a%s game start request from player with id %hhu\n" ANSI_RESET,
-                (packet->newGame ? " new" : ""), packet->requestingPlayerId);
+                   (packet->newGame ? " new" : ""), packet->requestingPlayerId);
 
             if (packet->requestingPlayerId != hostingPlayerId) {
                 printf(ANSI_RED "[InternalServer] Somehow got a game start request from a client that isn't the host! "
-                                "This shouldn't happen! [request: %hhu != host: %hhu]\n" ANSI_RESET,
-                                packet->requestingPlayerId, hostingPlayerId);
+                       "This shouldn't happen! [request: %hhu != host: %hhu]\n" ANSI_RESET,
+                       packet->requestingPlayerId, hostingPlayerId);
                 break;
             }
 
@@ -294,12 +307,12 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             moves.clear();
 
             if (packet->newGame) {
-                for (auto & ctx : clients) {
+                for (auto &ctx: clients) {
                     ctx.playerWins = 0;
                 }
             }
 
-            GameStartPacket gameStartPacket {};
+            GameStartPacket gameStartPacket{};
             gameStartPacket.requestedByPlayerId = hostingPlayerId;
             gameStartPacket.finalBoardSize = boardData.boardSize;
             gameStartPacket.finalWinConditionLength = boardData.winConditionLength;
@@ -310,7 +323,7 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             Utils::serializeBoard(boardData, gameStartPacket.grid, TOTAL_BOARD_AREA);
 
             printf(ANSI_GREEN "[InternalServer] Sending out game start packets! [Starting playerID: %hhu]\n" ANSI_RESET,
-                gameStartPacket.startingPlayerId);
+                   gameStartPacket.startingPlayerId);
             this->broadcastPacket(PacketType::GAME_START, gameStartPacket);
 
             break;
@@ -318,26 +331,35 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
 
         case PacketType::MOVE_REQ: {
             const auto *packet = reinterpret_cast<MoveRequestPacket *>(payload.data());
-            printf(ANSI_CYAN "[InternalServer] Received a MOVE_REQ packet from player with ID: %hhu\n" ANSI_RESET, packet->playerId);
+            printf(ANSI_CYAN "[InternalServer] Received a MOVE_REQ packet from player with ID: %hhu\n" ANSI_RESET,
+                   packet->playerId);
             if (packet->playerId != boardData.actingPlayerId) {
-                printf(ANSI_RED "[InternalServer] Somehow got a move request from a player whose ID doesnt match the current acting players! [req: %hhu != currActing: %hhu]\n" ANSI_RESET,
+                printf(
+                    ANSI_RED
+                    "[InternalServer] Somehow got a move request from a player whose ID doesnt match the current acting players! [req: %hhu != currActing: %hhu]\n"
+                    ANSI_RESET,
                     packet->playerId, boardData.actingPlayerId);
                 break;
             }
 
             if (packet->turn != boardData.turn) {
-                printf(ANSI_RED "[InternalServer] Turn mismatch! Possible desync! Sending BoardStateUpdate to fix.\n" ANSI_RESET);
+                printf(
+                    ANSI_RED "[InternalServer] Turn mismatch! Possible desync! Sending BoardStateUpdate to fix.\n"
+                    ANSI_RESET);
                 //TODO: send boardstate update
                 break;
             }
 
             if (boardData.getSquareAt(packet->x, packet->y).piece != PieceType::EMPTY) {
-                printf(ANSI_YELLOW "[InternalServer] Player with id %hhu tried placing a piece on an already used square! [x:%hhu, y:%hhu]\n" ANSI_RESET,
+                printf(
+                    ANSI_YELLOW
+                    "[InternalServer] Player with id %hhu tried placing a piece on an already used square! [x:%hhu, y:%hhu]\n"
+                    ANSI_RESET,
                     packet->playerId, packet->x, packet->y);
                 break;
             }
 
-            BoardSquare square {};
+            BoardSquare square{};
             square.playerId = packet->playerId;
             square.turnPlaced = boardData.turn;
             square.piece = packet->piece;
@@ -352,7 +374,7 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             boardData.actingPlayerId = this->getNextActingPlayerId();
 
             // Broadcast the updated state
-            BoardStateUpdatePacket boardUpdate {};
+            BoardStateUpdatePacket boardUpdate{};
             Utils::serializeBoard(boardData, boardUpdate.grid, TOTAL_BOARD_AREA);
             boardUpdate.boardSize = boardData.boardSize;
             boardUpdate.winConditionLength = boardData.winConditionLength;
@@ -361,7 +383,7 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             boardUpdate.actingPlayerId = boardData.actingPlayerId;
             boardUpdate.lastMove = move;
             boardUpdate.playerCount = 0;
-            for (auto &playerContext : clients) {
+            for (auto &playerContext: clients) {
                 if (boardUpdate.playerCount >= MAX_PLAYERS) {
                     break;
                 }
@@ -369,7 +391,7 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
                 playerContext.myTurn = playerContext.playerId == boardData.actingPlayerId;
 
                 boardUpdate.players[boardUpdate.playerCount] =
-                    ServerUtils::clientContextToPlayer(playerContext, client.playerId);
+                        ServerUtils::clientContextToPlayer(playerContext, client.playerId);
                 boardUpdate.playerCount++;
             }
 
@@ -381,7 +403,7 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
             if (gameFinished) {
                 printf(ANSI_GREEN "[InternalServer] Player with ID %hhu won the round!\n" ANSI_RESET, packet->playerId);
                 ClientContext *winningClient;
-                for (auto &ctx : clients) {
+                for (auto &ctx: clients) {
                     if (ctx.playerId == packet->playerId) {
                         ctx.playerWins += 1;
                         winningClient = &ctx;
@@ -391,7 +413,7 @@ void InternalGameServer::processPacket(ClientContext &client, const PacketType t
                 boardData.round += 1;
 
                 //Broadcast game finish
-                GameEndPacket gameEndPacket {};
+                GameEndPacket gameEndPacket{};
                 gameEndPacket.reason = FinishReason::PLAYER_WIN;
                 gameEndPacket.playerId = packet->playerId;
                 gameEndPacket.player = ServerUtils::clientContextToPlayer(*winningClient, 0);
@@ -423,14 +445,14 @@ void InternalGameServer::sendPacket(const SOCKET sock, const PacketType type, co
     std::vector<char> buffer;
     buffer.reserve(sizeof(PacketHeader) + sizeof(T));
 
-    PacketHeader header {};
+    PacketHeader header{};
     header.type = type;
     header.payloadSize = sizeof(T);
 
-    const auto headerPtr = reinterpret_cast<const char*>(&header);
+    const auto headerPtr = reinterpret_cast<const char *>(&header);
     buffer.insert(buffer.end(), headerPtr, headerPtr + sizeof(header));
 
-    const auto dataPtr = reinterpret_cast<const char*>(&data);
+    const auto dataPtr = reinterpret_cast<const char *>(&data);
     buffer.insert(buffer.end(), dataPtr, dataPtr + sizeof(T));
 
     int totalSent = 0;
@@ -500,7 +522,7 @@ std::vector<PieceType> InternalGameServer::getAllAvailablePieces() {
 std::vector<Player> InternalGameServer::getPlayers() const {
     std::vector<Player> players;
     players.reserve(clients.size());
-    for (auto &client : clients) {
+    for (auto &client: clients) {
         players.push_back(ServerUtils::clientContextToPlayer(client, 0));
     }
     return players;

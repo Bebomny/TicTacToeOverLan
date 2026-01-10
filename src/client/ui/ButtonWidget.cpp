@@ -20,7 +20,6 @@ ButtonBuilder &ButtonBuilder::setPosition(float x, float y) {
 }
 
 ButtonBuilder &ButtonBuilder::move(float byX, float byY) {
-    //TODO: Test this!!!
     return this->setPosition(prevPosX + byX, prevPosY + byY);
 }
 
@@ -78,13 +77,12 @@ std::unique_ptr<ButtonWidget> ButtonBuilder::build() {
 
 
 //// Widget ////
-
 ButtonWidget::ButtonWidget(
     const float x, const float y, const float width, const float height,
     const std::string &btnText, const int textSize, const sf::Font &font,
     const std::function<void()> &onClickCallback, const std::function<bool()> &displayConditionCallback,
-    const sf::Color idleColor, const sf::Color hoverColor, const sf::Color activeColor, const sf::Color inactiveColor) : text(font) {
-
+    const sf::Color idleColor, const sf::Color hoverColor, const sf::Color activeColor,
+    const sf::Color inactiveColor) : text(font) {
     this->idleColor = idleColor;
     this->hoverColor = hoverColor;
     this->activeColor = activeColor;
@@ -142,7 +140,7 @@ void ButtonWidget::update(sf::Time deltaTime, const sf::Vector2i &mousePos) {
     }
 }
 
-void ButtonWidget::render(sf::RenderTarget &window) const{
+void ButtonWidget::render(sf::RenderTarget &window) const {
     if (!this->isVisible()) return;
 
     window.draw(shape);

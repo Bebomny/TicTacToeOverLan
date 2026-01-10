@@ -10,6 +10,9 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
+/**
+ * @brief Tracks the handshake progress of a client on the Server side.
+ */
 enum class ClientSetupPhase {
     NEW_CONNECTION,
     HELLO_SENT,
@@ -17,6 +20,11 @@ enum class ClientSetupPhase {
     SET_UP
 };
 
+/**
+ * @brief Represents a connected client within the InternalGameServer.
+ * <br> Holds the raw socket, buffering for network streams, and player-specific metadata.
+ * <br> Unlike the `Player` struct, this struct manages the connection lifecycle and server-specific state.
+ */
 struct ClientContext {
     SOCKET socket;
     uint8_t playerId;

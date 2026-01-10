@@ -183,7 +183,6 @@ void BoardRenderer::drawPiece(sf::RenderTarget &window, const PieceType piece, c
     }
 }
 
-
 sf::Vector2i BoardRenderer::getSquareAt(const sf::Vector2i &mousePos, const BoardData &board,
                                         const sf::FloatRect &drawArea) {
     const int sideLength = board.boardSize;

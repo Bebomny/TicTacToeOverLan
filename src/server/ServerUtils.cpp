@@ -1,12 +1,12 @@
 #include "ServerUtils.h"
 
 Player ServerUtils::clientContextToPlayer(const ClientContext &client, bool requestingPlayerId) {
-    Player p {};
+    Player p{};
     p.playerId = client.playerId;
     p.wins = client.playerWins;
     // p.playerName = client.playerName;
     memset(p.playerName, 0, MAX_PLAYER_NAME_LENGTH);
-    strncpy(p.playerName, client.playerName, MAX_PLAYER_NAME_LENGTH-1);
+    strncpy(p.playerName, client.playerName, MAX_PLAYER_NAME_LENGTH - 1);
     p.piece = client.pieceType;
     p.isMe = (client.playerId == requestingPlayerId);
     p.myTurn = client.myTurn;
