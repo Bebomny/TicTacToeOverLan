@@ -1,0 +1,69 @@
+\doxysection{New\+Player\+Join\+Packet Struct Reference}
+\hypertarget{struct_new_player_join_packet}{}\label{struct_new_player_join_packet}\index{NewPlayerJoinPacket@{NewPlayerJoinPacket}}
+
+
+Notification that a new peer has joined.  
+
+
+
+
+{\ttfamily \+\#include $<$Network\+Protocol.\+h$>$}
+
+
+
+Collaboration diagram for New\+Player\+Join\+Packet:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{struct_new_player_join_packet__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_new_player_join_packet_af24cc2e7542a6222716fb136455dca85}{new\+Player\+Id}}
+\item 
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} \doxymbox{\hyperlink{struct_new_player_join_packet_a0dba278e5bcaacc85e1adb0dea7f3f78}{new\+Player\+Piece\+Type}}
+\item 
+char \doxymbox{\hyperlink{struct_new_player_join_packet_a7af4a7e6fdd0fd2efee6879a9d53af8b}{new\+Player\+Name}} \+[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}}]\+
+\item 
+bool \doxymbox{\hyperlink{struct_new_player_join_packet_aa1d7d70ed84584b9deebb3dc52c67e04}{is\+Host}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Notification that a new peer has joined. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_new_player_join_packet_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_new_player_join_packet_aa1d7d70ed84584b9deebb3dc52c67e04}\index{NewPlayerJoinPacket@{NewPlayerJoinPacket}!isHost@{isHost}}
+\index{isHost@{isHost}!NewPlayerJoinPacket@{NewPlayerJoinPacket}}
+\doxysubsubsection{\texorpdfstring{isHost}{isHost}}
+{\footnotesize\ttfamily \label{struct_new_player_join_packet_aa1d7d70ed84584b9deebb3dc52c67e04} 
+bool New\+Player\+Join\+Packet::\+is\+Host}
+
+\Hypertarget{struct_new_player_join_packet_af24cc2e7542a6222716fb136455dca85}\index{NewPlayerJoinPacket@{NewPlayerJoinPacket}!newPlayerId@{newPlayerId}}
+\index{newPlayerId@{newPlayerId}!NewPlayerJoinPacket@{NewPlayerJoinPacket}}
+\doxysubsubsection{\texorpdfstring{newPlayerId}{newPlayerId}}
+{\footnotesize\ttfamily \label{struct_new_player_join_packet_af24cc2e7542a6222716fb136455dca85} 
+uint8\+\_\+t New\+Player\+Join\+Packet::\+new\+Player\+Id}
+
+\Hypertarget{struct_new_player_join_packet_a7af4a7e6fdd0fd2efee6879a9d53af8b}\index{NewPlayerJoinPacket@{NewPlayerJoinPacket}!newPlayerName@{newPlayerName}}
+\index{newPlayerName@{newPlayerName}!NewPlayerJoinPacket@{NewPlayerJoinPacket}}
+\doxysubsubsection{\texorpdfstring{newPlayerName}{newPlayerName}}
+{\footnotesize\ttfamily \label{struct_new_player_join_packet_a7af4a7e6fdd0fd2efee6879a9d53af8b} 
+char New\+Player\+Join\+Packet::\+new\+Player\+Name\+[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}}]\+}
+
+\Hypertarget{struct_new_player_join_packet_a0dba278e5bcaacc85e1adb0dea7f3f78}\index{NewPlayerJoinPacket@{NewPlayerJoinPacket}!newPlayerPieceType@{newPlayerPieceType}}
+\index{newPlayerPieceType@{newPlayerPieceType}!NewPlayerJoinPacket@{NewPlayerJoinPacket}}
+\doxysubsubsection{\texorpdfstring{newPlayerPieceType}{newPlayerPieceType}}
+{\footnotesize\ttfamily \label{struct_new_player_join_packet_a0dba278e5bcaacc85e1adb0dea7f3f78} 
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} New\+Player\+Join\+Packet::\+new\+Player\+Piece\+Type}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_network_protocol_8h}{Network\+Protocol.\+h}}\end{DoxyCompactItemize}

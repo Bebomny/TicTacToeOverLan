@@ -1,0 +1,35 @@
+<map id="D:/.ClionProjects/TicTacToeOverLan/src/server/InternalGameServer.h" name="D:/.ClionProjects/TicTacToeOverLan/src/server/InternalGameServer.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="327,5,491,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,120,66,147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="324,52,208,78,79,115,76,115,72,112,77,109,207,72,328,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="90,120,136,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="324,59,243,84,155,114,152,116,149,112,153,110,242,79,328,55"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="195,352,252,379"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="381,63,344,105,303,155,264,214,234,278,227,308,225,338,220,335,222,307,229,276,259,212,299,152,340,101,377,66"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="634,277,722,304"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="491,59,543,82,596,113,644,152,665,176,682,202,690,232,687,264,683,261,685,233,677,204,660,179,640,156,593,117,541,87,491,65"/>
+<area shape="rect" id="Node000006" href="$_client_context_8h.html" title=" " alt="" coords="353,120,465,147"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="410,62,411,105,406,103,408,67"/>
+<area shape="rect" id="Node000009" href="$_network_protocol_8h.html" title=" " alt="" coords="446,203,641,229"/>
+<area shape="poly" id="edge20_Node000001_Node000009" title=" " alt="" coords="437,62,479,110,531,190,526,189,475,114,435,67"/>
+<area shape="rect" id="Node000010" href="$_long_long_rolling_average_8h.html" title=" " alt="" coords="774,112,958,155"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="492,51,762,108,757,111,492,56"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="391,146,322,200,284,237,251,279,238,308,229,338,225,335,233,306,247,276,280,233,318,196,387,148"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="465,133,511,138,562,149,611,170,634,184,655,201,665,214,672,230,679,263,675,261,667,232,661,217,651,205,631,188,609,174,560,154,510,143,466,138"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="463,352,523,379"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="412,144,421,184,437,228,453,252,470,276,490,338,485,336,465,279,449,255,432,231,416,185,409,149"/>
+<area shape="rect" id="Node000008" href="$_game_definitions_8h.html" title=" " alt="" coords="260,277,456,304"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="407,146,369,264,365,261,403,149"/>
+<area shape="poly" id="edge12_Node000006_Node000009" title=" " alt="" coords="430,145,512,194,507,195,429,150"/>
+<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="337,304,262,347,260,342,332,305"/>
+<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="382,302,458,344,453,344,381,307"/>
+<area shape="poly" id="edge14_Node000009_Node000005" title=" " alt="" coords="567,227,644,270,638,269,566,232"/>
+<area shape="poly" id="edge13_Node000009_Node000007" title=" " alt="" coords="541,228,504,339,500,336,537,231"/>
+<area shape="poly" id="edge15_Node000009_Node000008" title=" " alt="" coords="514,229,406,274,404,269,509,231"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="766,203,822,229"/>
+<area shape="poly" id="edge17_Node000010_Node000011" title=" " alt="" coords="850,154,817,193,814,189,845,157"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="847,203,904,229"/>
+<area shape="poly" id="edge18_Node000010_Node000012" title=" " alt="" coords="870,153,875,189,870,186,867,157"/>
+<area shape="rect" id="Node000013" href="$_rolling_average_8h.html" title=" " alt="" coords="929,203,1049,229"/>
+<area shape="poly" id="edge19_Node000010_Node000013" title=" " alt="" coords="898,153,960,194,955,194,897,158"/>
+</map>

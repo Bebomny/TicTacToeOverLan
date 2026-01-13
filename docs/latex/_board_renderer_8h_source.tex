@@ -1,0 +1,30 @@
+\doxysection{Board\+Renderer.\+h}
+\hypertarget{_board_renderer_8h_source}{}\label{_board_renderer_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/client/ui/BoardRenderer.h@{D:/.ClionProjects/TicTacToeOverLan/src/client/ui/BoardRenderer.h}}
+\doxymbox{\hyperlink{_board_renderer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_BOARDRENDERER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_BOARDRENDERER\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_game_definitions_8h}{../../common/GameDefinitions.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_utils_8h}{../../common/Utils.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics/RenderTarget.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_board_renderer}{BoardRenderer}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_board_renderer_a0d346f05d8e6081126b95b0ca7b6af50}{render}}(}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ sf::RenderTarget\ \&window,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_board_data}{BoardData}}\ \&board,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::FloatRect\ \&drawArea,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ myTurn,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ sf::Vector2i\ highlightedSquare\ =\ \{-\/1,\ -\/1\});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ sf::Vector2i\ \doxymbox{\hyperlink{class_board_renderer_ad3f31966279269f250dd0bf4176d0cf5}{getSquareAt}}(\textcolor{keyword}{const}\ sf::Vector2i\ \&mousePos,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_board_data}{BoardData}}\ \&board,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::FloatRect\ \&drawArea);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_board_renderer_aa83ebac0dfc333b2afdc1ec4607136ce}{drawPiece}}(sf::RenderTarget\ \&window,\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ piece,\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ size);}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_BOARDRENDERER\_H}}
+
+\end{DoxyCode}

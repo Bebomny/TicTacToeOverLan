@@ -1,0 +1,7 @@
+<map id="GameClient::handleGameInput" name="GameClient::handleGameInput">
+<area shape="rect" id="Node000001" title="Processes input during active gameplay (Board clicks)." alt="" coords="5,31,206,57"/>
+<area shape="rect" id="Node000002" href="$class_board_renderer.html#ad3f31966279269f250dd0bf4176d0cf5" title=" " alt="" coords="254,5,442,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,31,241,30,236,31,206,36"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#a690f67706963732d7dbddd7144104e28" title="Transmits a move action to the server." alt="" coords="269,56,427,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,52,256,59,250,60,206,57"/>
+</map>

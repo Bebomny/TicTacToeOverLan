@@ -1,0 +1,17 @@
+<map id="GameClient::renderGame" name="GameClient::renderGame">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,107,175,133"/>
+<area shape="rect" id="Node000002" href="$class_draw_utils.html#ac9186c17af01695c7b36f840430041ae" title="Sets the text object&#39;s origin to its geometric center. &#160;&#160;This allows to position the text based on it..." alt="" coords="257,5,406,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,104,159,73,222,42,246,35,241,38,224,46,162,77,113,108"/>
+<area shape="rect" id="Node000003" href="$class_draw_utils.html#aac5f824cfce5638990daa9a4df669001" title="Sets the text object&#39;s origin to its horizontal center. &#160;&#160;The vertical origin is reset to the top edg..." alt="" coords="223,56,440,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="156,104,252,85,247,88,158,109"/>
+<area shape="rect" id="Node000004" href="$class_board_renderer.html#ad3f31966279269f250dd0bf4176d0cf5" title=" " alt="" coords="237,107,426,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="174,117,224,119,219,121,176,123"/>
+<area shape="rect" id="Node000005" href="$class_utils.html#ab49720ff58867feae08d01073966f229" title="Converts a PieceType enum value to a human&#45;readable string." alt="" coords="250,157,413,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="157,131,252,152,247,155,157,137"/>
+<area shape="rect" id="Node000006" href="$class_board_renderer.html#a0d346f05d8e6081126b95b0ca7b6af50" title=" " alt="" coords="255,208,408,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="111,131,162,163,224,194,246,203,241,203,222,198,159,167,111,136"/>
+<area shape="rect" id="Node000007" href="$class_board_renderer.html#aa83ebac0dfc333b2afdc1ec4607136ce" title=" " alt="" coords="488,183,665,209"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="408,211,475,206,470,207,408,216"/>
+<area shape="rect" id="Node000008" href="$struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="495,233,658,260"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="408,227,482,237,477,237,408,232"/>
+</map>

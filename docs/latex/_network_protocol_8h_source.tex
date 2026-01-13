@@ -1,0 +1,141 @@
+\doxysection{Network\+Protocol.\+h}
+\hypertarget{_network_protocol_8h_source}{}\label{_network_protocol_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/common/NetworkProtocol.h@{D:/.ClionProjects/TicTacToeOverLan/src/common/NetworkProtocol.h}}
+\doxymbox{\hyperlink{_network_protocol_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_NETWORKPROTOCOL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_NETWORKPROTOCOL\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <winsock2.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_game_definitions_8h}{../common/GameDefinitions.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//The\ websocket\ version\ to\ use,\ windows\ requires\ it\ to\ be\ specified\ before\ creating\ sockets}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ WORD\ \doxymbox{\hyperlink{_network_protocol_8h_a2b272a711f06f4e4aa587b139054248b}{REQ\_SOCK\_VERSION}}\ =\ MAKEWORD(2,\ 2);}
+\DoxyCodeLine{00010\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_network_protocol_8h_a4022313c752cccbebaf07ac56231373d}{DEFAULT\_BUFFER\_LEN}}\ =\ 4096;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\_PLAYER\_NAME\_LENGTH}}\ =\ 32;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}{MAX\_PLAYERS}}\ =\ 6;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{PacketType}}\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00019\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a2d5adf374790a99688888f051f235cf0}{SERVER\_HELLO}},}
+\DoxyCodeLine{00020\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a97d632111f1e32b93aafbcd1ae69ec08}{SETUP\_REQ}},}
+\DoxyCodeLine{00021\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aa0e842f54d2ee55e7dee089df4f3a1ae}{SETUP\_ACK}},}
+\DoxyCodeLine{00022\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a768247c75076806a456210aa409c896f}{NEW\_PLAYER\_JOIN}},}
+\DoxyCodeLine{00023\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a20887523dca92a9741ea1dcaa7e96ed9}{PLAYER\_DISCONNECTED}},}
+\DoxyCodeLine{00024\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56ac62206e29e87f438cff40e666d6e3610}{SETTINGS\_CHANGE\_REQ}},}
+\DoxyCodeLine{00025\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a01a7c292615a5c0855ec43b5d6c4f049}{SETTINGS\_UPDATE}},}
+\DoxyCodeLine{00026\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a95bbe86b51565bbe1312f62907f2bbe4}{GAME\_START\_REQ}},}
+\DoxyCodeLine{00027\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a8820bda144613a0e3758d7d4f15abd6a}{GAME\_START}},}
+\DoxyCodeLine{00028\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aeb20b50bd0278b6449850ead637dfc10}{MOVE\_REQ}},}
+\DoxyCodeLine{00029\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a89ff5c3067de336740b646710ca75338}{BOARD\_STATE\_UPDATE}},}
+\DoxyCodeLine{00030\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a72d6edb1dffe80d34d497ce30c8e9353}{BACK\_TO\_GAME\_ROOM}},}
+\DoxyCodeLine{00031\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aaf8eed899b8468ec048ca80310aec862}{GAME\_END}}}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ This\ is\ so\ the\ compiler\ doesn't\ mess\ with\ the\ padding\ in\ the\ network\ logic}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Forces\ the\ compiler\ to\ align\ struct\ members\ on\ 1-\/byte\ boundaries}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ This\ prevents\ the\ compiler\ from\ adding\ padding\ bytes\ for\ optimization,\ ensuring}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ the\ struct's\ binary\ representation\ is\ identical\ across\ different\ machines}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#pragma\ pack(push,\ 1)}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_packet_header}{PacketHeader}}\ \{}
+\DoxyCodeLine{00045\ \ \ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{PacketType}}\ \doxymbox{\hyperlink{struct_packet_header_a526f239021c9d07360790bea5c78eff1}{type}};}
+\DoxyCodeLine{00046\ \ \ uint32\_t\ \doxymbox{\hyperlink{struct_packet_header_aa747edd40ccc3df1c4ce84ea9c815af5}{payloadSize}};}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_server_hello_packet}{ServerHelloPacket}}\ \{}
+\DoxyCodeLine{00054\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_server_hello_packet_a0b72b6cdc3c7bf0c6b32fa011019d9c3}{playerId}};}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_setup_req_packet}{SetupReqPacket}}\ \{}
+\DoxyCodeLine{00062\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_setup_req_packet_a2baa58715ff9faa859aa0764d82fc0f6}{playerId}};}
+\DoxyCodeLine{00063\ \ \ int32\_t\ \doxymbox{\hyperlink{struct_setup_req_packet_adfc220297a1e975615c70d9265625e7b}{initialToken}};\ \textcolor{comment}{//A\ client\ generated\ token,\ for\ later\ validating\ moves;}}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{struct_setup_req_packet_ac230bbcf3b588973ad464e911f79f4d9}{playerName}}[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\_PLAYER\_NAME\_LENGTH}}];}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_setup_req_packet_aa45decb25af1d693a1829bda6dd9c08e}{isHost}};}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_setup_ack_packet}{SetupAckPacket}}\ \{}
+\DoxyCodeLine{00073\ \ \ int32\_t\ \doxymbox{\hyperlink{struct_setup_ack_packet_a4d99eccbb8c369c53a966ffcd9216d8c}{generatedAuthToken}};}
+\DoxyCodeLine{00074\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_setup_ack_packet_a76135151f596ba5cbce78a4ff0e701f1}{playerId}};}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{struct_setup_ack_packet_a3ca65911c4556528daf2f8fdba5b6125}{playerName}}[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\_PLAYER\_NAME\_LENGTH}}];}
+\DoxyCodeLine{00076\ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ \doxymbox{\hyperlink{struct_setup_ack_packet_a0d04c63584ca39ac74fec8f70a5864ba}{pieceType}};}
+\DoxyCodeLine{00077\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_setup_ack_packet_ae8dca0d38c292a71e72a1549f15fe11b}{boardSize}};}
+\DoxyCodeLine{00078\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_setup_ack_packet_af433bba9edb2be3709ad1e3374192446}{winConditionLength}};}
+\DoxyCodeLine{00079\ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_setup_ack_packet_ad3fd3f385684ffe5904bc1ac20da8925}{round}};}
+\DoxyCodeLine{00080\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_setup_ack_packet_aeba717aa24ef01021a27edcc8c7260f1}{playerCount}};}
+\DoxyCodeLine{00081\ \ \ \doxymbox{\hyperlink{struct_player}{Player}}\ \doxymbox{\hyperlink{struct_setup_ack_packet_a49b3432674e52b39f78e719580747019}{players}}[\doxymbox{\hyperlink{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}{MAX\_PLAYERS}}];}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_new_player_join_packet}{NewPlayerJoinPacket}}\ \{}
+\DoxyCodeLine{00088\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_new_player_join_packet_af24cc2e7542a6222716fb136455dca85}{newPlayerId}};}
+\DoxyCodeLine{00089\ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ \doxymbox{\hyperlink{struct_new_player_join_packet_a0dba278e5bcaacc85e1adb0dea7f3f78}{newPlayerPieceType}};}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{struct_new_player_join_packet_a7af4a7e6fdd0fd2efee6879a9d53af8b}{newPlayerName}}[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\_PLAYER\_NAME\_LENGTH}}];}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_new_player_join_packet_aa1d7d70ed84584b9deebb3dc52c67e04}{isHost}};}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_player_disconnected_packet}{PlayerDisconnectedPacket}}\ \{}
+\DoxyCodeLine{00098\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_player_disconnected_packet_ab7d032a7fc0e630bf477be6ece3ea3a2}{playerId}};}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_settings_change_req_packet}{SettingsChangeReqPacket}}\ \{}
+\DoxyCodeLine{00106\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_settings_change_req_packet_a8f53e89a0c8d98822fdd86dfbec541a6}{playerId}};}
+\DoxyCodeLine{00107\ \ \ int32\_t\ \doxymbox{\hyperlink{struct_settings_change_req_packet_a265e9fbfcf0cb47d564f610e7275b421}{authToken}};}
+\DoxyCodeLine{00108\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_settings_change_req_packet_ad010378053872f2a201a08149496e076}{newBoardSize}};}
+\DoxyCodeLine{00109\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_settings_change_req_packet_ac8038a9410eed6a5b05733155b560101}{newWinConditionLength}};}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_settings_update_packet}{SettingsUpdatePacket}}\ \{}
+\DoxyCodeLine{00116\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_settings_update_packet_aefaad31741178399a2c1377cab0e0bbc}{newBoardSize}};}
+\DoxyCodeLine{00117\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_settings_update_packet_ad034b24cb2f39590daa6430aaf4048c2}{newWinConditionLength}};}
+\DoxyCodeLine{00118\ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_game_start_request_packet}{GameStartRequestPacket}}\ \{}
+\DoxyCodeLine{00124\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_start_request_packet_a93e90196978f99b6760f9f0b2166975f}{requestingPlayerId}};}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_game_start_request_packet_abc028467b518af8d3edc07e182562813}{newGame}};}
+\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_game_start_packet}{GameStartPacket}}\ \{}
+\DoxyCodeLine{00132\ \ \ \doxymbox{\hyperlink{struct_board_square}{BoardSquare}}\ \doxymbox{\hyperlink{struct_game_start_packet_ada5a2e2a2782fc611c5a52af9d39b662}{grid}}[\doxymbox{\hyperlink{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}{TOTAL\_BOARD\_AREA}}];}
+\DoxyCodeLine{00133\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_start_packet_a45b4451f7179633be5444305de11f5d5}{requestedByPlayerId}};}
+\DoxyCodeLine{00134\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_start_packet_a6de7a1a83fcdc4c98ba0a340b6e7aedd}{finalBoardSize}};}
+\DoxyCodeLine{00135\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_start_packet_a79dbaa73cc8f419b09a14c48d79756fe}{finalWinConditionLength}};}
+\DoxyCodeLine{00136\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_start_packet_a826bb8efac450d0d41768e3ab763dfcf}{round}};}
+\DoxyCodeLine{00137\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_start_packet_a1efe4da38764bebb2c4e9bbe583015af}{turn}};}
+\DoxyCodeLine{00138\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_start_packet_adfba0ebd7aa7eb533cb2042877816c42}{startingPlayerId}};}
+\DoxyCodeLine{00139\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_start_packet_ab273b890c8e674172d0cf7a71f2e814e}{playerCount}};}
+\DoxyCodeLine{00140\ \};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_board_state_update_packet}{BoardStateUpdatePacket}}\ \{}
+\DoxyCodeLine{00148\ \ \ \doxymbox{\hyperlink{struct_board_square}{BoardSquare}}\ \doxymbox{\hyperlink{struct_board_state_update_packet_ac373696ad0c73ce4021c0947942e3bad}{grid}}[\doxymbox{\hyperlink{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}{TOTAL\_BOARD\_AREA}}];}
+\DoxyCodeLine{00149\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_board_state_update_packet_a803684ed59c83a827cda85021cdf18c7}{boardSize}};}
+\DoxyCodeLine{00150\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_board_state_update_packet_a98d24e87ffc79a6fc33557fa70578133}{winConditionLength}};}
+\DoxyCodeLine{00151\ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_board_state_update_packet_a487215b883e3b2a06d02d42cde9b9848}{round}};}
+\DoxyCodeLine{00152\ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_board_state_update_packet_aa89786a284d9b4f93403242d9ca0675b}{turn}};}
+\DoxyCodeLine{00153\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_board_state_update_packet_acb86b8b3238b1d48cff413a63717b452}{actingPlayerId}};}
+\DoxyCodeLine{00154\ \ \ \doxymbox{\hyperlink{struct_move}{Move}}\ \doxymbox{\hyperlink{struct_board_state_update_packet_ac7bd48047d35b89f1b76c9719d70ab7f}{lastMove}};}
+\DoxyCodeLine{00155\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_board_state_update_packet_ae8cbc08d407c537e0c95bc6ed1f65e77}{playerCount}};}
+\DoxyCodeLine{00156\ \ \ \doxymbox{\hyperlink{struct_player}{Player}}\ \doxymbox{\hyperlink{struct_board_state_update_packet_a5d8df831ce78821885b362267f23db45}{players}}[\doxymbox{\hyperlink{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}{MAX\_PLAYERS}}];}
+\DoxyCodeLine{00157\ \};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_move_request_packet}{MoveRequestPacket}}\ \{}
+\DoxyCodeLine{00163\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_move_request_packet_a4a7664e23670f4f9bf995b8747fe559e}{playerId}};}
+\DoxyCodeLine{00164\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_move_request_packet_a9db77d4d5f91d6941d44bfbbb2deea34}{x}},\ \doxymbox{\hyperlink{struct_move_request_packet_a88ae41952bdf0ab51d3624b0fcd4b1f0}{y}};}
+\DoxyCodeLine{00165\ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_move_request_packet_a82ca5ffdc4cdcee49d98264f73a411ce}{turn}};}
+\DoxyCodeLine{00166\ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ \doxymbox{\hyperlink{struct_move_request_packet_a567046deba07e57bf1ec2e7233aca435}{piece}};}
+\DoxyCodeLine{00167\ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_back_to_game_room_packet}{BackToGameRoomPacket}}\ \{}
+\DoxyCodeLine{00173\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_back_to_game_room_packet_ae2e06f4178763890f6f3fd43d3d099d3}{playerId}};}
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00179\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_game_end_packet}{GameEndPacket}}\ \{}
+\DoxyCodeLine{00180\ \ \ \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4}{FinishReason}}\ \doxymbox{\hyperlink{struct_game_end_packet_a7dbaf6d50f416ae1f503c9907bf3e58a}{reason}};}
+\DoxyCodeLine{00181\ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_game_end_packet_a1917e9f3ddb78621d48530bbe546e90c}{playerId}};}
+\DoxyCodeLine{00182\ \ \ \doxymbox{\hyperlink{struct_player}{Player}}\ \doxymbox{\hyperlink{struct_game_end_packet_a91a5b1d68d04c3501f4efd39bbd04564}{player}};}
+\DoxyCodeLine{00183\ \};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ Restore\ default\ compiler\ structure\ packing.}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_NETWORKPROTOCOL\_H}}
+
+\end{DoxyCode}

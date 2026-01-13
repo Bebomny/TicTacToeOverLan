@@ -1,0 +1,44 @@
+\doxysection{Client\+Context.\+h}
+\hypertarget{_client_context_8h_source}{}\label{_client_context_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/server/ClientContext.h@{D:/.ClionProjects/TicTacToeOverLan/src/server/ClientContext.h}}
+\doxymbox{\hyperlink{_client_context_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_CLIENTCONTEXT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_CLIENTCONTEXT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <winsock2.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_game_definitions_8h}{../common/GameDefinitions.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_network_protocol_8h}{../common/NetworkProtocol.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ comment(lib,\ "{}Ws2\_32.lib"{})}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3ca}{ClientSetupPhase}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3caa7baec55aec9068d1bebf5e5342919204}{NEW\_CONNECTION}},}
+\DoxyCodeLine{00018\ \ \ \ \ \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3caaf0822a83d29c044e4edfd5015bdf1a96}{HELLO\_SENT}},}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3caade40840e4a59d8dec34c9b70ba9cbf54}{SETUP\_REQ\_RECV}},}
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3caa6f0ac9c97959ab36c1c154a77d4c7bba}{SET\_UP}}}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_client_context}{ClientContext}}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ SOCKET\ \doxymbox{\hyperlink{struct_client_context_a33f10e5d7de880fa41e4f8454133896c}{socket}};}
+\DoxyCodeLine{00030\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_client_context_a1137abc2911a0119564bd45cceefed90}{playerId}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{mutable}\ int32\_t\ \doxymbox{\hyperlink{struct_client_context_ad8ad36c6a60326d2ba1f467b456b96ed}{playerToken}};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{mutable}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ \doxymbox{\hyperlink{struct_client_context_a7068226658e475523f58c4058d13609f}{pieceType}};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{struct_client_context_a26fedebba575d4c160bfa3a7c7c6c3cd}{playerName}}[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\_PLAYER\_NAME\_LENGTH}}];}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{mutable}\ int32\_t\ \doxymbox{\hyperlink{struct_client_context_a75582afa03b969bc1845e47155572f65}{playerWins}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_client_context_aa77d9eb5f4669fc57456ee229c439205}{isHost}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_client_context_ab48a51806ec24572a8adc160ad2d54b3}{myTurn}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{mutable}\ \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3ca}{ClientSetupPhase}}\ \doxymbox{\hyperlink{struct_client_context_ae05e8b1d0a5c759858cc904ce083d345}{setupPhase}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{mutable}\ std::vector<char>\ \doxymbox{\hyperlink{struct_client_context_a75304db5091f8869ef0c8aaeac22085e}{receiveBuffer}}\ \{\};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_client_context_a45941371135550e20f447d2ca3e6c1be}{markedForDeletion}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_CLIENTCONTEXT\_H}}
+
+\end{DoxyCode}

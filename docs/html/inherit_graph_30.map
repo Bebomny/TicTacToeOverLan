@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_widget.html" title="Abstract base class representing a UI element." alt="" coords="5,31,68,57"/>
+<area shape="rect" id="Node000001" href="$class_button_widget.html" title="A Widget implementation representing a clickable button. Handles visual states (Idle,..." alt="" coords="123,5,224,32"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="82,33,125,27,120,29,84,38"/>
+<area shape="rect" id="Node000002" href="$class_text_field_widget.html" title="A Widget allowing user text input. Handles focus states (clicking to activate), keyboard events (typi..." alt="" coords="116,56,231,83"/>
+<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="83,50,118,58,113,59,83,55"/>
+</map>

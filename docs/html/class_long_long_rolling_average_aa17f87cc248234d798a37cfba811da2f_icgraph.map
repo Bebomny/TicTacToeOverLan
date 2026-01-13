@@ -1,0 +1,6 @@
+<map id="LongLongRollingAverage::min" name="LongLongRollingAverage::min">
+<area shape="rect" id="Node000001" title="Finds the minimum value in the current window. &#160;&#160;Thread&#45;safe: Locks the mutex." alt="" coords="219,29,413,56"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="354,14,342,10,316,8,292,10,279,15,276,20,282,30,277,28,271,21,275,11,291,5,316,3,343,5,359,15"/>
+<area shape="rect" id="Node000002" href="$class_long_long_rolling_average.html#a44cb6aa408a7a58e93f3b7c2ed4dc59e" title="Retrieves Average, Min, and Max atomically. &#160;&#160;Acquires the lock once and computes all three statistic..." alt="" coords="5,21,171,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,43,171,45,171,40,206,42"/>
+</map>

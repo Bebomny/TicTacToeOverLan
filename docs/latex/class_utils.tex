@@ -1,0 +1,174 @@
+\doxysection{Utils Class Reference}
+\hypertarget{class_utils}{}\label{class_utils}\index{Utils@{Utils}}
+
+
+General purpose helper functions for Game Logic and Networking. ~\newline
+ Contains static methods for string conversion and memory management relating to the board state.  
+
+
+
+
+{\ttfamily \+\#include $<$Utils.\+h$>$}
+
+
+
+Collaboration diagram for Utils:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{class_utils__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std::\+string \doxymbox{\hyperlink{class_utils_ab49720ff58867feae08d01073966f229}{piece\+Type\+To\+String}} (const \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} piece)
+\begin{DoxyCompactList}\small\item\em Converts a \doxylink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type} enum value to a human-\/readable string. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_utils_a974571ca9cb0b0cda9f0b56e6583a4a5}{initialize\+Game\+Board}} (\doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&board)
+\begin{DoxyCompactList}\small\item\em Allocates and resets the game grid. ~\newline
+ Resizes the 2D {\ttfamily grid} vector within {\ttfamily \doxylink{struct_board_data}{Board\+Data}} based on the configured {\ttfamily board\+Size} and fills every cell with {\ttfamily \doxylink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86aba2b45bdc11e2a4a6e86aab2ac693cbb}{Piece\+Type::\+\+EMPTY}}. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_utils_a71b0066a7749e408841c15ee5ff4f490}{serialize\+Board}} (const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&input\+Board, \doxymbox{\hyperlink{struct_board_square}{Board\+Square}} \texorpdfstring{$\ast$}{*}output\+Board, int buffer\+Size)
+\begin{DoxyCompactList}\small\item\em Flattens the 2D dynamic grid into a 1D static array for networking. ~\newline
+ Converts the logical {\ttfamily std::\+vector\texorpdfstring{$<$}{<}std::\+vector\texorpdfstring{$<$}{<}...\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} structure into a continuous block of memory suitable for packet structs. ~\newline
+ Mapping:\+ {\ttfamily index = y \texorpdfstring{$\ast$}{*} width + x}. \end{DoxyCompactList}\item 
+static void \doxymbox{\hyperlink{class_utils_a9bc7096ff5339947893e3d02d58410b2}{deserialize\+Board}} (const \doxymbox{\hyperlink{struct_board_square}{Board\+Square}} \texorpdfstring{$\ast$}{*}input\+Board, \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&output\+Board)
+\begin{DoxyCompactList}\small\item\em Reconstructs the 2D grid from a received 1D network array. ~\newline
+ Reverses the serialization process, mapping the linear index back to X/\+Y coordinates and updating the local {\ttfamily \doxylink{struct_board_data}{Board\+Data}} state. ~\newline
+ Mapping:\+ {\ttfamily x = index \% width}, {\ttfamily y = index /\+ width}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+General purpose helper functions for Game Logic and Networking. ~\newline
+ Contains static methods for string conversion and memory management relating to the board state. 
+
+\label{doc-func-members}
+\Hypertarget{class_utils_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_utils_a9bc7096ff5339947893e3d02d58410b2}\index{Utils@{Utils}!deserializeBoard@{deserializeBoard}}
+\index{deserializeBoard@{deserializeBoard}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{deserializeBoard()}{deserializeBoard()}}
+{\footnotesize\ttfamily \label{class_utils_a9bc7096ff5339947893e3d02d58410b2} 
+void Utils::\+deserialize\+Board (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_board_square}{Board\+Square}} \texorpdfstring{$\ast$}{*}}]{input\+Board}{, }\item[{\doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&}]{output\+Board}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Reconstructs the 2D grid from a received 1D network array. ~\newline
+ Reverses the serialization process, mapping the linear index back to X/\+Y coordinates and updating the local {\ttfamily \doxylink{struct_board_data}{Board\+Data}} state. ~\newline
+ Mapping:\+ {\ttfamily x = index \% width}, {\ttfamily y = index /\+ width}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Board} & Pointer to the source flat array from a received Packet. \\
+\hline
+{\em output\+Board} & Reference to the local \doxylink{struct_board_data}{Board\+Data} to update. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_utils_a9bc7096ff5339947893e3d02d58410b2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_utils_a9bc7096ff5339947893e3d02d58410b2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_utils_a974571ca9cb0b0cda9f0b56e6583a4a5}\index{Utils@{Utils}!initializeGameBoard@{initializeGameBoard}}
+\index{initializeGameBoard@{initializeGameBoard}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{initializeGameBoard()}{initializeGameBoard()}}
+{\footnotesize\ttfamily \label{class_utils_a974571ca9cb0b0cda9f0b56e6583a4a5} 
+void Utils::\+initialize\+Game\+Board (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&}]{board}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Allocates and resets the game grid. ~\newline
+ Resizes the 2D {\ttfamily grid} vector within {\ttfamily \doxylink{struct_board_data}{Board\+Data}} based on the configured {\ttfamily board\+Size} and fills every cell with {\ttfamily \doxylink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86aba2b45bdc11e2a4a6e86aab2ac693cbb}{Piece\+Type::\+\+EMPTY}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & The \doxylink{struct_board_data}{Board\+Data} structure to initialize. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_utils_a974571ca9cb0b0cda9f0b56e6583a4a5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_utils_ab49720ff58867feae08d01073966f229}\index{Utils@{Utils}!pieceTypeToString@{pieceTypeToString}}
+\index{pieceTypeToString@{pieceTypeToString}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{pieceTypeToString()}{pieceTypeToString()}}
+{\footnotesize\ttfamily \label{class_utils_ab49720ff58867feae08d01073966f229} 
+std::\+string Utils::\+piece\+Type\+To\+String (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}}}]{piece}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Converts a \doxylink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type} enum value to a human-\/readable string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em piece} & The enum value to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representation (e.\+g., "{}\+Cross"{}, "{}\+Circle"{}, "{}\+Empty"{}). 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_utils_ab49720ff58867feae08d01073966f229_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_utils_a71b0066a7749e408841c15ee5ff4f490}\index{Utils@{Utils}!serializeBoard@{serializeBoard}}
+\index{serializeBoard@{serializeBoard}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{serializeBoard()}{serializeBoard()}}
+{\footnotesize\ttfamily \label{class_utils_a71b0066a7749e408841c15ee5ff4f490} 
+void Utils::\+serialize\+Board (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&}]{input\+Board}{, }\item[{\doxymbox{\hyperlink{struct_board_square}{Board\+Square}} \texorpdfstring{$\ast$}{*}}]{output\+Board}{, }\item[{int}]{buffer\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Flattens the 2D dynamic grid into a 1D static array for networking. ~\newline
+ Converts the logical {\ttfamily std::\+vector\texorpdfstring{$<$}{<}std::\+vector\texorpdfstring{$<$}{<}...\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}} structure into a continuous block of memory suitable for packet structs. ~\newline
+ Mapping:\+ {\ttfamily index = y \texorpdfstring{$\ast$}{*} width + x}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Board} & The source logical board containing the 2D vector grid. \\
+\hline
+{\em output\+Board} & Pointer to the destination flat array (usually inside a Packet struct). \\
+\hline
+{\em buffer\+Size} & The maximum size of the output buffer to prevent overflows. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{class_utils_a71b0066a7749e408841c15ee5ff4f490_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_utils_a71b0066a7749e408841c15ee5ff4f490_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_utils_8h}{Utils.\+h}}\end{DoxyCompactItemize}

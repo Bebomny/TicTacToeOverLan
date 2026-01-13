@@ -1,0 +1,14 @@
+<map id="WinValidator::isValid" name="WinValidator::isValid">
+<area shape="rect" id="Node000001" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="952,29,1092,56"/>
+<area shape="rect" id="Node000002" href="$class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="770,29,904,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="934,43,904,45,904,40,939,43"/>
+<area shape="poly" id="edge6_Node000002_Node000002" title=" " alt="" coords="867,14,857,10,837,8,818,10,807,15,805,20,810,30,805,28,799,21,803,11,816,5,837,3,859,5,872,15"/>
+<area shape="rect" id="Node000003" href="$class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="561,29,722,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="751,43,722,45,722,40,757,43"/>
+<area shape="rect" id="Node000004" href="$class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,21,513,64"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="543,43,514,45,514,40,549,43"/>
+<area shape="rect" id="Node000005" href="$class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,21,328,64"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="358,43,329,45,328,40,363,43"/>
+<area shape="rect" id="Node000006" href="$class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,21,143,64"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="173,43,143,45,143,40,178,42"/>
+</map>

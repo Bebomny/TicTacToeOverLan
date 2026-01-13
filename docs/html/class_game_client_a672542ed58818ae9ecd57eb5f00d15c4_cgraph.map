@@ -1,0 +1,48 @@
+<map id="GameClient::run" name="GameClient::run">
+<area shape="rect" id="Node000001" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="5,275,122,301"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#a1002fba127d0627a3ad3dccb68f343f9" title="Polls SFML events and delegates them to specific state handlers." alt="" coords="170,275,335,301"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,286,156,287,152,289,123,290"/>
+<area shape="rect" id="Node000008" href="$class_game_client.html#a6707e6e3f99fa676180e6276fd7cd972" title="Clears the window and calls the appropriate render method for the current ClientState." alt="" coords="185,107,320,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="78,272,224,141,225,147,82,276"/>
+<area shape="rect" id="Node000019" href="$class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="184,376,321,403"/>
+<area shape="poly" id="edge21_Node000001_Node000019" title=" " alt="" coords="91,299,215,367,211,370,90,304"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#ae0e8917d72b9c8a35b6b86c16dd29ba4" title="Processes input during active gameplay (Board clicks)." alt="" coords="386,325,586,352"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="317,299,409,321,404,322,317,305"/>
+<area shape="rect" id="Node000006" href="$class_game_client.html#a2695419dcc3f78ed346f4f666e1e60c5" title="Processes input when in the Waiting Room." alt="" coords="383,208,589,251"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="308,272,386,254,381,256,309,277"/>
+<area shape="rect" id="Node000007" href="$class_game_client.html#a58701454693e02c2a5a79773d9bcd5fc" title="Processes input when in the Main Menu." alt="" coords="388,275,585,301"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="335,285,375,287,369,289,336,291"/>
+<area shape="rect" id="Node000004" href="$class_board_renderer.html#ad3f31966279269f250dd0bf4176d0cf5" title=" " alt="" coords="652,267,840,293"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="548,322,671,297,666,298,549,327"/>
+<area shape="rect" id="Node000005" href="$class_game_client.html#a690f67706963732d7dbddd7144104e28" title="Transmits a move action to the server." alt="" coords="667,325,825,352"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="587,336,654,338,649,339,587,341"/>
+<area shape="rect" id="Node000009" href="$class_game_client.html#a6307255e5ee2ec7a662314d2bda4ff4e" title="Overlays debug information (FPS, network stats, etc.) in a separate menu." alt="" coords="384,56,588,83"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="316,104,409,85,404,88,319,108"/>
+<area shape="rect" id="Node000011" href="$class_game_client.html#ac43af34d16f934ccf691a400f198d047" title=" " alt="" coords="402,157,571,184"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="317,131,409,152,404,154,318,137"/>
+<area shape="rect" id="Node000017" href="$class_game_client.html#abc5fbf39980e740820e141eeced44d30" title=" " alt="" coords="384,107,588,133"/>
+<area shape="poly" id="edge18_Node000008_Node000017" title=" " alt="" coords="319,117,371,119,366,121,321,123"/>
+<area shape="rect" id="Node000018" href="$class_game_client.html#ad5b49b36503c47beb1b3bb73a16b2859" title=" " alt="" coords="403,5,569,32"/>
+<area shape="poly" id="edge20_Node000008_Node000018" title=" " alt="" coords="271,104,320,73,382,42,405,35,400,38,384,46,323,77,275,108"/>
+<area shape="rect" id="Node000010" href="$class_utils.html#ab49720ff58867feae08d01073966f229" title="Converts a PieceType enum value to a human&#45;readable string." alt="" coords="664,60,828,87"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="588,68,651,71,646,73,589,73"/>
+<area shape="poly" id="edge13_Node000011_Node000004" title=" " alt="" coords="565,182,591,194,607,207,616,222,624,236,639,248,660,261,654,261,636,253,620,239,611,225,603,211,588,198,565,187"/>
+<area shape="poly" id="edge14_Node000011_Node000010" title=" " alt="" coords="562,154,588,143,602,132,611,120,621,108,636,96,652,91,648,94,639,101,624,112,615,124,606,136,591,148,564,159"/>
+<area shape="rect" id="Node000012" href="$class_draw_utils.html#ac9186c17af01695c7b36f840430041ae" title="Sets the text object&#39;s origin to its geometric center. &#160;&#160;This allows to position the text based on it..." alt="" coords="672,161,820,188"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="571,169,659,173,654,174,572,175"/>
+<area shape="rect" id="Node000013" href="$class_draw_utils.html#aac5f824cfce5638990daa9a4df669001" title="Sets the text object&#39;s origin to its horizontal center. &#160;&#160;The vertical origin is reset to the top edg..." alt="" coords="637,212,855,239"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="553,182,667,208,662,209,553,187"/>
+<area shape="rect" id="Node000014" href="$class_board_renderer.html#a0d346f05d8e6081126b95b0ca7b6af50" title=" " alt="" coords="670,111,822,137"/>
+<area shape="poly" id="edge15_Node000011_Node000014" title=" " alt="" coords="564,154,657,139,652,141,565,159"/>
+<area shape="rect" id="Node000015" href="$class_board_renderer.html#aa83ebac0dfc333b2afdc1ec4607136ce" title=" " alt="" coords="903,85,1080,112"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="822,114,890,109,885,110,823,119"/>
+<area shape="rect" id="Node000016" href="$struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="910,136,1073,163"/>
+<area shape="poly" id="edge17_Node000014_Node000016" title=" " alt="" coords="823,129,897,139,892,140,823,135"/>
+<area shape="poly" id="edge19_Node000017_Node000010" title=" " alt="" coords="563,104,655,89,650,91,565,109"/>
+<area shape="rect" id="Node000020" href="$class_utils.html#a9bc7096ff5339947893e3d02d58410b2" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="410,427,562,453"/>
+<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="318,401,409,423,404,423,317,406"/>
+<area shape="rect" id="Node000022" href="$class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="400,376,572,403"/>
+<area shape="poly" id="edge24_Node000019_Node000022" title=" " alt="" coords="321,387,387,389,382,390,321,392"/>
+<area shape="rect" id="Node000021" href="$struct_board_data.html#aa68d3cb10d68cbf530ca7f3d7e792482" title="Updates the state of a specific grid cell." alt="" coords="664,427,828,453"/>
+<area shape="poly" id="edge23_Node000020_Node000021" title=" " alt="" coords="563,437,651,440,646,440,563,443"/>
+</map>

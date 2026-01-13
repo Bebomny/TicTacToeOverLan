@@ -1,0 +1,5 @@
+<map id="InternalGameServer::getPlayers" name="InternalGameServer::getPlayers">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,143,48"/>
+<area shape="rect" id="Node000002" href="$class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="191,5,362,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,24,178,26,172,27,143,29"/>
+</map>

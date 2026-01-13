@@ -1,0 +1,7 @@
+<map id="TextFieldWidget::update" name="TextFieldWidget::update">
+<area shape="rect" id="Node000001" title="Updates widget logic, primarily the cursor animation." alt="" coords="5,31,168,57"/>
+<area shape="rect" id="Node000002" href="$class_widget.html#a7931ceac649bdfe14a7819f771531b95" title="Checks if the widget is currently active." alt="" coords="217,5,334,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,30,204,28,199,29,168,36"/>
+<area shape="rect" id="Node000003" href="$class_widget.html#ae469bb315299916388d717225e71a802" title="Checks if the widget should currently be visible." alt="" coords="216,56,335,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="168,52,203,59,198,59,168,58"/>
+</map>

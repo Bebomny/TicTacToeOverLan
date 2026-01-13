@@ -1,0 +1,5 @@
+<map id="TextFieldWidget::TextFieldWidget" name="TextFieldWidget::TextFieldWidget">
+<area shape="rect" id="Node000001" title="Main Constructor. &#160;&#160;Do not use! Use TextFieldWidget::builder() instead. &#160;&#160;Called internally by TextFi..." alt="" coords="5,5,182,48"/>
+<area shape="rect" id="Node000002" href="$class_text_field_widget.html#a105a562d935dc662fa5532348409e397" title="Manually sets the content of the field. &#160;&#160;DOES NOT trigger the onTextChangeCallback." alt="" coords="230,13,396,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,24,217,26,211,27,182,29"/>
+</map>

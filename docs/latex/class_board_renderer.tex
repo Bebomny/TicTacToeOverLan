@@ -1,0 +1,136 @@
+\doxysection{Board\+Renderer Class Reference}
+\hypertarget{class_board_renderer}{}\label{class_board_renderer}\index{BoardRenderer@{BoardRenderer}}
+
+
+{\ttfamily \+\#include $<$Board\+Renderer.\+h$>$}
+
+
+
+Collaboration diagram for Board\+Renderer:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{class_board_renderer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{class_board_renderer_a0d346f05d8e6081126b95b0ca7b6af50}{render}} (sf::\+\+Render\+Target \&window, const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&board, const sf::\+\+Float\+Rect \&draw\+Area, bool my\+Turn, sf::\+\+Vector2i highlighted\+Square=\{-\/1, -\/1\})
+\item 
+static sf::\+\+Vector2i \doxymbox{\hyperlink{class_board_renderer_ad3f31966279269f250dd0bf4176d0cf5}{get\+Square\+At}} (const sf::\+\+Vector2i \&mouse\+Pos, const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&board, const sf::\+\+Float\+Rect \&draw\+Area)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{class_board_renderer_aa83ebac0dfc333b2afdc1ec4607136ce}{draw\+Piece}} (sf::\+\+Render\+Target \&window, \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} piece, float x, float y, float size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_board_renderer}{Board\+Renderer} handles the drawing and bound checking of the game board. 
+
+\label{doc-func-members}
+\Hypertarget{class_board_renderer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_board_renderer_aa83ebac0dfc333b2afdc1ec4607136ce}\index{BoardRenderer@{BoardRenderer}!drawPiece@{drawPiece}}
+\index{drawPiece@{drawPiece}!BoardRenderer@{BoardRenderer}}
+\doxysubsubsection{\texorpdfstring{drawPiece()}{drawPiece()}}
+{\footnotesize\ttfamily \label{class_board_renderer_aa83ebac0dfc333b2afdc1ec4607136ce} 
+void Board\+Renderer::\+draw\+Piece (\begin{DoxyParamCaption}\item[{sf::\+\+Render\+Target \&}]{window}{, }\item[{\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}}}]{piece}{, }\item[{float}]{x}{, }\item[{float}]{y}{, }\item[{float}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Draws the piece on the chosen target window
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & the target window \\
+\hline
+{\em piece} & piece to be drawn \\
+\hline
+{\em x} & x coordinate of the square, relative to the screen \\
+\hline
+{\em y} & y coordinate of the square, relative to the screen \\
+\hline
+{\em size} & size of the piece, used for scaling to support multiple board sizes \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_renderer_aa83ebac0dfc333b2afdc1ec4607136ce_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_board_renderer_ad3f31966279269f250dd0bf4176d0cf5}\index{BoardRenderer@{BoardRenderer}!getSquareAt@{getSquareAt}}
+\index{getSquareAt@{getSquareAt}!BoardRenderer@{BoardRenderer}}
+\doxysubsubsection{\texorpdfstring{getSquareAt()}{getSquareAt()}}
+{\footnotesize\ttfamily \label{class_board_renderer_ad3f31966279269f250dd0bf4176d0cf5} 
+sf::\+\+Vector2i Board\+Renderer::\+get\+Square\+At (\begin{DoxyParamCaption}\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&}]{board}{, }\item[{const sf::\+\+Float\+Rect \&}]{draw\+Area}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Returns the x and y position of the square which the mouse is currently hovering over.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mouse\+Pos} & mouse position \\
+\hline
+{\em board} & the board to check against \\
+\hline
+{\em draw\+Area} & position and size of the board on the screen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+x and y position of the square on the board matrix. Returns \{-\/1, -\/1\} if the click occurred outside the draw\+Area 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_renderer_ad3f31966279269f250dd0bf4176d0cf5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_board_renderer_a0d346f05d8e6081126b95b0ca7b6af50}\index{BoardRenderer@{BoardRenderer}!render@{render}}
+\index{render@{render}!BoardRenderer@{BoardRenderer}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_board_renderer_a0d346f05d8e6081126b95b0ca7b6af50} 
+void Board\+Renderer::\+render (\begin{DoxyParamCaption}\item[{sf::\+\+Render\+Target \&}]{window}{, }\item[{const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&}]{board}{, }\item[{const sf::\+\+Float\+Rect \&}]{draw\+Area}{, }\item[{bool}]{my\+Turn}{, }\item[{sf::\+\+Vector2i}]{highlighted\+Square}{ = {\ttfamily \{-\/1,~-\/1\}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Renders the board at the specified draw\+Area
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & the target window \\
+\hline
+{\em board} & board to be drawn \\
+\hline
+{\em draw\+Area} & area with specified position and size for the board to be rendered at \\
+\hline
+{\em my\+Turn} & if it\textquotesingle{}s the users turn \\
+\hline
+{\em highlighted\+Square} & the positon of the mouse to highlight the square beneath \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_renderer_a0d346f05d8e6081126b95b0ca7b6af50_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_board_renderer_a0d346f05d8e6081126b95b0ca7b6af50_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_board_renderer_8h}{Board\+Renderer.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_board_renderer_8cpp}{Board\+Renderer.\+cpp}}\end{DoxyCompactItemize}

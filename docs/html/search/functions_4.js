@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['gameclient_0',['GameClient',['../class_game_client.html#a22eefb77da4aadc789f9f6a39218f099',1,'GameClient']]],
+  ['getallavailablepieces_1',['getAllAvailablePieces',['../class_internal_game_server.html#a7888c8cea25251b6024ac4c24aefe7d5',1,'InternalGameServer']]],
+  ['getavgticktime_2',['getAvgTickTime',['../class_internal_game_server.html#af1946230fb684f1159a227464fc86e0a',1,'InternalGameServer']]],
+  ['getboardsettings_3',['getBoardSettings',['../class_internal_game_server.html#a58bd4012bd582f474ee733c3b44e7981',1,'InternalGameServer']]],
+  ['getcurrentturn_4',['getCurrentTurn',['../class_internal_game_server.html#a17c8a65ba03727f2264a4693e5999a97',1,'InternalGameServer']]],
+  ['getfirstavailablepiece_5',['getFirstAvailablePiece',['../class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3',1,'InternalGameServer']]],
+  ['gethostingplayerid_6',['getHostingPlayerId',['../class_internal_game_server.html#aa30c206eceed828697ac79a04537842d',1,'InternalGameServer']]],
+  ['getlastticktime_7',['getLastTickTime',['../class_internal_game_server.html#a7e45533cfc92df0c49f5933620a98a72',1,'InternalGameServer']]],
+  ['getmoves_8',['getMoves',['../class_internal_game_server.html#ae5b561b882669a8055c79f64d7fa091c',1,'InternalGameServer']]],
+  ['getnextactingplayerid_9',['getNextActingPlayerId',['../class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2',1,'InternalGameServer']]],
+  ['getnextplayerid_10',['getNextPlayerId',['../class_internal_game_server.html#ad25ae6f94d5fc5ecd8eb60fe1134795b',1,'InternalGameServer']]],
+  ['getpackagedvalues_11',['getPackagedValues',['../class_long_long_rolling_average.html#a44cb6aa408a7a58e93f3b7c2ed4dc59e',1,'LongLongRollingAverage::getPackagedValues()'],['../class_rolling_average.html#aac9fd4231fdf90cbac081ee3d009cda8',1,'RollingAverage::getPackagedValues()']]],
+  ['getplayers_12',['getPlayers',['../class_internal_game_server.html#ad36cc65394c1ceb1a7294a05a007c6bb',1,'InternalGameServer']]],
+  ['getsquareat_13',['getSquareAt',['../class_board_renderer.html#ad3f31966279269f250dd0bf4176d0cf5',1,'BoardRenderer::getSquareAt()'],['../struct_board_data.html#a6c04548422ccdd5b690a4128964eb503',1,'BoardData::getSquareAt()']]],
+  ['gettext_14',['getText',['../class_text_field_widget.html#a938675a94b6a4eb500f01d764003ed45',1,'TextFieldWidget']]],
+  ['gettick_15',['getTick',['../class_internal_game_server.html#a61c010a8dc8ae5deded65b97ae4829cb',1,'InternalGameServer']]]
+];

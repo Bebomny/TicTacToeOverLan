@@ -1,0 +1,11 @@
+<map id="WinValidator::checkWin" name="WinValidator::checkWin">
+<area shape="rect" id="Node000001" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="5,31,166,57"/>
+<area shape="rect" id="Node000002" href="$class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="214,68,348,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,55,201,65,196,66,158,61"/>
+<area shape="rect" id="Node000003" href="$struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="396,5,559,32"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="166,33,213,29,383,21,378,24,214,35,167,39"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="247,66,242,59,246,50,259,43,281,41,304,44,318,53,313,52,303,49,281,47,260,49,249,53,247,59,252,69"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="325,65,416,38,421,37,326,70"/>
+<area shape="rect" id="Node000004" href="$class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="408,68,548,95"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="348,79,395,81,389,81,348,84"/>
+</map>

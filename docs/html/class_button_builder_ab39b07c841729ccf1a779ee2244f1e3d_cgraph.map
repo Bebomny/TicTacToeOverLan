@@ -1,0 +1,8 @@
+<map id="ButtonBuilder::move" name="ButtonBuilder::move">
+<area shape="rect" id="Node000001" title="Offsets the position relative to the last built widget. Useful for stacking fields vertically or hori..." alt="" coords="5,5,145,32"/>
+<area shape="rect" id="Node000002" href="$class_button_builder.html#a8f70176157c5e66d2d0a4ee89107cfeb" title=" " alt="" coords="413,5,598,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,16,398,16,397,21,145,21"/>
+<area shape="rect" id="Node000003" href="$class_button_builder.html#a71003751383fdb15b061df4d60414611" title="Sets the absolute position of the button." alt="" coords="193,31,365,57"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,25,180,31,174,32,145,30"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="365,32,395,31,400,31,366,37"/>
+</map>

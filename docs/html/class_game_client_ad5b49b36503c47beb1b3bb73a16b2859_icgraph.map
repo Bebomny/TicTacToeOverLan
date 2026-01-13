@@ -1,0 +1,9 @@
+<map id="GameClient::renderMenu" name="GameClient::renderMenu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="449,5,616,32"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#a6707e6e3f99fa676180e6276fd7cd972" title="Clears the window and calls the appropriate render method for the current ClientState." alt="" coords="267,5,401,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="431,19,402,21,402,16,436,19"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,5,219,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="249,19,219,21,219,16,254,19"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,5,55,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="84,19,55,21,55,16,90,18"/>
+</map>

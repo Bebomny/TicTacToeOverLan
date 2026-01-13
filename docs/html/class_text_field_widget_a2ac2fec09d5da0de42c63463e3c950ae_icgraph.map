@@ -1,0 +1,5 @@
+<map id="TextFieldWidget::contains" name="TextFieldWidget::contains">
+<area shape="rect" id="Node000001" title="Checks if a specific point is inside the widget&#39;s bounds. &#160;&#160;Used internally by handleEvent for focus ..." alt="" coords="249,5,421,32"/>
+<area shape="rect" id="Node000002" href="$class_text_field_widget.html#a7637bbc4d12b02948fd4c3c4f896796f" title="Processes input for the text field. &#160;&#160;Handles two main things: &#160;&#160;1. Mouse Clicks: Checks if the user ..." alt="" coords="5,5,201,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,19,201,21,201,16,236,19"/>
+</map>

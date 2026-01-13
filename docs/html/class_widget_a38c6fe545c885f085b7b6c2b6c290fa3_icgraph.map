@@ -1,0 +1,14 @@
+<map id="Widget::setActive" name="Widget::setActive">
+<area shape="rect" id="Node000001" title="Manually sets the active state of the widget." alt="" coords="659,47,785,73"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#a4946acc9956541a62556e2387210269e" title="Spins up the internal server instance in a separate thread. &#160;&#160;Called when the user chooses &quot;Host Game..." alt="" coords="444,5,611,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="641,47,612,44,612,38,647,47"/>
+<area shape="rect" id="Node000005" href="$class_game_client.html#a2be0d0e513ac5ab73854c9772e554bec" title="Signals the internal server to stop." alt="" coords="444,72,611,115"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="647,73,612,82,611,76,641,74"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#a0ed542437a49af2a1257a22bc3be66a6" title="Initializes all UI widgets (Buttons, TextFields) via their Builders. &#160;&#160;Called in the constructor,..." alt="" coords="227,21,390,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="426,31,391,34,390,29,431,30"/>
+<area shape="rect" id="Node000004" href="$class_game_client.html#a22eefb77da4aadc789f9f6a39218f099" title=" " alt="" coords="5,21,173,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="209,35,174,37,173,32,214,34"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="428,68,361,51,361,46,434,68"/>
+<area shape="rect" id="Node000006" href="$class_game_client.html#abca673a8fcdb7d2ae8c0da02f91e4e64" title=" " alt="" coords="221,80,396,107"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="426,93,396,96,396,91,432,93"/>
+</map>

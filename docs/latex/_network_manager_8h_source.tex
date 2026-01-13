@@ -1,0 +1,75 @@
+\doxysection{Network\+Manager.\+h}
+\hypertarget{_network_manager_8h_source}{}\label{_network_manager_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/client/NetworkManager.h@{D:/.ClionProjects/TicTacToeOverLan/src/client/NetworkManager.h}}
+\doxymbox{\hyperlink{_network_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_NETWORKMANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_NETWORKMANAGER\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <winsock2.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <ws2tcpip.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_network_protocol_8h}{../common/NetworkProtocol.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_utils_8h}{../common/Utils.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ comment(lib,\ "{}Ws2\_32.lib"{})}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781}{ConnectionPhase}}\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a99c8ce56e7ab246445d3b134724428f3}{DISCONNECTED}},}
+\DoxyCodeLine{00016\ \ \ \ \ \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781afdb7bfdb2e03442a306fe07f152f91fc}{ESTABLISHING}},}
+\DoxyCodeLine{00017\ \ \ \ \ \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a7640f170af693e00a6c91df543aa2b76}{ESTABLISHED}}}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_network_manager}{NetworkManager}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781}{ConnectionPhase}}\ \doxymbox{\hyperlink{class_network_manager_a28a090fac0222cc9e81ae6d31f6203ba}{conPhase}}\ =\ \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a99c8ce56e7ab246445d3b134724428f3}{ConnectionPhase::DISCONNECTED}};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_network_manager_a9f7e1d5e3e641a8e18a109106e44af9a}{startResult}}\ =\ -\/1;}
+\DoxyCodeLine{00030\ \ \ \ \ WSADATA\ \doxymbox{\hyperlink{class_network_manager_a1c7f7091178c2c09863cf4792ef6372b}{wsadata}}\ =\ \{\};}
+\DoxyCodeLine{00031\ \ \ \ \ SOCKET\ \doxymbox{\hyperlink{class_network_manager_a964aee0738d03efa84506b6af5fb0beb}{clientSocket}};}
+\DoxyCodeLine{00032\ \ \ \ \ std::vector<char>\ \doxymbox{\hyperlink{class_network_manager_a53288c337a41585e51803104e79ca70d}{receiveBuffer}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_network_manager_a5840249051c1ecab66dc4c20fe2b33d6}{connectToServer}}(\textcolor{keyword}{const}\ std::string\ \&address,\ \textcolor{keyword}{const}\ std::string\ \&port);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_network_manager_a751f87add468a5ddc70c4087ab80533f}{disconnect}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_network_manager_a495c3aa3c31eea2cdf4e0d4c8d7ccda7}{pollPacket}}(\doxymbox{\hyperlink{struct_packet_header}{PacketHeader}}\ \&outHeader,\ std::vector<char>\ \&outPayload);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_network_manager_aa7e21f46fe92624b9f7f300ec3aa9a0c}{sendPacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{PacketType}}\ type,\ \textcolor{keyword}{const}\ T\ \&data)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_network_manager_a28a090fac0222cc9e81ae6d31f6203ba}{conPhase}}\ !=\ \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a7640f170af693e00a6c91df543aa2b76}{ConnectionPhase::ESTABLISHED}})\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\doxymbox{\hyperlink{_utils_8h_a7f026776e12ac1b5e7736c24b756085d}{ANSI\_RED}}\ \textcolor{stringliteral}{"{}[SockClient]\ Attempting\ to\ send\ packet\ before\ a\ connection\ was\ made\ \(\backslash\)n"{}}\ \doxymbox{\hyperlink{_utils_8h_af77a445894f2f750d43cf2182cd29e55}{ANSI\_RESET}});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ std::vector<char>\ buffer;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ buffer.reserve(\textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{struct_packet_header}{PacketHeader}})\ +\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_packet_header}{PacketHeader}}\ header;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ header.\doxymbox{\hyperlink{struct_packet_header_a526f239021c9d07360790bea5c78eff1}{type}}\ =\ type;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ header.\doxymbox{\hyperlink{struct_packet_header_aa747edd40ccc3df1c4ce84ea9c815af5}{payloadSize}}\ =\ \textcolor{keyword}{sizeof}(T);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ headerPtr\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}\ *\textcolor{keyword}{>}(\&header);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ buffer.insert(buffer.end(),\ headerPtr,\ headerPtr\ +\ \textcolor{keyword}{sizeof}(header));}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ dataPtr\ =\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}\ *\textcolor{keyword}{>}(\&data);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ buffer.insert(buffer.end(),\ dataPtr,\ dataPtr\ +\ \textcolor{keyword}{sizeof}(T));}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ totalSent\ =\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bytesLeft\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(buffer.size());}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (totalSent\ <\ buffer.size())\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ sent\ =\ send(\doxymbox{\hyperlink{class_network_manager_a964aee0738d03efa84506b6af5fb0beb}{clientSocket}},\ buffer.data()\ +\ totalSent,\ bytesLeft,\ 0);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sent\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Error\ handling\ (connection\ lost?)}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\doxymbox{\hyperlink{_utils_8h_a7f026776e12ac1b5e7736c24b756085d}{ANSI\_RED}}\ \textcolor{stringliteral}{"{}[SockClient]\ Error\ sending\ data!\(\backslash\)n"{}}\ \doxymbox{\hyperlink{_utils_8h_af77a445894f2f750d43cf2182cd29e55}{ANSI\_RESET}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ totalSent\ +=\ sent;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ bytesLeft\ -\/=\ sent;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_NETWORKMANAGER\_H}}
+
+\end{DoxyCode}

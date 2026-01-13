@@ -1,0 +1,148 @@
+\doxysection{Rolling\+Average Class Reference}
+\hypertarget{class_rolling_average}{}\label{class_rolling_average}\index{RollingAverage@{RollingAverage}}
+
+
+Interface for calculating moving statistics over a stream of values. ~\newline
+ Primarily used for performance telemetry, such as server tick rates over a specific window of time.  
+
+
+
+
+{\ttfamily \+\#include $<$Rolling\+Average.\+h$>$}
+
+
+
+Inheritance diagram for Rolling\+Average:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{class_rolling_average__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Rolling\+Average:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{class_rolling_average__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_rolling_average_a3f2fd5ec0d9f01197d0e9a60e714ef8a}{Rolling\+Average}} ()=default
+\item 
+virtual \doxymbox{\hyperlink{class_rolling_average_a6571400f4cc51876b9644b417789009a}{\texorpdfstring{$\sim$}{\string~}\+Rolling\+Average}} ()=default
+\item 
+virtual double \doxymbox{\hyperlink{class_rolling_average_af9008393f7b0be3d49bbe3c5cd7632e3}{average}} ()=0
+\begin{DoxyCompactList}\small\item\em Calculates the mean of the values currently in the rolling window. \end{DoxyCompactList}\item 
+virtual double \doxymbox{\hyperlink{class_rolling_average_a22c58ca0a933af40651f07f2907bd2ca}{min}} ()=0
+\begin{DoxyCompactList}\small\item\em Retrieves the smallest value currently in the rolling window. \end{DoxyCompactList}\item 
+virtual double \doxymbox{\hyperlink{class_rolling_average_a1ac35d02a06b3596300d6d31681b1ec0}{max}} ()=0
+\begin{DoxyCompactList}\small\item\em Retrieves the largest value currently in the rolling window. \end{DoxyCompactList}\item 
+virtual \doxymbox{\hyperlink{struct_packaged_values}{Packaged\+Values}} \doxymbox{\hyperlink{class_rolling_average_aac9fd4231fdf90cbac081ee3d009cda8}{get\+Packaged\+Values}} ()=0
+\begin{DoxyCompactList}\small\item\em Retrieves all statistical metrics in a single structure. ~\newline
+ This is preferred over calling average/\+min/\+max individually if you need to display all of them (e.\+g., in a debug overlay), as it ensures the values come from the exact same calculation state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for calculating moving statistics over a stream of values. ~\newline
+ Primarily used for performance telemetry, such as server tick rates over a specific window of time. 
+
+\label{doc-constructors}
+\Hypertarget{class_rolling_average_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_rolling_average_a3f2fd5ec0d9f01197d0e9a60e714ef8a}\index{RollingAverage@{RollingAverage}!RollingAverage@{RollingAverage}}
+\index{RollingAverage@{RollingAverage}!RollingAverage@{RollingAverage}}
+\doxysubsubsection{\texorpdfstring{RollingAverage()}{RollingAverage()}}
+{\footnotesize\ttfamily \label{class_rolling_average_a3f2fd5ec0d9f01197d0e9a60e714ef8a} 
+Rolling\+Average::\+\+Rolling\+Average (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{class_rolling_average_a6571400f4cc51876b9644b417789009a}\index{RollingAverage@{RollingAverage}!````~RollingAverage@{\texorpdfstring{$\sim$}{\string~}RollingAverage}}
+\index{````~RollingAverage@{\texorpdfstring{$\sim$}{\string~}RollingAverage}!RollingAverage@{RollingAverage}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}RollingAverage()}{\string~RollingAverage()}}
+{\footnotesize\ttfamily \label{class_rolling_average_a6571400f4cc51876b9644b417789009a} 
+virtual Rolling\+Average::\+\texorpdfstring{$\sim$}{\string~}\+Rolling\+Average (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_rolling_average_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_rolling_average_af9008393f7b0be3d49bbe3c5cd7632e3}\index{RollingAverage@{RollingAverage}!average@{average}}
+\index{average@{average}!RollingAverage@{RollingAverage}}
+\doxysubsubsection{\texorpdfstring{average()}{average()}}
+{\footnotesize\ttfamily \label{class_rolling_average_af9008393f7b0be3d49bbe3c5cd7632e3} 
+virtual double Rolling\+Average::\+average (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Calculates the mean of the values currently in the rolling window. 
+
+\begin{DoxyReturn}{Returns}
+The average value. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_long_long_rolling_average_a9543c066eb5641e18efa7f5b03c83f89}{Long\+Long\+Rolling\+Average}}.
+
+\Hypertarget{class_rolling_average_aac9fd4231fdf90cbac081ee3d009cda8}\index{RollingAverage@{RollingAverage}!getPackagedValues@{getPackagedValues}}
+\index{getPackagedValues@{getPackagedValues}!RollingAverage@{RollingAverage}}
+\doxysubsubsection{\texorpdfstring{getPackagedValues()}{getPackagedValues()}}
+{\footnotesize\ttfamily \label{class_rolling_average_aac9fd4231fdf90cbac081ee3d009cda8} 
+virtual \doxymbox{\hyperlink{struct_packaged_values}{Packaged\+Values}} Rolling\+Average::\+get\+Packaged\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves all statistical metrics in a single structure. ~\newline
+ This is preferred over calling average/\+min/\+max individually if you need to display all of them (e.\+g., in a debug overlay), as it ensures the values come from the exact same calculation state. 
+
+\begin{DoxyReturn}{Returns}
+A \doxylink{struct_packaged_values}{Packaged\+Values} struct containing average, min, and max. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_long_long_rolling_average_a44cb6aa408a7a58e93f3b7c2ed4dc59e}{Long\+Long\+Rolling\+Average}}.
+
+\Hypertarget{class_rolling_average_a1ac35d02a06b3596300d6d31681b1ec0}\index{RollingAverage@{RollingAverage}!max@{max}}
+\index{max@{max}!RollingAverage@{RollingAverage}}
+\doxysubsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily \label{class_rolling_average_a1ac35d02a06b3596300d6d31681b1ec0} 
+virtual double Rolling\+Average::\+max (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves the largest value currently in the rolling window. 
+
+\begin{DoxyReturn}{Returns}
+The maximum value. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_long_long_rolling_average_add20bb7c37cf2f38d8f96009c791e4d3}{Long\+Long\+Rolling\+Average}}.
+
+\Hypertarget{class_rolling_average_a22c58ca0a933af40651f07f2907bd2ca}\index{RollingAverage@{RollingAverage}!min@{min}}
+\index{min@{min}!RollingAverage@{RollingAverage}}
+\doxysubsubsection{\texorpdfstring{min()}{min()}}
+{\footnotesize\ttfamily \label{class_rolling_average_a22c58ca0a933af40651f07f2907bd2ca} 
+virtual double Rolling\+Average::\+min (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Retrieves the smallest value currently in the rolling window. 
+
+\begin{DoxyReturn}{Returns}
+The minimum value. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_long_long_rolling_average_aa17f87cc248234d798a37cfba811da2f}{Long\+Long\+Rolling\+Average}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_rolling_average_8h}{Rolling\+Average.\+h}}\end{DoxyCompactItemize}

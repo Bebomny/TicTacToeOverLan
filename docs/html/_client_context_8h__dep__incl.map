@@ -1,0 +1,18 @@
+<map id="D:/.ClionProjects/TicTacToeOverLan/src/server/ClientContext.h" name="D:/.ClionProjects/TicTacToeOverLan/src/server/ClientContext.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="289,5,454,64"/>
+<area shape="rect" id="Node000002" href="$_internal_game_server_8h.html" title=" " alt="" coords="196,112,360,171"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="338,74,306,113,302,110,334,77"/>
+<area shape="rect" id="Node000007" href="$_server_utils_8h.html" title=" " alt="" coords="384,112,548,171"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="408,73,443,112,438,112,407,78"/>
+<area shape="rect" id="Node000003" href="$_game_client_8h.html" title=" " alt="" coords="101,219,266,277"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="244,180,211,220,207,216,240,184"/>
+<area shape="rect" id="Node000006" href="$_internal_game_server_8cpp.html" title=" " alt="" coords="290,219,456,277"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="315,180,350,218,344,218,314,185"/>
+<area shape="rect" id="Node000004" href="$_game_client_8cpp.html" title=" " alt="" coords="5,325,170,384"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="149,287,115,327,112,323,145,290"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title=" " alt="" coords="194,333,365,376"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="221,286,264,333,258,333,219,291"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="433,181,400,220,397,216,428,184"/>
+<area shape="rect" id="Node000008" href="$_server_utils_8cpp.html" title=" " alt="" coords="480,219,644,277"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="503,180,539,219,533,218,502,185"/>
+</map>

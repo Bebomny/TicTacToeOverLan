@@ -1,0 +1,49 @@
+\doxysection{Widget.\+h}
+\hypertarget{_widget_8h_source}{}\label{_widget_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/client/ui/Widget.h@{D:/.ClionProjects/TicTacToeOverLan/src/client/ui/Widget.h}}
+\doxymbox{\hyperlink{_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_WIDGET\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_WIDGET\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics/Font.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SFML/System/Time.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}SFML/Window/Event.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics/RenderTarget.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_widget}{Widget}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00023\ \ \ \ \ std::function<bool()>\ \doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{displayCondition}}\ =\ []()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{class_widget_abe38c3c1fbcde4c705d76d58208ceb52}{\string~Widget}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_widget_aade03402cf9678d5f2f6d2fb02850885}{setDisplayCondition}}(std::function<\textcolor{keywordtype}{bool}()>\ \doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{displayCondition}})\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ this-\/>displayCondition\ =\ std::move(\doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{displayCondition}});}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_widget_a38c6fe545c885f085b7b6c2b6c290fa3}{setActive}}(\textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}})\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ this-\/>active\ =\ \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_widget_ae469bb315299916388d717225e71a802}{isVisible}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{displayCondition}}();}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_widget_a7931ceac649bdfe14a7819f771531b95}{isActive}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ active;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_widget_aadedf1bf6c2dbdf60753cf7e5e768bfa}{handleEvent}}(\textcolor{keyword}{const}\ std::optional<sf::Event>\ \&event,\ \textcolor{keyword}{const}\ sf::Vector2i\ \&mousePos)\ =\ 0;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_widget_a18807db1612548045621573c78f7fb3f}{update}}(sf::Time\ deltaTime,\ \textcolor{keyword}{const}\ sf::Vector2i\ \&mousePos)\ =\ 0;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_widget_a244c52beba9da911ace79ed14291e72d}{render}}(sf::RenderTarget\ \&window)\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_WIDGET\_H}}
+
+\end{DoxyCode}

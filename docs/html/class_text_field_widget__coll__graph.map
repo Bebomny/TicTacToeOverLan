@@ -1,0 +1,5 @@
+<map id="TextFieldWidget" name="TextFieldWidget">
+<area shape="rect" id="Node000001" title="A Widget allowing user text input. Handles focus states (clicking to activate), keyboard events (typi..." alt="" coords="16,293,144,832"/>
+<area shape="rect" id="Node000002" href="$class_widget.html" title="Abstract base class representing a UI element." alt="" coords="5,5,154,245"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,257,82,294,77,293,80,263"/>
+</map>

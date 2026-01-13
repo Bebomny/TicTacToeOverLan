@@ -1,0 +1,5 @@
+<map id="GameClient::stopInternalServerThread" name="GameClient::stopInternalServerThread">
+<area shape="rect" id="Node000001" title="Signals the internal server to stop." alt="" coords="5,5,172,48"/>
+<area shape="rect" id="Node000002" href="$class_widget.html#a38c6fe545c885f085b7b6c2b6c290fa3" title="Manually sets the active state of the widget." alt="" coords="220,13,345,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,24,207,26,201,27,172,29"/>
+</map>

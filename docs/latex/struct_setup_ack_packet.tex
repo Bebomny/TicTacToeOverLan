@@ -1,0 +1,111 @@
+\doxysection{Setup\+Ack\+Packet Struct Reference}
+\hypertarget{struct_setup_ack_packet}{}\label{struct_setup_ack_packet}\index{SetupAckPacket@{SetupAckPacket}}
+
+
+Login acknowledgement. ~\newline
+ Contains the "{}\+Snapshot"{} of the current lobby state so the new client catches up.  
+
+
+
+
+{\ttfamily \+\#include $<$Network\+Protocol.\+h$>$}
+
+
+
+Collaboration diagram for Setup\+Ack\+Packet:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{struct_setup_ack_packet__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int32\+\_\+t \doxymbox{\hyperlink{struct_setup_ack_packet_a4d99eccbb8c369c53a966ffcd9216d8c}{generated\+Auth\+Token}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_setup_ack_packet_a76135151f596ba5cbce78a4ff0e701f1}{player\+Id}}
+\item 
+char \doxymbox{\hyperlink{struct_setup_ack_packet_a3ca65911c4556528daf2f8fdba5b6125}{player\+Name}} \+[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}}]\+
+\item 
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} \doxymbox{\hyperlink{struct_setup_ack_packet_a0d04c63584ca39ac74fec8f70a5864ba}{piece\+Type}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_setup_ack_packet_ae8dca0d38c292a71e72a1549f15fe11b}{board\+Size}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_setup_ack_packet_af433bba9edb2be3709ad1e3374192446}{win\+Condition\+Length}}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{struct_setup_ack_packet_ad3fd3f385684ffe5904bc1ac20da8925}{round}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_setup_ack_packet_aeba717aa24ef01021a27edcc8c7260f1}{player\+Count}}
+\item 
+\doxymbox{\hyperlink{struct_player}{Player}} \doxymbox{\hyperlink{struct_setup_ack_packet_a49b3432674e52b39f78e719580747019}{players}} \+[\doxymbox{\hyperlink{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}{MAX\+\_\+\+PLAYERS}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Login acknowledgement. ~\newline
+ Contains the "{}\+Snapshot"{} of the current lobby state so the new client catches up. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_setup_ack_packet_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_setup_ack_packet_ae8dca0d38c292a71e72a1549f15fe11b}\index{SetupAckPacket@{SetupAckPacket}!boardSize@{boardSize}}
+\index{boardSize@{boardSize}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{boardSize}{boardSize}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_ae8dca0d38c292a71e72a1549f15fe11b} 
+uint8\+\_\+t Setup\+Ack\+Packet::\+board\+Size}
+
+\Hypertarget{struct_setup_ack_packet_a4d99eccbb8c369c53a966ffcd9216d8c}\index{SetupAckPacket@{SetupAckPacket}!generatedAuthToken@{generatedAuthToken}}
+\index{generatedAuthToken@{generatedAuthToken}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{generatedAuthToken}{generatedAuthToken}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_a4d99eccbb8c369c53a966ffcd9216d8c} 
+int32\+\_\+t Setup\+Ack\+Packet::\+generated\+Auth\+Token}
+
+\Hypertarget{struct_setup_ack_packet_a0d04c63584ca39ac74fec8f70a5864ba}\index{SetupAckPacket@{SetupAckPacket}!pieceType@{pieceType}}
+\index{pieceType@{pieceType}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{pieceType}{pieceType}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_a0d04c63584ca39ac74fec8f70a5864ba} 
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} Setup\+Ack\+Packet::\+piece\+Type}
+
+\Hypertarget{struct_setup_ack_packet_aeba717aa24ef01021a27edcc8c7260f1}\index{SetupAckPacket@{SetupAckPacket}!playerCount@{playerCount}}
+\index{playerCount@{playerCount}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{playerCount}{playerCount}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_aeba717aa24ef01021a27edcc8c7260f1} 
+uint8\+\_\+t Setup\+Ack\+Packet::\+player\+Count}
+
+\Hypertarget{struct_setup_ack_packet_a76135151f596ba5cbce78a4ff0e701f1}\index{SetupAckPacket@{SetupAckPacket}!playerId@{playerId}}
+\index{playerId@{playerId}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{playerId}{playerId}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_a76135151f596ba5cbce78a4ff0e701f1} 
+uint8\+\_\+t Setup\+Ack\+Packet::\+player\+Id}
+
+\Hypertarget{struct_setup_ack_packet_a3ca65911c4556528daf2f8fdba5b6125}\index{SetupAckPacket@{SetupAckPacket}!playerName@{playerName}}
+\index{playerName@{playerName}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{playerName}{playerName}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_a3ca65911c4556528daf2f8fdba5b6125} 
+char Setup\+Ack\+Packet::\+player\+Name\+[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}}]\+}
+
+\Hypertarget{struct_setup_ack_packet_a49b3432674e52b39f78e719580747019}\index{SetupAckPacket@{SetupAckPacket}!players@{players}}
+\index{players@{players}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{players}{players}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_a49b3432674e52b39f78e719580747019} 
+\doxymbox{\hyperlink{struct_player}{Player}} Setup\+Ack\+Packet::\+players\+[\doxymbox{\hyperlink{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}{MAX\+\_\+\+PLAYERS}}]\+}
+
+\Hypertarget{struct_setup_ack_packet_ad3fd3f385684ffe5904bc1ac20da8925}\index{SetupAckPacket@{SetupAckPacket}!round@{round}}
+\index{round@{round}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{round}{round}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_ad3fd3f385684ffe5904bc1ac20da8925} 
+uint16\+\_\+t Setup\+Ack\+Packet::\+round}
+
+\Hypertarget{struct_setup_ack_packet_af433bba9edb2be3709ad1e3374192446}\index{SetupAckPacket@{SetupAckPacket}!winConditionLength@{winConditionLength}}
+\index{winConditionLength@{winConditionLength}!SetupAckPacket@{SetupAckPacket}}
+\doxysubsubsection{\texorpdfstring{winConditionLength}{winConditionLength}}
+{\footnotesize\ttfamily \label{struct_setup_ack_packet_af433bba9edb2be3709ad1e3374192446} 
+uint8\+\_\+t Setup\+Ack\+Packet::\+win\+Condition\+Length}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_network_protocol_8h}{Network\+Protocol.\+h}}\end{DoxyCompactItemize}

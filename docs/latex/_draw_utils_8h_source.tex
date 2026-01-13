@@ -1,0 +1,41 @@
+\doxysection{Draw\+Utils.\+h}
+\hypertarget{_draw_utils_8h_source}{}\label{_draw_utils_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/client/ui/DrawUtils.h@{D:/.ClionProjects/TicTacToeOverLan/src/client/ui/DrawUtils.h}}
+\doxymbox{\hyperlink{_draw_utils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_DRAWUTILS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_DRAWUTILS\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics/Text.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_draw_utils}{DrawUtils}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_draw_utils_ac9186c17af01695c7b36f840430041ae}{centerText}}(sf::Text\ \&text)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::FloatRect\ bounds\ =\ text.getLocalBounds();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ text.setOrigin(\{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ std::floor(bounds.position.x\ +\ bounds.size.x\ /\ 2.0f),}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ std::floor(bounds.position.y\ +\ bounds.size.y\ /\ 2.0f)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_draw_utils_a10210c1c596a2d693927015c392821ee}{centerTextVertically}}(sf::Text\ \&text)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::FloatRect\ bounds\ =\ text.getLocalBounds();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ text.setOrigin(\{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ bounds.position.x,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ std::floor(bounds.position.y\ +\ bounds.size.y\ /\ 2.0f)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_draw_utils_aac5f824cfce5638990daa9a4df669001}{centerTextHorizontally}}(sf::Text\ \&text)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::FloatRect\ bounds\ =\ text.getLocalBounds();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ text.setOrigin(\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ std::floor(bounds.position.x\ +\ bounds.size.x\ /\ 2.0f),}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ bounds.position.y}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_DRAWUTILS\_H}}
+
+\end{DoxyCode}

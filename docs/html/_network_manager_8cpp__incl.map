@@ -1,0 +1,25 @@
+<map id="D:/.ClionProjects/TicTacToeOverLan/src/client/NetworkManager.cpp" name="D:/.ClionProjects/TicTacToeOverLan/src/client/NetworkManager.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="134,5,298,64"/>
+<area shape="rect" id="Node000002" href="$_network_manager_8h.html" title=" " alt="" coords="151,112,282,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,62,219,97,214,95,215,67"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="11,261,64,288"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="149,139,69,160,35,173,14,188,9,202,9,217,22,248,17,249,4,218,4,201,10,185,32,169,67,155,152,135"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="445,261,532,288"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="282,129,342,136,404,147,458,163,478,173,492,185,499,199,502,216,499,248,495,245,497,216,494,201,488,188,475,178,456,168,403,153,341,142,283,134"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="174,187,258,213"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="217,137,219,172,214,170,215,142"/>
+<area shape="rect" id="Node000006" href="$_network_protocol_8h.html" title=" " alt="" coords="283,187,478,213"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="245,137,340,179,335,181,245,142"/>
+<area shape="rect" id="Node000010" href="$_utils_8h.html" title=" " alt="" coords="24,187,150,213"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="192,141,124,181,121,177,195,137"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="400,211,459,252,454,252,398,216"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="323,336,384,363"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="380,212,361,322,356,319,376,215"/>
+<area shape="rect" id="Node000008" href="$_game_definitions_8h.html" title=" " alt="" coords="148,261,343,288"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="359,213,284,256,282,251,354,215"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="265,286,325,327,319,327,264,291"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="217,336,274,363"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="247,287,248,322,243,319,244,290"/>
+<area shape="poly" id="edge13_Node000010_Node000003" title=" " alt="" coords="77,216,57,250,52,247,80,211"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="115,211,206,253,202,256,114,217"/>
+</map>

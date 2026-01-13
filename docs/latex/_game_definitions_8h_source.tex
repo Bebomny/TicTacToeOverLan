@@ -1,0 +1,74 @@
+\doxysection{Game\+Definitions.\+h}
+\hypertarget{_game_definitions_8h_source}{}\label{_game_definitions_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/common/GameDefinitions.h@{D:/.ClionProjects/TicTacToeOverLan/src/common/GameDefinitions.h}}
+\doxymbox{\hyperlink{_game_definitions_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_GAMEDEFINITIONS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_GAMEDEFINITIONS\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ uint8\_t\ \doxymbox{\hyperlink{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}{MAX\_BOARD\_SIZE}}\ =\ 32;}
+\DoxyCodeLine{00007\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ uint16\_t\ \doxymbox{\hyperlink{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}{TOTAL\_BOARD\_AREA}}\ =\ \doxymbox{\hyperlink{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}{MAX\_BOARD\_SIZE}}\ *\ \doxymbox{\hyperlink{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}{MAX\_BOARD\_SIZE}};}
+\DoxyCodeLine{00008\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ uint8\_t\ \doxymbox{\hyperlink{_game_definitions_8h_a3aad0162da800b63925f65598e9a4307}{MAX\_WIN\_CONDITION\_LENGTH}}\ =\ 32;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86aba2b45bdc11e2a4a6e86aab2ac693cbb}{EMPTY}},}
+\DoxyCodeLine{00015\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a04dd53a8e6c2306e9bbf944c1d6047f2}{CROSS}},}
+\DoxyCodeLine{00016\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a0af50777920c1401ab975cab64c4d491}{CIRCLE}},}
+\DoxyCodeLine{00017\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a9bcd89070cae224dce305f5011659ef4}{TRIANGLE}},}
+\DoxyCodeLine{00018\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a12dec4e1f7ec620651b2b95c440ffac0}{SQUARE}},}
+\DoxyCodeLine{00019\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a4a3681cf3ab3ef50d24e5878361e1c52}{OCTAGON}},}
+\DoxyCodeLine{00020\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a272511c716837072b7f4f41e421a0ca8}{HEXAGON}}}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4}{FinishReason}}\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4ab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{00028\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a448c74275ebcd910fd414bf3a204c37b}{PLAYER\_WIN}},}
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a255bc503d2051cea81c00fc3cb48e1f6}{PLAYER\_DISCONNECT}},}
+\DoxyCodeLine{00030\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a03570470bad94692ce93e32700d2e1cb}{OTHER}}}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_player}{Player}}\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ \doxymbox{\hyperlink{struct_player_a31529c9506b1a9f7dae7e679888ae8ca}{piece}};}
+\DoxyCodeLine{00039\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_player_a5462acebd60d1ff8f729d52eef592f49}{playerId}};}
+\DoxyCodeLine{00040\ \ \ \ \ uint32\_t\ \doxymbox{\hyperlink{struct_player_a8ba83a7818a0d2367c036cd140067e38}{wins}};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{char}\ \doxymbox{\hyperlink{struct_player_ab321f3321ff5472b8bcb9040f6fcc3f7}{playerName}}[32];}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_player_a635b14970053a6a2294b372d17a3ca04}{myTurn}};}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_player_a3bb953134e40ade490cdbdac6072bb7a}{isMe}};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_player_a4f42e287a959d7f62a3f659bfdbc804b}{isHost}};}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_board_square}{BoardSquare}}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ \doxymbox{\hyperlink{struct_board_square_aee2e066b2b14278fa718647cde3197f1}{piece}};}
+\DoxyCodeLine{00052\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_board_square_aa3cefc247d47f424b9c4ff5863c9d43e}{playerId}};}
+\DoxyCodeLine{00053\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_board_square_ac86fd605d7ef2d25712b4fe5a07cb6e1}{turnPlaced}};}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_move}{Move}}\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ \doxymbox{\hyperlink{struct_move_a47b211ddf919e66b20e3f7518f582961}{piece}};}
+\DoxyCodeLine{00062\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_move_addcc94a38d24388968613e594b5bf0d8}{playerId}};}
+\DoxyCodeLine{00063\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_move_a489bc89572eac0d1deddce7d2de21786}{turnPlaced}};}
+\DoxyCodeLine{00064\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_move_a8d44b07475bdd5e9e947095a0f183e60}{posX}};}
+\DoxyCodeLine{00065\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_move_aee562f5d41c5d948850883481c7a4e05}{posY}};}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_board_data}{BoardData}}\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ std::vector<std::vector<BoardSquare>\ >\ \doxymbox{\hyperlink{struct_board_data_a7ddf3aefe9c31a6762e3d7297a662ba2}{grid}};}
+\DoxyCodeLine{00074\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};}
+\DoxyCodeLine{00075\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_board_data_a41e86f195afbea5298006eee00fd1f5b}{winConditionLength}};}
+\DoxyCodeLine{00076\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_board_data_a46ee92da2e2ac733db4b4cc2dfc3b19b}{round}};}
+\DoxyCodeLine{00077\ \ \ \ \ uint16\_t\ \doxymbox{\hyperlink{struct_board_data_a67acf8f52808930e45ea1b137b276c06}{turn}};}
+\DoxyCodeLine{00078\ \ \ \ \ uint8\_t\ \doxymbox{\hyperlink{struct_board_data_a001cb3026fabe1d20e82e72c4867dff8}{actingPlayerId}};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00087\ \ \ \ \ \doxymbox{\hyperlink{struct_board_square}{BoardSquare}}\ \doxymbox{\hyperlink{struct_board_data_a6c04548422ccdd5b690a4128964eb503}{getSquareAt}}(\textcolor{keyword}{const}\ uint8\_t\ x,\ \textcolor{keyword}{const}\ uint8\_t\ y)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{struct_board_data_a7ddf3aefe9c31a6762e3d7297a662ba2}{grid}}.at(y).at(x);}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{struct_board_data_aa68d3cb10d68cbf530ca7f3d7e792482}{setSquareAt}}(\textcolor{keyword}{const}\ uint8\_t\ x,\ \textcolor{keyword}{const}\ uint8\_t\ y,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_board_square}{BoardSquare}}\ square)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_board_data_a7ddf3aefe9c31a6762e3d7297a662ba2}{grid}}.at(y).at(x)\ =\ std::move(square);}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_GAMEDEFINITIONS\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,7 @@
+<map id="ButtonBuilder::setSize" name="ButtonBuilder::setSize">
+<area shape="rect" id="Node000001" title="Sets the size (width and height) of the button." alt="" coords="432,5,583,32"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#a0ed542437a49af2a1257a22bc3be66a6" title="Initializes all UI widgets (Buttons, TextFields) via their Builders. &#160;&#160;Called in the constructor,..." alt="" coords="221,5,384,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="413,19,384,21,384,16,419,19"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#a22eefb77da4aadc789f9f6a39218f099" title=" " alt="" coords="5,5,173,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="202,19,173,21,173,16,208,19"/>
+</map>

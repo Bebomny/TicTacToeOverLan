@@ -1,0 +1,5 @@
+<map id="GameClient::startInternalServerThread" name="GameClient::startInternalServerThread">
+<area shape="rect" id="Node000001" title="Spins up the internal server instance in a separate thread. &#160;&#160;Called when the user chooses &quot;Host Game..." alt="" coords="5,5,173,48"/>
+<area shape="rect" id="Node000002" href="$class_widget.html#a38c6fe545c885f085b7b6c2b6c290fa3" title="Manually sets the active state of the widget." alt="" coords="221,13,346,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,24,208,26,203,27,173,29"/>
+</map>

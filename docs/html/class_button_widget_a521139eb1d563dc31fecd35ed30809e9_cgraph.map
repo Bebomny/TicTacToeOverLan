@@ -1,0 +1,5 @@
+<map id="ButtonWidget::render" name="ButtonWidget::render">
+<area shape="rect" id="Node000001" title="Renders the button to the target. Checks isVisible() before drawing. If false, nothing is drawn." alt="" coords="5,5,150,32"/>
+<area shape="rect" id="Node000002" href="$class_widget.html#ae469bb315299916388d717225e71a802" title="Checks if the widget should currently be visible." alt="" coords="198,5,317,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,16,185,19,179,19,150,21"/>
+</map>

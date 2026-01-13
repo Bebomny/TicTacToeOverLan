@@ -1,0 +1,5 @@
+<map id="ButtonBuilder::setColors" name="ButtonBuilder::setColors">
+<area shape="rect" id="Node000001" title="Configures the color palette for the button&#39;s different states." alt="" coords="5,5,169,32"/>
+<area shape="rect" id="Node000002" href="$class_button_builder.html#a8f70176157c5e66d2d0a4ee89107cfeb" title=" " alt="" coords="217,5,402,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,16,204,19,198,19,169,21"/>
+</map>

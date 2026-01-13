@@ -1,0 +1,9 @@
+<map id="InternalGameServer::getFirstAvailablePiece" name="InternalGameServer::getFirstAvailablePiece">
+<area shape="rect" id="Node000001" title="Retrieves and removes the next available piece type from the pool." alt="" coords="561,5,721,48"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,5,513,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="543,27,514,29,513,24,548,27"/>
+<area shape="rect" id="Node000003" href="$class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="358,27,329,29,328,24,363,27"/>
+<area shape="rect" id="Node000004" href="$class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
+</map>

@@ -1,0 +1,181 @@
+\doxysection{D:\+/\+.Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\+Game\+Definitions.h File Reference}
+\hypertarget{_game_definitions_8h}{}\label{_game_definitions_8h}\index{D:/.ClionProjects/TicTacToeOverLan/src/common/GameDefinitions.h@{D:/.ClionProjects/TicTacToeOverLan/src/common/GameDefinitions.h}}
+{\ttfamily \+\#include $<$cstdint$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+Include dependency graph for Game\+Definitions.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{_game_definitions_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_game_definitions_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_player}{Player}}
+\begin{DoxyCompactList}\small\item\em Represents a participant in the game. ~\newline
+ Contains identification, statistics, and local state flags. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_board_square}{Board\+Square}}
+\begin{DoxyCompactList}\small\item\em Represents the state of a single cell on the game board. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_move}{Move}}
+\begin{DoxyCompactList}\small\item\em Represents a discrete action taken by a player. ~\newline
+ Used for history tracking and network transmission. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_board_data}{Board\+Data}}
+\begin{DoxyCompactList}\small\item\em The core data model for the game board. ~\newline
+ Holds the grid state, rules (size/\+win condition), and turn counters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} :\+ uint8\+\_\+t \{ \newline
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86aba2b45bdc11e2a4a6e86aab2ac693cbb}{EMPTY}}
+, \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a04dd53a8e6c2306e9bbf944c1d6047f2}{CROSS}}
+, \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a0af50777920c1401ab975cab64c4d491}{CIRCLE}}
+, \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a9bcd89070cae224dce305f5011659ef4}{TRIANGLE}}
+, \newline
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a12dec4e1f7ec620651b2b95c440ffac0}{SQUARE}}
+, \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a4a3681cf3ab3ef50d24e5878361e1c52}{OCTAGON}}
+, \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a272511c716837072b7f4f41e421a0ca8}{HEXAGON}}
+ \}
+\begin{DoxyCompactList}\small\item\em The available Piece Types. Used from Top to Bottom, selected by the player number. \end{DoxyCompactList}\item 
+enum class \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4}{Finish\+Reason}} :\+ uint8\+\_\+t \{ \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4ab50339a10e1de285ac99d4c3990b8693}{NONE}}
+, \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a448c74275ebcd910fd414bf3a204c37b}{PLAYER\+\_\+\+WIN}}
+, \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a255bc503d2051cea81c00fc3cb48e1f6}{PLAYER\+\_\+\+DISCONNECT}}
+, \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a03570470bad94692ce93e32700d2e1cb}{OTHER}}
+ \}
+\begin{DoxyCompactList}\small\item\em Describes why the game session ended. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr uint8\+\_\+t \doxymbox{\hyperlink{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}{MAX\+\_\+\+BOARD\+\_\+\+SIZE}} = 32
+\item 
+static constexpr uint16\+\_\+t \doxymbox{\hyperlink{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}{TOTAL\+\_\+\+BOARD\+\_\+\+AREA}} = \doxymbox{\hyperlink{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}{MAX\+\_\+\+BOARD\+\_\+\+SIZE}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}{MAX\+\_\+\+BOARD\+\_\+\+SIZE}}
+\item 
+static constexpr uint8\+\_\+t \doxymbox{\hyperlink{_game_definitions_8h_a3aad0162da800b63925f65598e9a4307}{MAX\+\_\+\+WIN\+\_\+\+CONDITION\+\_\+\+LENGTH}} = 32
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{_game_definitions_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4}\index{GameDefinitions.h@{GameDefinitions.h}!FinishReason@{FinishReason}}
+\index{FinishReason@{FinishReason}!GameDefinitions.h@{GameDefinitions.h}}
+\doxysubsubsection{\texorpdfstring{FinishReason}{FinishReason}}
+{\footnotesize\ttfamily \label{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4} 
+enum class \doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4}{Finish\+Reason}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Describes why the game session ended. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!NONE@{NONE}}
+}\Hypertarget{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4ab50339a10e1de285ac99d4c3990b8693}\label{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4ab50339a10e1de285ac99d4c3990b8693} 
+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_WIN@{PLAYER\_WIN}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!PLAYER\_WIN@{PLAYER\_WIN}}
+}\Hypertarget{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a448c74275ebcd910fd414bf3a204c37b}\label{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a448c74275ebcd910fd414bf3a204c37b} 
+PLAYER\+\_\+\+WIN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_DISCONNECT@{PLAYER\_DISCONNECT}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!PLAYER\_DISCONNECT@{PLAYER\_DISCONNECT}}
+}\Hypertarget{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a255bc503d2051cea81c00fc3cb48e1f6}\label{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a255bc503d2051cea81c00fc3cb48e1f6} 
+PLAYER\+\_\+\+DISCONNECT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OTHER@{OTHER}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!OTHER@{OTHER}}
+}\Hypertarget{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a03570470bad94692ce93e32700d2e1cb}\label{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4a03570470bad94692ce93e32700d2e1cb} 
+OTHER&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}\index{GameDefinitions.h@{GameDefinitions.h}!PieceType@{PieceType}}
+\index{PieceType@{PieceType}!GameDefinitions.h@{GameDefinitions.h}}
+\doxysubsubsection{\texorpdfstring{PieceType}{PieceType}}
+{\footnotesize\ttfamily \label{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86} 
+enum class \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+The available Piece Types. Used from Top to Bottom, selected by the player number. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EMPTY@{EMPTY}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!EMPTY@{EMPTY}}
+}\Hypertarget{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86aba2b45bdc11e2a4a6e86aab2ac693cbb}\label{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86aba2b45bdc11e2a4a6e86aab2ac693cbb} 
+EMPTY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CROSS@{CROSS}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!CROSS@{CROSS}}
+}\Hypertarget{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a04dd53a8e6c2306e9bbf944c1d6047f2}\label{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a04dd53a8e6c2306e9bbf944c1d6047f2} 
+CROSS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CIRCLE@{CIRCLE}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!CIRCLE@{CIRCLE}}
+}\Hypertarget{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a0af50777920c1401ab975cab64c4d491}\label{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a0af50777920c1401ab975cab64c4d491} 
+CIRCLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRIANGLE@{TRIANGLE}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!TRIANGLE@{TRIANGLE}}
+}\Hypertarget{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a9bcd89070cae224dce305f5011659ef4}\label{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a9bcd89070cae224dce305f5011659ef4} 
+TRIANGLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SQUARE@{SQUARE}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!SQUARE@{SQUARE}}
+}\Hypertarget{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a12dec4e1f7ec620651b2b95c440ffac0}\label{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a12dec4e1f7ec620651b2b95c440ffac0} 
+SQUARE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OCTAGON@{OCTAGON}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!OCTAGON@{OCTAGON}}
+}\Hypertarget{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a4a3681cf3ab3ef50d24e5878361e1c52}\label{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a4a3681cf3ab3ef50d24e5878361e1c52} 
+OCTAGON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEXAGON@{HEXAGON}!GameDefinitions.h@{GameDefinitions.h}}
+\index{GameDefinitions.h@{GameDefinitions.h}!HEXAGON@{HEXAGON}}
+}\Hypertarget{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a272511c716837072b7f4f41e421a0ca8}\label{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a272511c716837072b7f4f41e421a0ca8} 
+HEXAGON&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-var-members}
+\Hypertarget{_game_definitions_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}\index{GameDefinitions.h@{GameDefinitions.h}!MAX\_BOARD\_SIZE@{MAX\_BOARD\_SIZE}}
+\index{MAX\_BOARD\_SIZE@{MAX\_BOARD\_SIZE}!GameDefinitions.h@{GameDefinitions.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_BOARD\_SIZE}{MAX\_BOARD\_SIZE}}
+{\footnotesize\ttfamily \label{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432} 
+uint8\+\_\+t MAX\+\_\+\+BOARD\+\_\+\+SIZE = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{_game_definitions_8h_a3aad0162da800b63925f65598e9a4307}\index{GameDefinitions.h@{GameDefinitions.h}!MAX\_WIN\_CONDITION\_LENGTH@{MAX\_WIN\_CONDITION\_LENGTH}}
+\index{MAX\_WIN\_CONDITION\_LENGTH@{MAX\_WIN\_CONDITION\_LENGTH}!GameDefinitions.h@{GameDefinitions.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_WIN\_CONDITION\_LENGTH}{MAX\_WIN\_CONDITION\_LENGTH}}
+{\footnotesize\ttfamily \label{_game_definitions_8h_a3aad0162da800b63925f65598e9a4307} 
+uint8\+\_\+t MAX\+\_\+\+WIN\+\_\+\+CONDITION\+\_\+\+LENGTH = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}\index{GameDefinitions.h@{GameDefinitions.h}!TOTAL\_BOARD\_AREA@{TOTAL\_BOARD\_AREA}}
+\index{TOTAL\_BOARD\_AREA@{TOTAL\_BOARD\_AREA}!GameDefinitions.h@{GameDefinitions.h}}
+\doxysubsubsection{\texorpdfstring{TOTAL\_BOARD\_AREA}{TOTAL\_BOARD\_AREA}}
+{\footnotesize\ttfamily \label{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9} 
+uint16\+\_\+t TOTAL\+\_\+\+BOARD\+\_\+\+AREA = \doxymbox{\hyperlink{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}{MAX\+\_\+\+BOARD\+\_\+\+SIZE}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_game_definitions_8h_a92fe4cd574f4c5a4b357cb48c5a68432}{MAX\+\_\+\+BOARD\+\_\+\+SIZE}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+

@@ -1,0 +1,888 @@
+\doxysection{Game\+Client Class Reference}
+\hypertarget{class_game_client}{}\label{class_game_client}\index{GameClient@{GameClient}}
+
+
+The main application controller. ~\newline
+ This class manages the entire lifecycle of the client application, including the main game loop (Input -\/\texorpdfstring{$>$}{>} Update -\/\texorpdfstring{$>$}{>} Render), window management, networking (client and internal host), and the UI widget registry.  
+
+
+
+
+{\ttfamily \+\#include $<$Game\+Client.\+h$>$}
+
+
+
+Collaboration diagram for Game\+Client:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_game_client__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game_client_a22eefb77da4aadc789f9f6a39218f099}{Game\+Client}} ()
+\item 
+\doxymbox{\hyperlink{class_game_client_abca673a8fcdb7d2ae8c0da02f91e4e64}{\texorpdfstring{$\sim$}{\string~}\+Game\+Client}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_client_a672542ed58818ae9ecd57eb5f00d15c4}{run}} ()
+\begin{DoxyCompactList}\small\item\em Main Application Loop. ~\newline
+ Contains the {\ttfamily while(window.\+is\+Open())} loop. ~\newline
+ Sequentially calls {\ttfamily \doxylink{class_game_client_a1002fba127d0627a3ad3dccb68f343f9}{handle\+Input()}}, {\ttfamily \doxylink{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1}{update()}}, and {\ttfamily \doxylink{class_game_client_a6707e6e3f99fa676180e6276fd7cd972}{render()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}{Setup\+Phase}} \doxymbox{\hyperlink{class_game_client_a2578817d242b1bb06e4be2585a7c080f}{setup\+Phase}} = \doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5a99c8ce56e7ab246445d3b134724428f3}{Setup\+Phase::\+\+DISCONNECTED}}
+\item 
+\doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71}{Game\+Phase}} \doxymbox{\hyperlink{class_game_client_aa279253afd5aa3c571e6805b1bc1986a}{game\+Phase}} = \doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a696b031073e74bf2cb98e5ef201d4aa3}{Game\+Phase::\+\+UNKNOWN}}
+\item 
+\doxymbox{\hyperlink{class_network_manager}{Network\+Manager}} \doxymbox{\hyperlink{class_game_client_aa7c9c4c7ae973e5a01d359fa78acb950}{network\+Manager}}
+\item 
+sf::\+\+Render\+Window \doxymbox{\hyperlink{class_game_client_af8e9cd24314edc039bf19050ba6dd286}{window}}
+\item 
+sf::\+\+Clock \doxymbox{\hyperlink{class_game_client_a6f1772bf3ce4470a6fb635f77892f050}{clock}}
+\item 
+sf::\+\+Font \doxymbox{\hyperlink{class_game_client_ae472b91cf508252769cb3440361e0149}{font}}
+\item 
+\doxymbox{\hyperlink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}{Client\+State}} \doxymbox{\hyperlink{class_game_client_a55cf89c018cabbdfc7339aa33d87ac36}{client\+State}}
+\item 
+std::\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_widget}{Widget}} $>$ $>$ \doxymbox{\hyperlink{class_game_client_a0fdcf3da730e98cbd19ca61640b6f834}{widgets}}
+\item 
+bool \doxymbox{\hyperlink{class_game_client_a6a78afc5ca235cb2bc924256502bee30}{debug\+Enabled}} = true
+\item 
+\doxymbox{\hyperlink{class_internal_game_server}{Internal\+Game\+Server}} \doxymbox{\hyperlink{class_game_client_a188824d66e2b42517bfc3d8aa09471bc}{server\+Logic}}
+\item 
+std::\+thread \doxymbox{\hyperlink{class_game_client_a2754b8a65209dd1f4cae9ccc4d3fff92}{server\+Thread}}
+\item 
+std::\+string \doxymbox{\hyperlink{class_game_client_a3ed69ffe2cb1bf5105f0553dfc1b878f}{user\+Input\+IP}}
+\item 
+std::\+string \doxymbox{\hyperlink{class_game_client_a7c8ee514c91940beb5c9bf7efdb0bc81}{server\+Address}}
+\item 
+std::\+string \doxymbox{\hyperlink{class_game_client_a99ebd7449d9a9d8e82571eb89157b4ab}{server\+Port}}
+\item 
+bool \doxymbox{\hyperlink{class_game_client_a5adb4077793242e789fa31ae1100809b}{hosting}} = false
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_game_client_a373c7b8dcc286573999957e146995c10}{player\+Id}}
+\item 
+std::\+string \doxymbox{\hyperlink{class_game_client_a6df2a1213af484e84041bc86a743e775}{player\+Name}}
+\item 
+int32\+\_\+t \doxymbox{\hyperlink{class_game_client_a1c9e005877ed159f93c9d509cc6610f7}{initial\+Token}}
+\item 
+int32\+\_\+t \doxymbox{\hyperlink{class_game_client_af53b89e5b66637739fcbcca5a301d96c}{auth\+Token}}
+\item 
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} \doxymbox{\hyperlink{class_game_client_a879f77d520470c14f7d6c44f6b8fbec6}{piece\+Type}}
+\item 
+\doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \doxymbox{\hyperlink{class_game_client_ac43f00301269617bfdcba044730c0151}{board\+Data}} \{\}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_game_client_a4bc11a277d579fbb0c0d423a7c7c91fa}{player\+Count}}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_player}{Player}} $>$ \doxymbox{\hyperlink{class_game_client_a821a323ce2e1d7e1ddbf99e148ad0803}{players}}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_move}{Move}} $>$ \doxymbox{\hyperlink{class_game_client_a180c88052b3569b15fec93a37572ef27}{moves}}
+\item 
+\doxymbox{\hyperlink{struct_move}{Move}} \doxymbox{\hyperlink{class_game_client_a3399e4cf66eb981b114919d3ba5bc3e7}{last\+Move}}
+\item 
+bool \doxymbox{\hyperlink{class_game_client_a70b0c5710d5a3af2487012dd9a52a7ce}{is\+My\+Turn}} = false
+\item 
+\doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4}{Finish\+Reason}} \doxymbox{\hyperlink{class_game_client_ae0ac32a7918a38e4a93e3b5dcd611b5a}{finish\+Reason}}
+\item 
+\doxymbox{\hyperlink{struct_player}{Player}} \doxymbox{\hyperlink{class_game_client_a81c5111261b6214e563c1fd43821965f}{game\+End\+Player}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr sf::\+\+Vector2f \doxymbox{\hyperlink{class_game_client_abad022665e205c74966fbe6e7cf092d7}{MAIN\+\_\+\+MENU\+\_\+\+POSITION}} \{36, 36\}
+\item 
+static constexpr sf::\+\+Vector2f \doxymbox{\hyperlink{class_game_client_a8257d05411e82a7b5bfd0114436b700e}{GAME\+\_\+\+ROOM\+\_\+\+POSITION}} \{36, 36\}
+\item 
+static constexpr int \doxymbox{\hyperlink{class_game_client_adb18d67df0085bead9e1f249630c6c00}{DEFAULT\+\_\+\+TEXT\+\_\+\+SIZE}} = 20
+\item 
+static constexpr int \doxymbox{\hyperlink{class_game_client_a4eb1f5378287321517d07581eb9e8d93}{DEFAULT\+\_\+\+WIDGET\+\_\+\+Y\+\_\+\+OFFSET}} \{\doxymbox{\hyperlink{class_game_client_adb18d67df0085bead9e1f249630c6c00}{DEFAULT\+\_\+\+TEXT\+\_\+\+SIZE}} + \doxymbox{\hyperlink{class_game_client_adb18d67df0085bead9e1f249630c6c00}{DEFAULT\+\_\+\+TEXT\+\_\+\+SIZE}} /\+ 2\}
+\item 
+static constexpr sf::\+\+Float\+Rect \doxymbox{\hyperlink{class_game_client_a1e967439ac7f50b49da566cd2c952309}{BOARD\+\_\+\+DRAW\+\_\+\+AREA}}
+\item 
+static constexpr sf::\+\+Float\+Rect \doxymbox{\hyperlink{class_game_client_a670ceb0f5ea45c0c2a9a8e05af67bfb2}{WIN\+\_\+\+TEXT\+\_\+\+DRAW\+\_\+\+AREA}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_game_client_a1002fba127d0627a3ad3dccb68f343f9}{handle\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Polls SFML events and delegates them to specific state handlers. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1}{update}} ()
+\begin{DoxyCompactList}\small\item\em Processes game logic (network packets, state transitions). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a6707e6e3f99fa676180e6276fd7cd972}{render}} ()
+\begin{DoxyCompactList}\small\item\em Clears the window and calls the appropriate render method for the current \doxylink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}{Client\+State}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a0ed542437a49af2a1257a22bc3be66a6}{init\+Widgets}} ()
+\begin{DoxyCompactList}\small\item\em Initializes all UI widgets (Buttons, Text\+Fields) via their Builders. ~\newline
+ Called in the constructor, before the main loop starts. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a58701454693e02c2a5a79773d9bcd5fc}{handle\+Menu\+Input}} (const std::\+optional$<$ sf::\+\+Event $>$ \&event, const sf::\+\+Vector2i \&mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Processes input when in the Main Menu. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a2695419dcc3f78ed346f4f666e1e60c5}{handle\+Game\+Room\+Input}} (const std::\+optional$<$ sf::\+\+Event $>$ \&event, const sf::\+\+Vector2i \&mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Processes input when in the Waiting Room. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4}{handle\+Game\+Input}} (const std::\+optional$<$ sf::\+\+Event $>$ \&event, const sf::\+\+Vector2i \&mouse\+Pos)
+\begin{DoxyCompactList}\small\item\em Processes input during active gameplay (Board clicks). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_ad5b49b36503c47beb1b3bb73a16b2859}{render\+Menu}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_client_abc5fbf39980e740820e141eeced44d30}{render\+Game\+Room}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_client_ac43af34d16f934ccf691a400f198d047}{render\+Game}} ()
+\item 
+void \doxymbox{\hyperlink{class_game_client_a6307255e5ee2ec7a662314d2bda4ff4e}{render\+Debug\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Overlays debug information (FPS, network stats, etc.) in a separate menu. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a4946acc9956541a62556e2387210269e}{start\+Internal\+Server\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em Spins up the internal server instance in a separate thread. ~\newline
+ Called when the user chooses "{}\+Host Game"{}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a2be0d0e513ac5ab73854c9772e554bec}{stop\+Internal\+Server\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em Signals the internal server to stop. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_aa0b571b488823b97da2778baf3bd6476}{connect\+And\+Setup}} ()
+\begin{DoxyCompactList}\small\item\em Initiates connection to the server (local or remote). ~\newline
+ Transitions \doxylink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}{Setup\+Phase} from DISCONNECTED to SETTING\+\_\+\+UP. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a13407d2e7e53e4fdae463705173cf4ad}{disconnect}} ()
+\begin{DoxyCompactList}\small\item\em Disconnects from the server and resets networking state. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a862ce486628be1fcb0dfc153c843ae5b}{request\+Board\+Settings\+Update}} (uint8\+\_\+t new\+Board\+Size, uint8\+\_\+t new\+Win\+Condition\+Length)
+\begin{DoxyCompactList}\small\item\em Sends a request to the server to change game rules (Waiting Room Phase). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a8351c3139c72a30cf243067c5949d69c}{start\+Game}} (bool new\+Game)
+\begin{DoxyCompactList}\small\item\em Sends a start request packet to the server. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a690f67706963732d7dbddd7144104e28}{send\+Move}} (uint8\+\_\+t posX, uint8\+\_\+t posY)
+\begin{DoxyCompactList}\small\item\em Transmits a move action to the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main application controller. ~\newline
+ This class manages the entire lifecycle of the client application, including the main game loop (Input -\/\texorpdfstring{$>$}{>} Update -\/\texorpdfstring{$>$}{>} Render), window management, networking (client and internal host), and the UI widget registry. 
+
+\label{doc-constructors}
+\Hypertarget{class_game_client_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_client_a22eefb77da4aadc789f9f6a39218f099}\index{GameClient@{GameClient}!GameClient@{GameClient}}
+\index{GameClient@{GameClient}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{GameClient()}{GameClient()}}
+{\footnotesize\ttfamily \label{class_game_client_a22eefb77da4aadc789f9f6a39218f099} 
+Game\+Client::\+\+Game\+Client (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a22eefb77da4aadc789f9f6a39218f099_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_abca673a8fcdb7d2ae8c0da02f91e4e64}\index{GameClient@{GameClient}!````~GameClient@{\texorpdfstring{$\sim$}{\string~}GameClient}}
+\index{````~GameClient@{\texorpdfstring{$\sim$}{\string~}GameClient}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GameClient()}{\string~GameClient()}}
+{\footnotesize\ttfamily \label{class_game_client_abca673a8fcdb7d2ae8c0da02f91e4e64} 
+Game\+Client::\+\texorpdfstring{$\sim$}{\string~}\+Game\+Client (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_abca673a8fcdb7d2ae8c0da02f91e4e64_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_game_client_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_client_aa0b571b488823b97da2778baf3bd6476}\index{GameClient@{GameClient}!connectAndSetup@{connectAndSetup}}
+\index{connectAndSetup@{connectAndSetup}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{connectAndSetup()}{connectAndSetup()}}
+{\footnotesize\ttfamily \label{class_game_client_aa0b571b488823b97da2778baf3bd6476} 
+void Game\+Client::\+connect\+And\+Setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initiates connection to the server (local or remote). ~\newline
+ Transitions \doxylink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}{Setup\+Phase} from DISCONNECTED to SETTING\+\_\+\+UP. 
+
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_aa0b571b488823b97da2778baf3bd6476_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a13407d2e7e53e4fdae463705173cf4ad}\index{GameClient@{GameClient}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily \label{class_game_client_a13407d2e7e53e4fdae463705173cf4ad} 
+void Game\+Client::\+disconnect (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Disconnects from the server and resets networking state. 
+
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a13407d2e7e53e4fdae463705173cf4ad_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4}\index{GameClient@{GameClient}!handleGameInput@{handleGameInput}}
+\index{handleGameInput@{handleGameInput}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleGameInput()}{handleGameInput()}}
+{\footnotesize\ttfamily \label{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4} 
+void Game\+Client::\+handle\+Game\+Input (\begin{DoxyParamCaption}\item[{const std::\+optional$<$ sf::\+\+Event $>$ \&}]{event}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes input during active gameplay (Board clicks). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The SFML event. \\
+\hline
+{\em mouse\+Pos} & Current mouse position. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a2695419dcc3f78ed346f4f666e1e60c5}\index{GameClient@{GameClient}!handleGameRoomInput@{handleGameRoomInput}}
+\index{handleGameRoomInput@{handleGameRoomInput}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleGameRoomInput()}{handleGameRoomInput()}}
+{\footnotesize\ttfamily \label{class_game_client_a2695419dcc3f78ed346f4f666e1e60c5} 
+void Game\+Client::\+handle\+Game\+Room\+Input (\begin{DoxyParamCaption}\item[{const std::\+optional$<$ sf::\+\+Event $>$ \&}]{event}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes input when in the Waiting Room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The SFML event. \\
+\hline
+{\em mouse\+Pos} & Current mouse position.\\
+\hline
+\end{DoxyParams}
+This function originally handled inputs for widgets too, but after unifying them, it\textquotesingle{}s a leftover. Left as is as, it may become useful later on Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a2695419dcc3f78ed346f4f666e1e60c5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a1002fba127d0627a3ad3dccb68f343f9}\index{GameClient@{GameClient}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_game_client_a1002fba127d0627a3ad3dccb68f343f9} 
+void Game\+Client::\+handle\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Polls SFML events and delegates them to specific state handlers. 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a1002fba127d0627a3ad3dccb68f343f9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a1002fba127d0627a3ad3dccb68f343f9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a58701454693e02c2a5a79773d9bcd5fc}\index{GameClient@{GameClient}!handleMenuInput@{handleMenuInput}}
+\index{handleMenuInput@{handleMenuInput}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleMenuInput()}{handleMenuInput()}}
+{\footnotesize\ttfamily \label{class_game_client_a58701454693e02c2a5a79773d9bcd5fc} 
+void Game\+Client::\+handle\+Menu\+Input (\begin{DoxyParamCaption}\item[{const std::\+optional$<$ sf::\+\+Event $>$ \&}]{event}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes input when in the Main Menu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The SFML event. \\
+\hline
+{\em mouse\+Pos} & Current mouse position.\\
+\hline
+\end{DoxyParams}
+This function originally handled inputs for widgets too, but after unifying them, it\textquotesingle{}s a leftover. Left as is, as it may become useful later on Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a58701454693e02c2a5a79773d9bcd5fc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a0ed542437a49af2a1257a22bc3be66a6}\index{GameClient@{GameClient}!initWidgets@{initWidgets}}
+\index{initWidgets@{initWidgets}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{initWidgets()}{initWidgets()}}
+{\footnotesize\ttfamily \label{class_game_client_a0ed542437a49af2a1257a22bc3be66a6} 
+void Game\+Client::\+init\+Widgets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes all UI widgets (Buttons, Text\+Fields) via their Builders. ~\newline
+ Called in the constructor, before the main loop starts. 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a0ed542437a49af2a1257a22bc3be66a6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a0ed542437a49af2a1257a22bc3be66a6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a6707e6e3f99fa676180e6276fd7cd972}\index{GameClient@{GameClient}!render@{render}}
+\index{render@{render}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_game_client_a6707e6e3f99fa676180e6276fd7cd972} 
+void Game\+Client::\+render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Clears the window and calls the appropriate render method for the current \doxylink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}{Client\+State}. 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a6707e6e3f99fa676180e6276fd7cd972_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a6707e6e3f99fa676180e6276fd7cd972_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a6307255e5ee2ec7a662314d2bda4ff4e}\index{GameClient@{GameClient}!renderDebugMenu@{renderDebugMenu}}
+\index{renderDebugMenu@{renderDebugMenu}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{renderDebugMenu()}{renderDebugMenu()}}
+{\footnotesize\ttfamily \label{class_game_client_a6307255e5ee2ec7a662314d2bda4ff4e} 
+void Game\+Client::\+render\+Debug\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Overlays debug information (FPS, network stats, etc.) in a separate menu. 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a6307255e5ee2ec7a662314d2bda4ff4e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a6307255e5ee2ec7a662314d2bda4ff4e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_ac43af34d16f934ccf691a400f198d047}\index{GameClient@{GameClient}!renderGame@{renderGame}}
+\index{renderGame@{renderGame}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{renderGame()}{renderGame()}}
+{\footnotesize\ttfamily \label{class_game_client_ac43af34d16f934ccf691a400f198d047} 
+void Game\+Client::\+render\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ac43af34d16f934ccf691a400f198d047_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ac43af34d16f934ccf691a400f198d047_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_abc5fbf39980e740820e141eeced44d30}\index{GameClient@{GameClient}!renderGameRoom@{renderGameRoom}}
+\index{renderGameRoom@{renderGameRoom}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{renderGameRoom()}{renderGameRoom()}}
+{\footnotesize\ttfamily \label{class_game_client_abc5fbf39980e740820e141eeced44d30} 
+void Game\+Client::\+render\+Game\+Room (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_abc5fbf39980e740820e141eeced44d30_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_abc5fbf39980e740820e141eeced44d30_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_ad5b49b36503c47beb1b3bb73a16b2859}\index{GameClient@{GameClient}!renderMenu@{renderMenu}}
+\index{renderMenu@{renderMenu}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{renderMenu()}{renderMenu()}}
+{\footnotesize\ttfamily \label{class_game_client_ad5b49b36503c47beb1b3bb73a16b2859} 
+void Game\+Client::\+render\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ad5b49b36503c47beb1b3bb73a16b2859_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a862ce486628be1fcb0dfc153c843ae5b}\index{GameClient@{GameClient}!requestBoardSettingsUpdate@{requestBoardSettingsUpdate}}
+\index{requestBoardSettingsUpdate@{requestBoardSettingsUpdate}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{requestBoardSettingsUpdate()}{requestBoardSettingsUpdate()}}
+{\footnotesize\ttfamily \label{class_game_client_a862ce486628be1fcb0dfc153c843ae5b} 
+void Game\+Client::\+request\+Board\+Settings\+Update (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{new\+Board\+Size}{, }\item[{uint8\+\_\+t}]{new\+Win\+Condition\+Length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sends a request to the server to change game rules (Waiting Room Phase). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Board\+Size} & The requested grid dimension. \\
+\hline
+{\em new\+Win\+Condition\+Length} & The number of tokens in a row needed to win. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a862ce486628be1fcb0dfc153c843ae5b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a672542ed58818ae9ecd57eb5f00d15c4}\index{GameClient@{GameClient}!run@{run}}
+\index{run@{run}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_game_client_a672542ed58818ae9ecd57eb5f00d15c4} 
+void Game\+Client::\+run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main Application Loop. ~\newline
+ Contains the {\ttfamily while(window.\+is\+Open())} loop. ~\newline
+ Sequentially calls {\ttfamily \doxylink{class_game_client_a1002fba127d0627a3ad3dccb68f343f9}{handle\+Input()}}, {\ttfamily \doxylink{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1}{update()}}, and {\ttfamily \doxylink{class_game_client_a6707e6e3f99fa676180e6276fd7cd972}{render()}}. 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a672542ed58818ae9ecd57eb5f00d15c4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{class_game_client_a672542ed58818ae9ecd57eb5f00d15c4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a690f67706963732d7dbddd7144104e28}\index{GameClient@{GameClient}!sendMove@{sendMove}}
+\index{sendMove@{sendMove}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{sendMove()}{sendMove()}}
+{\footnotesize\ttfamily \label{class_game_client_a690f67706963732d7dbddd7144104e28} 
+void Game\+Client::\+send\+Move (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{posX}{, }\item[{uint8\+\_\+t}]{posY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Transmits a move action to the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posX} & Grid X coordinate. \\
+\hline
+{\em posY} & Grid Y coordinate. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a690f67706963732d7dbddd7144104e28_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a8351c3139c72a30cf243067c5949d69c}\index{GameClient@{GameClient}!startGame@{startGame}}
+\index{startGame@{startGame}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{startGame()}{startGame()}}
+{\footnotesize\ttfamily \label{class_game_client_a8351c3139c72a30cf243067c5949d69c} 
+void Game\+Client::\+start\+Game (\begin{DoxyParamCaption}\item[{bool}]{new\+Game}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sends a start request packet to the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Game} & If true, resets player wins and data on the server. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a8351c3139c72a30cf243067c5949d69c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a4946acc9956541a62556e2387210269e}\index{GameClient@{GameClient}!startInternalServerThread@{startInternalServerThread}}
+\index{startInternalServerThread@{startInternalServerThread}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{startInternalServerThread()}{startInternalServerThread()}}
+{\footnotesize\ttfamily \label{class_game_client_a4946acc9956541a62556e2387210269e} 
+void Game\+Client::\+start\+Internal\+Server\+Thread (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Spins up the internal server instance in a separate thread. ~\newline
+ Called when the user chooses "{}\+Host Game"{}. 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{class_game_client_a4946acc9956541a62556e2387210269e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a4946acc9956541a62556e2387210269e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a2be0d0e513ac5ab73854c9772e554bec}\index{GameClient@{GameClient}!stopInternalServerThread@{stopInternalServerThread}}
+\index{stopInternalServerThread@{stopInternalServerThread}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{stopInternalServerThread()}{stopInternalServerThread()}}
+{\footnotesize\ttfamily \label{class_game_client_a2be0d0e513ac5ab73854c9772e554bec} 
+void Game\+Client::\+stop\+Internal\+Server\+Thread (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Signals the internal server to stop. 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{class_game_client_a2be0d0e513ac5ab73854c9772e554bec_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a2be0d0e513ac5ab73854c9772e554bec_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1}\index{GameClient@{GameClient}!update@{update}}
+\index{update@{update}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1} 
+void Game\+Client::\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes game logic (network packets, state transitions). 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_game_client_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_game_client_af53b89e5b66637739fcbcca5a301d96c}\index{GameClient@{GameClient}!authToken@{authToken}}
+\index{authToken@{authToken}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{authToken}{authToken}}
+{\footnotesize\ttfamily \label{class_game_client_af53b89e5b66637739fcbcca5a301d96c} 
+int32\+\_\+t Game\+Client::\+auth\+Token}
+
+\Hypertarget{class_game_client_a1e967439ac7f50b49da566cd2c952309}\index{GameClient@{GameClient}!BOARD\_DRAW\_AREA@{BOARD\_DRAW\_AREA}}
+\index{BOARD\_DRAW\_AREA@{BOARD\_DRAW\_AREA}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{BOARD\_DRAW\_AREA}{BOARD\_DRAW\_AREA}}
+{\footnotesize\ttfamily \label{class_game_client_a1e967439ac7f50b49da566cd2c952309} 
+sf::\+\+Float\+Rect Game\+Client::\+\+BOARD\+\_\+\+DRAW\+\_\+\+AREA\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \ \ \{300.0f,\ 60.0f\},}
+\DoxyCodeLine{\ \ \ \ \{500.0f,\ 500.0f\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_game_client_ac43f00301269617bfdcba044730c0151}\index{GameClient@{GameClient}!boardData@{boardData}}
+\index{boardData@{boardData}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{boardData}{boardData}}
+{\footnotesize\ttfamily \label{class_game_client_ac43f00301269617bfdcba044730c0151} 
+\doxymbox{\hyperlink{struct_board_data}{Board\+Data}} Game\+Client::\+board\+Data \{\}}
+
+\Hypertarget{class_game_client_a55cf89c018cabbdfc7339aa33d87ac36}\index{GameClient@{GameClient}!clientState@{clientState}}
+\index{clientState@{clientState}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{clientState}{clientState}}
+{\footnotesize\ttfamily \label{class_game_client_a55cf89c018cabbdfc7339aa33d87ac36} 
+\doxymbox{\hyperlink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}{Client\+State}} Game\+Client::\+client\+State}
+
+\Hypertarget{class_game_client_a6f1772bf3ce4470a6fb635f77892f050}\index{GameClient@{GameClient}!clock@{clock}}
+\index{clock@{clock}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{clock}{clock}}
+{\footnotesize\ttfamily \label{class_game_client_a6f1772bf3ce4470a6fb635f77892f050} 
+sf::\+\+Clock Game\+Client::\+clock}
+
+\Hypertarget{class_game_client_a6a78afc5ca235cb2bc924256502bee30}\index{GameClient@{GameClient}!debugEnabled@{debugEnabled}}
+\index{debugEnabled@{debugEnabled}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{debugEnabled}{debugEnabled}}
+{\footnotesize\ttfamily \label{class_game_client_a6a78afc5ca235cb2bc924256502bee30} 
+bool Game\+Client::\+debug\+Enabled = true}
+
+\Hypertarget{class_game_client_adb18d67df0085bead9e1f249630c6c00}\index{GameClient@{GameClient}!DEFAULT\_TEXT\_SIZE@{DEFAULT\_TEXT\_SIZE}}
+\index{DEFAULT\_TEXT\_SIZE@{DEFAULT\_TEXT\_SIZE}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_TEXT\_SIZE}{DEFAULT\_TEXT\_SIZE}}
+{\footnotesize\ttfamily \label{class_game_client_adb18d67df0085bead9e1f249630c6c00} 
+int Game\+Client::\+\+DEFAULT\+\_\+\+TEXT\+\_\+\+SIZE = 20\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{class_game_client_a4eb1f5378287321517d07581eb9e8d93}\index{GameClient@{GameClient}!DEFAULT\_WIDGET\_Y\_OFFSET@{DEFAULT\_WIDGET\_Y\_OFFSET}}
+\index{DEFAULT\_WIDGET\_Y\_OFFSET@{DEFAULT\_WIDGET\_Y\_OFFSET}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_WIDGET\_Y\_OFFSET}{DEFAULT\_WIDGET\_Y\_OFFSET}}
+{\footnotesize\ttfamily \label{class_game_client_a4eb1f5378287321517d07581eb9e8d93} 
+int Game\+Client::\+\+DEFAULT\+\_\+\+WIDGET\+\_\+\+Y\+\_\+\+OFFSET \{\doxymbox{\hyperlink{class_game_client_adb18d67df0085bead9e1f249630c6c00}{DEFAULT\+\_\+\+TEXT\+\_\+\+SIZE}} + \doxymbox{\hyperlink{class_game_client_adb18d67df0085bead9e1f249630c6c00}{DEFAULT\+\_\+\+TEXT\+\_\+\+SIZE}} /\+ 2\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{class_game_client_ae0ac32a7918a38e4a93e3b5dcd611b5a}\index{GameClient@{GameClient}!finishReason@{finishReason}}
+\index{finishReason@{finishReason}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{finishReason}{finishReason}}
+{\footnotesize\ttfamily \label{class_game_client_ae0ac32a7918a38e4a93e3b5dcd611b5a} 
+\doxymbox{\hyperlink{_game_definitions_8h_ac021016e89e9da6bca3c5c76479b5cf4}{Finish\+Reason}} Game\+Client::\+finish\+Reason}
+
+\Hypertarget{class_game_client_ae472b91cf508252769cb3440361e0149}\index{GameClient@{GameClient}!font@{font}}
+\index{font@{font}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{class_game_client_ae472b91cf508252769cb3440361e0149} 
+sf::\+\+Font Game\+Client::\+font}
+
+\Hypertarget{class_game_client_a8257d05411e82a7b5bfd0114436b700e}\index{GameClient@{GameClient}!GAME\_ROOM\_POSITION@{GAME\_ROOM\_POSITION}}
+\index{GAME\_ROOM\_POSITION@{GAME\_ROOM\_POSITION}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{GAME\_ROOM\_POSITION}{GAME\_ROOM\_POSITION}}
+{\footnotesize\ttfamily \label{class_game_client_a8257d05411e82a7b5bfd0114436b700e} 
+sf::\+\+Vector2f Game\+Client::\+\+GAME\+\_\+\+ROOM\+\_\+\+POSITION \{36, 36\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{class_game_client_a81c5111261b6214e563c1fd43821965f}\index{GameClient@{GameClient}!gameEndPlayer@{gameEndPlayer}}
+\index{gameEndPlayer@{gameEndPlayer}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{gameEndPlayer}{gameEndPlayer}}
+{\footnotesize\ttfamily \label{class_game_client_a81c5111261b6214e563c1fd43821965f} 
+\doxymbox{\hyperlink{struct_player}{Player}} Game\+Client::\+game\+End\+Player}
+
+\Hypertarget{class_game_client_aa279253afd5aa3c571e6805b1bc1986a}\index{GameClient@{GameClient}!gamePhase@{gamePhase}}
+\index{gamePhase@{gamePhase}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{gamePhase}{gamePhase}}
+{\footnotesize\ttfamily \label{class_game_client_aa279253afd5aa3c571e6805b1bc1986a} 
+\doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71}{Game\+Phase}} Game\+Client::\+game\+Phase = \doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a696b031073e74bf2cb98e5ef201d4aa3}{Game\+Phase::\+\+UNKNOWN}}}
+
+\Hypertarget{class_game_client_a5adb4077793242e789fa31ae1100809b}\index{GameClient@{GameClient}!hosting@{hosting}}
+\index{hosting@{hosting}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{hosting}{hosting}}
+{\footnotesize\ttfamily \label{class_game_client_a5adb4077793242e789fa31ae1100809b} 
+bool Game\+Client::\+hosting = false}
+
+\Hypertarget{class_game_client_a1c9e005877ed159f93c9d509cc6610f7}\index{GameClient@{GameClient}!initialToken@{initialToken}}
+\index{initialToken@{initialToken}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{initialToken}{initialToken}}
+{\footnotesize\ttfamily \label{class_game_client_a1c9e005877ed159f93c9d509cc6610f7} 
+int32\+\_\+t Game\+Client::\+initial\+Token}
+
+\Hypertarget{class_game_client_a70b0c5710d5a3af2487012dd9a52a7ce}\index{GameClient@{GameClient}!isMyTurn@{isMyTurn}}
+\index{isMyTurn@{isMyTurn}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{isMyTurn}{isMyTurn}}
+{\footnotesize\ttfamily \label{class_game_client_a70b0c5710d5a3af2487012dd9a52a7ce} 
+bool Game\+Client::\+is\+My\+Turn = false}
+
+\Hypertarget{class_game_client_a3399e4cf66eb981b114919d3ba5bc3e7}\index{GameClient@{GameClient}!lastMove@{lastMove}}
+\index{lastMove@{lastMove}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{lastMove}{lastMove}}
+{\footnotesize\ttfamily \label{class_game_client_a3399e4cf66eb981b114919d3ba5bc3e7} 
+\doxymbox{\hyperlink{struct_move}{Move}} Game\+Client::\+last\+Move}
+
+\Hypertarget{class_game_client_abad022665e205c74966fbe6e7cf092d7}\index{GameClient@{GameClient}!MAIN\_MENU\_POSITION@{MAIN\_MENU\_POSITION}}
+\index{MAIN\_MENU\_POSITION@{MAIN\_MENU\_POSITION}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{MAIN\_MENU\_POSITION}{MAIN\_MENU\_POSITION}}
+{\footnotesize\ttfamily \label{class_game_client_abad022665e205c74966fbe6e7cf092d7} 
+sf::\+\+Vector2f Game\+Client::\+\+MAIN\+\_\+\+MENU\+\_\+\+POSITION \{36, 36\}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{class_game_client_a180c88052b3569b15fec93a37572ef27}\index{GameClient@{GameClient}!moves@{moves}}
+\index{moves@{moves}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{moves}{moves}}
+{\footnotesize\ttfamily \label{class_game_client_a180c88052b3569b15fec93a37572ef27} 
+std::\+vector$<$\doxymbox{\hyperlink{struct_move}{Move}}$>$ Game\+Client::\+moves}
+
+\Hypertarget{class_game_client_aa7c9c4c7ae973e5a01d359fa78acb950}\index{GameClient@{GameClient}!networkManager@{networkManager}}
+\index{networkManager@{networkManager}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{networkManager}{networkManager}}
+{\footnotesize\ttfamily \label{class_game_client_aa7c9c4c7ae973e5a01d359fa78acb950} 
+\doxymbox{\hyperlink{class_network_manager}{Network\+Manager}} Game\+Client::\+network\+Manager}
+
+\Hypertarget{class_game_client_a879f77d520470c14f7d6c44f6b8fbec6}\index{GameClient@{GameClient}!pieceType@{pieceType}}
+\index{pieceType@{pieceType}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{pieceType}{pieceType}}
+{\footnotesize\ttfamily \label{class_game_client_a879f77d520470c14f7d6c44f6b8fbec6} 
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} Game\+Client::\+piece\+Type}
+
+\Hypertarget{class_game_client_a4bc11a277d579fbb0c0d423a7c7c91fa}\index{GameClient@{GameClient}!playerCount@{playerCount}}
+\index{playerCount@{playerCount}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{playerCount}{playerCount}}
+{\footnotesize\ttfamily \label{class_game_client_a4bc11a277d579fbb0c0d423a7c7c91fa} 
+uint8\+\_\+t Game\+Client::\+player\+Count}
+
+\Hypertarget{class_game_client_a373c7b8dcc286573999957e146995c10}\index{GameClient@{GameClient}!playerId@{playerId}}
+\index{playerId@{playerId}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{playerId}{playerId}}
+{\footnotesize\ttfamily \label{class_game_client_a373c7b8dcc286573999957e146995c10} 
+uint8\+\_\+t Game\+Client::\+player\+Id}
+
+\Hypertarget{class_game_client_a6df2a1213af484e84041bc86a743e775}\index{GameClient@{GameClient}!playerName@{playerName}}
+\index{playerName@{playerName}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{playerName}{playerName}}
+{\footnotesize\ttfamily \label{class_game_client_a6df2a1213af484e84041bc86a743e775} 
+std::\+string Game\+Client::\+player\+Name}
+
+\Hypertarget{class_game_client_a821a323ce2e1d7e1ddbf99e148ad0803}\index{GameClient@{GameClient}!players@{players}}
+\index{players@{players}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{players}{players}}
+{\footnotesize\ttfamily \label{class_game_client_a821a323ce2e1d7e1ddbf99e148ad0803} 
+std::\+vector$<$\doxymbox{\hyperlink{struct_player}{Player}}$>$ Game\+Client::\+players}
+
+\Hypertarget{class_game_client_a7c8ee514c91940beb5c9bf7efdb0bc81}\index{GameClient@{GameClient}!serverAddress@{serverAddress}}
+\index{serverAddress@{serverAddress}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{serverAddress}{serverAddress}}
+{\footnotesize\ttfamily \label{class_game_client_a7c8ee514c91940beb5c9bf7efdb0bc81} 
+std::\+string Game\+Client::\+server\+Address}
+
+\Hypertarget{class_game_client_a188824d66e2b42517bfc3d8aa09471bc}\index{GameClient@{GameClient}!serverLogic@{serverLogic}}
+\index{serverLogic@{serverLogic}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{serverLogic}{serverLogic}}
+{\footnotesize\ttfamily \label{class_game_client_a188824d66e2b42517bfc3d8aa09471bc} 
+\doxymbox{\hyperlink{class_internal_game_server}{Internal\+Game\+Server}} Game\+Client::\+server\+Logic}
+
+\Hypertarget{class_game_client_a99ebd7449d9a9d8e82571eb89157b4ab}\index{GameClient@{GameClient}!serverPort@{serverPort}}
+\index{serverPort@{serverPort}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{serverPort}{serverPort}}
+{\footnotesize\ttfamily \label{class_game_client_a99ebd7449d9a9d8e82571eb89157b4ab} 
+std::\+string Game\+Client::\+server\+Port}
+
+\Hypertarget{class_game_client_a2754b8a65209dd1f4cae9ccc4d3fff92}\index{GameClient@{GameClient}!serverThread@{serverThread}}
+\index{serverThread@{serverThread}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{serverThread}{serverThread}}
+{\footnotesize\ttfamily \label{class_game_client_a2754b8a65209dd1f4cae9ccc4d3fff92} 
+std::\+thread Game\+Client::\+server\+Thread}
+
+\Hypertarget{class_game_client_a2578817d242b1bb06e4be2585a7c080f}\index{GameClient@{GameClient}!setupPhase@{setupPhase}}
+\index{setupPhase@{setupPhase}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{setupPhase}{setupPhase}}
+{\footnotesize\ttfamily \label{class_game_client_a2578817d242b1bb06e4be2585a7c080f} 
+\doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}{Setup\+Phase}} Game\+Client::\+setup\+Phase = \doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5a99c8ce56e7ab246445d3b134724428f3}{Setup\+Phase::\+\+DISCONNECTED}}}
+
+\Hypertarget{class_game_client_a3ed69ffe2cb1bf5105f0553dfc1b878f}\index{GameClient@{GameClient}!userInputIP@{userInputIP}}
+\index{userInputIP@{userInputIP}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{userInputIP}{userInputIP}}
+{\footnotesize\ttfamily \label{class_game_client_a3ed69ffe2cb1bf5105f0553dfc1b878f} 
+std::\+string Game\+Client::\+user\+Input\+IP}
+
+\Hypertarget{class_game_client_a0fdcf3da730e98cbd19ca61640b6f834}\index{GameClient@{GameClient}!widgets@{widgets}}
+\index{widgets@{widgets}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{widgets}{widgets}}
+{\footnotesize\ttfamily \label{class_game_client_a0fdcf3da730e98cbd19ca61640b6f834} 
+std::\+map$<$std::\+string, std::\+unique\+\_\+ptr$<$\doxymbox{\hyperlink{class_widget}{Widget}}$>$ $>$ Game\+Client::\+widgets}
+
+\Hypertarget{class_game_client_a670ceb0f5ea45c0c2a9a8e05af67bfb2}\index{GameClient@{GameClient}!WIN\_TEXT\_DRAW\_AREA@{WIN\_TEXT\_DRAW\_AREA}}
+\index{WIN\_TEXT\_DRAW\_AREA@{WIN\_TEXT\_DRAW\_AREA}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{WIN\_TEXT\_DRAW\_AREA}{WIN\_TEXT\_DRAW\_AREA}}
+{\footnotesize\ttfamily \label{class_game_client_a670ceb0f5ea45c0c2a9a8e05af67bfb2} 
+sf::\+\+Float\+Rect Game\+Client::\+\+WIN\+\_\+\+TEXT\+\_\+\+DRAW\+\_\+\+AREA\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \{}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_client_a1e967439ac7f50b49da566cd2c952309}{BOARD\_DRAW\_AREA}}.position.x\ -\/\ 50.0f,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_game_client_a1e967439ac7f50b49da566cd2c952309}{BOARD\_DRAW\_AREA}}.position.y\ +\ (\doxymbox{\hyperlink{class_game_client_a1e967439ac7f50b49da566cd2c952309}{BOARD\_DRAW\_AREA}}.size.y\ /\ 2.0f)\ -\/\ 150.0f}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \{600.0f,\ 300.0f\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_game_client_af8e9cd24314edc039bf19050ba6dd286}\index{GameClient@{GameClient}!window@{window}}
+\index{window@{window}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily \label{class_game_client_af8e9cd24314edc039bf19050ba6dd286} 
+sf::\+\+Render\+Window Game\+Client::\+window}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+\doxymbox{\hyperlink{_game_client_8h}{Game\+Client.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+\doxymbox{\hyperlink{_game_client_8cpp}{Game\+Client.\+cpp}}\end{DoxyCompactItemize}

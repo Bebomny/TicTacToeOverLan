@@ -1,0 +1,290 @@
+\doxysection{Button\+Widget Class Reference}
+\hypertarget{class_button_widget}{}\label{class_button_widget}\index{ButtonWidget@{ButtonWidget}}
+
+
+A \doxylink{class_widget}{Widget} implementation representing a clickable button. Handles visual states (Idle, Hover, Active, Inactive) and executes a callback when clicked. It is recommended to create instances via the \doxylink{class_button_builder}{Button\+Builder}.  
+
+
+
+
+{\ttfamily \+\#include $<$Button\+Widget.\+h$>$}
+
+
+
+Inheritance diagram for Button\+Widget:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{class_button_widget__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Button\+Widget:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{class_button_widget__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_button_widget_aa3d749c14596c8df7f0a5c5cdcd34081}{Button\+Widget}} (float x, float y, float width, float height, const std::\+string \&btn\+Text, int text\+Size, const sf::\+\+Font \&font, const std::\+function$<$ void()$>$ \&on\+Click\+Callback, const std::\+function$<$ bool()$>$ \&display\+Condition\+Callback, sf::\+\+Color \doxymbox{\hyperlink{class_button_widget_a6971f3ad67c1e516bb777842785df887}{idle\+Color}}, sf::\+\+Color \doxymbox{\hyperlink{class_button_widget_a832006e9980a549469d0c559a8596d4c}{hover\+Color}}, sf::\+\+Color \doxymbox{\hyperlink{class_button_widget_ae7c2eb887cae26181a83c9d7ced38160}{active\+Color}}, sf::\+\+Color \doxymbox{\hyperlink{class_button_widget_a386d872d3fbd9e737b67b1874c358d81}{inactive\+Color}})
+\begin{DoxyCompactList}\small\item\em Main Constructor. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_button_widget_adeff600d9380d3fe8adbfd954db4295b}{handle\+Event}} (const std::\+optional$<$ sf::\+\+Event $>$ \&event, const sf::\+\+Vector2i \&mouse\+Pos) override
+\begin{DoxyCompactList}\small\item\em Handles mouse events for the button. Detects if the mouse is hovering over the button or if a click occurred. Executes the on\+Click callback if a left-\/click is released within bounds. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_button_widget_a5c9f042b3f36edb07718a33515c3b71e}{update}} (sf::\+\+Time delta\+Time, const sf::\+\+Vector2i \&mouse\+Pos) override
+\begin{DoxyCompactList}\small\item\em Updates the visual state of the button. Changes the button color based on whether the mouse is hovering, or the widget is inactive. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_button_widget_a521139eb1d563dc31fecd35ed30809e9}{render}} (sf::\+\+Render\+Target \&window) const override
+\begin{DoxyCompactList}\small\item\em Renders the button to the target. Checks {\ttfamily \doxylink{class_widget_ae469bb315299916388d717225e71a802}{is\+Visible()}} before drawing. If false, nothing is drawn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_widget}{Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_widget_abe38c3c1fbcde4c705d76d58208ceb52}{\texorpdfstring{$\sim$}{\string~}\+Widget}} ()=default
+\item 
+void \doxymbox{\hyperlink{class_widget_aade03402cf9678d5f2f6d2fb02850885}{set\+Display\+Condition}} (std::\+function$<$ bool()$>$ \doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{display\+Condition}})
+\begin{DoxyCompactList}\small\item\em Sets a dynamic condition for the widget\textquotesingle{}s visibility. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_widget_a38c6fe545c885f085b7b6c2b6c290fa3}{set\+Active}} (bool \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}})
+\begin{DoxyCompactList}\small\item\em Manually sets the active state of the widget. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_ae469bb315299916388d717225e71a802}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the widget should currently be visible. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_a7931ceac649bdfe14a7819f771531b95}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the widget is currently active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \doxymbox{\hyperlink{class_button_widget_a2d42a2f9e1c33f5c726c827b5814cb05}{builder}} (std::\+string \doxymbox{\hyperlink{class_button_widget_ab05788838d1d704f2125cc6681d8b47b}{text}}, std::\+function$<$ void()$>$ \doxymbox{\hyperlink{class_button_widget_abd077155b4918f328792bf2463326916}{on\+Click}})
+\begin{DoxyCompactList}\small\item\em Static factory method to start the Builder chain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf::\+\+Text \doxymbox{\hyperlink{class_button_widget_ab05788838d1d704f2125cc6681d8b47b}{text}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf::\+\+Rectangle\+Shape \doxymbox{\hyperlink{class_button_widget_ab6126cb9a34c147bad3bda2a9d2d226b}{shape}}
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_button_widget_a6971f3ad67c1e516bb777842785df887}{idle\+Color}}
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_button_widget_a832006e9980a549469d0c559a8596d4c}{hover\+Color}}
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_button_widget_ae7c2eb887cae26181a83c9d7ced38160}{active\+Color}}
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_button_widget_a386d872d3fbd9e737b67b1874c358d81}{inactive\+Color}}
+\item 
+std::\+function$<$ void()$>$ \doxymbox{\hyperlink{class_button_widget_abd077155b4918f328792bf2463326916}{on\+Click}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_widget}{Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+std::\+function$<$ bool()$>$ \doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{display\+Condition}} = \+[$\,$]\+() \{ return true; \}
+\begin{DoxyCompactList}\small\item\em A predicate function determining if the widget should be visible. Defaults to always returning true. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}} = true
+\begin{DoxyCompactList}\small\item\em Internal state indicating if the widget is currently active/\+interactable. Defaults to active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A \doxylink{class_widget}{Widget} implementation representing a clickable button. Handles visual states (Idle, Hover, Active, Inactive) and executes a callback when clicked. It is recommended to create instances via the \doxylink{class_button_builder}{Button\+Builder}. 
+
+\label{doc-constructors}
+\Hypertarget{class_button_widget_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_button_widget_aa3d749c14596c8df7f0a5c5cdcd34081}\index{ButtonWidget@{ButtonWidget}!ButtonWidget@{ButtonWidget}}
+\index{ButtonWidget@{ButtonWidget}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{ButtonWidget()}{ButtonWidget()}}
+{\footnotesize\ttfamily \label{class_button_widget_aa3d749c14596c8df7f0a5c5cdcd34081} 
+Button\+Widget::\+\+Button\+Widget (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{, }\item[{float}]{width}{, }\item[{float}]{height}{, }\item[{const std::\+string \&}]{btn\+Text}{, }\item[{int}]{text\+Size}{, }\item[{const sf::\+\+Font \&}]{font}{, }\item[{const std::\+function$<$ void()$>$ \&}]{on\+Click\+Callback}{, }\item[{const std::\+function$<$ bool()$>$ \&}]{display\+Condition\+Callback}{, }\item[{sf::\+\+Color}]{idle\+Color}{, }\item[{sf::\+\+Color}]{hover\+Color}{, }\item[{sf::\+\+Color}]{active\+Color}{, }\item[{sf::\+\+Color}]{inactive\+Color}{}\end{DoxyParamCaption})}
+
+
+
+Main Constructor. 
+
+Do not use! Use \doxylink{class_button_widget_a2d42a2f9e1c33f5c726c827b5814cb05}{Button\+Widget::\+builder()} instead. 
+
+Called internally by \doxylink{class_button_builder_a317a8fce237819524d6708cd38b497ec}{Button\+Builder::\+build()}. Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_widget_aa3d749c14596c8df7f0a5c5cdcd34081_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_button_widget_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_button_widget_a2d42a2f9e1c33f5c726c827b5814cb05}\index{ButtonWidget@{ButtonWidget}!builder@{builder}}
+\index{builder@{builder}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{builder()}{builder()}}
+{\footnotesize\ttfamily \label{class_button_widget_a2d42a2f9e1c33f5c726c827b5814cb05} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} Button\+Widget::\+builder (\begin{DoxyParamCaption}\item[{std::\+string}]{text}{, }\item[{std::\+function$<$ void()$>$}]{on\+Click}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Static factory method to start the Builder chain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The button label. \\
+\hline
+{\em on\+Click} & The callback function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A configured \doxylink{class_button_builder}{Button\+Builder} instance. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_widget_a2d42a2f9e1c33f5c726c827b5814cb05_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_widget_adeff600d9380d3fe8adbfd954db4295b}\index{ButtonWidget@{ButtonWidget}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily \label{class_button_widget_adeff600d9380d3fe8adbfd954db4295b} 
+bool Button\+Widget::\+handle\+Event (\begin{DoxyParamCaption}\item[{const std::\+optional$<$ sf::\+\+Event $>$ \&}]{event}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Handles mouse events for the button. Detects if the mouse is hovering over the button or if a click occurred. Executes the on\+Click callback if a left-\/click is released within bounds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The SFML event (checked for Mouse\+Button\+Released). \\
+\hline
+{\em mouse\+Pos} & The current mouse coordinates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the button was clicked or interacted with, consuming the event. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_widget_aadedf1bf6c2dbdf60753cf7e5e768bfa}{Widget}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{class_button_widget_adeff600d9380d3fe8adbfd954db4295b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_widget_a521139eb1d563dc31fecd35ed30809e9}\index{ButtonWidget@{ButtonWidget}!render@{render}}
+\index{render@{render}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_button_widget_a521139eb1d563dc31fecd35ed30809e9} 
+void Button\+Widget::\+render (\begin{DoxyParamCaption}\item[{sf::\+\+Render\+Target \&}]{window}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Renders the button to the target. Checks {\ttfamily \doxylink{class_widget_ae469bb315299916388d717225e71a802}{is\+Visible()}} before drawing. If false, nothing is drawn. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The render target. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \doxymbox{\hyperlink{class_widget_a244c52beba9da911ace79ed14291e72d}{Widget}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{class_button_widget_a521139eb1d563dc31fecd35ed30809e9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_widget_a5c9f042b3f36edb07718a33515c3b71e}\index{ButtonWidget@{ButtonWidget}!update@{update}}
+\index{update@{update}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_button_widget_a5c9f042b3f36edb07718a33515c3b71e} 
+void Button\+Widget::\+update (\begin{DoxyParamCaption}\item[{sf::\+\+Time}]{delta\+Time}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates the visual state of the button. Changes the button color based on whether the mouse is hovering, or the widget is inactive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & Time elapsed since last update. \\
+\hline
+{\em mouse\+Pos} & Current mouse position for hover detection. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \doxymbox{\hyperlink{class_widget_a18807db1612548045621573c78f7fb3f}{Widget}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{class_button_widget_a5c9f042b3f36edb07718a33515c3b71e_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_button_widget_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_button_widget_ae7c2eb887cae26181a83c9d7ced38160}\index{ButtonWidget@{ButtonWidget}!activeColor@{activeColor}}
+\index{activeColor@{activeColor}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{activeColor}{activeColor}}
+{\footnotesize\ttfamily \label{class_button_widget_ae7c2eb887cae26181a83c9d7ced38160} 
+sf::\+\+Color Button\+Widget::\+active\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_widget_a832006e9980a549469d0c559a8596d4c}\index{ButtonWidget@{ButtonWidget}!hoverColor@{hoverColor}}
+\index{hoverColor@{hoverColor}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{hoverColor}{hoverColor}}
+{\footnotesize\ttfamily \label{class_button_widget_a832006e9980a549469d0c559a8596d4c} 
+sf::\+\+Color Button\+Widget::\+hover\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_widget_a6971f3ad67c1e516bb777842785df887}\index{ButtonWidget@{ButtonWidget}!idleColor@{idleColor}}
+\index{idleColor@{idleColor}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{idleColor}{idleColor}}
+{\footnotesize\ttfamily \label{class_button_widget_a6971f3ad67c1e516bb777842785df887} 
+sf::\+\+Color Button\+Widget::\+idle\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_widget_a386d872d3fbd9e737b67b1874c358d81}\index{ButtonWidget@{ButtonWidget}!inactiveColor@{inactiveColor}}
+\index{inactiveColor@{inactiveColor}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{inactiveColor}{inactiveColor}}
+{\footnotesize\ttfamily \label{class_button_widget_a386d872d3fbd9e737b67b1874c358d81} 
+sf::\+\+Color Button\+Widget::\+inactive\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_widget_abd077155b4918f328792bf2463326916}\index{ButtonWidget@{ButtonWidget}!onClick@{onClick}}
+\index{onClick@{onClick}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{onClick}{onClick}}
+{\footnotesize\ttfamily \label{class_button_widget_abd077155b4918f328792bf2463326916} 
+std::\+function$<$void()$>$ Button\+Widget::\+on\+Click\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_widget_ab6126cb9a34c147bad3bda2a9d2d226b}\index{ButtonWidget@{ButtonWidget}!shape@{shape}}
+\index{shape@{shape}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{shape}{shape}}
+{\footnotesize\ttfamily \label{class_button_widget_ab6126cb9a34c147bad3bda2a9d2d226b} 
+sf::\+\+Rectangle\+Shape Button\+Widget::\+shape\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_widget_ab05788838d1d704f2125cc6681d8b47b}\index{ButtonWidget@{ButtonWidget}!text@{text}}
+\index{text@{text}!ButtonWidget@{ButtonWidget}}
+\doxysubsubsection{\texorpdfstring{text}{text}}
+{\footnotesize\ttfamily \label{class_button_widget_ab05788838d1d704f2125cc6681d8b47b} 
+sf::\+\+Text Button\+Widget::\+text}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_button_widget_8h}{Button\+Widget.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_button_widget_8cpp}{Button\+Widget.\+cpp}}\end{DoxyCompactItemize}

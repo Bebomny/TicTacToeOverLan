@@ -1,0 +1,66 @@
+\doxysection{Class List}
+Here are the classes, structs, unions and interfaces with brief descriptions:\+\begin{DoxyCompactList}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_back_to_game_room_packet}{Back\+To\+Game\+Room\+Packet}} \\*Signal to return the UI to the Waiting Room }{\pageref{struct_back_to_game_room_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \\*The core data model for the game board. ~\newline
+ Holds the grid state, rules (size/\+win condition), and turn counters }{\pageref{struct_board_data}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_board_renderer}{Board\+Renderer}} }{\pageref{class_board_renderer}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_board_square}{Board\+Square}} \\*Represents the state of a single cell on the game board }{\pageref{struct_board_square}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_board_state_update_packet}{Board\+State\+Update\+Packet}} \\*Event-\/based full state synchronization. ~\newline
+ Sent by the server to ensure all clients have the exact same board data. ~\newline
+ Sent typically after a valid move is processed }{\pageref{struct_board_state_update_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \\*A Builder class for constructing \doxylink{class_button_widget}{Button\+Widget} instances }{\pageref{class_button_builder}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_button_widget}{Button\+Widget}} \\*A \doxylink{class_widget}{Widget} implementation representing a clickable button. Handles visual states (Idle, Hover, Active, Inactive) and executes a callback when clicked. It is recommended to create instances via the \doxylink{class_button_builder}{Button\+Builder} }{\pageref{class_button_widget}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_client_context}{Client\+Context}} \\*Represents a connected client within the \doxylink{class_internal_game_server}{Internal\+Game\+Server}. ~\newline
+ Holds the raw socket, buffering for network streams, and player-\/specific metadata. ~\newline
+ Unlike the {\ttfamily \doxylink{struct_player}{Player}} struct, this struct manages the connection lifecycle and server-\/specific state }{\pageref{struct_client_context}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_draw_utils}{Draw\+Utils}} \\*A utility class for common graphics operations. ~\newline
+ Note:\+ These functions should be called before setting the text\textquotesingle{}s position }{\pageref{class_draw_utils}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_game_client}{Game\+Client}} \\*The main application controller. ~\newline
+ This class manages the entire lifecycle of the client application, including the main game loop (Input -\/\texorpdfstring{$>$}{>} Update -\/\texorpdfstring{$>$}{>} Render), window management, networking (client and internal host), and the UI widget registry }{\pageref{class_game_client}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_game_end_packet}{Game\+End\+Packet}} \\*Signal that the match has reached a conclusion }{\pageref{struct_game_end_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_game_start_packet}{Game\+Start\+Packet}} \\*Signal to switch UI to the Board view and initialize grid }{\pageref{struct_game_start_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_game_start_request_packet}{Game\+Start\+Request\+Packet}} \\*Request to transition from WAITING\+\_\+\+ROOM to GAME }{\pageref{struct_game_start_request_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_internal_game_server}{Internal\+Game\+Server}} \\*The authoritative server logic for the game. ~\newline
+ Runs on a dedicated thread hosted by one of the clients. ~\newline
+ Responsibilities include:\+ ~\newline
+ 1. Accepting new connections (TCP). ~\newline
+ 2. Managing the main game loop (Tick rate). ~\newline
+ 3. Enforcing game rules and state synchronization. ~\newline
+ 4. Broadcasting updates to all connected clients }{\pageref{class_internal_game_server}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_long_long_rolling_average}{Long\+Long\+Rolling\+Average}} \\*A thread-\/safe implementation of \doxylink{class_rolling_average}{Rolling\+Average} for {\ttfamily long long} integer types. ~\newline
+ Uses a deque (double-\/ended queue) to maintain a sliding window of the most recent samples. ~\newline
+ This implementation is designed for timing values in nanoseconds stored as {\ttfamily long long} }{\pageref{class_long_long_rolling_average}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_move}{Move}} \\*Represents a discrete action taken by a player. ~\newline
+ Used for history tracking and network transmission }{\pageref{struct_move}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_move_request_packet}{Move\+Request\+Packet}} \\*Client intent to place a piece }{\pageref{struct_move_request_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_network_manager}{Network\+Manager}} \\*Manages low-\/level TCP network communication. ~\newline
+ Wraps the Winsock API to provide a cleaner interface for connecting, disconnecting, and exchanging structured packets. ~\newline
+ Handles packet framing (Header + Payload) and ensures data integrity during sends }{\pageref{class_network_manager}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_new_player_join_packet}{New\+Player\+Join\+Packet}} \\*Notification that a new peer has joined }{\pageref{struct_new_player_join_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_packaged_values}{Packaged\+Values}} \\*A container for aggregated statistical data. ~\newline
+ Used to retrieve a snapshot of the current performance metrics in a single call }{\pageref{struct_packaged_values}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_packet_header}{Packet\+Header}} \\*The Standard Header prepended to ALL network messages. ~\newline
+ The receiver reads these bytes first to determine how much more data to read }{\pageref{struct_packet_header}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_player}{Player}} \\*Represents a participant in the game. ~\newline
+ Contains identification, statistics, and local state flags }{\pageref{struct_player}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_player_disconnected_packet}{Player\+Disconnected\+Packet}} \\*Notification that a peer has left }{\pageref{struct_player_disconnected_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_rolling_average}{Rolling\+Average}} \\*Interface for calculating moving statistics over a stream of values. ~\newline
+ Primarily used for performance telemetry, such as server tick rates over a specific window of time }{\pageref{class_rolling_average}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_server_hello_packet}{Server\+Hello\+Packet}} \\*Initial handshake packet. ~\newline
+ Sent immediately by the server upon socket connection }{\pageref{struct_server_hello_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_server_utils}{Server\+Utils}} \\*Helper utilities specific to the \doxylink{class_internal_game_server}{Internal\+Game\+Server} logic }{\pageref{class_server_utils}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_settings_change_req_packet}{Settings\+Change\+Req\+Packet}} \\*Request to modify game rules. ~\newline
+ Only valid when in the Lobby/\+\+Waiting Room }{\pageref{struct_settings_change_req_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_settings_update_packet}{Settings\+Update\+Packet}} \\*Confirms that settings have been modified }{\pageref{struct_settings_update_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_setup_ack_packet}{Setup\+Ack\+Packet}} \\*Login acknowledgement. ~\newline
+ Contains the "{}\+Snapshot"{} of the current lobby state so the new client catches up }{\pageref{struct_setup_ack_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{struct_setup_req_packet}{Setup\+Req\+Packet}} \\*Login request. ~\newline
+ Sent by the client to finalize the connection setup }{\pageref{struct_setup_req_packet}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \\*A Builder class for constructing \doxylink{class_text_field_widget}{Text\+Field\+Widget} instances }{\pageref{class_text_field_builder}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_text_field_widget}{Text\+Field\+Widget}} \\*A \doxylink{class_widget}{Widget} allowing user text input. Handles focus states (clicking to activate), keyboard events (typing, backspace), and cursor blinking animation }{\pageref{class_text_field_widget}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_utils}{Utils}} \\*General purpose helper functions for Game Logic and Networking. ~\newline
+ Contains static methods for string conversion and memory management relating to the board state }{\pageref{class_utils}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_widget}{Widget}} \\*Abstract base class representing a UI element }{\pageref{class_widget}}{}
+\item\contentsline{section}{\doxymbox{\hyperlink{class_win_validator}{Win\+Validator}} \\*Logic for detecting victory conditions on the board. ~\newline
+ Uses a raycasting algorithm to count consecutive pieces surrounding a newly placed token }{\pageref{class_win_validator}}{}
+\end{DoxyCompactList}

@@ -1,0 +1,570 @@
+\doxysection{Button\+Builder Class Reference}
+\hypertarget{class_button_builder}{}\label{class_button_builder}\index{ButtonBuilder@{ButtonBuilder}}
+
+
+A Builder class for constructing \doxylink{class_button_widget}{Button\+Widget} instances.  
+
+
+
+
+{\ttfamily \+\#include $<$Button\+Widget.\+h$>$}
+
+
+
+Collaboration diagram for Button\+Builder:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_button_builder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_button_builder_a8f70176157c5e66d2d0a4ee89107cfeb}{Button\+Builder}} ()=default
+\item 
+\doxymbox{\hyperlink{class_button_builder_ac10bd92d115af12f566ae51d11e452b6}{Button\+Builder}} (const std::\+string \&\doxymbox{\hyperlink{class_button_builder_ab0d7b5393e33564989b760b5cd1ac80a}{text}}, const std::\+function$<$ void()$>$ \&\doxymbox{\hyperlink{class_button_builder_a790337c80241205e3d781b0a89eb4cd1}{on\+Click\+Callback}})
+\begin{DoxyCompactList}\small\item\em Constructs a builder with essential button properties. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_a71003751383fdb15b061df4d60414611}{set\+Position}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em Sets the absolute position of the button. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_ab39b07c841729ccf1a779ee2244f1e3d}{move}} (float byX, float byY)
+\begin{DoxyCompactList}\small\item\em Offsets the position relative to the last built widget. Useful for stacking fields vertically or horizontally without calculating absolute coordinates. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_a358f8dde034af99e814e106a0f6d7305}{set\+Width}} (float \doxymbox{\hyperlink{class_button_builder_a7c6c0f24d452b447683a9a0faddf1ac8}{width}})
+\begin{DoxyCompactList}\small\item\em Sets the width of the button. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_a84688cce213bca8bdc9408d0263c613e}{set\+Height}} (float \doxymbox{\hyperlink{class_button_builder_a51ce77f3c31b987108cf0f6fc08bc014}{height}})
+\begin{DoxyCompactList}\small\item\em Sets the height of the button. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_a713ac643f35aebfccf8c015b63cdb4f9}{set\+Size}} (float \doxymbox{\hyperlink{class_button_builder_a7c6c0f24d452b447683a9a0faddf1ac8}{width}}, float \doxymbox{\hyperlink{class_button_builder_a51ce77f3c31b987108cf0f6fc08bc014}{height}})
+\begin{DoxyCompactList}\small\item\em Sets the size (width and height) of the button. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_a2eb03bcb0621ec56d3fa0b3a1a848f4c}{set\+Text}} (std::\+string \doxymbox{\hyperlink{class_button_builder_ab0d7b5393e33564989b760b5cd1ac80a}{text}})
+\begin{DoxyCompactList}\small\item\em Sets the label text. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_a292ada52b60038644a113dfac5e85ef9}{set\+Text\+Size}} (int \doxymbox{\hyperlink{class_button_builder_a2c6111f72036d031797888d7b16b9039}{text\+Size}})
+\begin{DoxyCompactList}\small\item\em Sets the character size of the text. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_a1ba4372324a4acf55634209bad692458}{set\+Colors}} (sf::\+\+Color \doxymbox{\hyperlink{class_button_builder_a0a66d46e298b93c3e80ee759c27ca9eb}{idle}}, sf::\+\+Color \doxymbox{\hyperlink{class_button_builder_a455c91a6a60a2beefcd265e2a2a1d1cc}{hover}}, sf::\+\+Color \doxymbox{\hyperlink{class_button_builder_a8e8e72e8f7d35aec5779c1379cc958d6}{active}}, sf::\+\+Color \doxymbox{\hyperlink{class_button_builder_ae0e8c2a8400fcaa7561bca0542724b60}{inactive}})
+\begin{DoxyCompactList}\small\item\em Configures the color palette for the button\textquotesingle{}s different states. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& \doxymbox{\hyperlink{class_button_builder_a3c1ce757492f297ea07eca5a1d22e213}{set\+Display\+Condition}} (const std::\+function$<$ bool()$>$ \&display\+Condition)
+\begin{DoxyCompactList}\small\item\em Sets a custom visibility condition. \end{DoxyCompactList}\item 
+std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_button_widget}{Button\+Widget}} $>$ \doxymbox{\hyperlink{class_button_builder_a317a8fce237819524d6708cd38b497ec}{build}} ()
+\begin{DoxyCompactList}\small\item\em Finalizes construction and creates the \doxylink{class_button_widget}{Button\+Widget}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{class_button_builder_a4d49eabe5fc24ea24cf8f8965ec2c470}{init\+Font}} (const sf::\+\+Font \&\doxymbox{\hyperlink{class_button_builder_a1958b640bfe889b98f8d907d3b35c536}{font}})
+\begin{DoxyCompactList}\small\item\em Initializes global resources and layout trackers for all Buttons. This must be called once at startup. It sets the shared font used by default and resets the static layout cursor (prev\+Pos\+X/\+Y). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{class_button_builder_a560786d5e67a7f892efd4736cab6419b}{posX}} = 0
+\item 
+float \doxymbox{\hyperlink{class_button_builder_ac952976039e236c83bad2ce0791b6a5c}{posY}} = 0
+\item 
+float \doxymbox{\hyperlink{class_button_builder_a7c6c0f24d452b447683a9a0faddf1ac8}{width}} = 121
+\item 
+float \doxymbox{\hyperlink{class_button_builder_a51ce77f3c31b987108cf0f6fc08bc014}{height}} = 24
+\item 
+std::\+string \doxymbox{\hyperlink{class_button_builder_ab0d7b5393e33564989b760b5cd1ac80a}{text}} = "{}Button"{}
+\item 
+int \doxymbox{\hyperlink{class_button_builder_a2c6111f72036d031797888d7b16b9039}{text\+Size}} = 20
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_button_builder_a0a66d46e298b93c3e80ee759c27ca9eb}{idle}} = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a4a53dc83500c9efe313d2c3c412dc8da}{PRIMARY\+\_\+\+COLOR}})
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_button_builder_a455c91a6a60a2beefcd265e2a2a1d1cc}{hover}} = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a26adaf1743d8c1d307d3c200b7841af1}{ACCENT\+\_\+\+COLOR}})
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_button_builder_a8e8e72e8f7d35aec5779c1379cc958d6}{active}} = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_aaf587c17e178da66dc6050761922b8ee}{SECONDARY\+\_\+\+COLOR}})
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_button_builder_ae0e8c2a8400fcaa7561bca0542724b60}{inactive}} = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a98f13e43044f17563c27867f08a90dbf}{INACTIVE\+\_\+\+COLOR}})
+\item 
+sf::\+\+Font \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_button_builder_a1958b640bfe889b98f8d907d3b35c536}{font}} = nullptr
+\item 
+std::\+function$<$ void()$>$ \doxymbox{\hyperlink{class_button_builder_a790337c80241205e3d781b0a89eb4cd1}{on\+Click\+Callback}}
+\item 
+std::\+function$<$ bool()$>$ \doxymbox{\hyperlink{class_button_builder_a42ad44a6d401f1c419821ca005ec0abc}{display\+Condition\+Callback}} = \+[$\,$]\+() \{ return true; \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static float \doxymbox{\hyperlink{class_button_builder_a09bdb083abac4dfa452de74f905e9a57}{prev\+PosX}} = 0.\+0f
+\item 
+static float \doxymbox{\hyperlink{class_button_builder_aed2f3f44dd99b07a1fac1f33e62b4751}{prev\+PosY}} = 0.\+0f
+\item 
+static sf::\+\+Font \doxymbox{\hyperlink{class_button_builder_a303021f57757c8026e9ee7ff1fd1fb5d}{shared\+Font}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Builder class for constructing \doxylink{class_button_widget}{Button\+Widget} instances. 
+
+\label{doc-constructors}
+\Hypertarget{class_button_builder_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_button_builder_a8f70176157c5e66d2d0a4ee89107cfeb}\index{ButtonBuilder@{ButtonBuilder}!ButtonBuilder@{ButtonBuilder}}
+\index{ButtonBuilder@{ButtonBuilder}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{ButtonBuilder()}{ButtonBuilder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_button_builder_a8f70176157c5e66d2d0a4ee89107cfeb} 
+Button\+Builder::\+\+Button\+Builder (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a8f70176157c5e66d2d0a4ee89107cfeb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_ac10bd92d115af12f566ae51d11e452b6}\index{ButtonBuilder@{ButtonBuilder}!ButtonBuilder@{ButtonBuilder}}
+\index{ButtonBuilder@{ButtonBuilder}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{ButtonBuilder()}{ButtonBuilder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_button_builder_ac10bd92d115af12f566ae51d11e452b6} 
+Button\+Builder::\+\+Button\+Builder (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{text}{, }\item[{const std::\+function$<$ void()$>$ \&}]{on\+Click\+Callback}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a builder with essential button properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The label text of the button. \\
+\hline
+{\em on\+Click\+Callback} & The function to execute when the button is clicked. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_button_builder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_button_builder_a317a8fce237819524d6708cd38b497ec}\index{ButtonBuilder@{ButtonBuilder}!build@{build}}
+\index{build@{build}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \label{class_button_builder_a317a8fce237819524d6708cd38b497ec} 
+std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_button_widget}{Button\+Widget}} $>$ Button\+Builder::\+build (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Finalizes construction and creates the \doxylink{class_button_widget}{Button\+Widget}. 
+
+\begin{DoxyReturn}{Returns}
+A unique pointer to the fully configured \doxylink{class_button_widget}{Button\+Widget}. 
+\end{DoxyReturn}
+\Hypertarget{class_button_builder_a4d49eabe5fc24ea24cf8f8965ec2c470}\index{ButtonBuilder@{ButtonBuilder}!initFont@{initFont}}
+\index{initFont@{initFont}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{initFont()}{initFont()}}
+{\footnotesize\ttfamily \label{class_button_builder_a4d49eabe5fc24ea24cf8f8965ec2c470} 
+void Button\+Builder::\+init\+Font (\begin{DoxyParamCaption}\item[{const sf::\+\+Font \&}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Initializes global resources and layout trackers for all Buttons. This must be called once at startup. It sets the shared font used by default and resets the static layout cursor (prev\+Pos\+X/\+Y). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & The SFML font reference to store globally. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a4d49eabe5fc24ea24cf8f8965ec2c470_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_ab39b07c841729ccf1a779ee2244f1e3d}\index{ButtonBuilder@{ButtonBuilder}!move@{move}}
+\index{move@{move}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \label{class_button_builder_ab39b07c841729ccf1a779ee2244f1e3d} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+move (\begin{DoxyParamCaption}\item[{float}]{byX}{, }\item[{float}]{byY}{}\end{DoxyParamCaption})}
+
+
+
+Offsets the position relative to the last built widget. Useful for stacking fields vertically or horizontally without calculating absolute coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em byX} & Amount to shift on the X axis. \\
+\hline
+{\em byY} & Amount to shift on the Y axis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_ab39b07c841729ccf1a779ee2244f1e3d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_a1ba4372324a4acf55634209bad692458}\index{ButtonBuilder@{ButtonBuilder}!setColors@{setColors}}
+\index{setColors@{setColors}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{setColors()}{setColors()}}
+{\footnotesize\ttfamily \label{class_button_builder_a1ba4372324a4acf55634209bad692458} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+set\+Colors (\begin{DoxyParamCaption}\item[{sf::\+\+Color}]{idle}{, }\item[{sf::\+\+Color}]{hover}{, }\item[{sf::\+\+Color}]{active}{, }\item[{sf::\+\+Color}]{inactive}{}\end{DoxyParamCaption})}
+
+
+
+Configures the color palette for the button\textquotesingle{}s different states. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idle} & Color when the button is default/\+resting. \\
+\hline
+{\em hover} & Color when the mouse is over the button. \\
+\hline
+{\em active} & Color when the button is being clicked (pressed). \\
+\hline
+{\em inactive} & Color when the button is disabled. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a1ba4372324a4acf55634209bad692458_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_a3c1ce757492f297ea07eca5a1d22e213}\index{ButtonBuilder@{ButtonBuilder}!setDisplayCondition@{setDisplayCondition}}
+\index{setDisplayCondition@{setDisplayCondition}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{setDisplayCondition()}{setDisplayCondition()}}
+{\footnotesize\ttfamily \label{class_button_builder_a3c1ce757492f297ea07eca5a1d22e213} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+set\+Display\+Condition (\begin{DoxyParamCaption}\item[{const std::\+function$<$ bool()$>$ \&}]{display\+Condition}{}\end{DoxyParamCaption})}
+
+
+
+Sets a custom visibility condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em display\+Condition} & Function returning true if button should be visible. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a3c1ce757492f297ea07eca5a1d22e213_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a3c1ce757492f297ea07eca5a1d22e213_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_a84688cce213bca8bdc9408d0263c613e}\index{ButtonBuilder@{ButtonBuilder}!setHeight@{setHeight}}
+\index{setHeight@{setHeight}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{setHeight()}{setHeight()}}
+{\footnotesize\ttfamily \label{class_button_builder_a84688cce213bca8bdc9408d0263c613e} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+set\+Height (\begin{DoxyParamCaption}\item[{float}]{height}{}\end{DoxyParamCaption})}
+
+
+
+Sets the height of the button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em height} & Height in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a84688cce213bca8bdc9408d0263c613e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a84688cce213bca8bdc9408d0263c613e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_a71003751383fdb15b061df4d60414611}\index{ButtonBuilder@{ButtonBuilder}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily \label{class_button_builder_a71003751383fdb15b061df4d60414611} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+set\+Position (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Sets the absolute position of the button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The X coordinate. \\
+\hline
+{\em y} & The Y coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a71003751383fdb15b061df4d60414611_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a71003751383fdb15b061df4d60414611_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_a713ac643f35aebfccf8c015b63cdb4f9}\index{ButtonBuilder@{ButtonBuilder}!setSize@{setSize}}
+\index{setSize@{setSize}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{setSize()}{setSize()}}
+{\footnotesize\ttfamily \label{class_button_builder_a713ac643f35aebfccf8c015b63cdb4f9} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+set\+Size (\begin{DoxyParamCaption}\item[{float}]{width}{, }\item[{float}]{height}{}\end{DoxyParamCaption})}
+
+
+
+Sets the size (width and height) of the button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Width in pixels. \\
+\hline
+{\em height} & Height in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a713ac643f35aebfccf8c015b63cdb4f9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a713ac643f35aebfccf8c015b63cdb4f9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_a2eb03bcb0621ec56d3fa0b3a1a848f4c}\index{ButtonBuilder@{ButtonBuilder}!setText@{setText}}
+\index{setText@{setText}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{setText()}{setText()}}
+{\footnotesize\ttfamily \label{class_button_builder_a2eb03bcb0621ec56d3fa0b3a1a848f4c} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+set\+Text (\begin{DoxyParamCaption}\item[{std::\+string}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Sets the label text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The string to display. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a2eb03bcb0621ec56d3fa0b3a1a848f4c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_a292ada52b60038644a113dfac5e85ef9}\index{ButtonBuilder@{ButtonBuilder}!setTextSize@{setTextSize}}
+\index{setTextSize@{setTextSize}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{setTextSize()}{setTextSize()}}
+{\footnotesize\ttfamily \label{class_button_builder_a292ada52b60038644a113dfac5e85ef9} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+set\+Text\+Size (\begin{DoxyParamCaption}\item[{int}]{text\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Sets the character size of the text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+Size} & Size in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a292ada52b60038644a113dfac5e85ef9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a292ada52b60038644a113dfac5e85ef9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_button_builder_a358f8dde034af99e814e106a0f6d7305}\index{ButtonBuilder@{ButtonBuilder}!setWidth@{setWidth}}
+\index{setWidth@{setWidth}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{setWidth()}{setWidth()}}
+{\footnotesize\ttfamily \label{class_button_builder_a358f8dde034af99e814e106a0f6d7305} 
+\doxymbox{\hyperlink{class_button_builder}{Button\+Builder}} \& Button\+Builder::\+set\+Width (\begin{DoxyParamCaption}\item[{float}]{width}{}\end{DoxyParamCaption})}
+
+
+
+Sets the width of the button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Width in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_button_builder_a358f8dde034af99e814e106a0f6d7305_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_button_builder_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_button_builder_a8e8e72e8f7d35aec5779c1379cc958d6}\index{ButtonBuilder@{ButtonBuilder}!active@{active}}
+\index{active@{active}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{active}{active}}
+{\footnotesize\ttfamily \label{class_button_builder_a8e8e72e8f7d35aec5779c1379cc958d6} 
+sf::\+\+Color Button\+Builder::\+active = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_aaf587c17e178da66dc6050761922b8ee}{SECONDARY\+\_\+\+COLOR}})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a42ad44a6d401f1c419821ca005ec0abc}\index{ButtonBuilder@{ButtonBuilder}!displayConditionCallback@{displayConditionCallback}}
+\index{displayConditionCallback@{displayConditionCallback}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{displayConditionCallback}{displayConditionCallback}}
+{\footnotesize\ttfamily \label{class_button_builder_a42ad44a6d401f1c419821ca005ec0abc} 
+std::\+function$<$bool()$>$ Button\+Builder::\+display\+Condition\+Callback = \+[$\,$]\+() \{ return true; \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a1958b640bfe889b98f8d907d3b35c536}\index{ButtonBuilder@{ButtonBuilder}!font@{font}}
+\index{font@{font}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{class_button_builder_a1958b640bfe889b98f8d907d3b35c536} 
+sf::\+\+Font\texorpdfstring{$\ast$}{*} Button\+Builder::\+font = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a51ce77f3c31b987108cf0f6fc08bc014}\index{ButtonBuilder@{ButtonBuilder}!height@{height}}
+\index{height@{height}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{class_button_builder_a51ce77f3c31b987108cf0f6fc08bc014} 
+float Button\+Builder::\+height = 24\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a455c91a6a60a2beefcd265e2a2a1d1cc}\index{ButtonBuilder@{ButtonBuilder}!hover@{hover}}
+\index{hover@{hover}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{hover}{hover}}
+{\footnotesize\ttfamily \label{class_button_builder_a455c91a6a60a2beefcd265e2a2a1d1cc} 
+sf::\+\+Color Button\+Builder::\+hover = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a26adaf1743d8c1d307d3c200b7841af1}{ACCENT\+\_\+\+COLOR}})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a0a66d46e298b93c3e80ee759c27ca9eb}\index{ButtonBuilder@{ButtonBuilder}!idle@{idle}}
+\index{idle@{idle}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{idle}{idle}}
+{\footnotesize\ttfamily \label{class_button_builder_a0a66d46e298b93c3e80ee759c27ca9eb} 
+sf::\+\+Color Button\+Builder::\+idle = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a4a53dc83500c9efe313d2c3c412dc8da}{PRIMARY\+\_\+\+COLOR}})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_ae0e8c2a8400fcaa7561bca0542724b60}\index{ButtonBuilder@{ButtonBuilder}!inactive@{inactive}}
+\index{inactive@{inactive}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{inactive}{inactive}}
+{\footnotesize\ttfamily \label{class_button_builder_ae0e8c2a8400fcaa7561bca0542724b60} 
+sf::\+\+Color Button\+Builder::\+inactive = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a98f13e43044f17563c27867f08a90dbf}{INACTIVE\+\_\+\+COLOR}})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a790337c80241205e3d781b0a89eb4cd1}\index{ButtonBuilder@{ButtonBuilder}!onClickCallback@{onClickCallback}}
+\index{onClickCallback@{onClickCallback}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{onClickCallback}{onClickCallback}}
+{\footnotesize\ttfamily \label{class_button_builder_a790337c80241205e3d781b0a89eb4cd1} 
+std::\+function$<$void()$>$ Button\+Builder::\+on\+Click\+Callback\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ []()\ \{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{class_button_builder_a560786d5e67a7f892efd4736cab6419b}\index{ButtonBuilder@{ButtonBuilder}!posX@{posX}}
+\index{posX@{posX}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{posX}{posX}}
+{\footnotesize\ttfamily \label{class_button_builder_a560786d5e67a7f892efd4736cab6419b} 
+float Button\+Builder::\+posX = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_ac952976039e236c83bad2ce0791b6a5c}\index{ButtonBuilder@{ButtonBuilder}!posY@{posY}}
+\index{posY@{posY}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{posY}{posY}}
+{\footnotesize\ttfamily \label{class_button_builder_ac952976039e236c83bad2ce0791b6a5c} 
+float Button\+Builder::\+posY = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a09bdb083abac4dfa452de74f905e9a57}\index{ButtonBuilder@{ButtonBuilder}!prevPosX@{prevPosX}}
+\index{prevPosX@{prevPosX}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{prevPosX}{prevPosX}}
+{\footnotesize\ttfamily \label{class_button_builder_a09bdb083abac4dfa452de74f905e9a57} 
+float Button\+Builder::\+prev\+PosX = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_aed2f3f44dd99b07a1fac1f33e62b4751}\index{ButtonBuilder@{ButtonBuilder}!prevPosY@{prevPosY}}
+\index{prevPosY@{prevPosY}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{prevPosY}{prevPosY}}
+{\footnotesize\ttfamily \label{class_button_builder_aed2f3f44dd99b07a1fac1f33e62b4751} 
+float Button\+Builder::\+prev\+PosY = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a303021f57757c8026e9ee7ff1fd1fb5d}\index{ButtonBuilder@{ButtonBuilder}!sharedFont@{sharedFont}}
+\index{sharedFont@{sharedFont}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{sharedFont}{sharedFont}}
+{\footnotesize\ttfamily \label{class_button_builder_a303021f57757c8026e9ee7ff1fd1fb5d} 
+sf::\+\+Font Button\+Builder::\+shared\+Font\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_ab0d7b5393e33564989b760b5cd1ac80a}\index{ButtonBuilder@{ButtonBuilder}!text@{text}}
+\index{text@{text}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{text}{text}}
+{\footnotesize\ttfamily \label{class_button_builder_ab0d7b5393e33564989b760b5cd1ac80a} 
+std::\+string Button\+Builder::\+text = "{}Button"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a2c6111f72036d031797888d7b16b9039}\index{ButtonBuilder@{ButtonBuilder}!textSize@{textSize}}
+\index{textSize@{textSize}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{textSize}{textSize}}
+{\footnotesize\ttfamily \label{class_button_builder_a2c6111f72036d031797888d7b16b9039} 
+int Button\+Builder::\+text\+Size = 20\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_button_builder_a7c6c0f24d452b447683a9a0faddf1ac8}\index{ButtonBuilder@{ButtonBuilder}!width@{width}}
+\index{width@{width}!ButtonBuilder@{ButtonBuilder}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \label{class_button_builder_a7c6c0f24d452b447683a9a0faddf1ac8} 
+float Button\+Builder::\+width = 121\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_button_widget_8h}{Button\+Widget.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_button_widget_8cpp}{Button\+Widget.\+cpp}}\end{DoxyCompactItemize}

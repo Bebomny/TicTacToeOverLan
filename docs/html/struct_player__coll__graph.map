@@ -1,0 +1,3 @@
+<map id="Player" name="Player">
+<area shape="rect" id="Node000001" title="Represents a participant in the game. &#160;&#160;Contains identification, statistics, and local state flags." alt="" coords="5,5,99,203"/>
+</map>

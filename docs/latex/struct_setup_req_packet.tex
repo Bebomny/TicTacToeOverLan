@@ -1,0 +1,71 @@
+\doxysection{Setup\+Req\+Packet Struct Reference}
+\hypertarget{struct_setup_req_packet}{}\label{struct_setup_req_packet}\index{SetupReqPacket@{SetupReqPacket}}
+
+
+Login request. ~\newline
+ Sent by the client to finalize the connection setup.  
+
+
+
+
+{\ttfamily \+\#include $<$Network\+Protocol.\+h$>$}
+
+
+
+Collaboration diagram for Setup\+Req\+Packet:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{struct_setup_req_packet__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_setup_req_packet_a2baa58715ff9faa859aa0764d82fc0f6}{player\+Id}}
+\item 
+int32\+\_\+t \doxymbox{\hyperlink{struct_setup_req_packet_adfc220297a1e975615c70d9265625e7b}{initial\+Token}}
+\item 
+char \doxymbox{\hyperlink{struct_setup_req_packet_ac230bbcf3b588973ad464e911f79f4d9}{player\+Name}} \+[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}}]\+
+\item 
+bool \doxymbox{\hyperlink{struct_setup_req_packet_aa45decb25af1d693a1829bda6dd9c08e}{is\+Host}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Login request. ~\newline
+ Sent by the client to finalize the connection setup. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_setup_req_packet_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_setup_req_packet_adfc220297a1e975615c70d9265625e7b}\index{SetupReqPacket@{SetupReqPacket}!initialToken@{initialToken}}
+\index{initialToken@{initialToken}!SetupReqPacket@{SetupReqPacket}}
+\doxysubsubsection{\texorpdfstring{initialToken}{initialToken}}
+{\footnotesize\ttfamily \label{struct_setup_req_packet_adfc220297a1e975615c70d9265625e7b} 
+int32\+\_\+t Setup\+Req\+Packet::\+initial\+Token}
+
+\Hypertarget{struct_setup_req_packet_aa45decb25af1d693a1829bda6dd9c08e}\index{SetupReqPacket@{SetupReqPacket}!isHost@{isHost}}
+\index{isHost@{isHost}!SetupReqPacket@{SetupReqPacket}}
+\doxysubsubsection{\texorpdfstring{isHost}{isHost}}
+{\footnotesize\ttfamily \label{struct_setup_req_packet_aa45decb25af1d693a1829bda6dd9c08e} 
+bool Setup\+Req\+Packet::\+is\+Host}
+
+\Hypertarget{struct_setup_req_packet_a2baa58715ff9faa859aa0764d82fc0f6}\index{SetupReqPacket@{SetupReqPacket}!playerId@{playerId}}
+\index{playerId@{playerId}!SetupReqPacket@{SetupReqPacket}}
+\doxysubsubsection{\texorpdfstring{playerId}{playerId}}
+{\footnotesize\ttfamily \label{struct_setup_req_packet_a2baa58715ff9faa859aa0764d82fc0f6} 
+uint8\+\_\+t Setup\+Req\+Packet::\+player\+Id}
+
+\Hypertarget{struct_setup_req_packet_ac230bbcf3b588973ad464e911f79f4d9}\index{SetupReqPacket@{SetupReqPacket}!playerName@{playerName}}
+\index{playerName@{playerName}!SetupReqPacket@{SetupReqPacket}}
+\doxysubsubsection{\texorpdfstring{playerName}{playerName}}
+{\footnotesize\ttfamily \label{struct_setup_req_packet_ac230bbcf3b588973ad464e911f79f4d9} 
+char Setup\+Req\+Packet::\+player\+Name\+[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}}]\+}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_network_protocol_8h}{Network\+Protocol.\+h}}\end{DoxyCompactItemize}

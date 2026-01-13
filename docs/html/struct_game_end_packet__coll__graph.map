@@ -1,0 +1,5 @@
+<map id="GameEndPacket" name="GameEndPacket">
+<area shape="rect" id="Node000001" title="Signal that the match has reached a conclusion." alt="" coords="5,275,115,365"/>
+<area shape="rect" id="Node000002" href="$struct_player.html" title="Represents a participant in the game. &#160;&#160;Contains identification, statistics, and local state flags." alt="" coords="13,5,107,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,200,63,258,58,257,59,205"/>
+</map>

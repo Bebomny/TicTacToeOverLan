@@ -1,0 +1,154 @@
+\doxysection{Board\+Data Struct Reference}
+\hypertarget{struct_board_data}{}\label{struct_board_data}\index{BoardData@{BoardData}}
+
+
+The core data model for the game board. ~\newline
+ Holds the grid state, rules (size/\+win condition), and turn counters.  
+
+
+
+
+{\ttfamily \+\#include $<$Game\+Definitions.\+h$>$}
+
+
+
+Collaboration diagram for Board\+Data:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{struct_board_data__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_board_square}{Board\+Square}} \doxymbox{\hyperlink{struct_board_data_a6c04548422ccdd5b690a4128964eb503}{get\+Square\+At}} (const uint8\+\_\+t x, const uint8\+\_\+t y) const
+\begin{DoxyCompactList}\small\item\em Accessor for grid cells. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{struct_board_data_aa68d3cb10d68cbf530ca7f3d7e792482}{set\+Square\+At}} (const uint8\+\_\+t x, const uint8\+\_\+t y, const \doxymbox{\hyperlink{struct_board_square}{Board\+Square}} square)
+\begin{DoxyCompactList}\small\item\em Updates the state of a specific grid cell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_board_square}{Board\+Square}} $>$ $>$ \doxymbox{\hyperlink{struct_board_data_a7ddf3aefe9c31a6762e3d7297a662ba2}{grid}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{board\+Size}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_board_data_a41e86f195afbea5298006eee00fd1f5b}{win\+Condition\+Length}}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{struct_board_data_a46ee92da2e2ac733db4b4cc2dfc3b19b}{round}}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{struct_board_data_a67acf8f52808930e45ea1b137b276c06}{turn}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_board_data_a001cb3026fabe1d20e82e72c4867dff8}{acting\+Player\+Id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The core data model for the game board. ~\newline
+ Holds the grid state, rules (size/\+win condition), and turn counters. 
+
+\label{doc-func-members}
+\Hypertarget{struct_board_data_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_board_data_a6c04548422ccdd5b690a4128964eb503}\index{BoardData@{BoardData}!getSquareAt@{getSquareAt}}
+\index{getSquareAt@{getSquareAt}!BoardData@{BoardData}}
+\doxysubsubsection{\texorpdfstring{getSquareAt()}{getSquareAt()}}
+{\footnotesize\ttfamily \label{struct_board_data_a6c04548422ccdd5b690a4128964eb503} 
+\doxymbox{\hyperlink{struct_board_square}{Board\+Square}} Board\+Data::\+get\+Square\+At (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{x}{, }\item[{const uint8\+\_\+t}]{y}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Accessor for grid cells. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The X coordinate (column). \\
+\hline
+{\em y} & The Y coordinate (row). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A copy of the \doxylink{struct_board_square}{Board\+Square} at the given location. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_board_data_a6c04548422ccdd5b690a4128964eb503_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{struct_board_data_aa68d3cb10d68cbf530ca7f3d7e792482}\index{BoardData@{BoardData}!setSquareAt@{setSquareAt}}
+\index{setSquareAt@{setSquareAt}!BoardData@{BoardData}}
+\doxysubsubsection{\texorpdfstring{setSquareAt()}{setSquareAt()}}
+{\footnotesize\ttfamily \label{struct_board_data_aa68d3cb10d68cbf530ca7f3d7e792482} 
+void Board\+Data::\+set\+Square\+At (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{x}{, }\item[{const uint8\+\_\+t}]{y}{, }\item[{const \doxymbox{\hyperlink{struct_board_square}{Board\+Square}}}]{square}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the state of a specific grid cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The X coordinate (column). \\
+\hline
+{\em y} & The Y coordinate (row). \\
+\hline
+{\em square} & The new state to assign to the cell. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{struct_board_data_aa68d3cb10d68cbf530ca7f3d7e792482_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_board_data_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_board_data_a001cb3026fabe1d20e82e72c4867dff8}\index{BoardData@{BoardData}!actingPlayerId@{actingPlayerId}}
+\index{actingPlayerId@{actingPlayerId}!BoardData@{BoardData}}
+\doxysubsubsection{\texorpdfstring{actingPlayerId}{actingPlayerId}}
+{\footnotesize\ttfamily \label{struct_board_data_a001cb3026fabe1d20e82e72c4867dff8} 
+uint8\+\_\+t Board\+Data::\+acting\+Player\+Id}
+
+\Hypertarget{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}\index{BoardData@{BoardData}!boardSize@{boardSize}}
+\index{boardSize@{boardSize}!BoardData@{BoardData}}
+\doxysubsubsection{\texorpdfstring{boardSize}{boardSize}}
+{\footnotesize\ttfamily \label{struct_board_data_ac3957ab4c4c261a479eab9932beee96f} 
+uint8\+\_\+t Board\+Data::\+board\+Size}
+
+\Hypertarget{struct_board_data_a7ddf3aefe9c31a6762e3d7297a662ba2}\index{BoardData@{BoardData}!grid@{grid}}
+\index{grid@{grid}!BoardData@{BoardData}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily \label{struct_board_data_a7ddf3aefe9c31a6762e3d7297a662ba2} 
+std::\+vector$<$std::\+vector$<$\doxymbox{\hyperlink{struct_board_square}{Board\+Square}}$>$ $>$ Board\+Data::\+grid}
+
+\Hypertarget{struct_board_data_a46ee92da2e2ac733db4b4cc2dfc3b19b}\index{BoardData@{BoardData}!round@{round}}
+\index{round@{round}!BoardData@{BoardData}}
+\doxysubsubsection{\texorpdfstring{round}{round}}
+{\footnotesize\ttfamily \label{struct_board_data_a46ee92da2e2ac733db4b4cc2dfc3b19b} 
+uint16\+\_\+t Board\+Data::\+round}
+
+\Hypertarget{struct_board_data_a67acf8f52808930e45ea1b137b276c06}\index{BoardData@{BoardData}!turn@{turn}}
+\index{turn@{turn}!BoardData@{BoardData}}
+\doxysubsubsection{\texorpdfstring{turn}{turn}}
+{\footnotesize\ttfamily \label{struct_board_data_a67acf8f52808930e45ea1b137b276c06} 
+uint16\+\_\+t Board\+Data::\+turn}
+
+\Hypertarget{struct_board_data_a41e86f195afbea5298006eee00fd1f5b}\index{BoardData@{BoardData}!winConditionLength@{winConditionLength}}
+\index{winConditionLength@{winConditionLength}!BoardData@{BoardData}}
+\doxysubsubsection{\texorpdfstring{winConditionLength}{winConditionLength}}
+{\footnotesize\ttfamily \label{struct_board_data_a41e86f195afbea5298006eee00fd1f5b} 
+uint8\+\_\+t Board\+Data::\+win\+Condition\+Length}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_game_definitions_8h}{Game\+Definitions.\+h}}\end{DoxyCompactItemize}

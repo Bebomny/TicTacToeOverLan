@@ -1,0 +1,182 @@
+\doxysection{Network\+Manager Class Reference}
+\hypertarget{class_network_manager}{}\label{class_network_manager}\index{NetworkManager@{NetworkManager}}
+
+
+Manages low-\/level TCP network communication. ~\newline
+ Wraps the Winsock API to provide a cleaner interface for connecting, disconnecting, and exchanging structured packets. ~\newline
+ Handles packet framing (Header + Payload) and ensures data integrity during sends.  
+
+
+
+
+{\ttfamily \+\#include $<$Network\+Manager.\+h$>$}
+
+
+
+Collaboration diagram for Network\+Manager:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{class_network_manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_network_manager_a5840249051c1ecab66dc4c20fe2b33d6}{connect\+To\+Server}} (const std::\+string \&address, const std::\+string \&port)
+\begin{DoxyCompactList}\small\item\em Attempts to establish a TCP connection to a server. ~\newline
+ Initializes Winsock, creates a socket, and attempts to connect to the specified end point. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_network_manager_a751f87add468a5ddc70c4087ab80533f}{disconnect}} ()
+\begin{DoxyCompactList}\small\item\em Closes the socket and cleans up Winsock resources. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_network_manager_a495c3aa3c31eea2cdf4e0d4c8d7ccda7}{poll\+Packet}} (\doxymbox{\hyperlink{struct_packet_header}{Packet\+Header}} \&out\+Header, std::\+vector$<$ char $>$ \&out\+Payload)
+\begin{DoxyCompactList}\small\item\em Checks the socket for incoming data and attempts to extract a single complete packet. ~\newline
+ This function handles TCP stream fragmentation. If enough data has arrived to form a full packet (Header + defined Payload size), it extracts it. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T$>$ }\\void \doxymbox{\hyperlink{class_network_manager_aa7e21f46fe92624b9f7f300ec3aa9a0c}{send\+Packet}} (const \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type}} type, const T \&data)
+\begin{DoxyCompactList}\small\item\em Serializes and sends a structured packet to the server. ~\newline
+ Encapsulates the payload with a standard {\ttfamily \doxylink{struct_packet_header}{Packet\+Header}} containing the type and size. ~\newline
+ Includes a loop to handle partial sends, ensuring the entire buffer is transmitted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781}{Connection\+Phase}} \doxymbox{\hyperlink{class_network_manager_a28a090fac0222cc9e81ae6d31f6203ba}{con\+Phase}} = \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a99c8ce56e7ab246445d3b134724428f3}{Connection\+Phase::\+\+DISCONNECTED}}
+\item 
+int \doxymbox{\hyperlink{class_network_manager_a9f7e1d5e3e641a8e18a109106e44af9a}{start\+Result}} = -\/1
+\item 
+WSADATA \doxymbox{\hyperlink{class_network_manager_a1c7f7091178c2c09863cf4792ef6372b}{wsadata}} = \{\}
+\item 
+SOCKET \doxymbox{\hyperlink{class_network_manager_a964aee0738d03efa84506b6af5fb0beb}{client\+Socket}}
+\item 
+std::\+vector$<$ char $>$ \doxymbox{\hyperlink{class_network_manager_a53288c337a41585e51803104e79ca70d}{receive\+Buffer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages low-\/level TCP network communication. ~\newline
+ Wraps the Winsock API to provide a cleaner interface for connecting, disconnecting, and exchanging structured packets. ~\newline
+ Handles packet framing (Header + Payload) and ensures data integrity during sends. 
+
+\label{doc-func-members}
+\Hypertarget{class_network_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_network_manager_a5840249051c1ecab66dc4c20fe2b33d6}\index{NetworkManager@{NetworkManager}!connectToServer@{connectToServer}}
+\index{connectToServer@{connectToServer}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{connectToServer()}{connectToServer()}}
+{\footnotesize\ttfamily \label{class_network_manager_a5840249051c1ecab66dc4c20fe2b33d6} 
+int Network\+Manager::\+connect\+To\+Server (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{address}{, }\item[{const std::\+string \&}]{port}{ = {\ttfamily "{}27015"{}}}\end{DoxyParamCaption})}
+
+
+
+Attempts to establish a TCP connection to a server. ~\newline
+ Initializes Winsock, creates a socket, and attempts to connect to the specified end point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em address} & The IP address (IPv4) or hostname of the server. \\
+\hline
+{\em port} & The port number as a string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, non-\/zero error code on failure. 
+\end{DoxyReturn}
+\Hypertarget{class_network_manager_a751f87add468a5ddc70c4087ab80533f}\index{NetworkManager@{NetworkManager}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily \label{class_network_manager_a751f87add468a5ddc70c4087ab80533f} 
+void Network\+Manager::\+disconnect (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Closes the socket and cleans up Winsock resources. 
+
+\Hypertarget{class_network_manager_a495c3aa3c31eea2cdf4e0d4c8d7ccda7}\index{NetworkManager@{NetworkManager}!pollPacket@{pollPacket}}
+\index{pollPacket@{pollPacket}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{pollPacket()}{pollPacket()}}
+{\footnotesize\ttfamily \label{class_network_manager_a495c3aa3c31eea2cdf4e0d4c8d7ccda7} 
+bool Network\+Manager::\+poll\+Packet (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_packet_header}{Packet\+Header}} \&}]{out\+Header}{, }\item[{std::\+vector$<$ char $>$ \&}]{out\+Payload}{}\end{DoxyParamCaption})}
+
+
+
+Checks the socket for incoming data and attempts to extract a single complete packet. ~\newline
+ This function handles TCP stream fragmentation. If enough data has arrived to form a full packet (Header + defined Payload size), it extracts it. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em out\+Header} & Output parameter to store the parsed packet header. \\
+\hline
+{\em out\+Payload} & Output parameter to store the raw byte payload. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if a complete packet was successfully retrieved, False if there is insufficient data yet. 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\Hypertarget{class_network_manager_aa7e21f46fe92624b9f7f300ec3aa9a0c}\index{NetworkManager@{NetworkManager}!sendPacket@{sendPacket}}
+\index{sendPacket@{sendPacket}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{sendPacket()}{sendPacket()}}
+{\footnotesize\ttfamily \label{class_network_manager_aa7e21f46fe92624b9f7f300ec3aa9a0c} 
+template$<$typename T$>$ \\
+void Network\+Manager::\+send\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type}}}]{type}{, }\item[{const T \&}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Serializes and sends a structured packet to the server. ~\newline
+ Encapsulates the payload with a standard {\ttfamily \doxylink{struct_packet_header}{Packet\+Header}} containing the type and size. ~\newline
+ Includes a loop to handle partial sends, ensuring the entire buffer is transmitted. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the data structure being sent. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The \doxylink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type} enum identifier. \\
+\hline
+{\em data} & The actual data struct to send. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_network_manager_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_network_manager_a964aee0738d03efa84506b6af5fb0beb}\index{NetworkManager@{NetworkManager}!clientSocket@{clientSocket}}
+\index{clientSocket@{clientSocket}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{clientSocket}{clientSocket}}
+{\footnotesize\ttfamily \label{class_network_manager_a964aee0738d03efa84506b6af5fb0beb} 
+SOCKET Network\+Manager::\+client\+Socket}
+
+\Hypertarget{class_network_manager_a28a090fac0222cc9e81ae6d31f6203ba}\index{NetworkManager@{NetworkManager}!conPhase@{conPhase}}
+\index{conPhase@{conPhase}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{conPhase}{conPhase}}
+{\footnotesize\ttfamily \label{class_network_manager_a28a090fac0222cc9e81ae6d31f6203ba} 
+\doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781}{Connection\+Phase}} Network\+Manager::\+con\+Phase = \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a99c8ce56e7ab246445d3b134724428f3}{Connection\+Phase::\+\+DISCONNECTED}}}
+
+\Hypertarget{class_network_manager_a53288c337a41585e51803104e79ca70d}\index{NetworkManager@{NetworkManager}!receiveBuffer@{receiveBuffer}}
+\index{receiveBuffer@{receiveBuffer}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{receiveBuffer}{receiveBuffer}}
+{\footnotesize\ttfamily \label{class_network_manager_a53288c337a41585e51803104e79ca70d} 
+std::\+vector$<$char$>$ Network\+Manager::\+receive\+Buffer}
+
+\Hypertarget{class_network_manager_a9f7e1d5e3e641a8e18a109106e44af9a}\index{NetworkManager@{NetworkManager}!startResult@{startResult}}
+\index{startResult@{startResult}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{startResult}{startResult}}
+{\footnotesize\ttfamily \label{class_network_manager_a9f7e1d5e3e641a8e18a109106e44af9a} 
+int Network\+Manager::\+start\+Result = -\/1}
+
+\Hypertarget{class_network_manager_a1c7f7091178c2c09863cf4792ef6372b}\index{NetworkManager@{NetworkManager}!wsadata@{wsadata}}
+\index{wsadata@{wsadata}!NetworkManager@{NetworkManager}}
+\doxysubsubsection{\texorpdfstring{wsadata}{wsadata}}
+{\footnotesize\ttfamily \label{class_network_manager_a1c7f7091178c2c09863cf4792ef6372b} 
+WSADATA Network\+Manager::\+wsadata = \{\}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+\doxymbox{\hyperlink{_network_manager_8h}{Network\+Manager.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+\doxymbox{\hyperlink{_network_manager_8cpp}{Network\+Manager.\+cpp}}\end{DoxyCompactItemize}

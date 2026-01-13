@@ -1,0 +1,283 @@
+\doxysection{Long\+Long\+Rolling\+Average Class Reference}
+\hypertarget{class_long_long_rolling_average}{}\label{class_long_long_rolling_average}\index{LongLongRollingAverage@{LongLongRollingAverage}}
+
+
+A thread-\/safe implementation of \doxylink{class_rolling_average}{Rolling\+Average} for {\ttfamily long long} integer types. ~\newline
+ Uses a deque (double-\/ended queue) to maintain a sliding window of the most recent samples. ~\newline
+ This implementation is designed for timing values in nanoseconds stored as {\ttfamily long long}.  
+
+
+
+
+{\ttfamily \+\#include $<$Long\+Long\+Rolling\+Average.\+h$>$}
+
+
+
+Inheritance diagram for Long\+Long\+Rolling\+Average:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{class_long_long_rolling_average__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Long\+Long\+Rolling\+Average:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{class_long_long_rolling_average__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_long_long_rolling_average_a80e90b89b2dece04ffd2ef43ccc3af39}{Long\+Long\+Rolling\+Average}} (int \doxymbox{\hyperlink{class_long_long_rolling_average_a4b7307da021d60af9e38429518c067c9}{sample\+Size}})
+\begin{DoxyCompactList}\small\item\em Constructs a rolling average tracker. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_long_long_rolling_average_a1edd4ddd8bd1b922c21fe3e154972320}{\texorpdfstring{$\sim$}{\string~}\+Long\+Long\+Rolling\+Average}} () override
+\item 
+void \doxymbox{\hyperlink{class_long_long_rolling_average_af5e5ed6b484c5ffa368edd2182fff854}{add}} (long long value)
+\begin{DoxyCompactList}\small\item\em Adds a new sample to the window. ~\newline
+ If the window is full, the oldest sample is removed and subtracted from the {\ttfamily \doxylink{class_long_long_rolling_average_adcf73e7ce9e7db4947d02c3006ac7f7b}{total}}. ~\newline
+ Thread-\/safe:\+ Locks the mutex during operation. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_long_long_rolling_average_a9543c066eb5641e18efa7f5b03c83f89}{average}} () override
+\begin{DoxyCompactList}\small\item\em Calculates the mean of the current samples. ~\newline
+ Thread-\/safe:\+ Locks the mutex. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_long_long_rolling_average_aa17f87cc248234d798a37cfba811da2f}{min}} () override
+\begin{DoxyCompactList}\small\item\em Finds the minimum value in the current window. ~\newline
+ Thread-\/safe:\+ Locks the mutex. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{class_long_long_rolling_average_add20bb7c37cf2f38d8f96009c791e4d3}{max}} () override
+\begin{DoxyCompactList}\small\item\em Finds the maximum value in the current window. ~\newline
+ Thread-\/safe:\+ Locks the mutex. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_packaged_values}{Packaged\+Values}} \doxymbox{\hyperlink{class_long_long_rolling_average_a44cb6aa408a7a58e93f3b7c2ed4dc59e}{get\+Packaged\+Values}} () override
+\begin{DoxyCompactList}\small\item\em Retrieves Average, Min, and Max atomically. ~\newline
+ Acquires the lock once and computes all three statistics to ensure consistency. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+deque$<$ long long $>$ \doxymbox{\hyperlink{class_long_long_rolling_average_ad60657df61d651ee76f6a319bcd578dc}{samples}}
+\item 
+int \doxymbox{\hyperlink{class_long_long_rolling_average_a4b7307da021d60af9e38429518c067c9}{sample\+Size}}
+\item 
+long long \doxymbox{\hyperlink{class_long_long_rolling_average_adcf73e7ce9e7db4947d02c3006ac7f7b}{total}} = 0.\+0
+\item 
+std::\+mutex \doxymbox{\hyperlink{class_long_long_rolling_average_aa2c514e0ce0f66a7d9d9305c93eb2602}{mtx}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Private Member Functions inherited from \doxymbox{\hyperlink{class_rolling_average}{Rolling\+Average}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_rolling_average_a3f2fd5ec0d9f01197d0e9a60e714ef8a}{Rolling\+Average}} ()=default
+\item 
+virtual \doxymbox{\hyperlink{class_rolling_average_a6571400f4cc51876b9644b417789009a}{\texorpdfstring{$\sim$}{\string~}\+Rolling\+Average}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A thread-\/safe implementation of \doxylink{class_rolling_average}{Rolling\+Average} for {\ttfamily long long} integer types. ~\newline
+ Uses a deque (double-\/ended queue) to maintain a sliding window of the most recent samples. ~\newline
+ This implementation is designed for timing values in nanoseconds stored as {\ttfamily long long}. 
+
+\label{doc-constructors}
+\Hypertarget{class_long_long_rolling_average_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_long_long_rolling_average_a80e90b89b2dece04ffd2ef43ccc3af39}\index{LongLongRollingAverage@{LongLongRollingAverage}!LongLongRollingAverage@{LongLongRollingAverage}}
+\index{LongLongRollingAverage@{LongLongRollingAverage}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{LongLongRollingAverage()}{LongLongRollingAverage()}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_a80e90b89b2dece04ffd2ef43ccc3af39} 
+Long\+Long\+Rolling\+Average::\+\+Long\+Long\+Rolling\+Average (\begin{DoxyParamCaption}\item[{int}]{sample\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a rolling average tracker. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sample\+Size} & The number of historical data points to keep (window size). Larger sizes give smoother averages but react slower to changes. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_long_long_rolling_average_a1edd4ddd8bd1b922c21fe3e154972320}\index{LongLongRollingAverage@{LongLongRollingAverage}!````~LongLongRollingAverage@{\texorpdfstring{$\sim$}{\string~}LongLongRollingAverage}}
+\index{````~LongLongRollingAverage@{\texorpdfstring{$\sim$}{\string~}LongLongRollingAverage}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LongLongRollingAverage()}{\string~LongLongRollingAverage()}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_a1edd4ddd8bd1b922c21fe3e154972320} 
+Long\+Long\+Rolling\+Average::\+\texorpdfstring{$\sim$}{\string~}\+Long\+Long\+Rolling\+Average (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_long_long_rolling_average_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_long_long_rolling_average_af5e5ed6b484c5ffa368edd2182fff854}\index{LongLongRollingAverage@{LongLongRollingAverage}!add@{add}}
+\index{add@{add}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_af5e5ed6b484c5ffa368edd2182fff854} 
+void Long\+Long\+Rolling\+Average::\+add (\begin{DoxyParamCaption}\item[{long long}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new sample to the window. ~\newline
+ If the window is full, the oldest sample is removed and subtracted from the {\ttfamily \doxylink{class_long_long_rolling_average_adcf73e7ce9e7db4947d02c3006ac7f7b}{total}}. ~\newline
+ Thread-\/safe:\+ Locks the mutex during operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The new data point to record. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_long_long_rolling_average_a9543c066eb5641e18efa7f5b03c83f89}\index{LongLongRollingAverage@{LongLongRollingAverage}!average@{average}}
+\index{average@{average}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{average()}{average()}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_a9543c066eb5641e18efa7f5b03c83f89} 
+double Long\+Long\+Rolling\+Average::\+average (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculates the mean of the current samples. ~\newline
+ Thread-\/safe:\+ Locks the mutex. 
+
+\begin{DoxyReturn}{Returns}
+The average value as a double, or 0.\+0 if no samples exist. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_rolling_average_af9008393f7b0be3d49bbe3c5cd7632e3}{Rolling\+Average}}.
+
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_long_long_rolling_average_a9543c066eb5641e18efa7f5b03c83f89_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_long_long_rolling_average_a44cb6aa408a7a58e93f3b7c2ed4dc59e}\index{LongLongRollingAverage@{LongLongRollingAverage}!getPackagedValues@{getPackagedValues}}
+\index{getPackagedValues@{getPackagedValues}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{getPackagedValues()}{getPackagedValues()}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_a44cb6aa408a7a58e93f3b7c2ed4dc59e} 
+\doxymbox{\hyperlink{struct_packaged_values}{Packaged\+Values}} Long\+Long\+Rolling\+Average::\+get\+Packaged\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Retrieves Average, Min, and Max atomically. ~\newline
+ Acquires the lock once and computes all three statistics to ensure consistency. 
+
+\begin{DoxyReturn}{Returns}
+A filled \doxylink{struct_packaged_values}{Packaged\+Values} struct. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_rolling_average_aac9fd4231fdf90cbac081ee3d009cda8}{Rolling\+Average}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_long_long_rolling_average_a44cb6aa408a7a58e93f3b7c2ed4dc59e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_long_long_rolling_average_add20bb7c37cf2f38d8f96009c791e4d3}\index{LongLongRollingAverage@{LongLongRollingAverage}!max@{max}}
+\index{max@{max}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_add20bb7c37cf2f38d8f96009c791e4d3} 
+double Long\+Long\+Rolling\+Average::\+max (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Finds the maximum value in the current window. ~\newline
+ Thread-\/safe:\+ Locks the mutex. 
+
+\begin{DoxyReturn}{Returns}
+The maximum value, or 0.\+0 if empty. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_rolling_average_a1ac35d02a06b3596300d6d31681b1ec0}{Rolling\+Average}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{class_long_long_rolling_average_add20bb7c37cf2f38d8f96009c791e4d3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_long_long_rolling_average_add20bb7c37cf2f38d8f96009c791e4d3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_long_long_rolling_average_aa17f87cc248234d798a37cfba811da2f}\index{LongLongRollingAverage@{LongLongRollingAverage}!min@{min}}
+\index{min@{min}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{min()}{min()}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_aa17f87cc248234d798a37cfba811da2f} 
+double Long\+Long\+Rolling\+Average::\+min (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Finds the minimum value in the current window. ~\newline
+ Thread-\/safe:\+ Locks the mutex. 
+
+\begin{DoxyReturn}{Returns}
+The minimum value, or 0.\+0 if empty. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_rolling_average_a22c58ca0a933af40651f07f2907bd2ca}{Rolling\+Average}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_long_long_rolling_average_aa17f87cc248234d798a37cfba811da2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_long_long_rolling_average_aa17f87cc248234d798a37cfba811da2f_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_long_long_rolling_average_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_long_long_rolling_average_aa2c514e0ce0f66a7d9d9305c93eb2602}\index{LongLongRollingAverage@{LongLongRollingAverage}!mtx@{mtx}}
+\index{mtx@{mtx}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{mtx}{mtx}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_aa2c514e0ce0f66a7d9d9305c93eb2602} 
+std::\+mutex Long\+Long\+Rolling\+Average::\+mtx\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+\Hypertarget{class_long_long_rolling_average_ad60657df61d651ee76f6a319bcd578dc}\index{LongLongRollingAverage@{LongLongRollingAverage}!samples@{samples}}
+\index{samples@{samples}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{samples}{samples}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_ad60657df61d651ee76f6a319bcd578dc} 
+std::\+deque$<$long long$>$ Long\+Long\+Rolling\+Average::\+samples\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_long_long_rolling_average_a4b7307da021d60af9e38429518c067c9}\index{LongLongRollingAverage@{LongLongRollingAverage}!sampleSize@{sampleSize}}
+\index{sampleSize@{sampleSize}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{sampleSize}{sampleSize}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_a4b7307da021d60af9e38429518c067c9} 
+int Long\+Long\+Rolling\+Average::\+sample\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_long_long_rolling_average_adcf73e7ce9e7db4947d02c3006ac7f7b}\index{LongLongRollingAverage@{LongLongRollingAverage}!total@{total}}
+\index{total@{total}!LongLongRollingAverage@{LongLongRollingAverage}}
+\doxysubsubsection{\texorpdfstring{total}{total}}
+{\footnotesize\ttfamily \label{class_long_long_rolling_average_adcf73e7ce9e7db4947d02c3006ac7f7b} 
+long long Long\+Long\+Rolling\+Average::\+total = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_long_long_rolling_average_8h}{Long\+Long\+Rolling\+Average.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_long_long_rolling_average_8cpp}{Long\+Long\+Rolling\+Average.\+cpp}}\end{DoxyCompactItemize}

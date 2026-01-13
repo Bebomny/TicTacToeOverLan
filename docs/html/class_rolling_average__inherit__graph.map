@@ -1,0 +1,5 @@
+<map id="RollingAverage" name="RollingAverage">
+<area shape="rect" id="Node000001" title="Interface for calculating moving statistics over a stream of values. &#160;&#160;Primarily used for performance..." alt="" coords="24,5,171,181"/>
+<area shape="rect" id="Node000002" href="$class_long_long_rolling_average.html" title="A thread&#45;safe implementation of RollingAverage for long long integer types. &#160;&#160;Uses a deque (double&#45;en..." alt="" coords="5,229,189,491"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,194,100,230,95,229,97,199"/>
+</map>

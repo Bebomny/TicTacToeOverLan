@@ -1,0 +1,5 @@
+<map id="InternalGameServer::broadcastPacket" name="InternalGameServer::broadcastPacket">
+<area shape="rect" id="Node000001" title="Sends a packet to ALL connected clients." alt="" coords="5,5,143,48"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="191,5,328,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,24,178,26,172,27,143,29"/>
+</map>

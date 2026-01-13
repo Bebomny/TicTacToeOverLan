@@ -1,0 +1,38 @@
+\doxysection{Long\+Long\+Rolling\+Average.\+h}
+\hypertarget{_long_long_rolling_average_8h_source}{}\label{_long_long_rolling_average_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/common/LongLongRollingAverage.h@{D:/.ClionProjects/TicTacToeOverLan/src/common/LongLongRollingAverage.h}}
+\doxymbox{\hyperlink{_long_long_rolling_average_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_DOUBLEROLLINGAVERAGE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_DOUBLEROLLINGAVERAGE\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_rolling_average_8h}{RollingAverage.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_long_long_rolling_average_a80e90b89b2dece04ffd2ef43ccc3af39}{LongLongRollingAverage}}\ final\ :\ \doxymbox{\hyperlink{class_rolling_average_a3f2fd5ec0d9f01197d0e9a60e714ef8a}{RollingAverage}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ std::deque<long\ long>\ \doxymbox{\hyperlink{class_long_long_rolling_average_ad60657df61d651ee76f6a319bcd578dc}{samples}};}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_long_long_rolling_average_a4b7307da021d60af9e38429518c067c9}{sampleSize}};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \doxymbox{\hyperlink{class_long_long_rolling_average_adcf73e7ce9e7db4947d02c3006ac7f7b}{total}}\ =\ 0.0;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{mutable}\ std::mutex\ \doxymbox{\hyperlink{class_long_long_rolling_average_aa2c514e0ce0f66a7d9d9305c93eb2602}{mtx}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{class_long_long_rolling_average_a80e90b89b2dece04ffd2ef43ccc3af39}{LongLongRollingAverage}}(\textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_long_long_rolling_average_a4b7307da021d60af9e38429518c067c9}{sampleSize}});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{class_long_long_rolling_average_a1edd4ddd8bd1b922c21fe3e154972320}{\string~LongLongRollingAverage}}()\textcolor{keyword}{\ override\ }\{\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_long_long_rolling_average_af5e5ed6b484c5ffa368edd2182fff854}{add}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ value);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{class_long_long_rolling_average_a9543c066eb5641e18efa7f5b03c83f89}{average}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{class_long_long_rolling_average_aa17f87cc248234d798a37cfba811da2f}{min}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{double}\ \doxymbox{\hyperlink{class_long_long_rolling_average_add20bb7c37cf2f38d8f96009c791e4d3}{max}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00070\ \ \ \ \ \doxymbox{\hyperlink{struct_packaged_values}{PackagedValues}}\ \doxymbox{\hyperlink{class_long_long_rolling_average_a44cb6aa408a7a58e93f3b7c2ed4dc59e}{getPackagedValues}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_DOUBLEROLLINGAVERAGE\_H}}
+
+\end{DoxyCode}

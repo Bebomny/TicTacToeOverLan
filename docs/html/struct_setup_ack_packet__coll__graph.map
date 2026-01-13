@@ -1,0 +1,5 @@
+<map id="SetupAckPacket" name="SetupAckPacket">
+<area shape="rect" id="Node000001" title="Login acknowledgement. &#160;&#160;Contains the &quot;Snapshot&quot; of the current lobby state so the new client catches..." alt="" coords="5,275,148,493"/>
+<area shape="rect" id="Node000002" href="$struct_player.html" title="Represents a participant in the game. &#160;&#160;Contains identification, statistics, and local state flags." alt="" coords="30,5,124,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,200,79,258,74,258,76,205"/>
+</map>

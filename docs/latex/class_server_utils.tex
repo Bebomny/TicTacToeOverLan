@@ -1,0 +1,70 @@
+\doxysection{Server\+Utils Class Reference}
+\hypertarget{class_server_utils}{}\label{class_server_utils}\index{ServerUtils@{ServerUtils}}
+
+
+Helper utilities specific to the \doxylink{class_internal_game_server}{Internal\+Game\+Server} logic.  
+
+
+
+
+{\ttfamily \+\#include $<$Server\+Utils.\+h$>$}
+
+
+
+Collaboration diagram for Server\+Utils:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{class_server_utils__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{struct_player}{Player}} \doxymbox{\hyperlink{class_server_utils_ace9fe34a36fea92d5e381de21c656dd4}{client\+Context\+To\+Player}} (const \doxymbox{\hyperlink{struct_client_context}{Client\+Context}} \&client, bool requesting\+Player\+Id)
+\begin{DoxyCompactList}\small\item\em Converts the server-\/side internal client representation into a public \doxylink{struct_player}{Player} struct. ~\newline
+ Used for network synchronization, as {\ttfamily \doxylink{struct_client_context}{Client\+Context}} contains private data that should not be sent to clients, whereas {\ttfamily \doxylink{struct_player}{Player}} is the "{}public"{} view of a user suitable for the UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper utilities specific to the \doxylink{class_internal_game_server}{Internal\+Game\+Server} logic. 
+
+\label{doc-func-members}
+\Hypertarget{class_server_utils_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_server_utils_ace9fe34a36fea92d5e381de21c656dd4}\index{ServerUtils@{ServerUtils}!clientContextToPlayer@{clientContextToPlayer}}
+\index{clientContextToPlayer@{clientContextToPlayer}!ServerUtils@{ServerUtils}}
+\doxysubsubsection{\texorpdfstring{clientContextToPlayer()}{clientContextToPlayer()}}
+{\footnotesize\ttfamily \label{class_server_utils_ace9fe34a36fea92d5e381de21c656dd4} 
+\doxymbox{\hyperlink{struct_player}{Player}} Server\+Utils::\+client\+Context\+To\+Player (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_client_context}{Client\+Context}} \&}]{client}{, }\item[{bool}]{requesting\+Player\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts the server-\/side internal client representation into a public \doxylink{struct_player}{Player} struct. ~\newline
+ Used for network synchronization, as {\ttfamily \doxylink{struct_client_context}{Client\+Context}} contains private data that should not be sent to clients, whereas {\ttfamily \doxylink{struct_player}{Player}} is the "{}public"{} view of a user suitable for the UI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & The internal client context to convert. \\
+\hline
+{\em requesting\+Player\+Id} & The ID of the player requesting this data (or the ID of the client to whom this packet will be sent). This is used to correctly set the {\ttfamily is\+Me} flag. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{struct_player}{Player} struct populated with safe-\/to-\/share data. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_server_utils_ace9fe34a36fea92d5e381de21c656dd4_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+server/\+\doxymbox{\hyperlink{_server_utils_8h}{Server\+Utils.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+server/\+\doxymbox{\hyperlink{_server_utils_8cpp}{Server\+Utils.\+cpp}}\end{DoxyCompactItemize}

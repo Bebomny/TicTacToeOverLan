@@ -1,0 +1,11 @@
+<map id="LongLongRollingAverage::getPackagedValues" name="LongLongRollingAverage::getPackagedValues">
+<area shape="rect" id="Node000001" title="Retrieves Average, Min, and Max atomically. &#160;&#160;Acquires the lock once and computes all three statistic..." alt="" coords="5,88,171,131"/>
+<area shape="rect" id="Node000002" href="$class_long_long_rolling_average.html#a9543c066eb5641e18efa7f5b03c83f89" title="Calculates the mean of the current samples. &#160;&#160;Thread&#45;safe: Locks the mutex." alt="" coords="235,5,400,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,85,218,57,239,52,234,55,220,63,146,90"/>
+<area shape="rect" id="Node000003" href="$class_long_long_rolling_average.html#add20bb7c37cf2f38d8f96009c791e4d3" title="Finds the maximum value in the current window. &#160;&#160;Thread&#45;safe: Locks the mutex." alt="" coords="219,96,417,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,107,205,109,200,110,171,112"/>
+<area shape="rect" id="Node000004" href="$class_long_long_rolling_average.html#aa17f87cc248234d798a37cfba811da2f" title="Finds the minimum value in the current window. &#160;&#160;Thread&#45;safe: Locks the mutex." alt="" coords="221,171,415,197"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="157,129,262,164,257,166,156,134"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="279,95,272,87,277,77,292,71,318,69,346,72,362,81,356,81,344,77,318,75,294,77,281,81,277,87,284,96"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="279,169,272,162,277,152,292,146,318,144,346,147,362,156,356,155,344,152,318,149,294,151,281,156,277,161,284,171"/>
+</map>

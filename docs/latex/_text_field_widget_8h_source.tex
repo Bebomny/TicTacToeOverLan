@@ -1,0 +1,131 @@
+\doxysection{Text\+Field\+Widget.\+h}
+\hypertarget{_text_field_widget_8h_source}{}\label{_text_field_widget_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/client/ui/TextFieldWidget.h@{D:/.ClionProjects/TicTacToeOverLan/src/client/ui/TextFieldWidget.h}}
+\doxymbox{\hyperlink{_text_field_widget_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_TEXTFIELDWIDGET\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_TEXTFIELDWIDGET\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_widget_8h}{Widget.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_utils_8h}{../../common/Utils.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics/RectangleShape.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics/Text.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}SFML/System/Time.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}SFML/Window/Event.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics/Font.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}SFML/Graphics/RenderTarget.hpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_text_field_widget}{TextFieldWidget}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_text_field_builder_af7c263cda29536d6bbb0c3955784c3be}{TextFieldBuilder}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_text_field_builder_a6edec4259950a26ffd024831e73add51}{posX}}\ =\ 0,\ \doxymbox{\hyperlink{class_text_field_builder_a055ea35307b78687806376731186255c}{posY}}\ =\ 0;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_text_field_builder_a903469e64cdd4bc156a8f2039b7ce183}{width}}\ =\ 200,\ \doxymbox{\hyperlink{class_text_field_builder_a1ed0b4185bd0db7ad3b3135a655d7258}{height}}\ =\ 28;}
+\DoxyCodeLine{00023\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_text_field_builder_ab51e7f7fada99a4bb39fe7e8783f347c}{initialText}};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_text_field_builder_aa2931e677e36ff64aad78fb283c293ee}{textSize}}\ =\ 20;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{class_text_field_builder_ad0b19f5d65d58373018d5651bb7ed623}{maxChars}}\ =\ 30;}
+\DoxyCodeLine{00026\ \ \ \ \ sf::Color\ \doxymbox{\hyperlink{class_text_field_builder_a883e9111955c2ae2273d3a537b20ec76}{textColor}}\ =\ sf::Color(\doxymbox{\hyperlink{_utils_8h_a21d8d1acc9bd2ed93b1960661f09cbf6}{TEXT\_COLOR}});}
+\DoxyCodeLine{00027\ \ \ \ \ sf::Color\ \doxymbox{\hyperlink{class_text_field_builder_acb8aece398180e443e648cc39ed13c00}{idleColor}}\ =\ sf::Color(\doxymbox{\hyperlink{_utils_8h_a61ae6f1ae401c962137f2ae1d2a158df}{BACKGROUND\_COLOR}});}
+\DoxyCodeLine{00028\ \ \ \ \ sf::Color\ \doxymbox{\hyperlink{class_text_field_builder_a521405c091eb724e41f7adbe62843ddf}{focusColor}}\ =\ sf::Color(\doxymbox{\hyperlink{_utils_8h_aaf587c17e178da66dc6050761922b8ee}{SECONDARY\_COLOR}});}
+\DoxyCodeLine{00029\ \ \ \ \ sf::Color\ \doxymbox{\hyperlink{class_text_field_builder_ade7f941874d9f71e54c3ea91f4107af3}{inactiveColor}}\ =\ sf::Color(\doxymbox{\hyperlink{_utils_8h_a98f13e43044f17563c27867f08a90dbf}{INACTIVE\_COLOR}});}
+\DoxyCodeLine{00030\ \ \ \ \ sf::Font\ *\doxymbox{\hyperlink{class_text_field_builder_afcfda47b08ef6ce2907d88aba421e3fa}{font}};}
+\DoxyCodeLine{00031\ \ \ \ \ std::function<void(\textcolor{keyword}{const}\ std::string\ \&)>\ \doxymbox{\hyperlink{class_text_field_builder_a8d80d0b792c1e8aa968330af20f909a2}{onTextChange}};}
+\DoxyCodeLine{00032\ \ \ \ \ std::function<bool()>\ \doxymbox{\hyperlink{class_text_field_builder_a5ef5fc0c30dde17b94d37baaf82b3215}{displayCondition}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_text_field_builder_a40de8a4f198159571ea9520f6ccba0eb}{prevPosX}},\ \doxymbox{\hyperlink{class_text_field_builder_ac7e96e12b400000c09569a1f52c6974e}{prevPosY}};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ sf::Font\ \doxymbox{\hyperlink{class_text_field_builder_a391edf3d557bca7ee90a94a47663f72f}{sharedFont}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder_af7c263cda29536d6bbb0c3955784c3be}{TextFieldBuilder}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder_af7c263cda29536d6bbb0c3955784c3be}{TextFieldBuilder}}(\textcolor{keyword}{const}\ std::string\ \&\doxymbox{\hyperlink{class_text_field_builder_ab51e7f7fada99a4bb39fe7e8783f347c}{initialText}},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ std::string\ \&)>\ \&onTextChangeCallback);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_text_field_builder_a4cdbca90ee4fd11aa7038101ce1fd08f}{initFont}}(\textcolor{keyword}{const}\ sf::Font\ \&\doxymbox{\hyperlink{class_text_field_builder_afcfda47b08ef6ce2907d88aba421e3fa}{font}})\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder_a391edf3d557bca7ee90a94a47663f72f}{sharedFont}}\ =\ \doxymbox{\hyperlink{class_text_field_builder_afcfda47b08ef6ce2907d88aba421e3fa}{font}};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder_a40de8a4f198159571ea9520f6ccba0eb}{prevPosX}}\ =\ 0,\ \doxymbox{\hyperlink{class_text_field_builder_ac7e96e12b400000c09569a1f52c6974e}{prevPosY}}\ =\ 0;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ printf(\doxymbox{\hyperlink{_utils_8h_ad050fd71ced44460a0c723a1715c40e5}{ANSI\_GREEN}}\ \textcolor{stringliteral}{"{}[UI]\ Font\ and\ defaults\ for\ TextFieldBuilder\ have\ been\ loaded!\(\backslash\)n"{}}\ \doxymbox{\hyperlink{_utils_8h_af77a445894f2f750d43cf2182cd29e55}{ANSI\_RESET}});}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00068\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_a2337b04fb7b73c112e98ad4fb504f38d}{setPosition}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00078\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_af94b6cc45f3c822ac8e318ced17405c7}{move}}(\textcolor{keywordtype}{float}\ byX,\ \textcolor{keywordtype}{float}\ byY);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_ae7c3d366967c8d389f4568429fcd31dc}{setWidth}}(\textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_text_field_builder_a903469e64cdd4bc156a8f2039b7ce183}{width}});}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00094\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_acb3c2a1f7395e1440a8a3fa7325a6ebb}{setHeight}}(\textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_text_field_builder_a1ed0b4185bd0db7ad3b3135a655d7258}{height}});}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00103\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_abce41c60112593aed4fd43e31ef0b3a4}{setSize}}(\textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_text_field_builder_a903469e64cdd4bc156a8f2039b7ce183}{width}},\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_text_field_builder_a1ed0b4185bd0db7ad3b3135a655d7258}{height}});}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00111\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_a9c50876ddc755b89bb2fa60940b2f804}{setMaxChars}}(\textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{class_text_field_builder_ad0b19f5d65d58373018d5651bb7ed623}{maxChars}});}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00119\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_ac8e987f011e97b4991579c8dc00b3500}{setText}}(std::string\ text);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00127\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_a90a8a4c210639a3dec6dbbc76abacb70}{setTextSize}}(\textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_text_field_builder_aa2931e677e36ff64aad78fb283c293ee}{textSize}});}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00138\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_a5df73208c286e54e8852ef3cf20cbaf9}{setColors}}(sf::Color\ idle,\ sf::Color\ focus,\ sf::Color\ text,\ sf::Color\ inactive);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00146\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_a2676284486db2f7e4fac6facff53c518}{setOnTextChange}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ std::string\ \&)>\ \&\doxymbox{\hyperlink{class_text_field_builder_a8d80d0b792c1e8aa968330af20f909a2}{onTextChange}});}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00154\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \&\doxymbox{\hyperlink{class_text_field_builder_aac4988fc04b7ba88b60834969d6b04f9}{setDisplayCondition}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{bool}()>\ \&\doxymbox{\hyperlink{class_text_field_builder_a5ef5fc0c30dde17b94d37baaf82b3215}{displayCondition}});}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00161\ \ \ \ \ std::unique\_ptr<TextFieldWidget>\ \doxymbox{\hyperlink{class_text_field_builder_a1ae8ec6d3573cde8b725d4533a9dab98}{build}}();}
+\DoxyCodeLine{00162\ \};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00168\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_text_field_widget_a453a6932e9167f2527d6877e65785c94}{TextFieldWidget}}\ final\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_widget}{Widget}}\ \{}
+\DoxyCodeLine{00169\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00170\ \ \ \ \ sf::RectangleShape\ \doxymbox{\hyperlink{class_text_field_widget_a75d9d8ac28bb914d69f1a6483ca638df}{backgroundShape}};}
+\DoxyCodeLine{00171\ \ \ \ \ sf::Text\ \doxymbox{\hyperlink{class_text_field_widget_ab1573ad8eef9d1ff1fc77e968b5e611e}{renderText}};}
+\DoxyCodeLine{00172\ \ \ \ \ sf::RectangleShape\ \doxymbox{\hyperlink{class_text_field_widget_ae1b6a003bbbd866b691365319fbef887}{cursorShape}};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_text_field_widget_a5d49ee6bdebd51ce25ae439c9e6163d3}{currentString}};}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_text_field_widget_a8368a235c9d4cc8f86992b5085222fc9}{isFocused}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_text_field_widget_a040eb0898c6edd69942fd2bdf98b24b5}{showCursor}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{class_text_field_widget_a0f08e80c97779108514585ad8c4eaae0}{maxChars}};}
+\DoxyCodeLine{00179\ \ \ \ \ sf::Color\ \doxymbox{\hyperlink{class_text_field_widget_a4ad6318b1900ba26a97f4bbc0903c1b9}{idleColor}};}
+\DoxyCodeLine{00180\ \ \ \ \ sf::Color\ \doxymbox{\hyperlink{class_text_field_widget_a412233f79d6e1a6d1c7d503802d3bbf6}{focusColor}};}
+\DoxyCodeLine{00181\ \ \ \ \ sf::Color\ \doxymbox{\hyperlink{class_text_field_widget_a8f9932bdd23d0831d042e61c6c7582a8}{textColor}};}
+\DoxyCodeLine{00182\ \ \ \ \ sf::Color\ \doxymbox{\hyperlink{class_text_field_widget_afa3d397f8df8cad381ee3e9e0b5ee025}{inactiveColor}};\ \textcolor{comment}{//\ Grayed\ out}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ std::function<void(\textcolor{keyword}{const}\ std::string\ \&)>\ \doxymbox{\hyperlink{class_text_field_widget_a949f2c90d6556e373fd8cbef67b27097}{onTextChange}};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ sf::Time\ \doxymbox{\hyperlink{class_text_field_widget_a49c267afa43d3654c784be03dd4be007}{cursorTimer}};}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ sf::Time\ \doxymbox{\hyperlink{class_text_field_widget_a199a4a857b9f9a0fca1f80942ef220f5}{cursorBlickTime}};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00195\ \ \ \ \ \doxymbox{\hyperlink{class_text_field_widget_a453a6932e9167f2527d6877e65785c94}{TextFieldWidget}}(}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ height,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ std::string\ \&)>\ \&onTextChangeCallback,}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{bool}()>\ \&\doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{displayCondition}},}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ sf::Font\ \&font,\ sf::Color\ \doxymbox{\hyperlink{class_text_field_widget_a4ad6318b1900ba26a97f4bbc0903c1b9}{idleColor}},\ sf::Color\ \doxymbox{\hyperlink{class_text_field_widget_a412233f79d6e1a6d1c7d503802d3bbf6}{focusColor}},\ sf::Color\ \doxymbox{\hyperlink{class_text_field_widget_a8f9932bdd23d0831d042e61c6c7582a8}{textColor}},\ sf::Color\ \doxymbox{\hyperlink{class_text_field_widget_afa3d397f8df8cad381ee3e9e0b5ee025}{inactiveColor}},}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \doxymbox{\hyperlink{class_text_field_widget_a0f08e80c97779108514585ad8c4eaae0}{maxChars}}\ =\ 30,\ \textcolor{keyword}{const}\ std::string\ \&initialText\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \doxymbox{\hyperlink{class_text_field_widget_ab5955881c94d5aece7264a087d3525c4}{builder}}()\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\};}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{class_text_field_builder}{TextFieldBuilder}}\ \doxymbox{\hyperlink{class_text_field_widget_a5c1ed87acfd71e0a092b4590d33ffd3f}{builder}}(std::string\ initialText,\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ std::string\ \&)>\ \doxymbox{\hyperlink{class_text_field_widget_a949f2c90d6556e373fd8cbef67b27097}{onTextChange}})\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{initialText,\ \doxymbox{\hyperlink{class_text_field_widget_a949f2c90d6556e373fd8cbef67b27097}{onTextChange}}\};}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_text_field_widget_a7637bbc4d12b02948fd4c3c4f896796f}{handleEvent}}(\textcolor{keyword}{const}\ std::optional<sf::Event>\ \&event,\ \textcolor{keyword}{const}\ sf::Vector2i\ \&mousePos)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_text_field_widget_a4a1a133cefc1e03338d1700eb2a71495}{update}}(sf::Time\ deltaTime,\ \textcolor{keyword}{const}\ sf::Vector2i\ \&mousePos)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_text_field_widget_a4d99e682b0a30b615c85268ec1188492}{render}}(sf::RenderTarget\ \&window)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00255\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_text_field_widget_a938675a94b6a4eb500f01d764003ed45}{getText}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_text_field_widget_a5d49ee6bdebd51ce25ae439c9e6163d3}{currentString}};\ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_text_field_widget_a105a562d935dc662fa5532348409e397}{setText}}(\textcolor{keyword}{const}\ std::string\ \&text);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_text_field_widget_a61c23b76f09f222cf28b905a0678cf42}{setCallback}}(\textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ std::string\ \&)>\ \&callback)\ \{\ \doxymbox{\hyperlink{class_text_field_widget_a949f2c90d6556e373fd8cbef67b27097}{onTextChange}}\ =\ callback;\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_text_field_widget_a2ac2fec09d5da0de42c63463e3c950ae}{contains}}(\textcolor{keyword}{const}\ sf::Vector2f\ \&pos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00280\ \};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_TEXTFIELDWIDGET\_H}}
+
+\end{DoxyCode}

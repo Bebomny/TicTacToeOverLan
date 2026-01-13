@@ -1,0 +1,36 @@
+\doxysection{D:\+/\+.Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+server/\+\+Internal\+Game\+Server.h File Reference}
+\hypertarget{_internal_game_server_8h}{}\label{_internal_game_server_8h}\index{D:/.ClionProjects/TicTacToeOverLan/src/server/InternalGameServer.h@{D:/.ClionProjects/TicTacToeOverLan/src/server/InternalGameServer.h}}
+{\ttfamily \+\#include $<$atomic$>$}\newline
+{\ttfamily \+\#include $<$map$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$winsock2.\+h$>$}\newline
+{\ttfamily \+\#include "{}Client\+Context.\+h"{}}\newline
+{\ttfamily \+\#include "{}../\+common/\+\+Long\+Long\+Rolling\+Average.\+h"{}}\newline
+{\ttfamily \+\#include "{}../\+common/\+\+Network\+Protocol.\+h"{}}\newline
+Include dependency graph for Internal\+Game\+Server.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_internal_game_server_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_internal_game_server_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_internal_game_server}{Internal\+Game\+Server}}
+\begin{DoxyCompactList}\small\item\em The authoritative server logic for the game. ~\newline
+ Runs on a dedicated thread hosted by one of the clients. ~\newline
+ Responsibilities include:\+ ~\newline
+ 1. Accepting new connections (TCP). ~\newline
+ 2. Managing the main game loop (Tick rate). ~\newline
+ 3. Enforcing game rules and state synchronization. ~\newline
+ 4. Broadcasting updates to all connected clients. \end{DoxyCompactList}\end{DoxyCompactItemize}

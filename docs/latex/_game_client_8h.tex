@@ -1,0 +1,175 @@
+\doxysection{D:\+/\+.Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+\+Game\+Client.h File Reference}
+\hypertarget{_game_client_8h}{}\label{_game_client_8h}\index{D:/.ClionProjects/TicTacToeOverLan/src/client/GameClient.h@{D:/.ClionProjects/TicTacToeOverLan/src/client/GameClient.h}}
+{\ttfamily \+\#include $<$cstdint$>$}\newline
+{\ttfamily \+\#include $<$map$>$}\newline
+{\ttfamily \+\#include $<$regex$>$}\newline
+{\ttfamily \+\#include $<$thread$>$}\newline
+{\ttfamily \+\#include "{}Network\+Manager.\+h"{}}\newline
+{\ttfamily \+\#include "{}../\+server/\+\+Internal\+Game\+Server.\+h"{}}\newline
+{\ttfamily \+\#include "{}SFML/\+\+Graphics/\+\+Font.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}SFML/\+\+Graphics/\+\+Render\+Window.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}ui/\+\+Button\+Widget.\+h"{}}\newline
+Include dependency graph for Game\+Client.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_game_client_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_game_client_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_game_client}{Game\+Client}}
+\begin{DoxyCompactList}\small\item\em The main application controller. ~\newline
+ This class manages the entire lifecycle of the client application, including the main game loop (Input -\/\texorpdfstring{$>$}{>} Update -\/\texorpdfstring{$>$}{>} Render), window management, networking (client and internal host), and the UI widget registry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}{Setup\+Phase}} :\+ uint8\+\_\+t \{ \doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5a99c8ce56e7ab246445d3b134724428f3}{DISCONNECTED}}
+, \doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5aad769a2711fb8de724e0917003df481e}{CONN\+\_\+\+ESTABLISHED}}
+, \doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5a1d8d6a889454dc55a7fc2fec3554f110}{SETTING\+\_\+\+UP}}
+, \doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5aa5afd6edd5336d91316964e493936858}{CONNECTED}}
+ \}
+\begin{DoxyCompactList}\small\item\em Connection handshake states. ~\newline
+ Tracks the progress of establishing a connection with the server. \end{DoxyCompactList}\item 
+enum class \doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71}{Game\+Phase}} :\+ uint8\+\_\+t \{ \newline
+\doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a696b031073e74bf2cb98e5ef201d4aa3}{UNKNOWN}}
+, \doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a21de70d9c9be6bf8038fba3fb1dc837f}{WAITING\+\_\+\+ROOM}}
+, \doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71af4e2181b43a372dd9918cf1733170887}{MY\+\_\+\+TURN}}
+, \doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a1d706615c109456656f7c6ec245bb39d}{NOT\+\_\+\+MY\+\_\+\+TURN}}
+, \newline
+\doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a62b18e37f0fb46c01a38e11263b01774}{GAME\+\_\+\+FINISHED}}
+ \}
+\begin{DoxyCompactList}\small\item\em Gameplay flow states. ~\newline
+ Dictates the logic applied during the actual match. \end{DoxyCompactList}\item 
+enum class \doxymbox{\hyperlink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}{Client\+State}} :\+ uint8\+\_\+t \{ \doxymbox{\hyperlink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a3ed53fbeb1eab0443561b68ca0c0b5cf}{MENU}}
+, \doxymbox{\hyperlink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a8a78aacb655454c72fb1b47a8c78de90}{GAME\+\_\+\+ROOM}}
+, \doxymbox{\hyperlink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a4504e1ed59cd9732b8a844e5424e6f13}{GAME}}
+ \}
+\begin{DoxyCompactList}\small\item\em Application UI states. ~\newline
+ Determines which screen (Menu, Lobby, Board) is currently rendered and updated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{_game_client_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}\index{GameClient.h@{GameClient.h}!ClientState@{ClientState}}
+\index{ClientState@{ClientState}!GameClient.h@{GameClient.h}}
+\doxysubsubsection{\texorpdfstring{ClientState}{ClientState}}
+{\footnotesize\ttfamily \label{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0} 
+enum class \doxymbox{\hyperlink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}{Client\+State}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Application UI states. ~\newline
+ Determines which screen (Menu, Lobby, Board) is currently rendered and updated. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MENU@{MENU}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!MENU@{MENU}}
+}\Hypertarget{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a3ed53fbeb1eab0443561b68ca0c0b5cf}\label{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a3ed53fbeb1eab0443561b68ca0c0b5cf} 
+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME\_ROOM@{GAME\_ROOM}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!GAME\_ROOM@{GAME\_ROOM}}
+}\Hypertarget{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a8a78aacb655454c72fb1b47a8c78de90}\label{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a8a78aacb655454c72fb1b47a8c78de90} 
+GAME\+\_\+\+ROOM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME@{GAME}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!GAME@{GAME}}
+}\Hypertarget{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a4504e1ed59cd9732b8a844e5424e6f13}\label{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0a4504e1ed59cd9732b8a844e5424e6f13} 
+GAME&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71}\index{GameClient.h@{GameClient.h}!GamePhase@{GamePhase}}
+\index{GamePhase@{GamePhase}!GameClient.h@{GameClient.h}}
+\doxysubsubsection{\texorpdfstring{GamePhase}{GamePhase}}
+{\footnotesize\ttfamily \label{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71} 
+enum class \doxymbox{\hyperlink{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71}{Game\+Phase}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Gameplay flow states. ~\newline
+ Dictates the logic applied during the actual match. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!UNKNOWN@{UNKNOWN}}
+}\Hypertarget{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a696b031073e74bf2cb98e5ef201d4aa3}\label{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a696b031073e74bf2cb98e5ef201d4aa3} 
+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WAITING\_ROOM@{WAITING\_ROOM}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!WAITING\_ROOM@{WAITING\_ROOM}}
+}\Hypertarget{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a21de70d9c9be6bf8038fba3fb1dc837f}\label{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a21de70d9c9be6bf8038fba3fb1dc837f} 
+WAITING\+\_\+\+ROOM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MY\_TURN@{MY\_TURN}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!MY\_TURN@{MY\_TURN}}
+}\Hypertarget{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71af4e2181b43a372dd9918cf1733170887}\label{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71af4e2181b43a372dd9918cf1733170887} 
+MY\+\_\+\+TURN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT\_MY\_TURN@{NOT\_MY\_TURN}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!NOT\_MY\_TURN@{NOT\_MY\_TURN}}
+}\Hypertarget{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a1d706615c109456656f7c6ec245bb39d}\label{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a1d706615c109456656f7c6ec245bb39d} 
+NOT\+\_\+\+MY\+\_\+\+TURN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME\_FINISHED@{GAME\_FINISHED}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!GAME\_FINISHED@{GAME\_FINISHED}}
+}\Hypertarget{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a62b18e37f0fb46c01a38e11263b01774}\label{_game_client_8h_ac1633b216545d1a668cb5f177ffafe71a62b18e37f0fb46c01a38e11263b01774} 
+GAME\+\_\+\+FINISHED&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}\index{GameClient.h@{GameClient.h}!SetupPhase@{SetupPhase}}
+\index{SetupPhase@{SetupPhase}!GameClient.h@{GameClient.h}}
+\doxysubsubsection{\texorpdfstring{SetupPhase}{SetupPhase}}
+{\footnotesize\ttfamily \label{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5} 
+enum class \doxymbox{\hyperlink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}{Setup\+Phase}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Connection handshake states. ~\newline
+ Tracks the progress of establishing a connection with the server. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DISCONNECTED@{DISCONNECTED}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!DISCONNECTED@{DISCONNECTED}}
+}\Hypertarget{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5a99c8ce56e7ab246445d3b134724428f3}\label{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5a99c8ce56e7ab246445d3b134724428f3} 
+DISCONNECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONN\_ESTABLISHED@{CONN\_ESTABLISHED}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!CONN\_ESTABLISHED@{CONN\_ESTABLISHED}}
+}\Hypertarget{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5aad769a2711fb8de724e0917003df481e}\label{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5aad769a2711fb8de724e0917003df481e} 
+CONN\+\_\+\+ESTABLISHED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETTING\_UP@{SETTING\_UP}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!SETTING\_UP@{SETTING\_UP}}
+}\Hypertarget{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5a1d8d6a889454dc55a7fc2fec3554f110}\label{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5a1d8d6a889454dc55a7fc2fec3554f110} 
+SETTING\+\_\+\+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONNECTED@{CONNECTED}!GameClient.h@{GameClient.h}}
+\index{GameClient.h@{GameClient.h}!CONNECTED@{CONNECTED}}
+}\Hypertarget{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5aa5afd6edd5336d91316964e493936858}\label{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5aa5afd6edd5336d91316964e493936858} 
+CONNECTED&\\
+\hline
+
+\end{DoxyEnumFields}

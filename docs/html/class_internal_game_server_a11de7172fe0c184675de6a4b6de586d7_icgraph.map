@@ -1,0 +1,5 @@
+<map id="InternalGameServer::handleNewConnection" name="InternalGameServer::handleNewConnection">
+<area shape="rect" id="Node000001" title="Accepts and processes a new connection. &#160;&#160;If a client connects, creates a new ClientContext,..." alt="" coords="191,5,351,48"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
+</map>

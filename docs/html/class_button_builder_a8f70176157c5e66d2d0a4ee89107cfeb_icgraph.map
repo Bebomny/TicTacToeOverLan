@@ -1,0 +1,29 @@
+<map id="ButtonBuilder::ButtonBuilder" name="ButtonBuilder::ButtonBuilder">
+<area shape="rect" id="Node000001" title=" " alt="" coords="656,208,842,234"/>
+<area shape="rect" id="Node000002" href="$class_button_builder.html#ab39b07c841729ccf1a779ee2244f1e3d" title="Offsets the position relative to the last built widget. Useful for stacking fields vertically or hori..." alt="" coords="233,40,372,66"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="735,193,717,155,690,109,653,64,631,45,607,30,573,17,536,10,499,8,462,11,393,24,339,41,336,37,391,19,461,6,499,3,537,5,574,12,610,25,634,41,657,60,694,106,722,153,740,194"/>
+<area shape="rect" id="Node000003" href="$class_button_builder.html#a1ba4372324a4acf55634209bad692458" title="Configures the color palette for the button&#39;s different states." alt="" coords="438,40,602,66"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="727,195,677,138,644,107,607,81,584,70,584,64,610,76,647,103,681,134,732,196"/>
+<area shape="rect" id="Node000004" href="$class_button_builder.html#a3c1ce757492f297ea07eca5a1d22e213" title="Sets a custom visibility condition." alt="" coords="436,141,605,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="677,204,605,187,605,181,682,203"/>
+<area shape="rect" id="Node000007" href="$class_button_builder.html#a84688cce213bca8bdc9408d0263c613e" title="Sets the height of the button." alt="" coords="438,208,602,234"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="638,222,603,224,602,218,643,221"/>
+<area shape="rect" id="Node000008" href="$class_button_builder.html#a71003751383fdb15b061df4d60414611" title="Sets the absolute position of the button." alt="" coords="434,90,606,117"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="716,198,667,165,607,131,579,120,578,115,609,127,670,161,721,198"/>
+<area shape="rect" id="Node000009" href="$class_button_builder.html#a713ac643f35aebfccf8c015b63cdb4f9" title="Sets the size (width and height) of the button." alt="" coords="444,258,596,285"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="668,239,584,260,583,255,673,238"/>
+<area shape="rect" id="Node000010" href="$class_button_builder.html#a2eb03bcb0621ec56d3fa0b3a1a848f4c" title="Sets the label text." alt="" coords="445,309,595,336"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="715,242,665,273,609,300,577,311,575,306,607,295,663,268,710,244"/>
+<area shape="rect" id="Node000011" href="$class_button_builder.html#a292ada52b60038644a113dfac5e85ef9" title="Sets the character size of the text." alt="" coords="432,360,608,386"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="729,245,678,299,645,327,610,350,583,362,582,357,607,345,642,322,674,296,724,247"/>
+<area shape="rect" id="Node000012" href="$class_button_builder.html#a358f8dde034af99e814e106a0f6d7305" title="Sets the width of the button." alt="" coords="440,410,600,437"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="736,247,715,284,687,325,651,366,610,401,587,412,585,407,607,396,648,362,683,321,711,281,731,250"/>
+<area shape="rect" id="Node000005" href="$class_game_client.html#a0ed542437a49af2a1257a22bc3be66a6" title="Initializes all UI widgets (Buttons, TextFields) via their Builders. &#160;&#160;Called in the constructor,..." alt="" coords="221,233,384,260"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="445,191,433,198,340,235,337,230,431,193,450,189"/>
+<area shape="rect" id="Node000006" href="$class_game_client.html#a22eefb77da4aadc789f9f6a39218f099" title=" " alt="" coords="5,233,173,260"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="203,248,174,249,172,244,208,245"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="421,233,385,239,384,234,426,231"/>
+<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="442,87,363,70,362,64,447,85"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="426,262,385,259,384,253,432,261"/>
+<area shape="poly" id="edge14_Node000011_Node000005" title=" " alt="" coords="443,354,431,350,396,329,364,305,317,263,318,258,367,301,399,325,433,345,448,354"/>
+</map>

@@ -1,0 +1,38 @@
+<map id="D:/.ClionProjects/TicTacToeOverLan/src/client/ui/TextFieldWidget.cpp" name="D:/.ClionProjects/TicTacToeOverLan/src/client/ui/TextFieldWidget.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="547,5,712,64"/>
+<area shape="rect" id="Node000002" href="$_text_field_widget_8h.html" title=" " alt="" coords="566,112,692,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="631,62,632,97,627,95,628,67"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,261,83,288"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="564,138,456,161,331,189,204,225,97,258,95,254,203,220,330,184,455,156,569,137"/>
+<area shape="rect" id="Node000004" href="$_widget_8h.html" title=" " alt="" coords="419,187,493,213"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="602,138,501,183,499,178,597,140"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="107,261,274,288"/>
+<area shape="poly" id="edge19_Node000002_Node000006" title=" " alt="" coords="574,140,497,163,409,189,314,224,234,257,232,252,312,219,407,184,496,157,579,138"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="374,261,538,288"/>
+<area shape="poly" id="edge17_Node000002_Node000007" title=" " alt="" coords="617,138,483,254,481,249,612,140"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="562,261,732,288"/>
+<area shape="poly" id="edge18_Node000002_Node000008" title=" " alt="" coords="633,137,646,247,641,245,629,141"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="756,261,975,288"/>
+<area shape="poly" id="edge20_Node000002_Node000009" title=" " alt="" coords="638,136,667,174,708,211,754,236,802,257,797,256,751,241,705,215,663,177,636,142"/>
+<area shape="rect" id="Node000010" href="$_utils_8h.html" title=" " alt="" coords="718,187,855,213"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="657,137,748,180,743,180,656,142"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="880,187,1117,213"/>
+<area shape="poly" id="edge15_Node000002_Node000015" title=" " alt="" coords="693,136,922,183,917,184,693,142"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="1141,187,1307,213"/>
+<area shape="poly" id="edge16_Node000002_Node000016" title=" " alt="" coords="693,131,1128,185,1123,187,693,137"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="416,208,282,231,99,263,97,258,281,225,421,206"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="298,261,350,288"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="435,213,361,256,359,251,431,215"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="417,213,252,259,251,254,421,210"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="458,212,458,247,454,244,454,216"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="490,211,602,255,597,256,489,217"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="493,205,781,257,776,259,493,211"/>
+<area shape="rect" id="Node000011" href="$_game_definitions_8h.html" title=" " alt="" coords="999,261,1129,288"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="835,211,1004,257,998,257,835,217"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1153,261,1207,288"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="856,209,1002,233,1141,261,1136,261,1001,238,856,215"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="992,336,1053,363"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="1059,287,1039,325,1036,320,1054,290"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1077,336,1134,363"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="1073,286,1093,324,1088,321,1070,291"/>
+</map>

@@ -1,0 +1,27 @@
+<map id="GameClient::render" name="GameClient::render">
+<area shape="rect" id="Node000001" title="Clears the window and calls the appropriate render method for the current ClientState." alt="" coords="5,81,140,108"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#a6307255e5ee2ec7a662314d2bda4ff4e" title="Overlays debug information (FPS, network stats, etc.) in a separate menu." alt="" coords="188,5,392,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,79,187,41,214,35,209,38,189,47,103,83"/>
+<area shape="rect" id="Node000004" href="$class_game_client.html#ac43af34d16f934ccf691a400f198d047" title=" " alt="" coords="205,107,374,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="139,100,192,107,188,110,141,105"/>
+<area shape="rect" id="Node000011" href="$class_game_client.html#abc5fbf39980e740820e141eeced44d30" title=" " alt="" coords="188,56,392,83"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="139,84,174,82,170,85,141,89"/>
+<area shape="rect" id="Node000012" href="$class_game_client.html#ad5b49b36503c47beb1b3bb73a16b2859" title=" " alt="" coords="207,157,373,184"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="102,106,189,143,214,152,209,153,187,148,101,111"/>
+<area shape="rect" id="Node000003" href="$class_utils.html#ab49720ff58867feae08d01073966f229" title="Converts a PieceType enum value to a human&#45;readable string." alt="" coords="467,5,630,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="392,16,454,18,449,19,393,21"/>
+<area shape="poly" id="edge7_Node000004_Node000003" title=" " alt="" coords="366,104,391,92,405,81,414,68,423,54,439,42,450,39,455,36,441,46,427,58,418,71,409,84,393,97,368,108"/>
+<area shape="rect" id="Node000005" href="$class_draw_utils.html#ac9186c17af01695c7b36f840430041ae" title="Sets the text object&#39;s origin to its geometric center. &#160;&#160;This allows to position the text based on it..." alt="" coords="474,56,623,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="361,103,465,85,460,87,363,109"/>
+<area shape="rect" id="Node000006" href="$class_draw_utils.html#aac5f824cfce5638990daa9a4df669001" title="Sets the text object&#39;s origin to its horizontal center. &#160;&#160;The vertical origin is reset to the top edg..." alt="" coords="440,107,657,133"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="375,117,427,119,422,121,375,123"/>
+<area shape="rect" id="Node000007" href="$class_board_renderer.html#ad3f31966279269f250dd0bf4176d0cf5" title=" " alt="" coords="454,157,643,184"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="362,131,465,153,460,154,362,137"/>
+<area shape="rect" id="Node000008" href="$class_board_renderer.html#a0d346f05d8e6081126b95b0ca7b6af50" title=" " alt="" coords="472,208,625,235"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="367,131,393,143,409,156,418,169,427,182,441,194,460,205,455,204,439,198,423,186,414,172,405,159,391,148,367,137"/>
+<area shape="rect" id="Node000009" href="$class_board_renderer.html#aa83ebac0dfc333b2afdc1ec4607136ce" title=" " alt="" coords="705,183,883,209"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="625,211,687,207,693,206,626,216"/>
+<area shape="rect" id="Node000010" href="$struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="712,233,876,260"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="626,227,700,237,694,237,625,232"/>
+<area shape="poly" id="edge12_Node000011_Node000003" title=" " alt="" coords="361,53,465,34,460,37,363,58"/>
+</map>

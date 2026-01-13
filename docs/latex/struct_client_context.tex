@@ -1,0 +1,129 @@
+\doxysection{Client\+Context Struct Reference}
+\hypertarget{struct_client_context}{}\label{struct_client_context}\index{ClientContext@{ClientContext}}
+
+
+Represents a connected client within the \doxylink{class_internal_game_server}{Internal\+Game\+Server}. ~\newline
+ Holds the raw socket, buffering for network streams, and player-\/specific metadata. ~\newline
+ Unlike the {\ttfamily \doxylink{struct_player}{Player}} struct, this struct manages the connection lifecycle and server-\/specific state.  
+
+
+
+
+{\ttfamily \+\#include $<$Client\+Context.\+h$>$}
+
+
+
+Collaboration diagram for Client\+Context:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{struct_client_context__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+SOCKET \doxymbox{\hyperlink{struct_client_context_a33f10e5d7de880fa41e4f8454133896c}{socket}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_client_context_a1137abc2911a0119564bd45cceefed90}{player\+Id}}
+\item 
+int32\+\_\+t \doxymbox{\hyperlink{struct_client_context_ad8ad36c6a60326d2ba1f467b456b96ed}{player\+Token}}
+\item 
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} \doxymbox{\hyperlink{struct_client_context_a7068226658e475523f58c4058d13609f}{piece\+Type}}
+\item 
+char \doxymbox{\hyperlink{struct_client_context_a26fedebba575d4c160bfa3a7c7c6c3cd}{player\+Name}} \+[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}}]\+
+\item 
+int32\+\_\+t \doxymbox{\hyperlink{struct_client_context_a75582afa03b969bc1845e47155572f65}{player\+Wins}}
+\item 
+bool \doxymbox{\hyperlink{struct_client_context_aa77d9eb5f4669fc57456ee229c439205}{is\+Host}}
+\item 
+bool \doxymbox{\hyperlink{struct_client_context_ab48a51806ec24572a8adc160ad2d54b3}{my\+Turn}}
+\item 
+\doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3ca}{Client\+Setup\+Phase}} \doxymbox{\hyperlink{struct_client_context_ae05e8b1d0a5c759858cc904ce083d345}{setup\+Phase}}
+\item 
+std::\+vector$<$ char $>$ \doxymbox{\hyperlink{struct_client_context_a75304db5091f8869ef0c8aaeac22085e}{receive\+Buffer}} \{\}
+\item 
+bool \doxymbox{\hyperlink{struct_client_context_a45941371135550e20f447d2ca3e6c1be}{marked\+For\+Deletion}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a connected client within the \doxylink{class_internal_game_server}{Internal\+Game\+Server}. ~\newline
+ Holds the raw socket, buffering for network streams, and player-\/specific metadata. ~\newline
+ Unlike the {\ttfamily \doxylink{struct_player}{Player}} struct, this struct manages the connection lifecycle and server-\/specific state. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_client_context_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_client_context_aa77d9eb5f4669fc57456ee229c439205}\index{ClientContext@{ClientContext}!isHost@{isHost}}
+\index{isHost@{isHost}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{isHost}{isHost}}
+{\footnotesize\ttfamily \label{struct_client_context_aa77d9eb5f4669fc57456ee229c439205} 
+bool Client\+Context::\+is\+Host\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_a45941371135550e20f447d2ca3e6c1be}\index{ClientContext@{ClientContext}!markedForDeletion@{markedForDeletion}}
+\index{markedForDeletion@{markedForDeletion}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{markedForDeletion}{markedForDeletion}}
+{\footnotesize\ttfamily \label{struct_client_context_a45941371135550e20f447d2ca3e6c1be} 
+bool Client\+Context::\+marked\+For\+Deletion = false\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_ab48a51806ec24572a8adc160ad2d54b3}\index{ClientContext@{ClientContext}!myTurn@{myTurn}}
+\index{myTurn@{myTurn}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{myTurn}{myTurn}}
+{\footnotesize\ttfamily \label{struct_client_context_ab48a51806ec24572a8adc160ad2d54b3} 
+bool Client\+Context::\+my\+Turn\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_a7068226658e475523f58c4058d13609f}\index{ClientContext@{ClientContext}!pieceType@{pieceType}}
+\index{pieceType@{pieceType}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{pieceType}{pieceType}}
+{\footnotesize\ttfamily \label{struct_client_context_a7068226658e475523f58c4058d13609f} 
+\doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} Client\+Context::\+piece\+Type\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_a1137abc2911a0119564bd45cceefed90}\index{ClientContext@{ClientContext}!playerId@{playerId}}
+\index{playerId@{playerId}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{playerId}{playerId}}
+{\footnotesize\ttfamily \label{struct_client_context_a1137abc2911a0119564bd45cceefed90} 
+uint8\+\_\+t Client\+Context::\+player\+Id}
+
+\Hypertarget{struct_client_context_a26fedebba575d4c160bfa3a7c7c6c3cd}\index{ClientContext@{ClientContext}!playerName@{playerName}}
+\index{playerName@{playerName}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{playerName}{playerName}}
+{\footnotesize\ttfamily \label{struct_client_context_a26fedebba575d4c160bfa3a7c7c6c3cd} 
+char Client\+Context::\+player\+Name\+[\doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}}]\+\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_ad8ad36c6a60326d2ba1f467b456b96ed}\index{ClientContext@{ClientContext}!playerToken@{playerToken}}
+\index{playerToken@{playerToken}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{playerToken}{playerToken}}
+{\footnotesize\ttfamily \label{struct_client_context_ad8ad36c6a60326d2ba1f467b456b96ed} 
+int32\+\_\+t Client\+Context::\+player\+Token\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_a75582afa03b969bc1845e47155572f65}\index{ClientContext@{ClientContext}!playerWins@{playerWins}}
+\index{playerWins@{playerWins}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{playerWins}{playerWins}}
+{\footnotesize\ttfamily \label{struct_client_context_a75582afa03b969bc1845e47155572f65} 
+int32\+\_\+t Client\+Context::\+player\+Wins\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_a75304db5091f8869ef0c8aaeac22085e}\index{ClientContext@{ClientContext}!receiveBuffer@{receiveBuffer}}
+\index{receiveBuffer@{receiveBuffer}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{receiveBuffer}{receiveBuffer}}
+{\footnotesize\ttfamily \label{struct_client_context_a75304db5091f8869ef0c8aaeac22085e} 
+std::\+vector$<$char$>$ Client\+Context::\+receive\+Buffer \{\}\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_ae05e8b1d0a5c759858cc904ce083d345}\index{ClientContext@{ClientContext}!setupPhase@{setupPhase}}
+\index{setupPhase@{setupPhase}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{setupPhase}{setupPhase}}
+{\footnotesize\ttfamily \label{struct_client_context_ae05e8b1d0a5c759858cc904ce083d345} 
+\doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3ca}{Client\+Setup\+Phase}} Client\+Context::\+setup\+Phase\hspace{0.3cm}{\ttfamily [mutable]}}
+
+\Hypertarget{struct_client_context_a33f10e5d7de880fa41e4f8454133896c}\index{ClientContext@{ClientContext}!socket@{socket}}
+\index{socket@{socket}!ClientContext@{ClientContext}}
+\doxysubsubsection{\texorpdfstring{socket}{socket}}
+{\footnotesize\ttfamily \label{struct_client_context_a33f10e5d7de880fa41e4f8454133896c} 
+SOCKET Client\+Context::\+socket}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+server/\+\doxymbox{\hyperlink{_client_context_8h}{Client\+Context.\+h}}\end{DoxyCompactItemize}

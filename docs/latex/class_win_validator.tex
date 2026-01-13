@@ -1,0 +1,169 @@
+\doxysection{Win\+Validator Class Reference}
+\hypertarget{class_win_validator}{}\label{class_win_validator}\index{WinValidator@{WinValidator}}
+
+
+Logic for detecting victory conditions on the board. ~\newline
+ Uses a raycasting algorithm to count consecutive pieces surrounding a newly placed token.  
+
+
+
+
+{\ttfamily \+\#include $<$Win\+Validator.\+h$>$}
+
+
+
+Collaboration diagram for Win\+Validator:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{class_win_validator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \doxymbox{\hyperlink{class_win_validator_ac5d6cd0474130abe79cba7e1fd6d4555}{check\+Win}} (const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&board, int lastX, int lastY)
+\begin{DoxyCompactList}\small\item\em Determines if the last move resulted in a win. ~\newline
+ Scans four axes (Horizontal, Vertical, Diagonal /\+, Diagonal ) centered on the last move. ~\newline
+ Logic:\+ For each axis, it counts identical pieces in the positive direction and negative direction. ~\newline
+ If (count1 + count2 + 1) \texorpdfstring{$>$}{>}= {\ttfamily board.\+win\+Condition\+Length}, the player has won. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \doxymbox{\hyperlink{class_win_validator_a6dd36d4068bb7086068220efbe5ba33e}{count}} (const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&board, int startX, int startY, int dx, int dy)
+\begin{DoxyCompactList}\small\item\em Counts consecutive identical pieces in a specific direction. ~\newline
+ Steps through the grid by {\ttfamily (dx, dy)} starting from {\ttfamily (startX, startY)} and increments the counter as long as the pieces match the target piece type. \end{DoxyCompactList}\item 
+static bool \doxymbox{\hyperlink{class_win_validator_a50345830cd1ef99e99f77cd8dbe2e9b6}{is\+Valid}} (const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&board, int x, int y)
+\begin{DoxyCompactList}\small\item\em Bounds checking helper. ~\newline
+ Ensures the scanning algorithm doesn\textquotesingle{}t try to access grid coordinates outside the vector\textquotesingle{}s allocated size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Logic for detecting victory conditions on the board. ~\newline
+ Uses a raycasting algorithm to count consecutive pieces surrounding a newly placed token. 
+
+\label{doc-func-members}
+\Hypertarget{class_win_validator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_win_validator_ac5d6cd0474130abe79cba7e1fd6d4555}\index{WinValidator@{WinValidator}!checkWin@{checkWin}}
+\index{checkWin@{checkWin}!WinValidator@{WinValidator}}
+\doxysubsubsection{\texorpdfstring{checkWin()}{checkWin()}}
+{\footnotesize\ttfamily \label{class_win_validator_ac5d6cd0474130abe79cba7e1fd6d4555} 
+bool Win\+Validator::\+check\+Win (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&}]{board}{, }\item[{int}]{lastX}{, }\item[{int}]{lastY}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines if the last move resulted in a win. ~\newline
+ Scans four axes (Horizontal, Vertical, Diagonal /\+, Diagonal ) centered on the last move. ~\newline
+ Logic:\+ For each axis, it counts identical pieces in the positive direction and negative direction. ~\newline
+ If (count1 + count2 + 1) \texorpdfstring{$>$}{>}= {\ttfamily board.\+win\+Condition\+Length}, the player has won. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & The current state of the game board. \\
+\hline
+{\em lastX} & The X coordinate of the most recently placed piece. \\
+\hline
+{\em lastY} & The Y coordinate of the most recently placed piece. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the move created a winning line, false otherwise. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_validator_ac5d6cd0474130abe79cba7e1fd6d4555_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_validator_ac5d6cd0474130abe79cba7e1fd6d4555_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_win_validator_a6dd36d4068bb7086068220efbe5ba33e}\index{WinValidator@{WinValidator}!count@{count}}
+\index{count@{count}!WinValidator@{WinValidator}}
+\doxysubsubsection{\texorpdfstring{count()}{count()}}
+{\footnotesize\ttfamily \label{class_win_validator_a6dd36d4068bb7086068220efbe5ba33e} 
+int Win\+Validator::\+count (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&}]{board}{, }\item[{int}]{startX}{, }\item[{int}]{startY}{, }\item[{int}]{dx}{, }\item[{int}]{dy}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Counts consecutive identical pieces in a specific direction. ~\newline
+ Steps through the grid by {\ttfamily (dx, dy)} starting from {\ttfamily (startX, startY)} and increments the counter as long as the pieces match the target piece type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & The board data. \\
+\hline
+{\em startX} & Starting X position. \\
+\hline
+{\em startY} & Starting Y position. \\
+\hline
+{\em dx} & X direction step (e.\+g., -\/1 for left, 1 for right). \\
+\hline
+{\em dy} & Y direction step (e.\+g., -\/1 for up, 1 for down). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of consecutive matching neighbors found in that direction. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{class_win_validator_a6dd36d4068bb7086068220efbe5ba33e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_validator_a6dd36d4068bb7086068220efbe5ba33e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_win_validator_a50345830cd1ef99e99f77cd8dbe2e9b6}\index{WinValidator@{WinValidator}!isValid@{isValid}}
+\index{isValid@{isValid}!WinValidator@{WinValidator}}
+\doxysubsubsection{\texorpdfstring{isValid()}{isValid()}}
+{\footnotesize\ttfamily \label{class_win_validator_a50345830cd1ef99e99f77cd8dbe2e9b6} 
+bool Win\+Validator::\+is\+Valid (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_board_data}{Board\+Data}} \&}]{board}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Bounds checking helper. ~\newline
+ Ensures the scanning algorithm doesn\textquotesingle{}t try to access grid coordinates outside the vector\textquotesingle{}s allocated size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & The board data. \\
+\hline
+{\em x} & X coordinate to check. \\
+\hline
+{\em y} & Y coordinate to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if (x,y) is inside the playable grid area. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_win_validator_a50345830cd1ef99e99f77cd8dbe2e9b6_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+server/\+\doxymbox{\hyperlink{_win_validator_8h}{Win\+Validator.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+server/\+\doxymbox{\hyperlink{_win_validator_8cpp}{Win\+Validator.\+cpp}}\end{DoxyCompactItemize}

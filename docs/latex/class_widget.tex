@@ -1,0 +1,276 @@
+\doxysection{Widget Class Reference}
+\hypertarget{class_widget}{}\label{class_widget}\index{Widget@{Widget}}
+
+
+Abstract base class representing a UI element.  
+
+
+
+
+{\ttfamily \+\#include $<$Widget.\+h$>$}
+
+
+
+Inheritance diagram for Widget:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_widget__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Widget:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{class_widget__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_widget_abe38c3c1fbcde4c705d76d58208ceb52}{\texorpdfstring{$\sim$}{\string~}\+Widget}} ()=default
+\item 
+void \doxymbox{\hyperlink{class_widget_aade03402cf9678d5f2f6d2fb02850885}{set\+Display\+Condition}} (std::\+function$<$ bool()$>$ \doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{display\+Condition}})
+\begin{DoxyCompactList}\small\item\em Sets a dynamic condition for the widget\textquotesingle{}s visibility. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_widget_a38c6fe545c885f085b7b6c2b6c290fa3}{set\+Active}} (bool \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}})
+\begin{DoxyCompactList}\small\item\em Manually sets the active state of the widget. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_ae469bb315299916388d717225e71a802}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the widget should currently be visible. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_a7931ceac649bdfe14a7819f771531b95}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the widget is currently active. \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_widget_aadedf1bf6c2dbdf60753cf7e5e768bfa}{handle\+Event}} (const std::\+optional$<$ sf::\+\+Event $>$ \&event, const sf::\+\+Vector2i \&mouse\+Pos)=0
+\begin{DoxyCompactList}\small\item\em Processes an input event. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_widget_a18807db1612548045621573c78f7fb3f}{update}} (sf::\+\+Time delta\+Time, const sf::\+\+Vector2i \&mouse\+Pos)=0
+\begin{DoxyCompactList}\small\item\em Updates the widget\textquotesingle{}s logic. \end{DoxyCompactList}\item 
+virtual void \doxymbox{\hyperlink{class_widget_a244c52beba9da911ace79ed14291e72d}{render}} (sf::\+\+Render\+Target \&window) const =0
+\begin{DoxyCompactList}\small\item\em Draws the widget to the specified render target. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+function$<$ bool()$>$ \doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{display\+Condition}} = \+[$\,$]\+() \{ return true; \}
+\begin{DoxyCompactList}\small\item\em A predicate function determining if the widget should be visible. Defaults to always returning true. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}} = true
+\begin{DoxyCompactList}\small\item\em Internal state indicating if the widget is currently active/\+interactable. Defaults to active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class representing a UI element. 
+
+
+\begin{DoxyItemize}
+\item The \doxylink{class_widget}{Widget} class provides the foundational interface for all UI components, managing visibility states, activity states, and the core game loop methods (event handling, updating, and rendering). 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{class_widget_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_widget_abe38c3c1fbcde4c705d76d58208ceb52}\index{Widget@{Widget}!````~Widget@{\texorpdfstring{$\sim$}{\string~}Widget}}
+\index{````~Widget@{\texorpdfstring{$\sim$}{\string~}Widget}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Widget()}{\string~Widget()}}
+{\footnotesize\ttfamily \label{class_widget_abe38c3c1fbcde4c705d76d58208ceb52} 
+virtual Widget::\+\texorpdfstring{$\sim$}{\string~}\+Widget (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_widget_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_widget_aadedf1bf6c2dbdf60753cf7e5e768bfa}\index{Widget@{Widget}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily \label{class_widget_aadedf1bf6c2dbdf60753cf7e5e768bfa} 
+virtual bool Widget::\+handle\+Event (\begin{DoxyParamCaption}\item[{const std::\+optional$<$ sf::\+\+Event $>$ \&}]{event}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Processes an input event. 
+
+
+\begin{DoxyItemize}
+\item This function should check if the event interacts with the widget (e.\+g., mouse click inside bounds).
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The captured system event. \\
+\hline
+{\em mouse\+Pos} & The current position of the mouse relative to the window. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the event was consumed by this widget, false otherwise. Returning true prevents this event from propagating to widgets stacked below. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_button_widget_adeff600d9380d3fe8adbfd954db4295b}{Button\+Widget}}, and \doxymbox{\hyperlink{class_text_field_widget_a7637bbc4d12b02948fd4c3c4f896796f}{Text\+Field\+Widget}}.
+
+\Hypertarget{class_widget_a7931ceac649bdfe14a7819f771531b95}\index{Widget@{Widget}!isActive@{isActive}}
+\index{isActive@{isActive}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{isActive()}{isActive()}}
+{\footnotesize\ttfamily \label{class_widget_a7931ceac649bdfe14a7819f771531b95} 
+bool Widget::\+is\+Active (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the widget is currently active. 
+
+\begin{DoxyReturn}{Returns}
+True if the widget is active, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_widget_a7931ceac649bdfe14a7819f771531b95_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_widget_ae469bb315299916388d717225e71a802}\index{Widget@{Widget}!isVisible@{isVisible}}
+\index{isVisible@{isVisible}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{isVisible()}{isVisible()}}
+{\footnotesize\ttfamily \label{class_widget_ae469bb315299916388d717225e71a802} 
+bool Widget::\+is\+Visible (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the widget should currently be visible. 
+
+\begin{DoxyReturn}{Returns}
+True if the display\+Condition is met, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_widget_ae469bb315299916388d717225e71a802_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_widget_a244c52beba9da911ace79ed14291e72d}\index{Widget@{Widget}!render@{render}}
+\index{render@{render}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_widget_a244c52beba9da911ace79ed14291e72d} 
+virtual void Widget::\+render (\begin{DoxyParamCaption}\item[{sf::\+\+Render\+Target \&}]{window}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Draws the widget to the specified render target. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The target window to render the widget onto. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \doxymbox{\hyperlink{class_button_widget_a521139eb1d563dc31fecd35ed30809e9}{Button\+Widget}}, and \doxymbox{\hyperlink{class_text_field_widget_a4d99e682b0a30b615c85268ec1188492}{Text\+Field\+Widget}}.
+
+\Hypertarget{class_widget_a38c6fe545c885f085b7b6c2b6c290fa3}\index{Widget@{Widget}!setActive@{setActive}}
+\index{setActive@{setActive}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{setActive()}{setActive()}}
+{\footnotesize\ttfamily \label{class_widget_a38c6fe545c885f085b7b6c2b6c290fa3} 
+void Widget::\+set\+Active (\begin{DoxyParamCaption}\item[{bool}]{active}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Manually sets the active state of the widget. 
+
+
+\begin{DoxyItemize}
+\item An inactive widget should not respond to events, though it is still drawn in an inactive state.
+\item If a widget requires different activation logic it should be handled in the handle\+Event, update and render methods.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em active} & True to enable the widget, false to disable it. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_widget_a38c6fe545c885f085b7b6c2b6c290fa3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_widget_aade03402cf9678d5f2f6d2fb02850885}\index{Widget@{Widget}!setDisplayCondition@{setDisplayCondition}}
+\index{setDisplayCondition@{setDisplayCondition}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{setDisplayCondition()}{setDisplayCondition()}}
+{\footnotesize\ttfamily \label{class_widget_aade03402cf9678d5f2f6d2fb02850885} 
+void Widget::\+set\+Display\+Condition (\begin{DoxyParamCaption}\item[{std::\+function$<$ bool()$>$}]{display\+Condition}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets a dynamic condition for the widget\textquotesingle{}s visibility. 
+
+
+\begin{DoxyItemize}
+\item This allows the widget to automatically show or hide itself based on external logic (e.\+g., If a player had won a game).
+\item It reduces boilerplate code in the main loop, by allowing the widget to check, if it should be rendered by itself.
+\item 
+\begin{DoxyParams}{Parameters}
+{\em display\+Condition} & A function returning true if the widget should be visible, false otherwise. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{class_widget_a18807db1612548045621573c78f7fb3f}\index{Widget@{Widget}!update@{update}}
+\index{update@{update}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_widget_a18807db1612548045621573c78f7fb3f} 
+virtual void Widget::\+update (\begin{DoxyParamCaption}\item[{sf::\+\+Time}]{delta\+Time}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Updates the widget\textquotesingle{}s logic. 
+
+
+\begin{DoxyItemize}
+\item Use this for animations, state changes over time, or responding to mouse hover states that don\textquotesingle{}t require specific events.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & The time elapsed since the last frame update. \\
+\hline
+{\em mouse\+Pos} & The current position of the mouse relative to the window. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \doxymbox{\hyperlink{class_button_widget_a5c9f042b3f36edb07718a33515c3b71e}{Button\+Widget}}, and \doxymbox{\hyperlink{class_text_field_widget_a4a1a133cefc1e03338d1700eb2a71495}{Text\+Field\+Widget}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_widget_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}\index{Widget@{Widget}!active@{active}}
+\index{active@{active}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{active}{active}}
+{\footnotesize\ttfamily \label{class_widget_af24c6aea2f319a8ec30be6d9c416ef87} 
+bool Widget::\+active = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Internal state indicating if the widget is currently active/\+interactable. Defaults to active. 
+
+\Hypertarget{class_widget_aedd45d0caac2e01d7df10c9829f95673}\index{Widget@{Widget}!displayCondition@{displayCondition}}
+\index{displayCondition@{displayCondition}!Widget@{Widget}}
+\doxysubsubsection{\texorpdfstring{displayCondition}{displayCondition}}
+{\footnotesize\ttfamily \label{class_widget_aedd45d0caac2e01d7df10c9829f95673} 
+std::\+function$<$bool()$>$ Widget::\+display\+Condition = \+[$\,$]\+() \{ return true; \}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A predicate function determining if the widget should be visible. Defaults to always returning true. 
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_widget_8h}{Widget.\+h}}\end{DoxyCompactItemize}

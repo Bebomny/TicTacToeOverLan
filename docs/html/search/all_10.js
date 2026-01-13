@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['reason_0',['reason',['../struct_game_end_packet.html#a7dbaf6d50f416ae1f503c9907bf3e58a',1,'GameEndPacket']]],
+  ['receivebuffer_1',['receiveBuffer',['../class_network_manager.html#a53288c337a41585e51803104e79ca70d',1,'NetworkManager::receiveBuffer'],['../struct_client_context.html#a75304db5091f8869ef0c8aaeac22085e',1,'ClientContext::receiveBuffer']]],
+  ['render_2',['render',['../class_game_client.html#a6707e6e3f99fa676180e6276fd7cd972',1,'GameClient::render()'],['../class_board_renderer.html#a0d346f05d8e6081126b95b0ca7b6af50',1,'BoardRenderer::render()'],['../class_button_widget.html#a521139eb1d563dc31fecd35ed30809e9',1,'ButtonWidget::render()'],['../class_text_field_widget.html#a4d99e682b0a30b615c85268ec1188492',1,'TextFieldWidget::render()'],['../class_widget.html#a244c52beba9da911ace79ed14291e72d',1,'Widget::render()']]],
+  ['renderdebugmenu_3',['renderDebugMenu',['../class_game_client.html#a6307255e5ee2ec7a662314d2bda4ff4e',1,'GameClient']]],
+  ['rendergame_4',['renderGame',['../class_game_client.html#ac43af34d16f934ccf691a400f198d047',1,'GameClient']]],
+  ['rendergameroom_5',['renderGameRoom',['../class_game_client.html#abc5fbf39980e740820e141eeced44d30',1,'GameClient']]],
+  ['rendermenu_6',['renderMenu',['../class_game_client.html#ad5b49b36503c47beb1b3bb73a16b2859',1,'GameClient']]],
+  ['rendertext_7',['renderText',['../class_text_field_widget.html#ab1573ad8eef9d1ff1fc77e968b5e611e',1,'TextFieldWidget']]],
+  ['req_5fsock_5fversion_8',['REQ_SOCK_VERSION',['../_network_protocol_8h.html#a2b272a711f06f4e4aa587b139054248b',1,'NetworkProtocol.h']]],
+  ['requestboardsettingsupdate_9',['requestBoardSettingsUpdate',['../class_game_client.html#a862ce486628be1fcb0dfc153c843ae5b',1,'GameClient']]],
+  ['requestedbyplayerid_10',['requestedByPlayerId',['../struct_game_start_packet.html#a45b4451f7179633be5444305de11f5d5',1,'GameStartPacket']]],
+  ['requestingplayerid_11',['requestingPlayerId',['../struct_game_start_request_packet.html#a93e90196978f99b6760f9f0b2166975f',1,'GameStartRequestPacket']]],
+  ['rollingaverage_12',['RollingAverage',['../class_rolling_average.html',1,'RollingAverage'],['../class_rolling_average.html#a3f2fd5ec0d9f01197d0e9a60e714ef8a',1,'RollingAverage::RollingAverage()']]],
+  ['rollingaverage_2eh_13',['RollingAverage.h',['../_rolling_average_8h.html',1,'']]],
+  ['round_14',['round',['../struct_board_data.html#a46ee92da2e2ac733db4b4cc2dfc3b19b',1,'BoardData::round'],['../struct_setup_ack_packet.html#ad3fd3f385684ffe5904bc1ac20da8925',1,'SetupAckPacket::round'],['../struct_game_start_packet.html#a826bb8efac450d0d41768e3ab763dfcf',1,'GameStartPacket::round'],['../struct_board_state_update_packet.html#a487215b883e3b2a06d02d42cde9b9848',1,'BoardStateUpdatePacket::round']]],
+  ['run_15',['run',['../class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4',1,'GameClient']]]
+];

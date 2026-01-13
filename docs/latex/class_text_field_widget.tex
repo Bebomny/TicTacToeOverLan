@@ -1,0 +1,458 @@
+\doxysection{Text\+Field\+Widget Class Reference}
+\hypertarget{class_text_field_widget}{}\label{class_text_field_widget}\index{TextFieldWidget@{TextFieldWidget}}
+
+
+A \doxylink{class_widget}{Widget} allowing user text input. Handles focus states (clicking to activate), keyboard events (typing, backspace), and cursor blinking animation.  
+
+
+
+
+{\ttfamily \+\#include $<$Text\+Field\+Widget.\+h$>$}
+
+
+
+Inheritance diagram for Text\+Field\+Widget:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_text_field_widget__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Text\+Field\+Widget:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_text_field_widget__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_text_field_widget_a453a6932e9167f2527d6877e65785c94}{Text\+Field\+Widget}} (float x, float y, float width, float height, const std::\+function$<$ void(const std::\+string \&)$>$ \&on\+Text\+Change\+Callback, const std::\+function$<$ bool()$>$ \&\doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{display\+Condition}}, const sf::\+\+Font \&font, sf::\+\+Color \doxymbox{\hyperlink{class_text_field_widget_a4ad6318b1900ba26a97f4bbc0903c1b9}{idle\+Color}}, sf::\+\+Color \doxymbox{\hyperlink{class_text_field_widget_a412233f79d6e1a6d1c7d503802d3bbf6}{focus\+Color}}, sf::\+\+Color \doxymbox{\hyperlink{class_text_field_widget_a8f9932bdd23d0831d042e61c6c7582a8}{text\+Color}}, sf::\+\+Color \doxymbox{\hyperlink{class_text_field_widget_afa3d397f8df8cad381ee3e9e0b5ee025}{inactive\+Color}}, size\+\_\+t \doxymbox{\hyperlink{class_text_field_widget_a0f08e80c97779108514585ad8c4eaae0}{max\+Chars}}=30, const std::\+string \&initial\+Text="{}"{})
+\begin{DoxyCompactList}\small\item\em Main Constructor. ~\newline
+ Do not use! Use \doxylink{class_text_field_widget_ab5955881c94d5aece7264a087d3525c4}{Text\+Field\+Widget::\+builder()} instead. ~\newline
+ Called internally by \doxylink{class_text_field_builder_a1ae8ec6d3573cde8b725d4533a9dab98}{Text\+Field\+Builder::\+build()}. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_text_field_widget_a7637bbc4d12b02948fd4c3c4f896796f}{handle\+Event}} (const std::\+optional$<$ sf::\+\+Event $>$ \&event, const sf::\+\+Vector2i \&mouse\+Pos) override
+\begin{DoxyCompactList}\small\item\em Processes input for the text field. ~\newline
+ Handles two main things:\+ ~\newline
+ 1. Mouse Clicks:\+ Checks if the user clicked inside (gain focus) or outside (lose focus). ~\newline
+ 2. Text Input:\+ If focused, handles {\ttfamily sf::\+\+Event::\+\+Text\+Entered} to update the string. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_text_field_widget_a4a1a133cefc1e03338d1700eb2a71495}{update}} (sf::\+\+Time delta\+Time, const sf::\+\+Vector2i \&mouse\+Pos) override
+\begin{DoxyCompactList}\small\item\em Updates widget logic, primarily the cursor animation. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_text_field_widget_a4d99e682b0a30b615c85268ec1188492}{render}} (sf::\+\+Render\+Target \&window) const override
+\begin{DoxyCompactList}\small\item\em Draws the background, text, and cursor (if focused and active). \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{class_text_field_widget_a938675a94b6a4eb500f01d764003ed45}{get\+Text}} () const
+\begin{DoxyCompactList}\small\item\em Gets the current user input. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_text_field_widget_a105a562d935dc662fa5532348409e397}{set\+Text}} (const std::\+string \&text)
+\begin{DoxyCompactList}\small\item\em Manually sets the content of the field. ~\newline
+ DOES NOT trigger the on\+Text\+Change\+Callback. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_text_field_widget_a61c23b76f09f222cf28b905a0678cf42}{set\+Callback}} (const std::\+function$<$ void(const std::\+string \&)$>$ \&callback)
+\begin{DoxyCompactList}\small\item\em Updates the callback function dynamically. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_text_field_widget_a2ac2fec09d5da0de42c63463e3c950ae}{contains}} (const sf::\+\+Vector2f \&pos) const
+\begin{DoxyCompactList}\small\item\em Checks if a specific point is inside the widget\textquotesingle{}s bounds. ~\newline
+ Used internally by handle\+Event for focus detection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_widget}{Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_widget_abe38c3c1fbcde4c705d76d58208ceb52}{\texorpdfstring{$\sim$}{\string~}\+Widget}} ()=default
+\item 
+void \doxymbox{\hyperlink{class_widget_aade03402cf9678d5f2f6d2fb02850885}{set\+Display\+Condition}} (std::\+function$<$ bool()$>$ \doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{display\+Condition}})
+\begin{DoxyCompactList}\small\item\em Sets a dynamic condition for the widget\textquotesingle{}s visibility. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_widget_a38c6fe545c885f085b7b6c2b6c290fa3}{set\+Active}} (bool \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}})
+\begin{DoxyCompactList}\small\item\em Manually sets the active state of the widget. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_ae469bb315299916388d717225e71a802}{is\+Visible}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the widget should currently be visible. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_a7931ceac649bdfe14a7819f771531b95}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the widget is currently active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \doxymbox{\hyperlink{class_text_field_widget_ab5955881c94d5aece7264a087d3525c4}{builder}} ()
+\begin{DoxyCompactList}\small\item\em Creates a default builder. \end{DoxyCompactList}\item 
+static \doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \doxymbox{\hyperlink{class_text_field_widget_a5c1ed87acfd71e0a092b4590d33ffd3f}{builder}} (std::\+string initial\+Text, std::\+function$<$ void(const std::\+string \&)$>$ \doxymbox{\hyperlink{class_text_field_widget_a949f2c90d6556e373fd8cbef67b27097}{on\+Text\+Change}})
+\begin{DoxyCompactList}\small\item\em Creates a builder pre-\/filled with text and callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf::\+\+Rectangle\+Shape \doxymbox{\hyperlink{class_text_field_widget_a75d9d8ac28bb914d69f1a6483ca638df}{background\+Shape}}
+\item 
+sf::\+\+Text \doxymbox{\hyperlink{class_text_field_widget_ab1573ad8eef9d1ff1fc77e968b5e611e}{render\+Text}}
+\item 
+sf::\+\+Rectangle\+Shape \doxymbox{\hyperlink{class_text_field_widget_ae1b6a003bbbd866b691365319fbef887}{cursor\+Shape}}
+\item 
+std::\+string \doxymbox{\hyperlink{class_text_field_widget_a5d49ee6bdebd51ce25ae439c9e6163d3}{current\+String}}
+\item 
+bool \doxymbox{\hyperlink{class_text_field_widget_a8368a235c9d4cc8f86992b5085222fc9}{is\+Focused}} = false
+\item 
+bool \doxymbox{\hyperlink{class_text_field_widget_a040eb0898c6edd69942fd2bdf98b24b5}{show\+Cursor}} = false
+\item 
+size\+\_\+t \doxymbox{\hyperlink{class_text_field_widget_a0f08e80c97779108514585ad8c4eaae0}{max\+Chars}}
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_text_field_widget_a4ad6318b1900ba26a97f4bbc0903c1b9}{idle\+Color}}
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_text_field_widget_a412233f79d6e1a6d1c7d503802d3bbf6}{focus\+Color}}
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_text_field_widget_a8f9932bdd23d0831d042e61c6c7582a8}{text\+Color}}
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_text_field_widget_afa3d397f8df8cad381ee3e9e0b5ee025}{inactive\+Color}}
+\item 
+std::\+function$<$ void(const std::\+string \&)$>$ \doxymbox{\hyperlink{class_text_field_widget_a949f2c90d6556e373fd8cbef67b27097}{on\+Text\+Change}}
+\item 
+sf::\+\+Time \doxymbox{\hyperlink{class_text_field_widget_a49c267afa43d3654c784be03dd4be007}{cursor\+Timer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const sf::\+\+Time \doxymbox{\hyperlink{class_text_field_widget_a199a4a857b9f9a0fca1f80942ef220f5}{cursor\+Blick\+Time}} = sf::\+milliseconds(500)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_widget}{Widget}}}
+\begin{DoxyCompactItemize}
+\item 
+std::\+function$<$ bool()$>$ \doxymbox{\hyperlink{class_widget_aedd45d0caac2e01d7df10c9829f95673}{display\+Condition}} = \+[$\,$]\+() \{ return true; \}
+\begin{DoxyCompactList}\small\item\em A predicate function determining if the widget should be visible. Defaults to always returning true. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_widget_af24c6aea2f319a8ec30be6d9c416ef87}{active}} = true
+\begin{DoxyCompactList}\small\item\em Internal state indicating if the widget is currently active/\+interactable. Defaults to active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A \doxylink{class_widget}{Widget} allowing user text input. Handles focus states (clicking to activate), keyboard events (typing, backspace), and cursor blinking animation. 
+
+\label{doc-constructors}
+\Hypertarget{class_text_field_widget_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_text_field_widget_a453a6932e9167f2527d6877e65785c94}\index{TextFieldWidget@{TextFieldWidget}!TextFieldWidget@{TextFieldWidget}}
+\index{TextFieldWidget@{TextFieldWidget}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{TextFieldWidget()}{TextFieldWidget()}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a453a6932e9167f2527d6877e65785c94} 
+Text\+Field\+Widget::\+\+Text\+Field\+Widget (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{, }\item[{float}]{width}{, }\item[{float}]{height}{, }\item[{const std::\+function$<$ void(const std::\+string \&)$>$ \&}]{on\+Text\+Change\+Callback}{, }\item[{const std::\+function$<$ bool()$>$ \&}]{display\+Condition}{, }\item[{const sf::\+\+Font \&}]{font}{, }\item[{sf::\+\+Color}]{idle\+Color}{, }\item[{sf::\+\+Color}]{focus\+Color}{, }\item[{sf::\+\+Color}]{text\+Color}{, }\item[{sf::\+\+Color}]{inactive\+Color}{, }\item[{size\+\_\+t}]{max\+Chars}{ = {\ttfamily 30}, }\item[{const std::\+string \&}]{initial\+Text}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Main Constructor. ~\newline
+ Do not use! Use \doxylink{class_text_field_widget_ab5955881c94d5aece7264a087d3525c4}{Text\+Field\+Widget::\+builder()} instead. ~\newline
+ Called internally by \doxylink{class_text_field_builder_a1ae8ec6d3573cde8b725d4533a9dab98}{Text\+Field\+Builder::\+build()}. 
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_widget_a453a6932e9167f2527d6877e65785c94_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-func-members}
+\Hypertarget{class_text_field_widget_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_text_field_widget_ab5955881c94d5aece7264a087d3525c4}\index{TextFieldWidget@{TextFieldWidget}!builder@{builder}}
+\index{builder@{builder}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{builder()}{builder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_text_field_widget_ab5955881c94d5aece7264a087d3525c4} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} Text\+Field\+Widget::\+builder (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates a default builder. 
+
+\begin{DoxyReturn}{Returns}
+A new builder instance. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_widget_ab5955881c94d5aece7264a087d3525c4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_widget_a5c1ed87acfd71e0a092b4590d33ffd3f}\index{TextFieldWidget@{TextFieldWidget}!builder@{builder}}
+\index{builder@{builder}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{builder()}{builder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a5c1ed87acfd71e0a092b4590d33ffd3f} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} Text\+Field\+Widget::\+builder (\begin{DoxyParamCaption}\item[{std::\+string}]{initial\+Text}{, }\item[{std::\+function$<$ void(const std::\+string \&)$>$}]{on\+Text\+Change}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates a builder pre-\/filled with text and callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em initial\+Text} & The starting text. \\
+\hline
+{\em on\+Text\+Change} & The callback. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new builder instance. 
+\end{DoxyReturn}
+\Hypertarget{class_text_field_widget_a2ac2fec09d5da0de42c63463e3c950ae}\index{TextFieldWidget@{TextFieldWidget}!contains@{contains}}
+\index{contains@{contains}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a2ac2fec09d5da0de42c63463e3c950ae} 
+bool Text\+Field\+Widget::\+contains (\begin{DoxyParamCaption}\item[{const sf::\+\+Vector2f \&}]{pos}{}\end{DoxyParamCaption}) const}
+
+
+
+Checks if a specific point is inside the widget\textquotesingle{}s bounds. ~\newline
+ Used internally by handle\+Event for focus detection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & The position to check (usually mouse coordinates). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if inside, false otherwise. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_widget_a2ac2fec09d5da0de42c63463e3c950ae_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_widget_a938675a94b6a4eb500f01d764003ed45}\index{TextFieldWidget@{TextFieldWidget}!getText@{getText}}
+\index{getText@{getText}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{getText()}{getText()}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a938675a94b6a4eb500f01d764003ed45} 
+std::\+string Text\+Field\+Widget::\+get\+Text (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the current user input. 
+
+\begin{DoxyReturn}{Returns}
+The string contained in the field. 
+\end{DoxyReturn}
+\Hypertarget{class_text_field_widget_a7637bbc4d12b02948fd4c3c4f896796f}\index{TextFieldWidget@{TextFieldWidget}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a7637bbc4d12b02948fd4c3c4f896796f} 
+bool Text\+Field\+Widget::\+handle\+Event (\begin{DoxyParamCaption}\item[{const std::\+optional$<$ sf::\+\+Event $>$ \&}]{event}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Processes input for the text field. ~\newline
+ Handles two main things:\+ ~\newline
+ 1. Mouse Clicks:\+ Checks if the user clicked inside (gain focus) or outside (lose focus). ~\newline
+ 2. Text Input:\+ If focused, handles {\ttfamily sf::\+\+Event::\+\+Text\+Entered} to update the string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The system event (required for character typing). \\
+\hline
+{\em mouse\+Pos} & Current mouse position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the event was consumed (e.\+g., user typed or clicked the field). 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_widget_aadedf1bf6c2dbdf60753cf7e5e768bfa}{Widget}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_widget_a7637bbc4d12b02948fd4c3c4f896796f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_widget_a4d99e682b0a30b615c85268ec1188492}\index{TextFieldWidget@{TextFieldWidget}!render@{render}}
+\index{render@{render}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a4d99e682b0a30b615c85268ec1188492} 
+void Text\+Field\+Widget::\+render (\begin{DoxyParamCaption}\item[{sf::\+\+Render\+Target \&}]{window}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Draws the background, text, and cursor (if focused and active). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & The render target. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \doxymbox{\hyperlink{class_widget_a244c52beba9da911ace79ed14291e72d}{Widget}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=325pt]{class_text_field_widget_a4d99e682b0a30b615c85268ec1188492_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_widget_a61c23b76f09f222cf28b905a0678cf42}\index{TextFieldWidget@{TextFieldWidget}!setCallback@{setCallback}}
+\index{setCallback@{setCallback}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{setCallback()}{setCallback()}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a61c23b76f09f222cf28b905a0678cf42} 
+void Text\+Field\+Widget::\+set\+Callback (\begin{DoxyParamCaption}\item[{const std::\+function$<$ void(const std::\+string \&)$>$ \&}]{callback}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the callback function dynamically. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The new function to call on changes. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_text_field_widget_a105a562d935dc662fa5532348409e397}\index{TextFieldWidget@{TextFieldWidget}!setText@{setText}}
+\index{setText@{setText}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{setText()}{setText()}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a105a562d935dc662fa5532348409e397} 
+void Text\+Field\+Widget::\+set\+Text (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Manually sets the content of the field. ~\newline
+ DOES NOT trigger the on\+Text\+Change\+Callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The new string. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_widget_a105a562d935dc662fa5532348409e397_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_widget_a4a1a133cefc1e03338d1700eb2a71495}\index{TextFieldWidget@{TextFieldWidget}!update@{update}}
+\index{update@{update}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a4a1a133cefc1e03338d1700eb2a71495} 
+void Text\+Field\+Widget::\+update (\begin{DoxyParamCaption}\item[{sf::\+\+Time}]{delta\+Time}{, }\item[{const sf::\+\+Vector2i \&}]{mouse\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Updates widget logic, primarily the cursor animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & Time elapsed since last frame. \\
+\hline
+{\em mouse\+Pos} & Mouse position \\
+\hline
+\end{DoxyParams}
+
+
+Implements \doxymbox{\hyperlink{class_widget_a18807db1612548045621573c78f7fb3f}{Widget}}.
+
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{class_text_field_widget_a4a1a133cefc1e03338d1700eb2a71495_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_text_field_widget_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_text_field_widget_a75d9d8ac28bb914d69f1a6483ca638df}\index{TextFieldWidget@{TextFieldWidget}!backgroundShape@{backgroundShape}}
+\index{backgroundShape@{backgroundShape}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{backgroundShape}{backgroundShape}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a75d9d8ac28bb914d69f1a6483ca638df} 
+sf::\+\+Rectangle\+Shape Text\+Field\+Widget::\+background\+Shape\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a5d49ee6bdebd51ce25ae439c9e6163d3}\index{TextFieldWidget@{TextFieldWidget}!currentString@{currentString}}
+\index{currentString@{currentString}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{currentString}{currentString}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a5d49ee6bdebd51ce25ae439c9e6163d3} 
+std::\+string Text\+Field\+Widget::\+current\+String\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a199a4a857b9f9a0fca1f80942ef220f5}\index{TextFieldWidget@{TextFieldWidget}!cursorBlickTime@{cursorBlickTime}}
+\index{cursorBlickTime@{cursorBlickTime}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{cursorBlickTime}{cursorBlickTime}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a199a4a857b9f9a0fca1f80942ef220f5} 
+const sf::\+\+Time Text\+Field\+Widget::\+cursor\+Blick\+Time = sf::\+milliseconds(500)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_ae1b6a003bbbd866b691365319fbef887}\index{TextFieldWidget@{TextFieldWidget}!cursorShape@{cursorShape}}
+\index{cursorShape@{cursorShape}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{cursorShape}{cursorShape}}
+{\footnotesize\ttfamily \label{class_text_field_widget_ae1b6a003bbbd866b691365319fbef887} 
+sf::\+\+Rectangle\+Shape Text\+Field\+Widget::\+cursor\+Shape\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a49c267afa43d3654c784be03dd4be007}\index{TextFieldWidget@{TextFieldWidget}!cursorTimer@{cursorTimer}}
+\index{cursorTimer@{cursorTimer}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{cursorTimer}{cursorTimer}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a49c267afa43d3654c784be03dd4be007} 
+sf::\+\+Time Text\+Field\+Widget::\+cursor\+Timer\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a412233f79d6e1a6d1c7d503802d3bbf6}\index{TextFieldWidget@{TextFieldWidget}!focusColor@{focusColor}}
+\index{focusColor@{focusColor}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{focusColor}{focusColor}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a412233f79d6e1a6d1c7d503802d3bbf6} 
+sf::\+\+Color Text\+Field\+Widget::\+focus\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a4ad6318b1900ba26a97f4bbc0903c1b9}\index{TextFieldWidget@{TextFieldWidget}!idleColor@{idleColor}}
+\index{idleColor@{idleColor}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{idleColor}{idleColor}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a4ad6318b1900ba26a97f4bbc0903c1b9} 
+sf::\+\+Color Text\+Field\+Widget::\+idle\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_afa3d397f8df8cad381ee3e9e0b5ee025}\index{TextFieldWidget@{TextFieldWidget}!inactiveColor@{inactiveColor}}
+\index{inactiveColor@{inactiveColor}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{inactiveColor}{inactiveColor}}
+{\footnotesize\ttfamily \label{class_text_field_widget_afa3d397f8df8cad381ee3e9e0b5ee025} 
+sf::\+\+Color Text\+Field\+Widget::\+inactive\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a8368a235c9d4cc8f86992b5085222fc9}\index{TextFieldWidget@{TextFieldWidget}!isFocused@{isFocused}}
+\index{isFocused@{isFocused}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{isFocused}{isFocused}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a8368a235c9d4cc8f86992b5085222fc9} 
+bool Text\+Field\+Widget::\+is\+Focused = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a0f08e80c97779108514585ad8c4eaae0}\index{TextFieldWidget@{TextFieldWidget}!maxChars@{maxChars}}
+\index{maxChars@{maxChars}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{maxChars}{maxChars}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a0f08e80c97779108514585ad8c4eaae0} 
+size\+\_\+t Text\+Field\+Widget::\+max\+Chars\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a949f2c90d6556e373fd8cbef67b27097}\index{TextFieldWidget@{TextFieldWidget}!onTextChange@{onTextChange}}
+\index{onTextChange@{onTextChange}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{onTextChange}{onTextChange}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a949f2c90d6556e373fd8cbef67b27097} 
+std::\+function$<$void(const std::\+string \&)$>$ Text\+Field\+Widget::\+on\+Text\+Change\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_ab1573ad8eef9d1ff1fc77e968b5e611e}\index{TextFieldWidget@{TextFieldWidget}!renderText@{renderText}}
+\index{renderText@{renderText}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{renderText}{renderText}}
+{\footnotesize\ttfamily \label{class_text_field_widget_ab1573ad8eef9d1ff1fc77e968b5e611e} 
+sf::\+\+Text Text\+Field\+Widget::\+render\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a040eb0898c6edd69942fd2bdf98b24b5}\index{TextFieldWidget@{TextFieldWidget}!showCursor@{showCursor}}
+\index{showCursor@{showCursor}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{showCursor}{showCursor}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a040eb0898c6edd69942fd2bdf98b24b5} 
+bool Text\+Field\+Widget::\+show\+Cursor = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_widget_a8f9932bdd23d0831d042e61c6c7582a8}\index{TextFieldWidget@{TextFieldWidget}!textColor@{textColor}}
+\index{textColor@{textColor}!TextFieldWidget@{TextFieldWidget}}
+\doxysubsubsection{\texorpdfstring{textColor}{textColor}}
+{\footnotesize\ttfamily \label{class_text_field_widget_a8f9932bdd23d0831d042e61c6c7582a8} 
+sf::\+\+Color Text\+Field\+Widget::\+text\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_text_field_widget_8h}{Text\+Field\+Widget.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_text_field_widget_8cpp}{Text\+Field\+Widget.\+cpp}}\end{DoxyCompactItemize}

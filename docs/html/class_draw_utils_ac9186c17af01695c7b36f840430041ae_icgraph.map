@@ -1,0 +1,13 @@
+<map id="DrawUtils::centerText" name="DrawUtils::centerText">
+<area shape="rect" id="Node000001" title="Sets the text object&#39;s origin to its geometric center. &#160;&#160;This allows to position the text based on it..." alt="" coords="685,31,833,57"/>
+<area shape="rect" id="Node000002" href="$class_button_widget.html#aa3d749c14596c8df7f0a5c5cdcd34081" title="Main Constructor." alt="" coords="449,5,637,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="666,33,637,32,637,27,672,34"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#ac43af34d16f934ccf691a400f198d047" title=" " alt="" coords="458,56,628,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="672,54,628,62,628,57,666,55"/>
+<area shape="rect" id="Node000004" href="$class_game_client.html#a6707e6e3f99fa676180e6276fd7cd972" title="Clears the window and calls the appropriate render method for the current ClientState." alt="" coords="267,56,401,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="440,69,402,72,402,67,445,69"/>
+<area shape="rect" id="Node000005" href="$class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,56,219,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="249,69,219,72,219,67,254,69"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,56,55,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="84,70,55,72,55,67,90,69"/>
+</map>

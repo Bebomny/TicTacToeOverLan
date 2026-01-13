@@ -1,0 +1,3 @@
+<map id="BoardData" name="BoardData">
+<area shape="rect" id="Node000001" title="The core data model for the game board. &#160;&#160;Holds the grid state, rules (size/win condition),..." alt="" coords="5,5,143,203"/>
+</map>

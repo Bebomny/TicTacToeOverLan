@@ -1,0 +1,16 @@
+<map id="BoardRenderer::getSquareAt" name="BoardRenderer::getSquareAt">
+<area shape="rect" id="Node000001" title=" " alt="" coords="729,31,917,57"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#ae0e8917d72b9c8a35b6b86c16dd29ba4" title="Processes input during active gameplay (Board clicks)." alt="" coords="480,5,681,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="711,33,681,32,681,27,716,33"/>
+<area shape="rect" id="Node000006" href="$class_game_client.html#ac43af34d16f934ccf691a400f198d047" title=" " alt="" coords="496,56,665,83"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="716,55,666,63,665,58,710,56"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#a1002fba127d0627a3ad3dccb68f343f9" title="Polls SFML events and delegates them to specific state handlers." alt="" coords="267,5,432,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="462,19,433,21,433,16,467,18"/>
+<area shape="rect" id="Node000004" href="$class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,31,219,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="249,32,220,39,219,34,254,31"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,31,55,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="85,45,56,47,55,41,89,43"/>
+<area shape="rect" id="Node000007" href="$class_game_client.html#a6707e6e3f99fa676180e6276fd7cd972" title="Clears the window and calls the appropriate render method for the current ClientState." alt="" coords="282,56,417,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="477,69,417,72,417,67,483,69"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="264,58,219,54,220,49,270,58"/>
+</map>

@@ -1,0 +1,101 @@
+\doxysection{Game\+Start\+Packet Struct Reference}
+\hypertarget{struct_game_start_packet}{}\label{struct_game_start_packet}\index{GameStartPacket@{GameStartPacket}}
+
+
+Signal to switch UI to the Board view and initialize grid.  
+
+
+
+
+{\ttfamily \+\#include $<$Network\+Protocol.\+h$>$}
+
+
+
+Collaboration diagram for Game\+Start\+Packet:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{struct_game_start_packet__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_board_square}{Board\+Square}} \doxymbox{\hyperlink{struct_game_start_packet_ada5a2e2a2782fc611c5a52af9d39b662}{grid}} \+[\doxymbox{\hyperlink{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}{TOTAL\+\_\+\+BOARD\+\_\+\+AREA}}]\+
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_game_start_packet_a45b4451f7179633be5444305de11f5d5}{requested\+By\+Player\+Id}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_game_start_packet_a6de7a1a83fcdc4c98ba0a340b6e7aedd}{final\+Board\+Size}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_game_start_packet_a79dbaa73cc8f419b09a14c48d79756fe}{final\+Win\+Condition\+Length}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_game_start_packet_a826bb8efac450d0d41768e3ab763dfcf}{round}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_game_start_packet_a1efe4da38764bebb2c4e9bbe583015af}{turn}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_game_start_packet_adfba0ebd7aa7eb533cb2042877816c42}{starting\+Player\+Id}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_game_start_packet_ab273b890c8e674172d0cf7a71f2e814e}{player\+Count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Signal to switch UI to the Board view and initialize grid. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_game_start_packet_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_game_start_packet_a6de7a1a83fcdc4c98ba0a340b6e7aedd}\index{GameStartPacket@{GameStartPacket}!finalBoardSize@{finalBoardSize}}
+\index{finalBoardSize@{finalBoardSize}!GameStartPacket@{GameStartPacket}}
+\doxysubsubsection{\texorpdfstring{finalBoardSize}{finalBoardSize}}
+{\footnotesize\ttfamily \label{struct_game_start_packet_a6de7a1a83fcdc4c98ba0a340b6e7aedd} 
+uint8\+\_\+t Game\+Start\+Packet::\+final\+Board\+Size}
+
+\Hypertarget{struct_game_start_packet_a79dbaa73cc8f419b09a14c48d79756fe}\index{GameStartPacket@{GameStartPacket}!finalWinConditionLength@{finalWinConditionLength}}
+\index{finalWinConditionLength@{finalWinConditionLength}!GameStartPacket@{GameStartPacket}}
+\doxysubsubsection{\texorpdfstring{finalWinConditionLength}{finalWinConditionLength}}
+{\footnotesize\ttfamily \label{struct_game_start_packet_a79dbaa73cc8f419b09a14c48d79756fe} 
+uint8\+\_\+t Game\+Start\+Packet::\+final\+Win\+Condition\+Length}
+
+\Hypertarget{struct_game_start_packet_ada5a2e2a2782fc611c5a52af9d39b662}\index{GameStartPacket@{GameStartPacket}!grid@{grid}}
+\index{grid@{grid}!GameStartPacket@{GameStartPacket}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily \label{struct_game_start_packet_ada5a2e2a2782fc611c5a52af9d39b662} 
+\doxymbox{\hyperlink{struct_board_square}{Board\+Square}} Game\+Start\+Packet::\+grid\+[\doxymbox{\hyperlink{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}{TOTAL\+\_\+\+BOARD\+\_\+\+AREA}}]\+}
+
+\Hypertarget{struct_game_start_packet_ab273b890c8e674172d0cf7a71f2e814e}\index{GameStartPacket@{GameStartPacket}!playerCount@{playerCount}}
+\index{playerCount@{playerCount}!GameStartPacket@{GameStartPacket}}
+\doxysubsubsection{\texorpdfstring{playerCount}{playerCount}}
+{\footnotesize\ttfamily \label{struct_game_start_packet_ab273b890c8e674172d0cf7a71f2e814e} 
+uint8\+\_\+t Game\+Start\+Packet::\+player\+Count}
+
+\Hypertarget{struct_game_start_packet_a45b4451f7179633be5444305de11f5d5}\index{GameStartPacket@{GameStartPacket}!requestedByPlayerId@{requestedByPlayerId}}
+\index{requestedByPlayerId@{requestedByPlayerId}!GameStartPacket@{GameStartPacket}}
+\doxysubsubsection{\texorpdfstring{requestedByPlayerId}{requestedByPlayerId}}
+{\footnotesize\ttfamily \label{struct_game_start_packet_a45b4451f7179633be5444305de11f5d5} 
+uint8\+\_\+t Game\+Start\+Packet::\+requested\+By\+Player\+Id}
+
+\Hypertarget{struct_game_start_packet_a826bb8efac450d0d41768e3ab763dfcf}\index{GameStartPacket@{GameStartPacket}!round@{round}}
+\index{round@{round}!GameStartPacket@{GameStartPacket}}
+\doxysubsubsection{\texorpdfstring{round}{round}}
+{\footnotesize\ttfamily \label{struct_game_start_packet_a826bb8efac450d0d41768e3ab763dfcf} 
+uint8\+\_\+t Game\+Start\+Packet::\+round}
+
+\Hypertarget{struct_game_start_packet_adfba0ebd7aa7eb533cb2042877816c42}\index{GameStartPacket@{GameStartPacket}!startingPlayerId@{startingPlayerId}}
+\index{startingPlayerId@{startingPlayerId}!GameStartPacket@{GameStartPacket}}
+\doxysubsubsection{\texorpdfstring{startingPlayerId}{startingPlayerId}}
+{\footnotesize\ttfamily \label{struct_game_start_packet_adfba0ebd7aa7eb533cb2042877816c42} 
+uint8\+\_\+t Game\+Start\+Packet::\+starting\+Player\+Id}
+
+\Hypertarget{struct_game_start_packet_a1efe4da38764bebb2c4e9bbe583015af}\index{GameStartPacket@{GameStartPacket}!turn@{turn}}
+\index{turn@{turn}!GameStartPacket@{GameStartPacket}}
+\doxysubsubsection{\texorpdfstring{turn}{turn}}
+{\footnotesize\ttfamily \label{struct_game_start_packet_a1efe4da38764bebb2c4e9bbe583015af} 
+uint8\+\_\+t Game\+Start\+Packet::\+turn}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_network_protocol_8h}{Network\+Protocol.\+h}}\end{DoxyCompactItemize}

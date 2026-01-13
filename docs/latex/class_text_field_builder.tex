@@ -1,0 +1,616 @@
+\doxysection{Text\+Field\+Builder Class Reference}
+\hypertarget{class_text_field_builder}{}\label{class_text_field_builder}\index{TextFieldBuilder@{TextFieldBuilder}}
+
+
+A Builder class for constructing \doxylink{class_text_field_widget}{Text\+Field\+Widget} instances.  
+
+
+
+
+{\ttfamily \+\#include $<$Text\+Field\+Widget.\+h$>$}
+
+
+
+Collaboration diagram for Text\+Field\+Builder:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_text_field_builder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_text_field_builder_af7c263cda29536d6bbb0c3955784c3be}{Text\+Field\+Builder}} ()
+\item 
+\doxymbox{\hyperlink{class_text_field_builder_a2b6df3a9ba67e6a3c0eee933abc22594}{Text\+Field\+Builder}} (const std::\+string \&\doxymbox{\hyperlink{class_text_field_builder_ab51e7f7fada99a4bb39fe7e8783f347c}{initial\+Text}}, const std::\+function$<$ void(const std::\+string \&)$>$ \&on\+Text\+Change\+Callback)
+\begin{DoxyCompactList}\small\item\em Constructor allowing immediate definition of text and callback. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_a2337b04fb7b73c112e98ad4fb504f38d}{set\+Position}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em Sets the absolute position. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_af94b6cc45f3c822ac8e318ced17405c7}{move}} (float byX, float byY)
+\begin{DoxyCompactList}\small\item\em Offsets the position relative to the last built widget. ~\newline
+ Useful for stacking fields vertically or horizontally without calculating absolute coordinates. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_ae7c3d366967c8d389f4568429fcd31dc}{set\+Width}} (float \doxymbox{\hyperlink{class_text_field_builder_a903469e64cdd4bc156a8f2039b7ce183}{width}})
+\begin{DoxyCompactList}\small\item\em Sets the width of the input box. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_acb3c2a1f7395e1440a8a3fa7325a6ebb}{set\+Height}} (float \doxymbox{\hyperlink{class_text_field_builder_a1ed0b4185bd0db7ad3b3135a655d7258}{height}})
+\begin{DoxyCompactList}\small\item\em Sets the height of the input box. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_abce41c60112593aed4fd43e31ef0b3a4}{set\+Size}} (float \doxymbox{\hyperlink{class_text_field_builder_a903469e64cdd4bc156a8f2039b7ce183}{width}}, float \doxymbox{\hyperlink{class_text_field_builder_a1ed0b4185bd0db7ad3b3135a655d7258}{height}})
+\begin{DoxyCompactList}\small\item\em Sets dimensions of the input box. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_a9c50876ddc755b89bb2fa60940b2f804}{set\+Max\+Chars}} (size\+\_\+t \doxymbox{\hyperlink{class_text_field_builder_ad0b19f5d65d58373018d5651bb7ed623}{max\+Chars}})
+\begin{DoxyCompactList}\small\item\em Sets the maximum number of characters allowed. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_ac8e987f011e97b4991579c8dc00b3500}{set\+Text}} (std::\+string text)
+\begin{DoxyCompactList}\small\item\em Sets the initial string content. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_a90a8a4c210639a3dec6dbbc76abacb70}{set\+Text\+Size}} (int \doxymbox{\hyperlink{class_text_field_builder_aa2931e677e36ff64aad78fb283c293ee}{text\+Size}})
+\begin{DoxyCompactList}\small\item\em Sets the font size. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_a5df73208c286e54e8852ef3cf20cbaf9}{set\+Colors}} (sf::\+\+Color idle, sf::\+\+Color focus, sf::\+\+Color text, sf::\+\+Color inactive)
+\begin{DoxyCompactList}\small\item\em Configures the color palette. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_a2676284486db2f7e4fac6facff53c518}{set\+On\+Text\+Change}} (const std::\+function$<$ void(const std::\+string \&)$>$ \&\doxymbox{\hyperlink{class_text_field_builder_a8d80d0b792c1e8aa968330af20f909a2}{on\+Text\+Change}})
+\begin{DoxyCompactList}\small\item\em Sets the callback function for text modifications. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& \doxymbox{\hyperlink{class_text_field_builder_aac4988fc04b7ba88b60834969d6b04f9}{set\+Display\+Condition}} (const std::\+function$<$ bool()$>$ \&\doxymbox{\hyperlink{class_text_field_builder_a5ef5fc0c30dde17b94d37baaf82b3215}{display\+Condition}})
+\begin{DoxyCompactList}\small\item\em Sets a custom visibility condition. \end{DoxyCompactList}\item 
+std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_text_field_widget}{Text\+Field\+Widget}} $>$ \doxymbox{\hyperlink{class_text_field_builder_a1ae8ec6d3573cde8b725d4533a9dab98}{build}} ()
+\begin{DoxyCompactList}\small\item\em Finalizes construction and creates the \doxylink{class_text_field_widget}{Text\+Field\+Widget}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{class_text_field_builder_a4cdbca90ee4fd11aa7038101ce1fd08f}{init\+Font}} (const sf::\+\+Font \&\doxymbox{\hyperlink{class_text_field_builder_afcfda47b08ef6ce2907d88aba421e3fa}{font}})
+\begin{DoxyCompactList}\small\item\em Initializes the global font resource and layout tracker. ~\newline
+ Must be called before building any Text\+Fields. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{class_text_field_builder_a6edec4259950a26ffd024831e73add51}{posX}} = 0
+\item 
+float \doxymbox{\hyperlink{class_text_field_builder_a055ea35307b78687806376731186255c}{posY}} = 0
+\item 
+float \doxymbox{\hyperlink{class_text_field_builder_a903469e64cdd4bc156a8f2039b7ce183}{width}} = 200
+\item 
+float \doxymbox{\hyperlink{class_text_field_builder_a1ed0b4185bd0db7ad3b3135a655d7258}{height}} = 28
+\item 
+std::\+string \doxymbox{\hyperlink{class_text_field_builder_ab51e7f7fada99a4bb39fe7e8783f347c}{initial\+Text}}
+\item 
+int \doxymbox{\hyperlink{class_text_field_builder_aa2931e677e36ff64aad78fb283c293ee}{text\+Size}} = 20
+\item 
+size\+\_\+t \doxymbox{\hyperlink{class_text_field_builder_ad0b19f5d65d58373018d5651bb7ed623}{max\+Chars}} = 30
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_text_field_builder_a883e9111955c2ae2273d3a537b20ec76}{text\+Color}} = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a21d8d1acc9bd2ed93b1960661f09cbf6}{TEXT\+\_\+\+COLOR}})
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_text_field_builder_acb8aece398180e443e648cc39ed13c00}{idle\+Color}} = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a61ae6f1ae401c962137f2ae1d2a158df}{BACKGROUND\+\_\+\+COLOR}})
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_text_field_builder_a521405c091eb724e41f7adbe62843ddf}{focus\+Color}} = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_aaf587c17e178da66dc6050761922b8ee}{SECONDARY\+\_\+\+COLOR}})
+\item 
+sf::\+\+Color \doxymbox{\hyperlink{class_text_field_builder_ade7f941874d9f71e54c3ea91f4107af3}{inactive\+Color}} = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a98f13e43044f17563c27867f08a90dbf}{INACTIVE\+\_\+\+COLOR}})
+\item 
+sf::\+\+Font \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_text_field_builder_afcfda47b08ef6ce2907d88aba421e3fa}{font}}
+\item 
+std::\+function$<$ void(const std::\+string \&)$>$ \doxymbox{\hyperlink{class_text_field_builder_a8d80d0b792c1e8aa968330af20f909a2}{on\+Text\+Change}}
+\item 
+std::\+function$<$ bool()$>$ \doxymbox{\hyperlink{class_text_field_builder_a5ef5fc0c30dde17b94d37baaf82b3215}{display\+Condition}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static float \doxymbox{\hyperlink{class_text_field_builder_a40de8a4f198159571ea9520f6ccba0eb}{prev\+PosX}} = 0.\+0f
+\item 
+static float \doxymbox{\hyperlink{class_text_field_builder_ac7e96e12b400000c09569a1f52c6974e}{prev\+PosY}} = 0.\+0f
+\item 
+static sf::\+\+Font \doxymbox{\hyperlink{class_text_field_builder_a391edf3d557bca7ee90a94a47663f72f}{shared\+Font}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A Builder class for constructing \doxylink{class_text_field_widget}{Text\+Field\+Widget} instances. 
+
+\label{doc-constructors}
+\Hypertarget{class_text_field_builder_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_text_field_builder_af7c263cda29536d6bbb0c3955784c3be}\index{TextFieldBuilder@{TextFieldBuilder}!TextFieldBuilder@{TextFieldBuilder}}
+\index{TextFieldBuilder@{TextFieldBuilder}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{TextFieldBuilder()}{TextFieldBuilder()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_text_field_builder_af7c263cda29536d6bbb0c3955784c3be} 
+Text\+Field\+Builder::\+\+Text\+Field\+Builder (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_af7c263cda29536d6bbb0c3955784c3be_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_a2b6df3a9ba67e6a3c0eee933abc22594}\index{TextFieldBuilder@{TextFieldBuilder}!TextFieldBuilder@{TextFieldBuilder}}
+\index{TextFieldBuilder@{TextFieldBuilder}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{TextFieldBuilder()}{TextFieldBuilder()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a2b6df3a9ba67e6a3c0eee933abc22594} 
+Text\+Field\+Builder::\+\+Text\+Field\+Builder (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{initial\+Text}{, }\item[{const std::\+function$<$ void(const std::\+string \&)$>$ \&}]{on\+Text\+Change\+Callback}{}\end{DoxyParamCaption})}
+
+
+
+Constructor allowing immediate definition of text and callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em initial\+Text} & The text string to start with. \\
+\hline
+{\em on\+Text\+Change\+Callback} & Function called whenever the user modifies the text. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_text_field_builder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_text_field_builder_a1ae8ec6d3573cde8b725d4533a9dab98}\index{TextFieldBuilder@{TextFieldBuilder}!build@{build}}
+\index{build@{build}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a1ae8ec6d3573cde8b725d4533a9dab98} 
+std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_text_field_widget}{Text\+Field\+Widget}} $>$ Text\+Field\+Builder::\+build (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Finalizes construction and creates the \doxylink{class_text_field_widget}{Text\+Field\+Widget}. 
+
+\begin{DoxyReturn}{Returns}
+A unique pointer to the fully configured \doxylink{class_text_field_widget}{Text\+Field\+Widget}. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a1ae8ec6d3573cde8b725d4533a9dab98_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_a4cdbca90ee4fd11aa7038101ce1fd08f}\index{TextFieldBuilder@{TextFieldBuilder}!initFont@{initFont}}
+\index{initFont@{initFont}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{initFont()}{initFont()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a4cdbca90ee4fd11aa7038101ce1fd08f} 
+void Text\+Field\+Builder::\+init\+Font (\begin{DoxyParamCaption}\item[{const sf::\+\+Font \&}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Initializes the global font resource and layout tracker. ~\newline
+ Must be called before building any Text\+Fields. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & The SFML font to be used by all text fields created via builder. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a4cdbca90ee4fd11aa7038101ce1fd08f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_af94b6cc45f3c822ac8e318ced17405c7}\index{TextFieldBuilder@{TextFieldBuilder}!move@{move}}
+\index{move@{move}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_af94b6cc45f3c822ac8e318ced17405c7} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+move (\begin{DoxyParamCaption}\item[{float}]{byX}{, }\item[{float}]{byY}{}\end{DoxyParamCaption})}
+
+
+
+Offsets the position relative to the last built widget. ~\newline
+ Useful for stacking fields vertically or horizontally without calculating absolute coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em byX} & Amount to move on X axis. \\
+\hline
+{\em byY} & Amount to move on Y axis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_af94b6cc45f3c822ac8e318ced17405c7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_a5df73208c286e54e8852ef3cf20cbaf9}\index{TextFieldBuilder@{TextFieldBuilder}!setColors@{setColors}}
+\index{setColors@{setColors}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setColors()}{setColors()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a5df73208c286e54e8852ef3cf20cbaf9} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Colors (\begin{DoxyParamCaption}\item[{sf::\+\+Color}]{idle}{, }\item[{sf::\+\+Color}]{focus}{, }\item[{sf::\+\+Color}]{text}{, }\item[{sf::\+\+Color}]{inactive}{}\end{DoxyParamCaption})}
+
+
+
+Configures the color palette. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idle} & Background color when not focused. \\
+\hline
+{\em focus} & Background/\+\+Outline color when typing. \\
+\hline
+{\em text} & Color of the font. \\
+\hline
+{\em inactive} & Color when disabled. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a5df73208c286e54e8852ef3cf20cbaf9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_aac4988fc04b7ba88b60834969d6b04f9}\index{TextFieldBuilder@{TextFieldBuilder}!setDisplayCondition@{setDisplayCondition}}
+\index{setDisplayCondition@{setDisplayCondition}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setDisplayCondition()}{setDisplayCondition()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_aac4988fc04b7ba88b60834969d6b04f9} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Display\+Condition (\begin{DoxyParamCaption}\item[{const std::\+function$<$ bool()$>$ \&}]{display\+Condition}{}\end{DoxyParamCaption})}
+
+
+
+Sets a custom visibility condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em display\+Condition} & Function returning true if button should be visible. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_aac4988fc04b7ba88b60834969d6b04f9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_acb3c2a1f7395e1440a8a3fa7325a6ebb}\index{TextFieldBuilder@{TextFieldBuilder}!setHeight@{setHeight}}
+\index{setHeight@{setHeight}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setHeight()}{setHeight()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_acb3c2a1f7395e1440a8a3fa7325a6ebb} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Height (\begin{DoxyParamCaption}\item[{float}]{height}{}\end{DoxyParamCaption})}
+
+
+
+Sets the height of the input box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em height} & Height in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_acb3c2a1f7395e1440a8a3fa7325a6ebb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_a9c50876ddc755b89bb2fa60940b2f804}\index{TextFieldBuilder@{TextFieldBuilder}!setMaxChars@{setMaxChars}}
+\index{setMaxChars@{setMaxChars}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setMaxChars()}{setMaxChars()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a9c50876ddc755b89bb2fa60940b2f804} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Max\+Chars (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{max\+Chars}{}\end{DoxyParamCaption})}
+
+
+
+Sets the maximum number of characters allowed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Chars} & The character limit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a9c50876ddc755b89bb2fa60940b2f804_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a9c50876ddc755b89bb2fa60940b2f804_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_a2676284486db2f7e4fac6facff53c518}\index{TextFieldBuilder@{TextFieldBuilder}!setOnTextChange@{setOnTextChange}}
+\index{setOnTextChange@{setOnTextChange}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setOnTextChange()}{setOnTextChange()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a2676284486db2f7e4fac6facff53c518} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+On\+Text\+Change (\begin{DoxyParamCaption}\item[{const std::\+function$<$ void(const std::\+string \&)$>$ \&}]{on\+Text\+Change}{}\end{DoxyParamCaption})}
+
+
+
+Sets the callback function for text modifications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em on\+Text\+Change} & Function accepting the new string state. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a2676284486db2f7e4fac6facff53c518_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_a2337b04fb7b73c112e98ad4fb504f38d}\index{TextFieldBuilder@{TextFieldBuilder}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a2337b04fb7b73c112e98ad4fb504f38d} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Position (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Sets the absolute position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X Coordinate. \\
+\hline
+{\em y} & Y Coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a2337b04fb7b73c112e98ad4fb504f38d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a2337b04fb7b73c112e98ad4fb504f38d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_abce41c60112593aed4fd43e31ef0b3a4}\index{TextFieldBuilder@{TextFieldBuilder}!setSize@{setSize}}
+\index{setSize@{setSize}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setSize()}{setSize()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_abce41c60112593aed4fd43e31ef0b3a4} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Size (\begin{DoxyParamCaption}\item[{float}]{width}{, }\item[{float}]{height}{}\end{DoxyParamCaption})}
+
+
+
+Sets dimensions of the input box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Width in pixels. \\
+\hline
+{\em height} & Height in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_abce41c60112593aed4fd43e31ef0b3a4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_ac8e987f011e97b4991579c8dc00b3500}\index{TextFieldBuilder@{TextFieldBuilder}!setText@{setText}}
+\index{setText@{setText}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setText()}{setText()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_ac8e987f011e97b4991579c8dc00b3500} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Text (\begin{DoxyParamCaption}\item[{std::\+string}]{text}{}\end{DoxyParamCaption})}
+
+
+
+Sets the initial string content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_ac8e987f011e97b4991579c8dc00b3500_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_a90a8a4c210639a3dec6dbbc76abacb70}\index{TextFieldBuilder@{TextFieldBuilder}!setTextSize@{setTextSize}}
+\index{setTextSize@{setTextSize}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setTextSize()}{setTextSize()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a90a8a4c210639a3dec6dbbc76abacb70} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Text\+Size (\begin{DoxyParamCaption}\item[{int}]{text\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Sets the font size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+Size} & Size in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_a90a8a4c210639a3dec6dbbc76abacb70_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_text_field_builder_ae7c3d366967c8d389f4568429fcd31dc}\index{TextFieldBuilder@{TextFieldBuilder}!setWidth@{setWidth}}
+\index{setWidth@{setWidth}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{setWidth()}{setWidth()}}
+{\footnotesize\ttfamily \label{class_text_field_builder_ae7c3d366967c8d389f4568429fcd31dc} 
+\doxymbox{\hyperlink{class_text_field_builder}{Text\+Field\+Builder}} \& Text\+Field\+Builder::\+set\+Width (\begin{DoxyParamCaption}\item[{float}]{width}{}\end{DoxyParamCaption})}
+
+
+
+Sets the width of the input box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Width in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reference to the builder for chaining. 
+\end{DoxyReturn}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_text_field_builder_ae7c3d366967c8d389f4568429fcd31dc_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_text_field_builder_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_text_field_builder_a5ef5fc0c30dde17b94d37baaf82b3215}\index{TextFieldBuilder@{TextFieldBuilder}!displayCondition@{displayCondition}}
+\index{displayCondition@{displayCondition}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{displayCondition}{displayCondition}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a5ef5fc0c30dde17b94d37baaf82b3215} 
+std::\+function$<$bool()$>$ Text\+Field\+Builder::\+display\+Condition\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a521405c091eb724e41f7adbe62843ddf}\index{TextFieldBuilder@{TextFieldBuilder}!focusColor@{focusColor}}
+\index{focusColor@{focusColor}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{focusColor}{focusColor}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a521405c091eb724e41f7adbe62843ddf} 
+sf::\+\+Color Text\+Field\+Builder::\+focus\+Color = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_aaf587c17e178da66dc6050761922b8ee}{SECONDARY\+\_\+\+COLOR}})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_afcfda47b08ef6ce2907d88aba421e3fa}\index{TextFieldBuilder@{TextFieldBuilder}!font@{font}}
+\index{font@{font}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{class_text_field_builder_afcfda47b08ef6ce2907d88aba421e3fa} 
+sf::\+\+Font\texorpdfstring{$\ast$}{*} Text\+Field\+Builder::\+font\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a1ed0b4185bd0db7ad3b3135a655d7258}\index{TextFieldBuilder@{TextFieldBuilder}!height@{height}}
+\index{height@{height}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a1ed0b4185bd0db7ad3b3135a655d7258} 
+float Text\+Field\+Builder::\+height = 28\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_acb8aece398180e443e648cc39ed13c00}\index{TextFieldBuilder@{TextFieldBuilder}!idleColor@{idleColor}}
+\index{idleColor@{idleColor}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{idleColor}{idleColor}}
+{\footnotesize\ttfamily \label{class_text_field_builder_acb8aece398180e443e648cc39ed13c00} 
+sf::\+\+Color Text\+Field\+Builder::\+idle\+Color = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a61ae6f1ae401c962137f2ae1d2a158df}{BACKGROUND\+\_\+\+COLOR}})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_ade7f941874d9f71e54c3ea91f4107af3}\index{TextFieldBuilder@{TextFieldBuilder}!inactiveColor@{inactiveColor}}
+\index{inactiveColor@{inactiveColor}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{inactiveColor}{inactiveColor}}
+{\footnotesize\ttfamily \label{class_text_field_builder_ade7f941874d9f71e54c3ea91f4107af3} 
+sf::\+\+Color Text\+Field\+Builder::\+inactive\+Color = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a98f13e43044f17563c27867f08a90dbf}{INACTIVE\+\_\+\+COLOR}})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_ab51e7f7fada99a4bb39fe7e8783f347c}\index{TextFieldBuilder@{TextFieldBuilder}!initialText@{initialText}}
+\index{initialText@{initialText}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{initialText}{initialText}}
+{\footnotesize\ttfamily \label{class_text_field_builder_ab51e7f7fada99a4bb39fe7e8783f347c} 
+std::\+string Text\+Field\+Builder::\+initial\+Text\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_ad0b19f5d65d58373018d5651bb7ed623}\index{TextFieldBuilder@{TextFieldBuilder}!maxChars@{maxChars}}
+\index{maxChars@{maxChars}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{maxChars}{maxChars}}
+{\footnotesize\ttfamily \label{class_text_field_builder_ad0b19f5d65d58373018d5651bb7ed623} 
+size\+\_\+t Text\+Field\+Builder::\+max\+Chars = 30\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a8d80d0b792c1e8aa968330af20f909a2}\index{TextFieldBuilder@{TextFieldBuilder}!onTextChange@{onTextChange}}
+\index{onTextChange@{onTextChange}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{onTextChange}{onTextChange}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a8d80d0b792c1e8aa968330af20f909a2} 
+std::\+function$<$void(const std::\+string \&)$>$ Text\+Field\+Builder::\+on\+Text\+Change\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a6edec4259950a26ffd024831e73add51}\index{TextFieldBuilder@{TextFieldBuilder}!posX@{posX}}
+\index{posX@{posX}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{posX}{posX}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a6edec4259950a26ffd024831e73add51} 
+float Text\+Field\+Builder::\+posX = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a055ea35307b78687806376731186255c}\index{TextFieldBuilder@{TextFieldBuilder}!posY@{posY}}
+\index{posY@{posY}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{posY}{posY}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a055ea35307b78687806376731186255c} 
+float Text\+Field\+Builder::\+posY = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a40de8a4f198159571ea9520f6ccba0eb}\index{TextFieldBuilder@{TextFieldBuilder}!prevPosX@{prevPosX}}
+\index{prevPosX@{prevPosX}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{prevPosX}{prevPosX}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a40de8a4f198159571ea9520f6ccba0eb} 
+float Text\+Field\+Builder::\+prev\+PosX = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_ac7e96e12b400000c09569a1f52c6974e}\index{TextFieldBuilder@{TextFieldBuilder}!prevPosY@{prevPosY}}
+\index{prevPosY@{prevPosY}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{prevPosY}{prevPosY}}
+{\footnotesize\ttfamily \label{class_text_field_builder_ac7e96e12b400000c09569a1f52c6974e} 
+float Text\+Field\+Builder::\+prev\+PosY = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a391edf3d557bca7ee90a94a47663f72f}\index{TextFieldBuilder@{TextFieldBuilder}!sharedFont@{sharedFont}}
+\index{sharedFont@{sharedFont}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{sharedFont}{sharedFont}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a391edf3d557bca7ee90a94a47663f72f} 
+sf::\+\+Font Text\+Field\+Builder::\+shared\+Font\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a883e9111955c2ae2273d3a537b20ec76}\index{TextFieldBuilder@{TextFieldBuilder}!textColor@{textColor}}
+\index{textColor@{textColor}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{textColor}{textColor}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a883e9111955c2ae2273d3a537b20ec76} 
+sf::\+\+Color Text\+Field\+Builder::\+text\+Color = sf::\+\+Color(\doxymbox{\hyperlink{_utils_8h_a21d8d1acc9bd2ed93b1960661f09cbf6}{TEXT\+\_\+\+COLOR}})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_aa2931e677e36ff64aad78fb283c293ee}\index{TextFieldBuilder@{TextFieldBuilder}!textSize@{textSize}}
+\index{textSize@{textSize}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{textSize}{textSize}}
+{\footnotesize\ttfamily \label{class_text_field_builder_aa2931e677e36ff64aad78fb283c293ee} 
+int Text\+Field\+Builder::\+text\+Size = 20\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_text_field_builder_a903469e64cdd4bc156a8f2039b7ce183}\index{TextFieldBuilder@{TextFieldBuilder}!width@{width}}
+\index{width@{width}!TextFieldBuilder@{TextFieldBuilder}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \label{class_text_field_builder_a903469e64cdd4bc156a8f2039b7ce183} 
+float Text\+Field\+Builder::\+width = 200\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_text_field_widget_8h}{Text\+Field\+Widget.\+h}}\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+ui/\+\doxymbox{\hyperlink{_text_field_widget_8cpp}{Text\+Field\+Widget.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="InternalGameServer::handleNewConnection" name="InternalGameServer::handleNewConnection">
+<area shape="rect" id="Node000001" title="Accepts and processes a new connection. &#160;&#160;If a client connects, creates a new ClientContext,..." alt="" coords="5,5,166,48"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="214,5,351,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,24,201,26,196,27,166,29"/>
+</map>

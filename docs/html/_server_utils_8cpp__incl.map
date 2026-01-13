@@ -1,0 +1,23 @@
+<map id="D:/.ClionProjects/TicTacToeOverLan/src/server/ServerUtils.cpp" name="D:/.ClionProjects/TicTacToeOverLan/src/server/ServerUtils.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="114,5,279,64"/>
+<area shape="rect" id="Node000002" href="$_server_utils_8h.html" title=" " alt="" coords="148,112,245,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,62,199,97,194,96,196,67"/>
+<area shape="rect" id="Node000003" href="$_client_context_8h.html" title=" " alt="" coords="198,187,310,213"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="207,137,237,174,232,175,206,142"/>
+<area shape="rect" id="Node000008" href="$_network_protocol_8h.html" title=" " alt="" coords="32,261,228,288"/>
+<area shape="poly" id="edge13_Node000002_Node000008" title=" " alt="" coords="192,137,144,248,140,246,189,141"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="18,411,79,437"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="196,210,94,230,50,245,33,254,23,263,14,278,10,295,11,331,22,366,36,397,31,398,17,368,6,332,4,294,9,276,19,260,30,249,48,240,93,225,199,206"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="333,411,391,437"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="278,211,311,231,347,259,381,294,407,335,410,353,407,370,387,401,384,397,402,368,405,353,402,337,377,297,343,263,307,236,278,217"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="86,336,174,363"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="256,211,256,250,251,270,241,290,216,314,186,332,184,327,213,310,237,286,246,269,251,249,254,216"/>
+<area shape="rect" id="Node000007" href="$_game_definitions_8h.html" title=" " alt="" coords="198,336,393,363"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="262,211,286,261,296,321,291,319,281,262,261,216"/>
+<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="230,216,166,255,163,251,234,212"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="253,366,94,412,93,407,252,361"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="308,361,343,400,338,399,306,366"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="113,290,96,311,76,337,64,367,56,396,51,394,59,365,72,335,92,308,117,286"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="131,286,132,321,127,320,129,291"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="159,286,255,328,250,330,158,291"/>
+</map>

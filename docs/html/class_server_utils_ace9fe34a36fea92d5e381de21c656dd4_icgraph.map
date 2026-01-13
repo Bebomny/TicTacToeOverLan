@@ -1,0 +1,12 @@
+<map id="ServerUtils::clientContextToPlayer" name="ServerUtils::clientContextToPlayer">
+<area shape="rect" id="Node000001" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="561,64,733,107"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#ad36cc65394c1ceb1a7294a05a007c6bb" title=" " alt="" coords="376,5,513,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="554,59,514,49,514,44,560,59"/>
+<area shape="rect" id="Node000003" href="$class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,93,328,136"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="543,94,328,112,328,107,548,92"/>
+<area shape="rect" id="Node000005" href="$class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,123,513,165"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="560,111,514,127,513,121,554,112"/>
+<area shape="rect" id="Node000004" href="$class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,93,143,136"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="173,115,143,117,143,112,178,114"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="358,131,328,128,329,123,363,131"/>
+</map>

@@ -1,0 +1,95 @@
+\doxysection{Utils.\+h}
+\hypertarget{_utils_8h_source}{}\label{_utils_8h_source}\index{D:/.ClionProjects/TicTacToeOverLan/src/common/Utils.h@{D:/.ClionProjects/TicTacToeOverLan/src/common/Utils.h}}
+\doxymbox{\hyperlink{_utils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TICTACTOEOVERLAN\_UTILS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TICTACTOEOVERLAN\_UTILS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ ANSI\_RED\ \ \ \ \ "{}\(\backslash\)x1b[31m"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ ANSI\_GREEN\ \ \ "{}\(\backslash\)x1b[32m"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ANSI\_YELLOW\ \ "{}\(\backslash\)x1b[33m"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ ANSI\_BLUE\ \ \ \ "{}\(\backslash\)x1b[34m"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ ANSI\_MAGENTA\ "{}\(\backslash\)x1b[35m"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ ANSI\_CYAN\ \ \ \ "{}\(\backslash\)x1b[36m"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ ANSI\_RESET\ \ \ "{}\(\backslash\)x1b[0m"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//https://www.realtimecolors.com/?colors=070806-\/fbfcfb-\/809476-\/aabcb5-\/8ea6a5\&fonts=Inter-\/Inter}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ BACKGROUND\_COLOR\ \{251,\ 252,\ 251\}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TEXT\_COLOR\ \{7,\ 8,\ 6\}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ PRIMARY\_COLOR\ \{128,\ 148,\ 118\}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ SECONDARY\_COLOR\ \{170,\ 188,\ 181\}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ ACCENT\_COLOR\ \{142,\ 166,\ 165\}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ INACTIVE\_COLOR\ \{150,\ 150,\ 150\}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_game_definitions_8h}{GameDefinitions.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}string"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_utils}{Utils}}\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \doxymbox{\hyperlink{class_utils_ab49720ff58867feae08d01073966f229}{pieceTypeToString}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{PieceType}}\ piece)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (piece)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86aba2b45bdc11e2a4a6e86aab2ac693cbb}{PieceType::EMPTY}}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}EMPTY"{}};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a04dd53a8e6c2306e9bbf944c1d6047f2}{PieceType::CROSS}}:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Cross"{}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a0af50777920c1401ab975cab64c4d491}{PieceType::CIRCLE}}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Circle"{}};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a9bcd89070cae224dce305f5011659ef4}{PieceType::TRIANGLE}}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Triangle"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a12dec4e1f7ec620651b2b95c440ffac0}{PieceType::SQUARE}}:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Square"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a4a3681cf3ab3ef50d24e5878361e1c52}{PieceType::OCTAGON}}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Octagon"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86a272511c716837072b7f4f41e421a0ca8}{PieceType::HEXAGON}}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Hexagon"{}};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Empty"{}};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_utils_a974571ca9cb0b0cda9f0b56e6583a4a5}{initializeGameBoard}}(\doxymbox{\hyperlink{struct_board_data}{BoardData}}\ \&board)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ std::vector<std::vector<BoardSquare>\ >\ grid;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ board.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};\ ++i)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<BoardSquare>\ row;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ board.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};\ ++j)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_board_square}{BoardSquare}}\ square\{\};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ square.\doxymbox{\hyperlink{struct_board_square_aee2e066b2b14278fa718647cde3197f1}{piece}}\ =\ \doxymbox{\hyperlink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86aba2b45bdc11e2a4a6e86aab2ac693cbb}{PieceType::EMPTY}};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ row.push\_back(square);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ grid.push\_back(row);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ board.\doxymbox{\hyperlink{struct_board_data_a7ddf3aefe9c31a6762e3d7297a662ba2}{grid}}\ =\ grid;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_utils_a71b0066a7749e408841c15ee5ff4f490}{serializeBoard}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_board_data}{BoardData}}\ \&inputBoard,\ \doxymbox{\hyperlink{struct_board_square}{BoardSquare}}\ *outputBoard,\ \textcolor{keywordtype}{int}\ bufferSize)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ totalSquares\ =\ inputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}}\ *\ inputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ limit\ =\ std::min(totalSquares,\ bufferSize);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ inputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};\ ++y)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ inputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};\ ++x)\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ flatIndex\ =\ y\ *\ inputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}}\ +\ x;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flatIndex\ >=\ limit)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outputBoard[flatIndex]\ =\ inputBoard.\doxymbox{\hyperlink{struct_board_data_a6c04548422ccdd5b690a4128964eb503}{getSquareAt}}(x,\ y);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_utils_a9bc7096ff5339947893e3d02d58410b2}{deserializeBoard}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_board_square}{BoardSquare}}\ *inputBoard,\ \doxymbox{\hyperlink{struct_board_data}{BoardData}}\ \&outputBoard)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ totalSquares\ =\ outputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}}\ *\ outputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ totalSquares;\ ++i)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ i\ \%\ outputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ i\ /\ outputBoard.\doxymbox{\hyperlink{struct_board_data_ac3957ab4c4c261a479eab9932beee96f}{boardSize}};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ outputBoard.\doxymbox{\hyperlink{struct_board_data_aa68d3cb10d68cbf530ca7f3d7e792482}{setSquareAt}}(x,\ y,\ inputBoard[i]);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_UTILS\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,73 @@
+\doxysection{D:\+/\+.Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+client/\+\+Network\+Manager.h File Reference}
+\hypertarget{_network_manager_8h}{}\label{_network_manager_8h}\index{D:/.ClionProjects/TicTacToeOverLan/src/client/NetworkManager.h@{D:/.ClionProjects/TicTacToeOverLan/src/client/NetworkManager.h}}
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$winsock2.\+h$>$}\newline
+{\ttfamily \+\#include $<$ws2tcpip.\+h$>$}\newline
+{\ttfamily \+\#include "{}../\+common/\+\+Network\+Protocol.\+h"{}}\newline
+{\ttfamily \+\#include "{}../\+common/\+\+Utils.\+h"{}}\newline
+Include dependency graph for Network\+Manager.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_network_manager_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_network_manager_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_network_manager}{Network\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages low-\/level TCP network communication. ~\newline
+ Wraps the Winsock API to provide a cleaner interface for connecting, disconnecting, and exchanging structured packets. ~\newline
+ Handles packet framing (Header + Payload) and ensures data integrity during sends. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781}{Connection\+Phase}} :\+ uint8\+\_\+t \{ \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a99c8ce56e7ab246445d3b134724428f3}{DISCONNECTED}}
+, \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781afdb7bfdb2e03442a306fe07f152f91fc}{ESTABLISHING}}
+, \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a7640f170af693e00a6c91df543aa2b76}{ESTABLISHED}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the state of the raw socket connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{_network_manager_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_network_manager_8h_abb1d931fdbee270e450c6724c3897781}\index{NetworkManager.h@{NetworkManager.h}!ConnectionPhase@{ConnectionPhase}}
+\index{ConnectionPhase@{ConnectionPhase}!NetworkManager.h@{NetworkManager.h}}
+\doxysubsubsection{\texorpdfstring{ConnectionPhase}{ConnectionPhase}}
+{\footnotesize\ttfamily \label{_network_manager_8h_abb1d931fdbee270e450c6724c3897781} 
+enum class \doxymbox{\hyperlink{_network_manager_8h_abb1d931fdbee270e450c6724c3897781}{Connection\+Phase}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Represents the state of the raw socket connection. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DISCONNECTED@{DISCONNECTED}!NetworkManager.h@{NetworkManager.h}}
+\index{NetworkManager.h@{NetworkManager.h}!DISCONNECTED@{DISCONNECTED}}
+}\Hypertarget{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a99c8ce56e7ab246445d3b134724428f3}\label{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a99c8ce56e7ab246445d3b134724428f3} 
+DISCONNECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ESTABLISHING@{ESTABLISHING}!NetworkManager.h@{NetworkManager.h}}
+\index{NetworkManager.h@{NetworkManager.h}!ESTABLISHING@{ESTABLISHING}}
+}\Hypertarget{_network_manager_8h_abb1d931fdbee270e450c6724c3897781afdb7bfdb2e03442a306fe07f152f91fc}\label{_network_manager_8h_abb1d931fdbee270e450c6724c3897781afdb7bfdb2e03442a306fe07f152f91fc} 
+ESTABLISHING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ESTABLISHED@{ESTABLISHED}!NetworkManager.h@{NetworkManager.h}}
+\index{NetworkManager.h@{NetworkManager.h}!ESTABLISHED@{ESTABLISHED}}
+}\Hypertarget{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a7640f170af693e00a6c91df543aa2b76}\label{_network_manager_8h_abb1d931fdbee270e450c6724c3897781a7640f170af693e00a6c91df543aa2b76} 
+ESTABLISHED&\\
+\hline
+
+\end{DoxyEnumFields}

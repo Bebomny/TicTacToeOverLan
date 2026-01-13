@@ -1,0 +1,3 @@
+<map id="PacketHeader" name="PacketHeader">
+<area shape="rect" id="Node000001" title="The Standard Header prepended to ALL network messages. &#160;&#160;The receiver reads these bytes first to dete..." alt="" coords="5,5,100,96"/>
+</map>

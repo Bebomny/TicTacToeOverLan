@@ -1,0 +1,5 @@
+<map id="Utils::deserializeBoard" name="Utils::deserializeBoard">
+<area shape="rect" id="Node000001" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="5,5,158,32"/>
+<area shape="rect" id="Node000002" href="$struct_board_data.html#aa68d3cb10d68cbf530ca7f3d7e792482" title="Updates the state of a specific grid cell." alt="" coords="206,5,369,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,16,193,19,187,19,158,21"/>
+</map>

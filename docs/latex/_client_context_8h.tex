@@ -1,0 +1,80 @@
+\doxysection{D:\+/\+.Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+server/\+\+Client\+Context.h File Reference}
+\hypertarget{_client_context_8h}{}\label{_client_context_8h}\index{D:/.ClionProjects/TicTacToeOverLan/src/server/ClientContext.h@{D:/.ClionProjects/TicTacToeOverLan/src/server/ClientContext.h}}
+{\ttfamily \+\#include $<$cstdint$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$winsock2.\+h$>$}\newline
+{\ttfamily \+\#include "{}../\+common/\+\+Game\+Definitions.\+h"{}}\newline
+{\ttfamily \+\#include "{}../\+common/\+\+Network\+Protocol.\+h"{}}\newline
+Include dependency graph for Client\+Context.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_client_context_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_client_context_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_client_context}{Client\+Context}}
+\begin{DoxyCompactList}\small\item\em Represents a connected client within the \doxylink{class_internal_game_server}{Internal\+Game\+Server}. ~\newline
+ Holds the raw socket, buffering for network streams, and player-\/specific metadata. ~\newline
+ Unlike the {\ttfamily \doxylink{struct_player}{Player}} struct, this struct manages the connection lifecycle and server-\/specific state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3ca}{Client\+Setup\+Phase}} \{ \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3caa7baec55aec9068d1bebf5e5342919204}{NEW\+\_\+\+CONNECTION}}
+, \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3caaf0822a83d29c044e4edfd5015bdf1a96}{HELLO\+\_\+\+SENT}}
+, \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3caade40840e4a59d8dec34c9b70ba9cbf54}{SETUP\+\_\+\+REQ\+\_\+\+RECV}}
+, \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3caa6f0ac9c97959ab36c1c154a77d4c7bba}{SET\+\_\+\+UP}}
+ \}
+\begin{DoxyCompactList}\small\item\em Tracks the handshake progress of a client on the Server side. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{_client_context_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_client_context_8h_ada53d93398d564237d9815fa3adef3ca}\index{ClientContext.h@{ClientContext.h}!ClientSetupPhase@{ClientSetupPhase}}
+\index{ClientSetupPhase@{ClientSetupPhase}!ClientContext.h@{ClientContext.h}}
+\doxysubsubsection{\texorpdfstring{ClientSetupPhase}{ClientSetupPhase}}
+{\footnotesize\ttfamily \label{_client_context_8h_ada53d93398d564237d9815fa3adef3ca} 
+enum class \doxymbox{\hyperlink{_client_context_8h_ada53d93398d564237d9815fa3adef3ca}{Client\+Setup\+Phase}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Tracks the handshake progress of a client on the Server side. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NEW\_CONNECTION@{NEW\_CONNECTION}!ClientContext.h@{ClientContext.h}}
+\index{ClientContext.h@{ClientContext.h}!NEW\_CONNECTION@{NEW\_CONNECTION}}
+}\Hypertarget{_client_context_8h_ada53d93398d564237d9815fa3adef3caa7baec55aec9068d1bebf5e5342919204}\label{_client_context_8h_ada53d93398d564237d9815fa3adef3caa7baec55aec9068d1bebf5e5342919204} 
+NEW\+\_\+\+CONNECTION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HELLO\_SENT@{HELLO\_SENT}!ClientContext.h@{ClientContext.h}}
+\index{ClientContext.h@{ClientContext.h}!HELLO\_SENT@{HELLO\_SENT}}
+}\Hypertarget{_client_context_8h_ada53d93398d564237d9815fa3adef3caaf0822a83d29c044e4edfd5015bdf1a96}\label{_client_context_8h_ada53d93398d564237d9815fa3adef3caaf0822a83d29c044e4edfd5015bdf1a96} 
+HELLO\+\_\+\+SENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETUP\_REQ\_RECV@{SETUP\_REQ\_RECV}!ClientContext.h@{ClientContext.h}}
+\index{ClientContext.h@{ClientContext.h}!SETUP\_REQ\_RECV@{SETUP\_REQ\_RECV}}
+}\Hypertarget{_client_context_8h_ada53d93398d564237d9815fa3adef3caade40840e4a59d8dec34c9b70ba9cbf54}\label{_client_context_8h_ada53d93398d564237d9815fa3adef3caade40840e4a59d8dec34c9b70ba9cbf54} 
+SETUP\+\_\+\+REQ\+\_\+\+RECV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SET\_UP@{SET\_UP}!ClientContext.h@{ClientContext.h}}
+\index{ClientContext.h@{ClientContext.h}!SET\_UP@{SET\_UP}}
+}\Hypertarget{_client_context_8h_ada53d93398d564237d9815fa3adef3caa6f0ac9c97959ab36c1c154a77d4c7bba}\label{_client_context_8h_ada53d93398d564237d9815fa3adef3caa6f0ac9c97959ab36c1c154a77d4c7bba} 
+SET\+\_\+\+UP&\\
+\hline
+
+\end{DoxyEnumFields}

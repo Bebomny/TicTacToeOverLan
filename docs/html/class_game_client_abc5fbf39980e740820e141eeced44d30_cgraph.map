@@ -1,0 +1,5 @@
+<map id="GameClient::renderGameRoom" name="GameClient::renderGameRoom">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,210,32"/>
+<area shape="rect" id="Node000002" href="$class_utils.html#ab49720ff58867feae08d01073966f229" title="Converts a PieceType enum value to a human&#45;readable string." alt="" coords="258,5,421,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,16,245,19,239,19,210,21"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="BoardStateUpdatePacket" name="BoardStateUpdatePacket">
+<area shape="rect" id="Node000001" title="Event&#45;based full state synchronization. &#160;&#160;Sent by the server to ensure all clients have the exact sam..." alt="" coords="80,275,238,451"/>
+<area shape="rect" id="Node000002" href="$struct_board_square.html" title="Represents the state of a single cell on the game board." alt="" coords="5,48,91,160"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,157,117,259,112,259,71,162"/>
+<area shape="rect" id="Node000003" href="$struct_move.html" title="Represents a discrete action taken by a player. &#160;&#160;Used for history tracking and network transmission." alt="" coords="116,27,202,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,179,162,258,156,257,158,183"/>
+<area shape="rect" id="Node000004" href="$struct_player.html" title="Represents a participant in the game. &#160;&#160;Contains identification, statistics, and local state flags." alt="" coords="227,5,321,203"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="253,200,236,252,231,262,227,259,231,250,250,204"/>
+</map>

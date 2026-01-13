@@ -1,0 +1,3 @@
+<map id="WinValidator" name="WinValidator">
+<area shape="rect" id="Node000001" title="Logic for detecting victory conditions on the board. &#160;&#160;Uses a raycasting algorithm to count consecuti..." alt="" coords="5,5,95,117"/>
+</map>

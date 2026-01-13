@@ -1,0 +1,12 @@
+<map id="D:/.ClionProjects/TicTacToeOverLan/src/common/NetworkProtocol.h" name="D:/.ClionProjects/TicTacToeOverLan/src/common/NetworkProtocol.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,173,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="60,187,120,213"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,67,47,82,37,100,33,119,36,138,47,158,64,176,58,177,43,161,30,140,27,119,32,98,43,79,59,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="45,112,133,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,62,92,97,86,96,88,67"/>
+<area shape="rect" id="Node000004" href="$_game_definitions_8h.html" title=" " alt="" coords="157,112,352,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="143,62,220,103,215,105,142,67"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="228,139,134,182,132,177,223,139"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="226,187,283,213"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="256,137,257,172,252,170,252,141"/>
+</map>

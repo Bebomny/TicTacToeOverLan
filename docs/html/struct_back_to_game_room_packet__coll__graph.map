@@ -1,0 +1,3 @@
+<map id="BackToGameRoomPacket" name="BackToGameRoomPacket">
+<area shape="rect" id="Node000001" title="Signal to return the UI to the Waiting Room." alt="" coords="5,5,171,75"/>
+</map>

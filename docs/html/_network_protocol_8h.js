@@ -1,0 +1,36 @@
+var _network_protocol_8h =
+[
+    [ "PacketHeader", "struct_packet_header.html", "struct_packet_header" ],
+    [ "ServerHelloPacket", "struct_server_hello_packet.html", "struct_server_hello_packet" ],
+    [ "SetupReqPacket", "struct_setup_req_packet.html", "struct_setup_req_packet" ],
+    [ "SetupAckPacket", "struct_setup_ack_packet.html", "struct_setup_ack_packet" ],
+    [ "NewPlayerJoinPacket", "struct_new_player_join_packet.html", "struct_new_player_join_packet" ],
+    [ "PlayerDisconnectedPacket", "struct_player_disconnected_packet.html", "struct_player_disconnected_packet" ],
+    [ "SettingsChangeReqPacket", "struct_settings_change_req_packet.html", "struct_settings_change_req_packet" ],
+    [ "SettingsUpdatePacket", "struct_settings_update_packet.html", "struct_settings_update_packet" ],
+    [ "GameStartRequestPacket", "struct_game_start_request_packet.html", "struct_game_start_request_packet" ],
+    [ "GameStartPacket", "struct_game_start_packet.html", "struct_game_start_packet" ],
+    [ "BoardStateUpdatePacket", "struct_board_state_update_packet.html", "struct_board_state_update_packet" ],
+    [ "MoveRequestPacket", "struct_move_request_packet.html", "struct_move_request_packet" ],
+    [ "BackToGameRoomPacket", "struct_back_to_game_room_packet.html", "struct_back_to_game_room_packet" ],
+    [ "GameEndPacket", "struct_game_end_packet.html", "struct_game_end_packet" ],
+    [ "PacketType", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56", [
+      [ "SERVER_HELLO", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a2d5adf374790a99688888f051f235cf0", null ],
+      [ "SETUP_REQ", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a97d632111f1e32b93aafbcd1ae69ec08", null ],
+      [ "SETUP_ACK", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56aa0e842f54d2ee55e7dee089df4f3a1ae", null ],
+      [ "NEW_PLAYER_JOIN", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a768247c75076806a456210aa409c896f", null ],
+      [ "PLAYER_DISCONNECTED", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a20887523dca92a9741ea1dcaa7e96ed9", null ],
+      [ "SETTINGS_CHANGE_REQ", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56ac62206e29e87f438cff40e666d6e3610", null ],
+      [ "SETTINGS_UPDATE", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a01a7c292615a5c0855ec43b5d6c4f049", null ],
+      [ "GAME_START_REQ", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a95bbe86b51565bbe1312f62907f2bbe4", null ],
+      [ "GAME_START", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a8820bda144613a0e3758d7d4f15abd6a", null ],
+      [ "MOVE_REQ", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56aeb20b50bd0278b6449850ead637dfc10", null ],
+      [ "BOARD_STATE_UPDATE", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a89ff5c3067de336740b646710ca75338", null ],
+      [ "BACK_TO_GAME_ROOM", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56a72d6edb1dffe80d34d497ce30c8e9353", null ],
+      [ "GAME_END", "_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56aaf8eed899b8468ec048ca80310aec862", null ]
+    ] ],
+    [ "DEFAULT_BUFFER_LEN", "_network_protocol_8h.html#a4022313c752cccbebaf07ac56231373d", null ],
+    [ "MAX_PLAYER_NAME_LENGTH", "_network_protocol_8h.html#a05749fe3079eca29dbc0b0ebf3dd5323", null ],
+    [ "MAX_PLAYERS", "_network_protocol_8h.html#a1009736152c3ecbf679637a326ad16d1", null ],
+    [ "REQ_SOCK_VERSION", "_network_protocol_8h.html#a2b272a711f06f4e4aa587b139054248b", null ]
+];

@@ -1,0 +1,218 @@
+\doxysection{D:\+/\+.Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\+Network\+Protocol.h File Reference}
+\hypertarget{_network_protocol_8h}{}\label{_network_protocol_8h}\index{D:/.ClionProjects/TicTacToeOverLan/src/common/NetworkProtocol.h@{D:/.ClionProjects/TicTacToeOverLan/src/common/NetworkProtocol.h}}
+{\ttfamily \+\#include $<$cstdint$>$}\newline
+{\ttfamily \+\#include $<$winsock2.\+h$>$}\newline
+{\ttfamily \+\#include "{}../\+common/\+\+Game\+Definitions.\+h"{}}\newline
+Include dependency graph for Network\+Protocol.\+h:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{_network_protocol_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_network_protocol_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_packet_header}{Packet\+Header}}
+\begin{DoxyCompactList}\small\item\em The Standard Header prepended to ALL network messages. ~\newline
+ The receiver reads these bytes first to determine how much more data to read. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_server_hello_packet}{Server\+Hello\+Packet}}
+\begin{DoxyCompactList}\small\item\em Initial handshake packet. ~\newline
+ Sent immediately by the server upon socket connection. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_setup_req_packet}{Setup\+Req\+Packet}}
+\begin{DoxyCompactList}\small\item\em Login request. ~\newline
+ Sent by the client to finalize the connection setup. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_setup_ack_packet}{Setup\+Ack\+Packet}}
+\begin{DoxyCompactList}\small\item\em Login acknowledgement. ~\newline
+ Contains the "{}\+Snapshot"{} of the current lobby state so the new client catches up. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_new_player_join_packet}{New\+Player\+Join\+Packet}}
+\begin{DoxyCompactList}\small\item\em Notification that a new peer has joined. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_player_disconnected_packet}{Player\+Disconnected\+Packet}}
+\begin{DoxyCompactList}\small\item\em Notification that a peer has left. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_settings_change_req_packet}{Settings\+Change\+Req\+Packet}}
+\begin{DoxyCompactList}\small\item\em Request to modify game rules. ~\newline
+ Only valid when in the Lobby/\+\+Waiting Room. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_settings_update_packet}{Settings\+Update\+Packet}}
+\begin{DoxyCompactList}\small\item\em Confirms that settings have been modified. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_game_start_request_packet}{Game\+Start\+Request\+Packet}}
+\begin{DoxyCompactList}\small\item\em Request to transition from WAITING\+\_\+\+ROOM to GAME. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_game_start_packet}{Game\+Start\+Packet}}
+\begin{DoxyCompactList}\small\item\em Signal to switch UI to the Board view and initialize grid. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_board_state_update_packet}{Board\+State\+Update\+Packet}}
+\begin{DoxyCompactList}\small\item\em Event-\/based full state synchronization. ~\newline
+ Sent by the server to ensure all clients have the exact same board data. ~\newline
+ Sent typically after a valid move is processed. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_move_request_packet}{Move\+Request\+Packet}}
+\begin{DoxyCompactList}\small\item\em Client intent to place a piece. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_back_to_game_room_packet}{Back\+To\+Game\+Room\+Packet}}
+\begin{DoxyCompactList}\small\item\em Signal to return the UI to the Waiting Room. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_game_end_packet}{Game\+End\+Packet}}
+\begin{DoxyCompactList}\small\item\em Signal that the match has reached a conclusion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type}} :\+ uint8\+\_\+t \{ \newline
+\doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a2d5adf374790a99688888f051f235cf0}{SERVER\+\_\+\+HELLO}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a97d632111f1e32b93aafbcd1ae69ec08}{SETUP\+\_\+\+REQ}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aa0e842f54d2ee55e7dee089df4f3a1ae}{SETUP\+\_\+\+ACK}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a768247c75076806a456210aa409c896f}{NEW\+\_\+\+PLAYER\+\_\+\+JOIN}}
+, \newline
+\doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a20887523dca92a9741ea1dcaa7e96ed9}{PLAYER\+\_\+\+DISCONNECTED}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56ac62206e29e87f438cff40e666d6e3610}{SETTINGS\+\_\+\+CHANGE\+\_\+\+REQ}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a01a7c292615a5c0855ec43b5d6c4f049}{SETTINGS\+\_\+\+UPDATE}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a95bbe86b51565bbe1312f62907f2bbe4}{GAME\+\_\+\+START\+\_\+\+REQ}}
+, \newline
+\doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a8820bda144613a0e3758d7d4f15abd6a}{GAME\+\_\+\+START}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aeb20b50bd0278b6449850ead637dfc10}{MOVE\+\_\+\+REQ}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a89ff5c3067de336740b646710ca75338}{BOARD\+\_\+\+STATE\+\_\+\+UPDATE}}
+, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a72d6edb1dffe80d34d497ce30c8e9353}{BACK\+\_\+\+TO\+\_\+\+GAME\+\_\+\+ROOM}}
+, \newline
+\doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aaf8eed899b8468ec048ca80310aec862}{GAME\+\_\+\+END}}
+ \}
+\begin{DoxyCompactList}\small\item\em Identifiers for the specific type of payload contained in a packet. ~\newline
+ Used by the receiver to cast the payload buffer to the correct struct type after reading the header. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr WORD \doxymbox{\hyperlink{_network_protocol_8h_a2b272a711f06f4e4aa587b139054248b}{REQ\+\_\+\+SOCK\+\_\+\+VERSION}} = MAKEWORD(2, 2)
+\item 
+static constexpr int \doxymbox{\hyperlink{_network_protocol_8h_a4022313c752cccbebaf07ac56231373d}{DEFAULT\+\_\+\+BUFFER\+\_\+\+LEN}} = 4096
+\item 
+static constexpr int \doxymbox{\hyperlink{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}{MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH}} = 32
+\item 
+static constexpr int \doxymbox{\hyperlink{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}{MAX\+\_\+\+PLAYERS}} = 6
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{_network_protocol_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}\index{NetworkProtocol.h@{NetworkProtocol.h}!PacketType@{PacketType}}
+\index{PacketType@{PacketType}!NetworkProtocol.h@{NetworkProtocol.h}}
+\doxysubsubsection{\texorpdfstring{PacketType}{PacketType}}
+{\footnotesize\ttfamily \label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56} 
+enum class \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type}} :\+ uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Identifiers for the specific type of payload contained in a packet. ~\newline
+ Used by the receiver to cast the payload buffer to the correct struct type after reading the header. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SERVER\_HELLO@{SERVER\_HELLO}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!SERVER\_HELLO@{SERVER\_HELLO}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a2d5adf374790a99688888f051f235cf0}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a2d5adf374790a99688888f051f235cf0} 
+SERVER\+\_\+\+HELLO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETUP\_REQ@{SETUP\_REQ}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!SETUP\_REQ@{SETUP\_REQ}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a97d632111f1e32b93aafbcd1ae69ec08}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a97d632111f1e32b93aafbcd1ae69ec08} 
+SETUP\+\_\+\+REQ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETUP\_ACK@{SETUP\_ACK}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!SETUP\_ACK@{SETUP\_ACK}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aa0e842f54d2ee55e7dee089df4f3a1ae}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aa0e842f54d2ee55e7dee089df4f3a1ae} 
+SETUP\+\_\+\+ACK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NEW\_PLAYER\_JOIN@{NEW\_PLAYER\_JOIN}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!NEW\_PLAYER\_JOIN@{NEW\_PLAYER\_JOIN}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a768247c75076806a456210aa409c896f}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a768247c75076806a456210aa409c896f} 
+NEW\+\_\+\+PLAYER\+\_\+\+JOIN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER\_DISCONNECTED@{PLAYER\_DISCONNECTED}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!PLAYER\_DISCONNECTED@{PLAYER\_DISCONNECTED}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a20887523dca92a9741ea1dcaa7e96ed9}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a20887523dca92a9741ea1dcaa7e96ed9} 
+PLAYER\+\_\+\+DISCONNECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETTINGS\_CHANGE\_REQ@{SETTINGS\_CHANGE\_REQ}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!SETTINGS\_CHANGE\_REQ@{SETTINGS\_CHANGE\_REQ}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56ac62206e29e87f438cff40e666d6e3610}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56ac62206e29e87f438cff40e666d6e3610} 
+SETTINGS\+\_\+\+CHANGE\+\_\+\+REQ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETTINGS\_UPDATE@{SETTINGS\_UPDATE}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!SETTINGS\_UPDATE@{SETTINGS\_UPDATE}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a01a7c292615a5c0855ec43b5d6c4f049}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a01a7c292615a5c0855ec43b5d6c4f049} 
+SETTINGS\+\_\+\+UPDATE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME\_START\_REQ@{GAME\_START\_REQ}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!GAME\_START\_REQ@{GAME\_START\_REQ}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a95bbe86b51565bbe1312f62907f2bbe4}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a95bbe86b51565bbe1312f62907f2bbe4} 
+GAME\+\_\+\+START\+\_\+\+REQ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME\_START@{GAME\_START}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!GAME\_START@{GAME\_START}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a8820bda144613a0e3758d7d4f15abd6a}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a8820bda144613a0e3758d7d4f15abd6a} 
+GAME\+\_\+\+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOVE\_REQ@{MOVE\_REQ}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!MOVE\_REQ@{MOVE\_REQ}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aeb20b50bd0278b6449850ead637dfc10}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aeb20b50bd0278b6449850ead637dfc10} 
+MOVE\+\_\+\+REQ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOARD\_STATE\_UPDATE@{BOARD\_STATE\_UPDATE}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!BOARD\_STATE\_UPDATE@{BOARD\_STATE\_UPDATE}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a89ff5c3067de336740b646710ca75338}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a89ff5c3067de336740b646710ca75338} 
+BOARD\+\_\+\+STATE\+\_\+\+UPDATE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BACK\_TO\_GAME\_ROOM@{BACK\_TO\_GAME\_ROOM}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!BACK\_TO\_GAME\_ROOM@{BACK\_TO\_GAME\_ROOM}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a72d6edb1dffe80d34d497ce30c8e9353}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56a72d6edb1dffe80d34d497ce30c8e9353} 
+BACK\+\_\+\+TO\+\_\+\+GAME\+\_\+\+ROOM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAME\_END@{GAME\_END}!NetworkProtocol.h@{NetworkProtocol.h}}
+\index{NetworkProtocol.h@{NetworkProtocol.h}!GAME\_END@{GAME\_END}}
+}\Hypertarget{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aaf8eed899b8468ec048ca80310aec862}\label{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56aaf8eed899b8468ec048ca80310aec862} 
+GAME\+\_\+\+END&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-var-members}
+\Hypertarget{_network_protocol_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_network_protocol_8h_a4022313c752cccbebaf07ac56231373d}\index{NetworkProtocol.h@{NetworkProtocol.h}!DEFAULT\_BUFFER\_LEN@{DEFAULT\_BUFFER\_LEN}}
+\index{DEFAULT\_BUFFER\_LEN@{DEFAULT\_BUFFER\_LEN}!NetworkProtocol.h@{NetworkProtocol.h}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_BUFFER\_LEN}{DEFAULT\_BUFFER\_LEN}}
+{\footnotesize\ttfamily \label{_network_protocol_8h_a4022313c752cccbebaf07ac56231373d} 
+int DEFAULT\+\_\+\+BUFFER\+\_\+\+LEN = 4096\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323}\index{NetworkProtocol.h@{NetworkProtocol.h}!MAX\_PLAYER\_NAME\_LENGTH@{MAX\_PLAYER\_NAME\_LENGTH}}
+\index{MAX\_PLAYER\_NAME\_LENGTH@{MAX\_PLAYER\_NAME\_LENGTH}!NetworkProtocol.h@{NetworkProtocol.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PLAYER\_NAME\_LENGTH}{MAX\_PLAYER\_NAME\_LENGTH}}
+{\footnotesize\ttfamily \label{_network_protocol_8h_a05749fe3079eca29dbc0b0ebf3dd5323} 
+int MAX\+\_\+\+PLAYER\+\_\+\+NAME\+\_\+\+LENGTH = 32\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}\index{NetworkProtocol.h@{NetworkProtocol.h}!MAX\_PLAYERS@{MAX\_PLAYERS}}
+\index{MAX\_PLAYERS@{MAX\_PLAYERS}!NetworkProtocol.h@{NetworkProtocol.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PLAYERS}{MAX\_PLAYERS}}
+{\footnotesize\ttfamily \label{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1} 
+int MAX\+\_\+\+PLAYERS = 6\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\Hypertarget{_network_protocol_8h_a2b272a711f06f4e4aa587b139054248b}\index{NetworkProtocol.h@{NetworkProtocol.h}!REQ\_SOCK\_VERSION@{REQ\_SOCK\_VERSION}}
+\index{REQ\_SOCK\_VERSION@{REQ\_SOCK\_VERSION}!NetworkProtocol.h@{NetworkProtocol.h}}
+\doxysubsubsection{\texorpdfstring{REQ\_SOCK\_VERSION}{REQ\_SOCK\_VERSION}}
+{\footnotesize\ttfamily \label{_network_protocol_8h_a2b272a711f06f4e4aa587b139054248b} 
+WORD REQ\+\_\+\+SOCK\+\_\+\+VERSION = MAKEWORD(2, 2)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+

@@ -1,0 +1,5 @@
+<map id="Utils::serializeBoard" name="Utils::serializeBoard">
+<area shape="rect" id="Node000001" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="5,5,144,32"/>
+<area shape="rect" id="Node000002" href="$struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="192,5,355,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,16,179,19,173,19,144,21"/>
+</map>

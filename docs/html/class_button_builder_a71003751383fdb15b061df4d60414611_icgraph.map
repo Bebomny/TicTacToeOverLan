@@ -1,0 +1,5 @@
+<map id="ButtonBuilder::setPosition" name="ButtonBuilder::setPosition">
+<area shape="rect" id="Node000001" title="Sets the absolute position of the button." alt="" coords="193,5,365,32"/>
+<area shape="rect" id="Node000002" href="$class_button_builder.html#ab39b07c841729ccf1a779ee2244f1e3d" title="Offsets the position relative to the last built widget. Useful for stacking fields vertically or hori..." alt="" coords="5,5,145,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,19,145,21,145,16,180,19"/>
+</map>

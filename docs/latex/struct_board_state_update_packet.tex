@@ -1,0 +1,113 @@
+\doxysection{Board\+State\+Update\+Packet Struct Reference}
+\hypertarget{struct_board_state_update_packet}{}\label{struct_board_state_update_packet}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+
+
+Event-\/based full state synchronization. ~\newline
+ Sent by the server to ensure all clients have the exact same board data. ~\newline
+ Sent typically after a valid move is processed.  
+
+
+
+
+{\ttfamily \+\#include $<$Network\+Protocol.\+h$>$}
+
+
+
+Collaboration diagram for Board\+State\+Update\+Packet:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{struct_board_state_update_packet__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_board_square}{Board\+Square}} \doxymbox{\hyperlink{struct_board_state_update_packet_ac373696ad0c73ce4021c0947942e3bad}{grid}} \+[\doxymbox{\hyperlink{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}{TOTAL\+\_\+\+BOARD\+\_\+\+AREA}}]\+
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_board_state_update_packet_a803684ed59c83a827cda85021cdf18c7}{board\+Size}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_board_state_update_packet_a98d24e87ffc79a6fc33557fa70578133}{win\+Condition\+Length}}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{struct_board_state_update_packet_a487215b883e3b2a06d02d42cde9b9848}{round}}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{struct_board_state_update_packet_aa89786a284d9b4f93403242d9ca0675b}{turn}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_board_state_update_packet_acb86b8b3238b1d48cff413a63717b452}{acting\+Player\+Id}}
+\item 
+\doxymbox{\hyperlink{struct_move}{Move}} \doxymbox{\hyperlink{struct_board_state_update_packet_ac7bd48047d35b89f1b76c9719d70ab7f}{last\+Move}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{struct_board_state_update_packet_ae8cbc08d407c537e0c95bc6ed1f65e77}{player\+Count}}
+\item 
+\doxymbox{\hyperlink{struct_player}{Player}} \doxymbox{\hyperlink{struct_board_state_update_packet_a5d8df831ce78821885b362267f23db45}{players}} \+[\doxymbox{\hyperlink{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}{MAX\+\_\+\+PLAYERS}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Event-\/based full state synchronization. ~\newline
+ Sent by the server to ensure all clients have the exact same board data. ~\newline
+ Sent typically after a valid move is processed. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_board_state_update_packet_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_board_state_update_packet_acb86b8b3238b1d48cff413a63717b452}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!actingPlayerId@{actingPlayerId}}
+\index{actingPlayerId@{actingPlayerId}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{actingPlayerId}{actingPlayerId}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_acb86b8b3238b1d48cff413a63717b452} 
+uint8\+\_\+t Board\+State\+Update\+Packet::\+acting\+Player\+Id}
+
+\Hypertarget{struct_board_state_update_packet_a803684ed59c83a827cda85021cdf18c7}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!boardSize@{boardSize}}
+\index{boardSize@{boardSize}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{boardSize}{boardSize}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_a803684ed59c83a827cda85021cdf18c7} 
+uint8\+\_\+t Board\+State\+Update\+Packet::\+board\+Size}
+
+\Hypertarget{struct_board_state_update_packet_ac373696ad0c73ce4021c0947942e3bad}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!grid@{grid}}
+\index{grid@{grid}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{grid}{grid}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_ac373696ad0c73ce4021c0947942e3bad} 
+\doxymbox{\hyperlink{struct_board_square}{Board\+Square}} Board\+State\+Update\+Packet::\+grid\+[\doxymbox{\hyperlink{_game_definitions_8h_a43b97d5da019c71da4a1a23f6e1e53b9}{TOTAL\+\_\+\+BOARD\+\_\+\+AREA}}]\+}
+
+\Hypertarget{struct_board_state_update_packet_ac7bd48047d35b89f1b76c9719d70ab7f}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!lastMove@{lastMove}}
+\index{lastMove@{lastMove}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{lastMove}{lastMove}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_ac7bd48047d35b89f1b76c9719d70ab7f} 
+\doxymbox{\hyperlink{struct_move}{Move}} Board\+State\+Update\+Packet::\+last\+Move}
+
+\Hypertarget{struct_board_state_update_packet_ae8cbc08d407c537e0c95bc6ed1f65e77}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!playerCount@{playerCount}}
+\index{playerCount@{playerCount}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{playerCount}{playerCount}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_ae8cbc08d407c537e0c95bc6ed1f65e77} 
+uint8\+\_\+t Board\+State\+Update\+Packet::\+player\+Count}
+
+\Hypertarget{struct_board_state_update_packet_a5d8df831ce78821885b362267f23db45}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!players@{players}}
+\index{players@{players}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{players}{players}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_a5d8df831ce78821885b362267f23db45} 
+\doxymbox{\hyperlink{struct_player}{Player}} Board\+State\+Update\+Packet::\+players\+[\doxymbox{\hyperlink{_network_protocol_8h_a1009736152c3ecbf679637a326ad16d1}{MAX\+\_\+\+PLAYERS}}]\+}
+
+\Hypertarget{struct_board_state_update_packet_a487215b883e3b2a06d02d42cde9b9848}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!round@{round}}
+\index{round@{round}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{round}{round}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_a487215b883e3b2a06d02d42cde9b9848} 
+uint16\+\_\+t Board\+State\+Update\+Packet::\+round}
+
+\Hypertarget{struct_board_state_update_packet_aa89786a284d9b4f93403242d9ca0675b}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!turn@{turn}}
+\index{turn@{turn}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{turn}{turn}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_aa89786a284d9b4f93403242d9ca0675b} 
+uint16\+\_\+t Board\+State\+Update\+Packet::\+turn}
+
+\Hypertarget{struct_board_state_update_packet_a98d24e87ffc79a6fc33557fa70578133}\index{BoardStateUpdatePacket@{BoardStateUpdatePacket}!winConditionLength@{winConditionLength}}
+\index{winConditionLength@{winConditionLength}!BoardStateUpdatePacket@{BoardStateUpdatePacket}}
+\doxysubsubsection{\texorpdfstring{winConditionLength}{winConditionLength}}
+{\footnotesize\ttfamily \label{struct_board_state_update_packet_a98d24e87ffc79a6fc33557fa70578133} 
+uint8\+\_\+t Board\+State\+Update\+Packet::\+win\+Condition\+Length}
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+D:\+/\+.\+Clion\+Projects/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+src/\+common/\+\doxymbox{\hyperlink{_network_protocol_8h}{Network\+Protocol.\+h}}\end{DoxyCompactItemize}

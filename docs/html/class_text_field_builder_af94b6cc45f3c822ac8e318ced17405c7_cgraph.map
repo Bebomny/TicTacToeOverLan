@@ -1,0 +1,8 @@
+<map id="TextFieldBuilder::move" name="TextFieldBuilder::move">
+<area shape="rect" id="Node000001" title="Offsets the position relative to the last built widget. &#160;&#160;Useful for stacking fields vertically or ho..." alt="" coords="5,31,160,57"/>
+<area shape="rect" id="Node000002" href="$class_text_field_builder.html#a2337b04fb7b73c112e98ad4fb504f38d" title="Sets the absolute position." alt="" coords="208,5,395,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,32,195,31,189,32,160,38"/>
+<area shape="rect" id="Node000003" href="$class_text_field_builder.html#af7c263cda29536d6bbb0c3955784c3be" title=" " alt="" coords="443,23,618,65"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="160,41,427,41,427,47,160,47"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="396,26,430,33,425,33,395,32"/>
+</map>
