@@ -164,6 +164,62 @@ private:
      */
     void handleGameInput(const std::optional<sf::Event> &event, const sf::Vector2i &mousePos);
 
+    /**
+     * @brief Processes the SERVER_HELLO packet.
+     *
+     * @param packet The parsed ServeHelloPacket packet
+     */
+    void handleServerHelloPacket(const ServerHelloPacket *packet);
+
+    /**
+     * @brief Processes the SETUP_ACK packet.
+     *
+     * @param packet The parsed SetupAckPacket packet
+     */
+    void handleSetupAckPacket(const SetupAckPacket *packet);
+
+    /**
+     * @brief Processes the NEW_PLAYER_JOIN packet.
+     *
+     * @param packet The parsed NewPlayerJoinPacket packet
+     */
+    void handleNewPlayerJoinPacket(const NewPlayerJoinPacket *packet);
+
+    /**
+     * @brief Processes the SETTINGS_UPDATE packet.
+     *
+     * @param packet The parsed SettingsUpdatePacket packet
+     */
+    void handleSettingsUpdatePacket(const SettingsUpdatePacket *packet);
+
+    /**
+     * @brief Processes the PLAYER_DISCONNECTED packet.
+     *
+     * @param packet The parsed PlayerDisconnectedPacket packet
+     */
+    void handlePlayerDisconnectedPacket(const PlayerDisconnectedPacket *packet);
+
+    /**
+     * @brief Processes the GAME_START packet.
+     *
+     * @param packet The parsed GameStartPacket packet
+     */
+    void handleGameStartPacket(const GameStartPacket *packet);
+
+    /**
+     * @brief Processes the BOARD_STATE_UPDATE packet.
+     *
+     * @param packet The parsed BoardStateUpdatePacket packet
+     */
+    bool handleBoardStateUpdatePacket(const BoardStateUpdatePacket *packet);
+
+    /**
+     * @brief Processes the GAME_END packet.
+     *
+     * @param packet The parsed GameEndPacket packet
+     */
+    void handleGameEndPacket(const GameEndPacket *packet);
+
     void renderMenu();
 
     void renderGameRoom();

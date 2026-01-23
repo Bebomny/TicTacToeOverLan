@@ -40,7 +40,7 @@ GameClient::GameClient() {
     lastMove = {};
     gameEndPlayer = {};
 
-    window.create(sf::VideoMode({1500, 600}), "TicTacToe Ultimate Editionn");
+    window.create(sf::VideoMode({1500, 600}), "TicTacToe Ultimate Editionn", sf::Style::Titlebar | sf::Style::Close);
     window.setFramerateLimit(60);
     clock.start();
 
@@ -356,214 +356,266 @@ void GameClient::update() {
     std::vector<char> payload;
 
     while (networkManager.pollPacket(header, payload)) {
-        //S2C packets: SERVER_HELLO[x], SETUP_ACK[x], NEW_PLAYER_JOIN[x], SETTINGS_UPDATE[x], GAME_START, BOARD_STATE_UPDATE, GAME_END
+        //S2C packets: SERVER_HELLO[x], SETUP_ACK[x], NEW_PLAYER_JOIN[x], SETTINGS_UPDATE[x], PLAYER_DISCONNECTED[x], GAME_START[x], BOARD_STATE_UPDATE[x], BACK_TO_GAME_ROOM[x], GAME_END[x]
         switch (header.type) {
             default: {
                 printf(ANSI_RED "[GameClient] Unknown packet received! Type: %hhd\n", header.type);
                 break;
             }
+
             case PacketType::SERVER_HELLO: {
+                printf(ANSI_CYAN "[GameClient] Got a Server Hello packet!\n" ANSI_RESET);
+
                 if (clientState != ClientState::GAME_ROOM) {
                     printf(
                         ANSI_RED "Client isn't in the game room state, but we received a SERVER_HELLO packet\n"
                         ANSI_RESET);
                 }
-                printf(ANSI_CYAN "[GameClient] Got a Server Hello packet!\n" ANSI_RESET);
-                setupPhase = SetupPhase::SETTING_UP;
+
                 const auto *packet = reinterpret_cast<ServerHelloPacket *>(payload.data());
-                playerId = packet->playerId;
-                printf(ANSI_CYAN "[GameClient] Assigned player ID: %hhu\n" ANSI_RESET, packet->playerId);
+                this->handleServerHelloPacket(packet);
 
-                // Send the SETUP_REQ packet
-                SetupReqPacket setupReqPacket{};
-                setupReqPacket.playerId = playerId;
-                memset(setupReqPacket.playerName, 0, MAX_PLAYER_NAME_LENGTH);
-                strncpy(setupReqPacket.playerName, playerName.c_str(), MAX_PLAYER_NAME_LENGTH - 1);
-                setupReqPacket.initialToken = initialToken;
-                setupReqPacket.isHost = hosting;
-
-                printf(
-                    ANSI_CYAN "[GameClient] Sending SETUP_REQ packet with [pid:%hhu] [pName:%s] [initialToken:%d]\n"
-                    ANSI_RESET, playerId, playerName.c_str(), initialToken);
-                networkManager.sendPacket<SetupReqPacket>(PacketType::SETUP_REQ, setupReqPacket);
-                printf(ANSI_CYAN "[GameClient] SETUP_REQ sent!\n");
                 break;
             }
 
             case PacketType::SETUP_ACK: {
+                printf(ANSI_CYAN "[GameClient] Got a SETUP_ACK packet!\n" ANSI_RESET);
+
                 if (clientState != ClientState::GAME_ROOM) {
                     printf(
                         ANSI_RED "Client isn't in the game room state, but we received a SETUP_ACK packet\n"
                         ANSI_RESET);
                 }
-                printf(ANSI_CYAN "[GameClient] Got a SETUP_ACK packet!\n" ANSI_RESET);
 
                 const auto *packet = reinterpret_cast<SetupAckPacket *>(payload.data());
-                if (playerId != packet->playerId) {
-                    printf(
-                        ANSI_RED
-                        "[GameClient] Somehow got SETUP_ACK dedicated to another player! This shouldn't happen!\n"
-                        ANSI_RESET);
-                }
+                this->handleSetupAckPacket(packet);
 
-                authToken = packet->generatedAuthToken;
-                pieceType = packet->pieceType;
-                //This technically isn't necessary, but I should at least check if the server is happy with the chosen name
-                playerName = packet->playerName;
-
-                boardData.boardSize = packet->boardSize;
-                boardData.winConditionLength = packet->winConditionLength;
-                boardData.round = packet->round;
-
-                playerCount = packet->playerCount;
-                players = {};
-                for (const auto player: packet->players) {
-                    if (player.playerId == 0) {
-                        continue;
-                    }
-                    printf("[%hhu, %s, %hhd, %hhd, %hhd]\n", player.playerId, player.playerName, player.piece,
-                           player.myTurn, player.isMe);
-                    players.push_back(player);
-                }
-
-                setupPhase = SetupPhase::CONNECTED;
-                gamePhase = GamePhase::WAITING_ROOM;
-                printf(ANSI_CYAN "[GameClient] Generated AuthToken: %d Other: [name:%s, id:%hhd]\n" ANSI_RESET,
-                       authToken, playerName.c_str(), pieceType);
                 break;
             }
 
             case PacketType::NEW_PLAYER_JOIN: {
+                printf(ANSI_CYAN "[GameClient] Got a NEW_PLAYER_JOIN packet!\n" ANSI_RESET);
+
                 if (clientState != ClientState::GAME_ROOM) {
                     printf(
                         ANSI_RED "Client isn't in the game room state, but we received a NEW_PLAYER_JOIN packet\n"
                         ANSI_RESET);
                 }
 
-                printf(ANSI_CYAN "[GameClient] Got a NEW_PLAYER_JOIN packet!\n" ANSI_RESET);
                 const auto *packet = reinterpret_cast<NewPlayerJoinPacket *>(payload.data());
+                this->handleNewPlayerJoinPacket(packet);
 
-                Player newPlayer{};
-                newPlayer.playerId = packet->newPlayerId;
-                memset(newPlayer.playerName, 0, MAX_PLAYER_NAME_LENGTH);
-                strncpy(newPlayer.playerName, packet->newPlayerName, MAX_PLAYER_NAME_LENGTH - 1);
-                newPlayer.piece = packet->newPlayerPieceType;
-                newPlayer.isMe = playerId == packet->newPlayerId;
-                newPlayer.myTurn = false;
-                newPlayer.wins = 0;
-                newPlayer.isHost = packet->isHost;
-
-                // If a player with this id already exists overwrite it
-                std::erase_if(
-                    players, [packet](const Player &player) { return packet->newPlayerId == player.playerId; });
-                players.push_back(newPlayer);
-                playerCount = players.size();
                 break;
             }
 
             case PacketType::SETTINGS_UPDATE: {
-                const auto *packet = reinterpret_cast<SettingsUpdatePacket *>(payload.data());
                 printf(ANSI_CYAN "[GameClient] Got a SETTINGS_UPDATE packet!\n" ANSI_RESET);
-                printf(ANSI_GREEN "[GameClient] New Board Size: %hhu, New Win Condition Length: %hhu\n" ANSI_RESET,
-                       packet->newBoardSize, packet->newWinConditionLength);
 
-                boardData.boardSize = packet->newBoardSize;
-                boardData.winConditionLength = packet->newWinConditionLength;
+                const auto *packet = reinterpret_cast<SettingsUpdatePacket *>(payload.data());
+                this->handleSettingsUpdatePacket(packet);
+
                 break;
             }
 
             case PacketType::PLAYER_DISCONNECTED: {
-                const auto *packet = reinterpret_cast<PlayerDisconnectedPacket *>(payload.data());
-                printf(ANSI_YELLOW "[GameClient] Player with ID %hhu has disconnected\n" ANSI_RESET, packet->playerId);
+                printf(ANSI_CYAN "[GameClient] Got a PLAYER_DISCONNECTED packet!\n" ANSI_RESET);
 
-                std::erase_if(players, [packet](const Player &player) {
-                    return player.playerId == packet->playerId;
-                });
-                playerCount = players.size();
+                const auto *packet = reinterpret_cast<PlayerDisconnectedPacket *>(payload.data());
+                this->handlePlayerDisconnectedPacket(packet);
+
                 break;
             }
 
             case PacketType::GAME_START: {
+                printf(ANSI_CYAN "[GameClient] Got a GAME_START packet!\n" ANSI_RESET);
+
                 const auto *packet = reinterpret_cast<GameStartPacket *>(payload.data());
-                printf(ANSI_GREEN "[GameClient] The Game is starting... Started by player with ID %hhu\n" ANSI_RESET,
-                       packet->requestedByPlayerId);
-
-                boardData.boardSize = packet->finalBoardSize;
-                boardData.winConditionLength = packet->finalWinConditionLength;
-                boardData.round = packet->round;
-                boardData.turn = packet->turn;
-                boardData.actingPlayerId = packet->startingPlayerId;
-                for (auto &player: players) {
-                    if (player.playerId == packet->startingPlayerId) {
-                        player.myTurn = true;
-                    }
-                }
-
-                Utils::initializeGameBoard(boardData);
-                Utils::deserializeBoard(packet->grid, boardData);
-
-                clientState = ClientState::GAME;
-                gamePhase = (playerId == packet->startingPlayerId ? GamePhase::MY_TURN : GamePhase::NOT_MY_TURN);
-                isMyTurn = playerId == packet->startingPlayerId;
+                this->handleGameStartPacket(packet);
 
                 break;
             }
             case PacketType::BOARD_STATE_UPDATE: {
-                const auto *packet = reinterpret_cast<BoardStateUpdatePacket *>(payload.data());
                 printf(ANSI_CYAN "[GameClient] Got a BOARD_STATE_UPDATE packet!\n" ANSI_RESET);
-                if (clientState != ClientState::GAME) {
-                    printf(
-                        ANSI_RED "Client isn't in the game state, but we received a BOARD_STATE_UPDATE packet\n"
-                        ANSI_RESET);
-                    break;
-                }
 
-                //update board
-                Utils::deserializeBoard(packet->grid, boardData);
-
-                boardData.round = packet->round;
-                boardData.turn = packet->turn;
-                boardData.actingPlayerId = packet->actingPlayerId;
-                lastMove = packet->lastMove;
-                moves.push_back(packet->lastMove);
-
-                isMyTurn = playerId == packet->actingPlayerId;
-
-                //update players
-                players.clear();
-                for (int i = 0; i < packet->playerCount; ++i) {
-                    players.push_back(packet->players[i]);
-                }
+                const auto *packet = reinterpret_cast<BoardStateUpdatePacket *>(payload.data());
+                if (this->handleBoardStateUpdatePacket(packet)) break;
 
                 break;
             }
 
             case PacketType::BACK_TO_GAME_ROOM: {
                 printf(ANSI_CYAN "[GameClient] Got a BACK_TO_GAME_ROOM packet, going back.\n" ANSI_RESET);
+
                 clientState = ClientState::GAME_ROOM;
                 gamePhase = GamePhase::WAITING_ROOM;
+
                 break;
             }
 
             case PacketType::GAME_END: {
+                printf(ANSI_CYAN "[GameClient] Got a GAME_END packet!\n" ANSI_RESET);
+
                 const auto *packet = reinterpret_cast<GameEndPacket *>(payload.data());
-                printf(ANSI_GREEN "[GameClient] Player with ID %hhu finished the round!\n" ANSI_RESET,
-                       packet->playerId);
-
-                gamePhase = GamePhase::GAME_FINISHED;
-                finishReason = packet->reason;
-                gameEndPlayer = packet->player;
-                std::erase_if(players, [packet](const Player &player) {
-                    return player.playerId == packet->playerId;
-                });
-
-                if (packet->reason != FinishReason::PLAYER_DISCONNECT) {
-                    players.push_back(packet->player);
-                }
+                this->handleGameEndPacket(packet);
 
                 break;
             }
         }
+    }
+}
+
+void GameClient::handleServerHelloPacket(const ServerHelloPacket *packet) {
+    setupPhase = SetupPhase::SETTING_UP;
+    playerId = packet->playerId;
+    printf(ANSI_CYAN "[GameClient] Assigned player ID: %hhu\n" ANSI_RESET, packet->playerId);
+
+    // Send the SETUP_REQ packet
+    SetupReqPacket setupReqPacket{};
+    setupReqPacket.playerId = playerId;
+    memset(setupReqPacket.playerName, 0, MAX_PLAYER_NAME_LENGTH);
+    strncpy(setupReqPacket.playerName, playerName.c_str(), MAX_PLAYER_NAME_LENGTH - 1);
+    setupReqPacket.initialToken = initialToken;
+    setupReqPacket.isHost = hosting;
+
+    printf(
+        ANSI_CYAN "[GameClient] Sending SETUP_REQ packet with [pid:%hhu] [pName:%s] [initialToken:%d]\n"
+        ANSI_RESET, playerId, playerName.c_str(), initialToken);
+    networkManager.sendPacket<SetupReqPacket>(PacketType::SETUP_REQ, setupReqPacket);
+    printf(ANSI_CYAN "[GameClient] SETUP_REQ sent!\n");
+}
+
+void GameClient::handleSetupAckPacket(const SetupAckPacket *packet) {
+    if (playerId != packet->playerId) {
+        printf(
+            ANSI_RED
+            "[GameClient] Somehow got SETUP_ACK dedicated to another player! This shouldn't happen!\n"
+            ANSI_RESET);
+    }
+
+    authToken = packet->generatedAuthToken;
+    pieceType = packet->pieceType;
+    //This technically isn't necessary, but I should at least check if the server is happy with the chosen name
+    playerName = packet->playerName;
+
+    boardData.boardSize = packet->boardSize;
+    boardData.winConditionLength = packet->winConditionLength;
+    boardData.round = packet->round;
+
+    playerCount = packet->playerCount;
+    players = {};
+    for (const auto player: packet->players) {
+        if (player.playerId == 0) {
+            continue;
+        }
+        printf("[%hhu, %s, %hhd, %hhd, %hhd]\n", player.playerId, player.playerName, player.piece,
+               player.myTurn, player.isMe);
+        players.push_back(player);
+    }
+
+    setupPhase = SetupPhase::CONNECTED;
+    gamePhase = GamePhase::WAITING_ROOM;
+    printf(ANSI_CYAN "[GameClient] Generated AuthToken: %d Other: [name:%s, id:%hhd]\n" ANSI_RESET,
+           authToken, playerName.c_str(), pieceType);
+}
+
+void GameClient::handleNewPlayerJoinPacket(const NewPlayerJoinPacket *packet) {
+    Player newPlayer{};
+    newPlayer.playerId = packet->newPlayerId;
+    memset(newPlayer.playerName, 0, MAX_PLAYER_NAME_LENGTH);
+    strncpy(newPlayer.playerName, packet->newPlayerName, MAX_PLAYER_NAME_LENGTH - 1);
+    newPlayer.piece = packet->newPlayerPieceType;
+    newPlayer.isMe = playerId == packet->newPlayerId;
+    newPlayer.myTurn = false;
+    newPlayer.wins = 0;
+    newPlayer.isHost = packet->isHost;
+
+    // If a player with this id already exists overwrite it
+    std::erase_if(
+        players, [packet](const Player &player) { return packet->newPlayerId == player.playerId; });
+    players.push_back(newPlayer);
+    playerCount = players.size();
+}
+
+void GameClient::handleSettingsUpdatePacket(const SettingsUpdatePacket *packet) {
+    printf(ANSI_GREEN "[GameClient] New Board Size: %hhu, New Win Condition Length: %hhu\n" ANSI_RESET,
+           packet->newBoardSize, packet->newWinConditionLength);
+
+    boardData.boardSize = packet->newBoardSize;
+    boardData.winConditionLength = packet->newWinConditionLength;
+}
+
+void GameClient::handlePlayerDisconnectedPacket(const PlayerDisconnectedPacket *packet) {
+    printf(ANSI_YELLOW "[GameClient] Player with ID %hhu has disconnected\n" ANSI_RESET, packet->playerId);
+
+    std::erase_if(players, [packet](const Player &player) {
+        return player.playerId == packet->playerId;
+    });
+    playerCount = players.size();
+}
+
+void GameClient::handleGameStartPacket(const GameStartPacket *packet) {
+    printf(ANSI_GREEN "[GameClient] The Game is starting... Started by player with ID %hhu\n" ANSI_RESET,
+           packet->requestedByPlayerId);
+
+    boardData.boardSize = packet->finalBoardSize;
+    boardData.winConditionLength = packet->finalWinConditionLength;
+    boardData.round = packet->round;
+    boardData.turn = packet->turn;
+    boardData.actingPlayerId = packet->startingPlayerId;
+    for (auto &player: players) {
+        if (player.playerId == packet->startingPlayerId) {
+            player.myTurn = true;
+        }
+    }
+
+    Utils::initializeGameBoard(boardData);
+    Utils::deserializeBoard(packet->grid, boardData);
+
+    clientState = ClientState::GAME;
+    gamePhase = (playerId == packet->startingPlayerId ? GamePhase::MY_TURN : GamePhase::NOT_MY_TURN);
+    isMyTurn = playerId == packet->startingPlayerId;
+}
+
+bool GameClient::handleBoardStateUpdatePacket(const BoardStateUpdatePacket *packet) {
+    if (clientState != ClientState::GAME) {
+        printf(
+            ANSI_RED "Client isn't in the game state, but we received a BOARD_STATE_UPDATE packet\n"
+            ANSI_RESET);
+        return true;
+    }
+
+    //update board
+    Utils::deserializeBoard(packet->grid, boardData);
+
+    boardData.round = packet->round;
+    boardData.turn = packet->turn;
+    boardData.actingPlayerId = packet->actingPlayerId;
+    lastMove = packet->lastMove;
+    moves.push_back(packet->lastMove);
+
+    isMyTurn = playerId == packet->actingPlayerId;
+
+    //update players
+    players.clear();
+    for (int i = 0; i < packet->playerCount; ++i) {
+        players.push_back(packet->players[i]);
+    }
+    return false;
+}
+
+void GameClient::handleGameEndPacket(const GameEndPacket *packet) {
+    printf(ANSI_GREEN "[GameClient] Player with ID %hhu finished the round!\n" ANSI_RESET,
+           packet->playerId);
+
+    gamePhase = GamePhase::GAME_FINISHED;
+    finishReason = packet->reason;
+    gameEndPlayer = packet->player;
+    std::erase_if(players, [packet](const Player &player) {
+        return player.playerId == packet->playerId;
+    });
+
+    if (packet->reason != FinishReason::PLAYER_DISCONNECT) {
+        players.push_back(packet->player);
     }
 }
 

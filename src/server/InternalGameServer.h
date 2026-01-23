@@ -121,6 +121,36 @@ private:
     void processPacket(ClientContext &client, PacketType type, std::vector<char> &payload);
 
     /**
+     * @brief Processes the SETUP_REQ packet.
+     *
+     * @param client The client from which we received the packet.
+     * @param packet The parsed SetupReqPacket packet.
+     */
+    void handleSetupRequestPacket(ClientContext &client, const SetupReqPacket *packet);
+
+    /**
+     * @brief Processes the SETTINGS_CHANGE_REQ packet.
+     *
+     * @param packet The parsed SettingsChangeReqPacket packet.
+     */
+    bool handleSettingsChangeRequestPacket(const SettingsChangeReqPacket *packet);
+
+    /**
+     * @brief Processes the GAME_START_REQ packet.
+     *
+     * @param packet The parsed GameStartRequestPacket packet.
+     */
+    bool handleGameStartRequestPacket(const GameStartRequestPacket *packet);
+
+    /**
+     * @brief Processes the MOVE_REQ packet.
+     *
+     * @param client The client from which we received the packet.
+     * @param packet The parsed MoveRequestPacket packet.
+     */
+    bool handleMoveRequestPacket(ClientContext &client, const MoveRequestPacket *packet);
+
+    /**
      * @brief Sends a structured packet to a specific client.
      *
      * @param sock The target socket.
