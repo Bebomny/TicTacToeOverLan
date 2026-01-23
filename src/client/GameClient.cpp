@@ -800,7 +800,7 @@ void GameClient::renderGame() {
             scoreText.setFillColor(sf::Color(TEXT_COLOR));
 
             std::string pNameString = player.playerName;
-            std::string scoreString = playerName + " " + Utils::pieceTypeToString(player.piece) + " Wins: " +
+            std::string scoreString = pNameString + " " + Utils::pieceTypeToString(player.piece) + " Wins: " +
                                       std::to_string(player.wins);
             scoreText.setString(scoreString);
 
