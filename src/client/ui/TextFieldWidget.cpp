@@ -193,7 +193,7 @@ void TextFieldWidget::update(const sf::Time deltaTime, const sf::Vector2i &mouse
     }
 
     sf::Vector2f endPos = renderText.findCharacterPos(currentString.size());
-    cursorShape.setPosition({endPos.x, endPos.y});
+    cursorShape.setPosition({endPos.x, endPos.y + 2});
 }
 
 void TextFieldWidget::render(sf::RenderTarget &window) const {

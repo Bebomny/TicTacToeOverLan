@@ -291,7 +291,8 @@ void GameClient::handleInput() {
         for (const auto &widget: widgets | std::views::values) {
             if (widget->handleEvent(event, mousePos)) {
                 // The event got consumed, so we can stop processing it and go to the next
-                break;
+                // this breaks focus functionality in TextFieldWidget, so disabled for now.
+                //break;
             }
         }
 
