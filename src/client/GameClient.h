@@ -63,7 +63,7 @@ public:
     sf::Font font;
     ClientState clientState;
     std::map<std::string, std::unique_ptr<Widget> > widgets;
-    bool debugEnabled = true;
+    bool debugEnabled = false;
 
     //Menu Coordinates
     constexpr static sf::Vector2f MAIN_MENU_POSITION{36, 36}; //left corner
