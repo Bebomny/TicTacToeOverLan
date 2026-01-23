@@ -24,6 +24,7 @@
 class InternalGameServer {
     std::atomic<bool> keepRunning;
     SOCKET listenSocket;
+    int serverPort;
     std::atomic<long long> tick = 0;
     std::atomic<long long> lastTickTime = 0;
     LongLongRollingAverage avgTickTime{100}; //Thread-safe with mutex inside, so no need for atomic
@@ -65,6 +66,8 @@ public:
     long long getLastTickTime();
 
     double getAvgTickTime();
+
+    int getServerPort() const;
 
     uint8_t getNextPlayerId() const;
 

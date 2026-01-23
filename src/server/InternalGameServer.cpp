@@ -11,6 +11,7 @@
 
 void InternalGameServer::start(const int port) {
     keepRunning = true;
+    serverPort = port;
     nextPlayerId = 1;
 
     //GameState preparation
@@ -526,6 +527,10 @@ long long InternalGameServer::getLastTickTime() {
 
 double InternalGameServer::getAvgTickTime() {
     return avgTickTime.average();
+}
+
+int InternalGameServer::getServerPort() const {
+    return serverPort;
 }
 
 uint16_t InternalGameServer::getCurrentTurn() const {

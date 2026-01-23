@@ -1017,6 +1017,11 @@ void GameClient::renderDebugMenu() {
         text.move({0, textYOffset});
         window.draw(text);
 
+        //server port
+        text.setString("ServerPort: " + std::to_string(serverLogic.getServerPort()));
+        text.move({0, textYOffset});
+        window.draw(text);
+
         //next player id
         text.setString("NextPlayerID: " + std::to_string(serverLogic.getNextPlayerId()));
         text.move({0, textYOffset});
@@ -1088,7 +1093,7 @@ void GameClient::renderDebugMenu() {
     }
 }
 
-void GameClient::connectAndSetup() {
+std::optional<std::pair<std::string, std::string> > GameClient::parseServerAddrAndPortFromTextField() const {
     //^((?:\D+).\w{2,8}|(?:\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))):(\d{1,5}\b)$
     // Examples:
     // 192.168.2.32:27015 <- valid -> Group 1: 192.168.2.32 Group 2: 27015
@@ -1098,14 +1103,27 @@ void GameClient::connectAndSetup() {
     static std::regex SERVER_IP_PATTERN(
         R"(^((?:\D+).\w{2,8}|(?:\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))):(\d{1,5}\b)$)");
     if (std::smatch matches; std::regex_match(userInputIP, matches, SERVER_IP_PATTERN)) {
-        serverAddress = matches[1].str();
-        serverPort = matches[2].str();
-    } else {
-        printf(
-            ANSI_RED "[GameClient] Please input a valid server address in the format: {ip/address}:{port}\n"
-            ANSI_RESET);
+        // serverAddress = matches[1].str();
+        // serverPort = matches[2].str();
+
+        return std::make_optional(std::make_pair(matches[1].str(), matches[2].str()));
+    }
+
+    printf(
+        ANSI_RED "[GameClient] Please input a valid server address in the format: {ip/address}:{port}\n"
+        ANSI_RESET);
+
+    return std::nullopt;
+}
+
+void GameClient::connectAndSetup() {
+    auto serverAddrOpt = this->parseServerAddrAndPortFromTextField();
+    if (!serverAddrOpt.has_value()) {
         return;
     }
+
+    serverAddress = serverAddrOpt.value().first;
+    serverPort = serverAddrOpt.value().second;
 
     printf(ANSI_CYAN "[GameClient] Connecting to a server at %s... [%s, %s]\n" ANSI_RESET,
            userInputIP.c_str(), serverAddress.c_str(), serverPort.c_str());
@@ -1163,14 +1181,22 @@ void GameClient::sendMove(uint8_t posX, uint8_t posY) {
 }
 
 void GameClient::startInternalServerThread() {
+    auto serverAddrOpt = this->parseServerAddrAndPortFromTextField();
+    if (!serverAddrOpt.has_value()) {
+        printf(ANSI_RED "[GameClient] Invalid address and port, can't start the server with this!\n" ANSI_RESET);
+        return;
+    }
+
+    serverPort = serverAddrOpt.value().second;
+
     printf(ANSI_CYAN "[GameClient] Internal Server is starting...\n" ANSI_RESET);
     serverThread = std::thread([this]() {
-        serverLogic.start(27015);
+        serverLogic.start(std::stoi(serverPort));
     });
 
     const auto widget = reinterpret_cast<TextFieldWidget *>(widgets["server_ip_input"].get());
     widget->setActive(false);
-    widget->setText("localhost:27015");
+    widget->setText(std::format("localhost:{}", serverPort));
 }
 
 void GameClient::stopInternalServerThread() {

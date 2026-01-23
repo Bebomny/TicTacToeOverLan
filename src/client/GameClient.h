@@ -249,6 +249,13 @@ private:
     void connectAndSetup();
 
     /**
+     * @brief Attempts to parse the text from the server address TextFieldWidget as Server IP and Port.
+     *
+     * @return An optional that may contain a pair of server address and port.
+     */
+    std::optional<std::pair<std::string, std::string>> parseServerAddrAndPortFromTextField() const;
+
+    /**
      * @brief Disconnects from the server and resets networking state.
      */
     void disconnect();
