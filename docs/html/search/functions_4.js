@@ -13,7 +13,8 @@ var searchData=
   ['getnextplayerid_10',['getNextPlayerId',['../class_internal_game_server.html#ad25ae6f94d5fc5ecd8eb60fe1134795b',1,'InternalGameServer']]],
   ['getpackagedvalues_11',['getPackagedValues',['../class_long_long_rolling_average.html#a44cb6aa408a7a58e93f3b7c2ed4dc59e',1,'LongLongRollingAverage::getPackagedValues()'],['../class_rolling_average.html#aac9fd4231fdf90cbac081ee3d009cda8',1,'RollingAverage::getPackagedValues()']]],
   ['getplayers_12',['getPlayers',['../class_internal_game_server.html#ad36cc65394c1ceb1a7294a05a007c6bb',1,'InternalGameServer']]],
-  ['getsquareat_13',['getSquareAt',['../class_board_renderer.html#ad3f31966279269f250dd0bf4176d0cf5',1,'BoardRenderer::getSquareAt()'],['../struct_board_data.html#a6c04548422ccdd5b690a4128964eb503',1,'BoardData::getSquareAt()']]],
-  ['gettext_14',['getText',['../class_text_field_widget.html#a938675a94b6a4eb500f01d764003ed45',1,'TextFieldWidget']]],
-  ['gettick_15',['getTick',['../class_internal_game_server.html#a61c010a8dc8ae5deded65b97ae4829cb',1,'InternalGameServer']]]
+  ['getserverport_13',['getServerPort',['../class_internal_game_server.html#ac50992b849bee320601b7060030845fa',1,'InternalGameServer']]],
+  ['getsquareat_14',['getSquareAt',['../class_board_renderer.html#ad3f31966279269f250dd0bf4176d0cf5',1,'BoardRenderer::getSquareAt()'],['../struct_board_data.html#a6c04548422ccdd5b690a4128964eb503',1,'BoardData::getSquareAt()']]],
+  ['gettext_15',['getText',['../class_text_field_widget.html#a938675a94b6a4eb500f01d764003ed45',1,'TextFieldWidget']]],
+  ['gettick_16',['getTick',['../class_internal_game_server.html#a61c010a8dc8ae5deded65b97ae4829cb',1,'InternalGameServer']]]
 ];

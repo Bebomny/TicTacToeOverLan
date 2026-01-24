@@ -1,0 +1,12 @@
+<map id="InternalGameServer::handleSetupRequestPacket" name="InternalGameServer::handleSetupRequestPacket">
+<area shape="rect" id="Node000001" title="Processes the SETUP_REQ packet." alt="" coords="5,93,197,136"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="262,5,399,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,90,260,52,256,56,160,95"/>
+<area shape="rect" id="Node000003" href="$class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="464,35,601,77"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="196,99,450,65,448,70,198,104"/>
+<area shape="rect" id="Node000004" href="$class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="245,123,416,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,124,232,130,227,132,197,130"/>
+<area shape="rect" id="Node000005" href="$class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="251,189,410,232"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="151,134,246,175,261,183,256,183,244,180,150,139"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="399,34,451,43,446,44,400,39"/>
+</map>

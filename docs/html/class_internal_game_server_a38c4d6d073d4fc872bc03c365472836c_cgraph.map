@@ -1,0 +1,7 @@
+<map id="InternalGameServer::handleSettingsChangeRequestPacket" name="InternalGameServer::handleSettingsChangeRequestPacket">
+<area shape="rect" id="Node000001" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="5,5,215,64"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="263,13,400,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,32,250,34,245,35,215,37"/>
+<area shape="rect" id="Node000003" href="$class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="448,13,585,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="400,32,435,35,430,35,400,37"/>
+</map>

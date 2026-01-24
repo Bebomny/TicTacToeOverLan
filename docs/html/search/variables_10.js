@@ -4,7 +4,7 @@ var searchData=
   ['samplesize_1',['sampleSize',['../class_long_long_rolling_average.html#a4b7307da021d60af9e38429518c067c9',1,'LongLongRollingAverage']]],
   ['serveraddress_2',['serverAddress',['../class_game_client.html#a7c8ee514c91940beb5c9bf7efdb0bc81',1,'GameClient']]],
   ['serverlogic_3',['serverLogic',['../class_game_client.html#a188824d66e2b42517bfc3d8aa09471bc',1,'GameClient']]],
-  ['serverport_4',['serverPort',['../class_game_client.html#a99ebd7449d9a9d8e82571eb89157b4ab',1,'GameClient']]],
+  ['serverport_4',['serverPort',['../class_game_client.html#a99ebd7449d9a9d8e82571eb89157b4ab',1,'GameClient::serverPort'],['../class_internal_game_server.html#aacffaa2ee6190467bd01a1b9220682ea',1,'InternalGameServer::serverPort']]],
   ['serverthread_5',['serverThread',['../class_game_client.html#a2754b8a65209dd1f4cae9ccc4d3fff92',1,'GameClient']]],
   ['setupphase_6',['setupPhase',['../class_game_client.html#a2578817d242b1bb06e4be2585a7c080f',1,'GameClient::setupPhase'],['../struct_client_context.html#ae05e8b1d0a5c759858cc904ce083d345',1,'ClientContext::setupPhase']]],
   ['shape_7',['shape',['../class_button_widget.html#ab6126cb9a34c147bad3bda2a9d2d226b',1,'ButtonWidget']]],

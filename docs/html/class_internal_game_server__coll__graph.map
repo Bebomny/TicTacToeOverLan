@@ -1,9 +1,9 @@
 <map id="InternalGameServer" name="InternalGameServer">
-<area shape="rect" id="Node000001" title="The authoritative server logic for the game. &#160;&#160;Runs on a dedicated thread hosted by one of the client..." alt="" coords="109,564,272,1209"/>
+<area shape="rect" id="Node000001" title="The authoritative server logic for the game. &#160;&#160;Runs on a dedicated thread hosted by one of the client..." alt="" coords="79,564,302,1353"/>
 <area shape="rect" id="Node000002" href="$class_long_long_rolling_average.html" title="A thread&#45;safe implementation of RollingAverage for long long integer types. &#160;&#160;Uses a deque (double&#45;en..." alt="" coords="5,231,189,492"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,489,133,547,128,547,120,495"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,489,129,547,124,547,118,494"/>
 <area shape="rect" id="Node000003" href="$class_rolling_average.html" title="Interface for calculating moving statistics over a stream of values. &#160;&#160;Primarily used for performance..." alt="" coords="24,5,171,181"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,194,100,231,95,231,97,199"/>
 <area shape="rect" id="Node000004" href="$struct_board_data.html" title="The core data model for the game board. &#160;&#160;Holds the grid state, rules (size/win condition),..." alt="" coords="214,263,352,460"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="266,457,253,548,248,547,265,462"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="268,457,257,548,251,547,267,462"/>
 </map>

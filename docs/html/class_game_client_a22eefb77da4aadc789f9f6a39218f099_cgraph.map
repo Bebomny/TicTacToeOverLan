@@ -1,49 +1,52 @@
 <map id="GameClient::GameClient" name="GameClient::GameClient">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,287,173,313"/>
-<area shape="rect" id="Node000002" href="$class_button_builder.html#a4d49eabe5fc24ea24cf8f8965ec2c470" title="Initializes global resources and layout trackers for all Buttons. This must be called once at startup..." alt="" coords="232,211,382,237"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,284,220,247,244,241,240,244,222,252,126,288"/>
-<area shape="rect" id="Node000003" href="$class_text_field_builder.html#a4cdbca90ee4fd11aa7038101ce1fd08f" title="Initializes the global font resource and layout tracker. &#160;&#160;Must be called before building any TextFie..." alt="" coords="224,261,390,288"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,288,211,284,207,288,174,292"/>
-<area shape="rect" id="Node000004" href="$class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="221,312,393,339"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,307,207,312,203,315,174,312"/>
-<area shape="rect" id="Node000005" href="$class_game_client.html#a0ed542437a49af2a1257a22bc3be66a6" title="Initializes all UI widgets (Buttons, TextFields) via their Builders. &#160;&#160;Called in the constructor,..." alt="" coords="225,363,388,389"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="123,311,222,348,244,357,239,359,220,353,125,316"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,295,173,321"/>
+<area shape="rect" id="Node000002" href="$class_button_builder.html#a4d49eabe5fc24ea24cf8f8965ec2c470" title="Initializes global resources and layout trackers for all Buttons. This must be called once at startup..." alt="" coords="232,219,382,245"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,292,220,255,244,249,240,252,222,260,126,296"/>
+<area shape="rect" id="Node000003" href="$class_text_field_builder.html#a4cdbca90ee4fd11aa7038101ce1fd08f" title="Initializes the global font resource and layout tracker. &#160;&#160;Must be called before building any TextFie..." alt="" coords="224,269,390,296"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,296,211,292,207,296,174,300"/>
+<area shape="rect" id="Node000004" href="$class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="221,320,393,347"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,315,207,320,203,323,174,320"/>
+<area shape="rect" id="Node000005" href="$class_game_client.html#a0ed542437a49af2a1257a22bc3be66a6" title="Initializes all UI widgets (Buttons, TextFields) via their Builders. &#160;&#160;Called in the constructor,..." alt="" coords="225,371,388,397"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="123,319,222,356,244,365,239,367,220,361,124,324"/>
 <area shape="rect" id="Node000006" href="$class_text_field_builder.html#a1ae8ec6d3573cde8b725d4533a9dab98" title="Finalizes construction and creates the TextFieldWidget." alt="" coords="467,5,616,32"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="377,360,391,349,405,330,415,311,423,273,421,235,414,197,406,159,404,120,414,81,424,62,439,42,455,32,451,36,443,46,428,65,419,83,410,121,412,158,419,196,426,235,428,273,420,313,410,333,395,353,381,364"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="377,368,391,357,406,337,415,318,424,279,421,240,414,201,406,162,404,122,413,82,424,62,439,42,455,32,451,36,443,46,428,65,418,84,409,123,411,161,419,200,427,240,429,279,420,320,410,340,395,361,381,372"/>
 <area shape="rect" id="Node000007" href="$class_button_widget.html#a2d42a2f9e1c33f5c726c827b5814cb05" title="Static factory method to start the Builder chain." alt="" coords="468,56,615,83"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="377,360,391,349,412,317,419,286,419,254,414,222,409,190,408,158,417,125,439,93,456,82,453,86,443,96,422,127,414,159,414,190,419,222,424,254,425,287,416,319,395,352,380,364"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="377,368,391,357,412,324,420,292,419,259,414,226,408,193,408,160,416,126,439,93,456,82,453,86,443,96,421,129,413,161,414,193,419,226,424,259,425,292,417,326,395,360,380,372"/>
 <area shape="rect" id="Node000008" href="$class_text_field_widget.html#ab5955881c94d5aece7264a087d3525c4" title="Creates a default builder." alt="" coords="461,107,622,133"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="376,360,391,349,408,324,416,299,416,273,414,248,411,222,412,196,420,169,439,144,450,137,446,141,443,147,425,172,417,197,417,222,419,247,422,273,421,300,413,326,395,353,380,364"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="376,368,391,357,409,331,416,305,417,278,414,252,411,225,412,198,420,170,439,144,449,137,446,141,443,147,425,173,417,198,416,225,419,251,422,278,422,306,414,333,395,361,380,372"/>
 <area shape="rect" id="Node000009" href="$class_game_client.html#aa0b571b488823b97da2778baf3bd6476" title="Initiates connection to the server (local or remote). &#160;&#160;Transitions SetupPhase from DISCONNECTED to S..." alt="" coords="441,157,642,184"/>
-<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="376,360,391,349,405,330,412,312,414,273,416,233,424,213,439,194,447,191,443,195,443,198,428,216,421,235,419,273,417,313,410,333,395,353,379,364"/>
-<area shape="rect" id="Node000010" href="$class_game_client.html#a13407d2e7e53e4fdae463705173cf4ad" title="Disconnects from the server and resets networking state." alt="" coords="461,208,622,235"/>
-<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="373,360,391,349,402,336,409,324,414,298,420,271,427,258,439,245,449,240,445,244,443,249,431,261,425,273,419,299,414,326,407,339,395,353,377,364"/>
-<area shape="rect" id="Node000011" href="$class_game_client.html#a862ce486628be1fcb0dfc153c843ae5b" title="Sends a request to the server to change game rules (Waiting Room Phase)." alt="" coords="454,259,629,301"/>
-<area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="364,360,392,348,415,330,440,311,454,306,450,309,442,316,419,334,394,353,367,364"/>
-<area shape="rect" id="Node000012" href="$class_button_builder.html#a3c1ce757492f297ea07eca5a1d22e213" title="Sets a custom visibility condition." alt="" coords="457,325,626,368"/>
-<area shape="poly" id="edge11_Node000005_Node000012" title=" " alt="" coords="388,363,444,358,439,360,390,368"/>
-<area shape="rect" id="Node000014" href="$class_button_builder.html#a84688cce213bca8bdc9408d0263c613e" title="Sets the height of the button." alt="" coords="460,392,623,419"/>
-<area shape="poly" id="edge13_Node000005_Node000014" title=" " alt="" coords="388,384,447,392,442,394,389,389"/>
-<area shape="rect" id="Node000015" href="$class_text_field_builder.html#a9c50876ddc755b89bb2fa60940b2f804" title="Sets the maximum number of characters allowed." alt="" coords="459,544,624,587"/>
-<area shape="poly" id="edge15_Node000005_Node000015" title=" " alt="" coords="317,387,366,456,401,495,443,530,451,537,446,537,439,534,398,499,361,459,316,392"/>
-<area shape="rect" id="Node000017" href="$class_button_builder.html#a713ac643f35aebfccf8c015b63cdb4f9" title="Sets the size (width and height) of the button." alt="" coords="466,443,617,469"/>
-<area shape="poly" id="edge17_Node000005_Node000017" title=" " alt="" coords="338,387,442,428,468,438,463,439,440,433,338,392"/>
-<area shape="rect" id="Node000018" href="$class_button_builder.html#a292ada52b60038644a113dfac5e85ef9" title="Sets the character size of the text." alt="" coords="454,493,630,520"/>
-<area shape="poly" id="edge19_Node000005_Node000018" title=" " alt="" coords="322,387,373,433,406,458,442,479,458,487,453,488,440,484,403,462,370,437,321,393"/>
-<area shape="rect" id="Node000019" href="$class_game_client.html#a8351c3139c72a30cf243067c5949d69c" title="Sends a start request packet to the server." alt="" coords="462,611,621,637"/>
-<area shape="poly" id="edge21_Node000005_Node000019" title=" " alt="" coords="313,387,329,430,355,486,393,546,416,573,443,597,451,604,446,603,439,601,412,577,388,549,350,489,324,432,311,392"/>
-<area shape="rect" id="Node000020" href="$class_game_client.html#a4946acc9956541a62556e2387210269e" title="Spins up the internal server instance in a separate thread. &#160;&#160;Called when the user chooses &quot;Host Game..." alt="" coords="458,661,625,704"/>
-<area shape="poly" id="edge22_Node000005_Node000020" title=" " alt="" coords="312,387,326,438,350,507,389,582,413,617,443,647,448,653,442,652,439,651,409,620,384,585,345,509,321,439,310,392"/>
-<area shape="rect" id="Node000022" href="$class_game_client.html#a2be0d0e513ac5ab73854c9772e554bec" title="Signals the internal server to stop." alt="" coords="458,728,625,771"/>
-<area shape="poly" id="edge24_Node000005_Node000022" title=" " alt="" coords="310,387,321,449,342,536,359,583,381,631,409,675,443,714,449,721,443,720,439,718,405,678,377,633,354,585,337,537,316,450,309,392"/>
-<area shape="rect" id="Node000013" href="$class_button_builder.html#a8f70176157c5e66d2d0a4ee89107cfeb" title=" " alt="" coords="690,417,876,444"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="609,366,643,377,733,411,728,412,641,383,609,371"/>
-<area shape="poly" id="edge14_Node000014_Node000013" title=" " alt="" coords="623,411,677,419,672,420,624,417"/>
-<area shape="rect" id="Node000016" href="$class_text_field_builder.html#af7c263cda29536d6bbb0c3955784c3be" title=" " alt="" coords="695,544,871,587"/>
-<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="624,563,682,565,677,566,625,568"/>
-<area shape="poly" id="edge18_Node000017_Node000013" title=" " alt="" coords="617,445,677,441,672,443,619,451"/>
-<area shape="poly" id="edge20_Node000018_Node000013" title=" " alt="" coords="601,490,642,479,735,449,730,451,643,484,602,495"/>
-<area shape="rect" id="Node000021" href="$class_widget.html#a38c6fe545c885f085b7b6c2b6c290fa3" title="Manually sets the active state of the widget." alt="" coords="720,703,846,729"/>
-<area shape="poly" id="edge23_Node000020_Node000021" title=" " alt="" coords="626,692,707,705,702,705,626,697"/>
-<area shape="poly" id="edge25_Node000022_Node000021" title=" " alt="" coords="625,735,702,727,708,726,626,740"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="376,368,391,357,406,337,413,318,414,277,415,235,423,215,439,194,446,191,443,195,443,198,428,217,421,236,419,277,418,319,410,340,395,361,379,372"/>
+<area shape="rect" id="Node000011" href="$class_game_client.html#a13407d2e7e53e4fdae463705173cf4ad" title="Disconnects from the server and resets networking state." alt="" coords="461,341,622,368"/>
+<area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="388,371,448,365,443,368,390,376"/>
+<area shape="rect" id="Node000012" href="$class_game_client.html#a862ce486628be1fcb0dfc153c843ae5b" title="Sends a request to the server to change game rules (Waiting Room Phase)." alt="" coords="454,392,629,435"/>
+<area shape="poly" id="edge11_Node000005_Node000012" title=" " alt="" coords="388,392,441,400,436,401,389,397"/>
+<area shape="rect" id="Node000013" href="$class_button_builder.html#a3c1ce757492f297ea07eca5a1d22e213" title="Sets a custom visibility condition." alt="" coords="457,459,626,501"/>
+<area shape="poly" id="edge12_Node000005_Node000013" title=" " alt="" coords="335,395,442,444,460,453,455,453,440,449,335,401"/>
+<area shape="rect" id="Node000015" href="$class_button_builder.html#a84688cce213bca8bdc9408d0263c613e" title="Sets the height of the button." alt="" coords="460,525,623,552"/>
+<area shape="poly" id="edge14_Node000005_Node000015" title=" " alt="" coords="319,395,369,452,403,484,442,511,456,519,451,520,440,516,400,488,365,456,318,400"/>
+<area shape="rect" id="Node000016" href="$class_text_field_builder.html#a9c50876ddc755b89bb2fa60940b2f804" title="Sets the maximum number of characters allowed." alt="" coords="459,677,624,720"/>
+<area shape="poly" id="edge16_Node000005_Node000016" title=" " alt="" coords="311,395,325,447,349,518,366,557,388,596,413,632,443,663,449,670,444,669,439,667,409,635,383,599,362,560,344,520,320,448,310,400"/>
+<area shape="rect" id="Node000018" href="$class_button_builder.html#a713ac643f35aebfccf8c015b63cdb4f9" title="Sets the size (width and height) of the button." alt="" coords="466,576,617,603"/>
+<area shape="poly" id="edge18_Node000005_Node000018" title=" " alt="" coords="315,395,334,431,361,476,398,522,443,562,454,570,449,570,439,566,394,526,357,479,329,433,314,400"/>
+<area shape="rect" id="Node000019" href="$class_button_builder.html#a292ada52b60038644a113dfac5e85ef9" title="Sets the character size of the text." alt="" coords="454,627,630,653"/>
+<area shape="poly" id="edge20_Node000005_Node000019" title=" " alt="" coords="313,395,329,440,354,498,392,560,416,588,443,613,450,619,445,619,439,617,412,592,388,563,350,501,324,442,311,401"/>
+<area shape="rect" id="Node000020" href="$class_game_client.html#a8351c3139c72a30cf243067c5949d69c" title="Sends a start request packet to the server." alt="" coords="462,744,621,771"/>
+<area shape="poly" id="edge22_Node000005_Node000020" title=" " alt="" coords="310,395,319,458,340,548,356,598,379,646,407,691,443,730,451,739,446,737,439,734,403,694,374,649,351,600,334,550,314,459,308,400"/>
+<area shape="rect" id="Node000021" href="$class_game_client.html#a4946acc9956541a62556e2387210269e" title="Spins up the internal server instance in a separate thread. &#160;&#160;Called when the user chooses &quot;Host Game..." alt="" coords="458,208,625,251"/>
+<area shape="poly" id="edge23_Node000005_Node000021" title=" " alt="" coords="373,368,391,357,408,334,415,310,421,285,439,261,447,258,443,261,443,265,426,288,420,312,413,336,395,361,377,372"/>
+<area shape="rect" id="Node000023" href="$class_game_client.html#a2be0d0e513ac5ab73854c9772e554bec" title="Signals the internal server to stop." alt="" coords="458,275,625,317"/>
+<area shape="poly" id="edge26_Node000005_Node000023" title=" " alt="" coords="361,368,392,356,416,342,440,327,457,322,452,325,442,332,418,346,394,361,364,372"/>
+<area shape="rect" id="Node000010" href="$class_game_client.html#ab83ca5c4ba95c4effaa72808f32317e2" title="Attempts to parse the text from the server address TextFieldWidget as Server IP and Port." alt="" coords="690,179,886,221"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="642,180,677,186,672,187,644,185"/>
+<area shape="rect" id="Node000014" href="$class_button_builder.html#a8f70176157c5e66d2d0a4ee89107cfeb" title=" " alt="" coords="695,551,881,577"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="609,499,643,511,736,545,730,545,641,516,609,505"/>
+<area shape="poly" id="edge15_Node000015_Node000014" title=" " alt="" coords="624,544,682,553,677,553,624,550"/>
+<area shape="rect" id="Node000017" href="$class_text_field_builder.html#af7c263cda29536d6bbb0c3955784c3be" title=" " alt="" coords="700,677,876,720"/>
+<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="625,696,688,698,682,699,625,701"/>
+<area shape="poly" id="edge19_Node000018_Node000014" title=" " alt="" coords="617,579,682,575,677,576,618,584"/>
+<area shape="poly" id="edge21_Node000019_Node000014" title=" " alt="" coords="600,624,642,612,734,584,739,582,643,617,602,629"/>
+<area shape="poly" id="edge24_Node000021_Node000010" title=" " alt="" coords="625,217,677,212,672,215,627,222"/>
+<area shape="rect" id="Node000022" href="$class_widget.html#a38c6fe545c885f085b7b6c2b6c290fa3" title="Manually sets the active state of the widget." alt="" coords="725,249,851,276"/>
+<area shape="poly" id="edge25_Node000021_Node000022" title=" " alt="" coords="625,238,712,251,707,253,626,243"/>
+<area shape="poly" id="edge27_Node000023_Node000022" title=" " alt="" coords="625,282,712,272,707,274,626,287"/>
 </map>

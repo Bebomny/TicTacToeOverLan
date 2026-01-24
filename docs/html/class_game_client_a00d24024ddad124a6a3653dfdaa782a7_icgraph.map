@@ -1,0 +1,9 @@
+<map id="GameClient::handleGameEndPacket" name="GameClient::handleGameEndPacket">
+<area shape="rect" id="Node000001" title="Processes the GAME_END packet." alt="" coords="452,5,647,48"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="267,13,404,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="434,27,405,29,405,24,439,27"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,13,219,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="249,27,220,29,219,24,254,27"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,13,55,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="85,28,55,29,55,24,89,26"/>
+</map>

@@ -13,9 +13,14 @@ var class_internal_game_server =
     [ "getNextActingPlayerId", "class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2", null ],
     [ "getNextPlayerId", "class_internal_game_server.html#ad25ae6f94d5fc5ecd8eb60fe1134795b", null ],
     [ "getPlayers", "class_internal_game_server.html#ad36cc65394c1ceb1a7294a05a007c6bb", null ],
+    [ "getServerPort", "class_internal_game_server.html#ac50992b849bee320601b7060030845fa", null ],
     [ "getTick", "class_internal_game_server.html#a61c010a8dc8ae5deded65b97ae4829cb", null ],
     [ "handleClientData", "class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca", null ],
+    [ "handleGameStartRequestPacket", "class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9", null ],
+    [ "handleMoveRequestPacket", "class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c", null ],
     [ "handleNewConnection", "class_internal_game_server.html#a11de7172fe0c184675de6a4b6de586d7", null ],
+    [ "handleSettingsChangeRequestPacket", "class_internal_game_server.html#a38c4d6d073d4fc872bc03c365472836c", null ],
+    [ "handleSetupRequestPacket", "class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992", null ],
     [ "processPacket", "class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed", null ],
     [ "sendPacket", "class_internal_game_server.html#a71b08679b9859ef55931354365be3923", null ],
     [ "start", "class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916", null ],
@@ -30,5 +35,6 @@ var class_internal_game_server =
     [ "listenSocket", "class_internal_game_server.html#a298fe4d3de49f696ef74dd95d526abde", null ],
     [ "moves", "class_internal_game_server.html#a760a52475097e404039ab7ad526766d2", null ],
     [ "nextPlayerId", "class_internal_game_server.html#a00dfbffc5ed29156348e829230bf2402", null ],
+    [ "serverPort", "class_internal_game_server.html#aacffaa2ee6190467bd01a1b9220682ea", null ],
     [ "tick", "class_internal_game_server.html#a0e5b79a31e05c4bd093d3d9575ae7c22", null ]
 ];

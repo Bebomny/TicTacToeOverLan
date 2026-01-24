@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="TicTacToeOverLan-Draft1.png"/></td>
   <td id="projectalign">
-   <div id="projectname">TicTacToeOverLan<span id="projectnumber">&#160;1.0.16</span>
+   <div id="projectname">TicTacToeOverLan<span id="projectnumber">&#160;1.0.17</span>
    </div>
    <div id="projectbrief">TicTacToe Ultimate Edition supporting up to 6 players and a board of 32x32. Allows connections from multiple devices.</div>
   </td>
@@ -220,52 +220,69 @@ Here is the call graph for this function:</div>
 <map name="amain_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph" id="amain_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4_cgraph">
 <area shape="rect" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,275,55,301"/>
 <area shape="rect" href="class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,275,219,301"/>
-<area shape="poly" title=" " alt="" coords="54,286,89,286,85,290,56,290"/>
+<area shape="poly" title=" " alt="" coords="53,286,89,286,85,290,57,290"/>
 <area shape="rect" href="class_game_client.html#a1002fba127d0627a3ad3dccb68f343f9" title="Polls SFML events and delegates them to specific state handlers." alt="" coords="267,275,432,301"/>
-<area shape="poly" title=" " alt="" coords="219,285,254,287,249,289,220,291"/>
+<area shape="poly" title=" " alt="" coords="218,286,253,286,249,290,221,290"/>
 <area shape="rect" href="class_game_client.html#a6707e6e3f99fa676180e6276fd7cd972" title="Clears the window and calls the appropriate render method for the current ClientState." alt="" coords="282,107,417,133"/>
-<area shape="poly" title=" " alt="" coords="176,272,323,142,320,146,179,276"/>
-<area shape="rect" href="class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="281,376,418,403"/>
-<area shape="poly" title=" " alt="" coords="188,299,313,367,308,370,187,304"/>
+<area shape="poly" title=" " alt="" coords="175,273,323,142,321,146,180,276"/>
+<area shape="rect" href="class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="281,584,418,611"/>
+<area shape="poly" title=" " alt="" coords="172,299,335,570,330,571,169,304"/>
 <area shape="rect" href="class_game_client.html#ae0e8917d72b9c8a35b6b86c16dd29ba4" title="Processes input during active gameplay (Board clicks)." alt="" coords="483,325,684,352"/>
-<area shape="poly" title=" " alt="" coords="415,299,506,321,501,322,415,305"/>
+<area shape="poly" title=" " alt="" coords="414,299,506,320,501,323,415,305"/>
 <area shape="rect" href="class_game_client.html#a2695419dcc3f78ed346f4f666e1e60c5" title="Processes input when in the Waiting Room." alt="" coords="480,208,687,251"/>
-<area shape="poly" title=" " alt="" coords="405,272,484,254,479,256,407,277"/>
+<area shape="poly" title=" " alt="" coords="404,272,483,253,479,257,407,276"/>
 <area shape="rect" href="class_game_client.html#a58701454693e02c2a5a79773d9bcd5fc" title="Processes input when in the Main Menu." alt="" coords="485,275,682,301"/>
-<area shape="poly" title=" " alt="" coords="432,285,472,287,467,289,433,291"/>
+<area shape="poly" title=" " alt="" coords="431,286,472,287,467,289,434,290"/>
 <area shape="rect" href="class_board_renderer.html#ad3f31966279269f250dd0bf4176d0cf5" title=" " alt="" coords="749,267,938,293"/>
-<area shape="poly" title=" " alt="" coords="645,322,764,298,769,297,646,327"/>
+<area shape="poly" title=" " alt="" coords="645,322,769,296,764,299,647,327"/>
 <area shape="rect" href="class_game_client.html#a690f67706963732d7dbddd7144104e28" title="Transmits a move action to the server." alt="" coords="764,325,922,352"/>
-<area shape="poly" title=" " alt="" coords="684,336,751,338,746,339,684,341"/>
-<area shape="rect" href="class_game_client.html#a6307255e5ee2ec7a662314d2bda4ff4e" title="Overlays debug information (FPS, network stats, etc.) in a separate menu." alt="" coords="481,56,686,83"/>
-<area shape="poly" title=" " alt="" coords="414,104,506,85,501,88,416,108"/>
+<area shape="poly" title=" " alt="" coords="683,336,751,338,746,340,685,341"/>
+<area shape="rect" href="class_game_client.html#a6307255e5ee2ec7a662314d2bda4ff4e" title="Overlays debug information (FPS, network stats, etc.) in a separate menu." alt="" coords="481,5,686,32"/>
+<area shape="poly" title=" " alt="" coords="368,104,418,73,479,42,502,35,498,39,481,46,420,77,372,108"/>
 <area shape="rect" href="class_game_client.html#ac43af34d16f934ccf691a400f198d047" title=" " alt="" coords="499,157,668,184"/>
-<area shape="poly" title=" " alt="" coords="414,131,506,153,501,154,415,137"/>
-<area shape="rect" href="class_game_client.html#abc5fbf39980e740820e141eeced44d30" title=" " alt="" coords="481,107,686,133"/>
-<area shape="poly" title=" " alt="" coords="416,117,468,119,463,121,418,123"/>
-<area shape="rect" href="class_game_client.html#ad5b49b36503c47beb1b3bb73a16b2859" title=" " alt="" coords="500,5,667,32"/>
-<area shape="poly" title=" " alt="" coords="369,104,418,73,479,42,502,36,498,38,481,46,420,77,372,108"/>
-<area shape="rect" href="class_utils.html#ab49720ff58867feae08d01073966f229" title="Converts a PieceType enum value to a human&#45;readable string." alt="" coords="762,60,925,87"/>
-<area shape="poly" title=" " alt="" coords="686,68,748,71,743,73,687,74"/>
-<area shape="poly" title=" " alt="" coords="663,182,688,194,704,207,713,222,722,236,736,248,757,261,752,260,733,253,717,239,708,225,700,211,685,198,662,187"/>
-<area shape="poly" title=" " alt="" coords="659,154,685,143,700,132,709,120,718,108,733,96,750,91,745,94,736,101,722,112,713,124,703,136,688,148,661,159"/>
-<area shape="rect" href="class_draw_utils.html#ac9186c17af01695c7b36f840430041ae" title="Sets the text object&#39;s origin to its geometric center. &#160;&#160;This allows to position the text based on it..." alt="" coords="769,161,918,188"/>
-<area shape="poly" title=" " alt="" coords="668,169,756,173,751,174,669,175"/>
-<area shape="rect" href="class_draw_utils.html#aac5f824cfce5638990daa9a4df669001" title="Sets the text object&#39;s origin to its horizontal center. &#160;&#160;The vertical origin is reset to the top edg..." alt="" coords="735,212,952,239"/>
-<area shape="poly" title=" " alt="" coords="650,182,764,208,759,209,650,187"/>
-<area shape="rect" href="class_board_renderer.html#a0d346f05d8e6081126b95b0ca7b6af50" title=" " alt="" coords="767,111,920,137"/>
-<area shape="poly" title=" " alt="" coords="661,154,754,140,749,141,662,159"/>
-<area shape="rect" href="class_board_renderer.html#aa83ebac0dfc333b2afdc1ec4607136ce" title=" " alt="" coords="1000,85,1177,112"/>
-<area shape="poly" title=" " alt="" coords="920,114,987,109,982,110,921,119"/>
-<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="1007,136,1170,163"/>
-<area shape="poly" title=" " alt="" coords="920,129,994,139,989,140,920,135"/>
-<area shape="poly" title=" " alt="" coords="661,104,753,89,748,91,662,109"/>
-<area shape="rect" href="class_utils.html#a9bc7096ff5339947893e3d02d58410b2" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="507,427,660,453"/>
-<area shape="poly" title=" " alt="" coords="415,401,506,423,501,423,415,406"/>
-<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="497,376,670,403"/>
-<area shape="poly" title=" " alt="" coords="418,387,485,389,480,390,419,392"/>
-<area shape="rect" href="struct_board_data.html#aa68d3cb10d68cbf530ca7f3d7e792482" title="Updates the state of a specific grid cell." alt="" coords="762,427,925,453"/>
-<area shape="poly" title=" " alt="" coords="660,437,749,440,743,440,660,443"/>
+<area shape="poly" title=" " alt="" coords="414,131,506,152,501,155,416,136"/>
+<area shape="rect" href="class_game_client.html#abc5fbf39980e740820e141eeced44d30" title=" " alt="" coords="481,56,686,83"/>
+<area shape="poly" title=" " alt="" coords="413,104,506,85,502,88,416,108"/>
+<area shape="rect" href="class_game_client.html#ad5b49b36503c47beb1b3bb73a16b2859" title=" " alt="" coords="500,107,667,133"/>
+<area shape="poly" title=" " alt="" coords="416,118,487,119,483,121,418,122"/>
+<area shape="rect" href="class_utils.html#ab49720ff58867feae08d01073966f229" title="Converts a PieceType enum value to a human&#45;readable string." alt="" coords="762,56,925,83"/>
+<area shape="poly" title=" " alt="" coords="655,30,759,51,754,54,657,35"/>
+<area shape="poly" title=" " alt="" coords="661,182,688,194,704,206,713,220,722,232,736,244,767,261,761,261,733,249,718,236,709,223,700,210,685,198,662,187"/>
+<area shape="poly" title=" " alt="" coords="660,155,685,143,700,131,708,118,718,105,733,92,749,87,745,90,736,97,722,109,713,121,704,135,688,148,663,159"/>
+<area shape="rect" href="class_draw_utils.html#ac9186c17af01695c7b36f840430041ae" title="Sets the text object&#39;s origin to its geometric center. &#160;&#160;This allows to position the text based on it..." alt="" coords="769,107,918,133"/>
+<area shape="poly" title=" " alt="" coords="655,154,759,135,754,138,657,159"/>
+<area shape="rect" href="class_draw_utils.html#aac5f824cfce5638990daa9a4df669001" title="Sets the text object&#39;s origin to its horizontal center. &#160;&#160;The vertical origin is reset to the top edg..." alt="" coords="735,157,952,184"/>
+<area shape="poly" title=" " alt="" coords="668,168,722,170,717,172,670,173"/>
+<area shape="rect" href="class_board_renderer.html#a0d346f05d8e6081126b95b0ca7b6af50" title=" " alt="" coords="767,208,920,235"/>
+<area shape="poly" title=" " alt="" coords="655,182,759,204,754,205,656,187"/>
+<area shape="rect" href="class_board_renderer.html#aa83ebac0dfc333b2afdc1ec4607136ce" title=" " alt="" coords="1000,233,1177,260"/>
+<area shape="poly" title=" " alt="" coords="920,227,987,235,982,237,921,232"/>
+<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="1007,183,1170,209"/>
+<area shape="poly" title=" " alt="" coords="919,211,994,205,989,207,921,216"/>
+<area shape="poly" title=" " alt="" coords="685,67,748,68,743,71,687,72"/>
+<area shape="rect" href="class_game_client.html#ab3a19b5a3fb0970a4348272490fb3ebf" title="Processes the BOARD_STATE_UPDATE packet." alt="" coords="483,843,684,885"/>
+<area shape="poly" title=" " alt="" coords="356,609,371,653,396,712,433,774,456,803,482,829,488,835,482,834,479,833,452,807,429,777,391,714,366,655,354,614"/>
+<area shape="rect" href="class_game_client.html#a00d24024ddad124a6a3653dfdaa782a7" title="Processes the GAME_END packet." alt="" coords="486,443,681,485"/>
+<area shape="poly" title=" " alt="" coords="364,581,413,539,479,495,494,490,489,493,482,500,416,544,367,586"/>
+<area shape="rect" href="class_game_client.html#ae0c8e785397e3bd691cbf58d8292b644" title="Processes the GAME_START packet." alt="" coords="484,376,683,419"/>
+<area shape="poly" title=" " alt="" coords="356,582,401,509,436,466,479,429,489,425,485,428,482,433,440,470,405,513,360,585"/>
+<area shape="rect" href="class_game_client.html#ada899661c36273a2a77d34b981c5c32d" title="Processes the NEW_PLAYER_JOIN packet." alt="" coords="483,509,684,552"/>
+<area shape="poly" title=" " alt="" coords="398,581,494,556,489,558,401,586"/>
+<area shape="rect" href="class_game_client.html#abb7e0f91ccfa09a0fa0f0c068f824931" title="Processes the PLAYER_DISCONNECTED packet." alt="" coords="497,576,670,619"/>
+<area shape="poly" title=" " alt="" coords="418,595,484,596,479,598,419,600"/>
+<area shape="rect" href="class_game_client.html#aaa7e7f9e3b084bc691b24df34186ffec" title="Processes the SERVER_HELLO packet." alt="" coords="496,643,671,685"/>
+<area shape="poly" title=" " alt="" coords="399,609,494,637,489,638,400,614"/>
+<area shape="rect" href="class_game_client.html#a5e09a302e419a0906b634ee7b4a740fd" title="Processes the SETTINGS_UPDATE packet." alt="" coords="491,709,676,752"/>
+<area shape="poly" title=" " alt="" coords="366,609,416,651,482,695,494,703,489,703,479,700,413,655,365,614"/>
+<area shape="rect" href="class_game_client.html#a03d226485ec0fbdbeb13b422552fa51b" title="Processes the SETUP_ACK packet." alt="" coords="487,776,680,819"/>
+<area shape="poly" title=" " alt="" coords="359,609,405,682,440,725,482,762,489,769,484,768,479,766,436,729,401,685,357,614"/>
+<area shape="rect" href="class_utils.html#a9bc7096ff5339947893e3d02d58410b2" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="767,643,920,669"/>
+<area shape="poly" title=" " alt="" coords="665,839,685,828,729,794,768,754,823,683,828,681,772,757,732,798,688,833,666,845"/>
+<area shape="rect" href="struct_board_data.html#aa68d3cb10d68cbf530ca7f3d7e792482" title="Updates the state of a specific grid cell." alt="" coords="1007,643,1170,669"/>
+<area shape="poly" title=" " alt="" coords="920,653,994,656,989,656,920,659"/>
+<area shape="poly" title=" " alt="" coords="668,417,688,429,738,476,780,530,811,584,833,629,828,628,807,586,775,533,734,479,685,433,668,422"/>
+<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="757,384,930,411"/>
+<area shape="poly" title=" " alt="" coords="683,395,744,396,739,398,684,400"/>
 </map>
 </div>
 

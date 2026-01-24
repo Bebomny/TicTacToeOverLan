@@ -17,8 +17,7 @@ The authoritative server logic for the game. ~\newline
 
 
 
-Collaboration diagram for Internal\+Game\+Server:\+
-\nopagebreak
+Collaboration diagram for Internal\+Game\+Server:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -41,6 +40,8 @@ long long \doxymbox{\hyperlink{class_internal_game_server_a61c010a8dc8ae5deded65
 long long \doxymbox{\hyperlink{class_internal_game_server_a7e45533cfc92df0c49f5933620a98a72}{get\+Last\+Tick\+Time}} ()
 \item 
 double \doxymbox{\hyperlink{class_internal_game_server_af1946230fb684f1159a227464fc86e0a}{get\+Avg\+Tick\+Time}} ()
+\item 
+int \doxymbox{\hyperlink{class_internal_game_server_ac50992b849bee320601b7060030845fa}{get\+Server\+Port}} () const
 \item 
 uint8\+\_\+t \doxymbox{\hyperlink{class_internal_game_server_ad25ae6f94d5fc5ecd8eb60fe1134795b}{get\+Next\+Player\+Id}} () const
 \item 
@@ -73,6 +74,14 @@ uint8\+\_\+t \doxymbox{\hyperlink{class_internal_game_server_ad39a2a920c1f28cde3
 void \doxymbox{\hyperlink{class_internal_game_server_a23233f46e01aa0aa1306fd11ec115aed}{process\+Packet}} (\doxymbox{\hyperlink{struct_client_context}{Client\+Context}} \&client, \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type}} type, std::\+vector$<$ char $>$ \&payload)
 \begin{DoxyCompactList}\small\item\em The core logic dispatcher. ~\newline
  Switches on {\ttfamily \doxylink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type}} and executes the corresponding game logic. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_internal_game_server_af76f44761a706d22bbf2e34094c97992}{handle\+Setup\+Request\+Packet}} (\doxymbox{\hyperlink{struct_client_context}{Client\+Context}} \&client, const \doxymbox{\hyperlink{struct_setup_req_packet}{Setup\+Req\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the SETUP\+\_\+\+REQ packet. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_internal_game_server_a38c4d6d073d4fc872bc03c365472836c}{handle\+Settings\+Change\+Request\+Packet}} (const \doxymbox{\hyperlink{struct_settings_change_req_packet}{Settings\+Change\+Req\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the SETTINGS\+\_\+\+CHANGE\+\_\+\+REQ packet. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_internal_game_server_ab365960df838baeadc089d25f89ca3c9}{handle\+Game\+Start\+Request\+Packet}} (const \doxymbox{\hyperlink{struct_game_start_request_packet}{Game\+Start\+Request\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the GAME\+\_\+\+START\+\_\+\+REQ packet. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c}{handle\+Move\+Request\+Packet}} (\doxymbox{\hyperlink{struct_client_context}{Client\+Context}} \&client, const \doxymbox{\hyperlink{struct_move_request_packet}{Move\+Request\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the MOVE\+\_\+\+REQ packet. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T$>$ }\\void \doxymbox{\hyperlink{class_internal_game_server_a9f7cd641abc4087fbba9a59e72c025f3}{broadcast\+Packet}} (const \doxymbox{\hyperlink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type}} type, const T \&data)
 \begin{DoxyCompactList}\small\item\em Sends a packet to ALL connected clients. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Private Member Functions}
@@ -86,6 +95,8 @@ void \doxymbox{\hyperlink{class_internal_game_server_a23233f46e01aa0aa1306fd11ec
 std::\+atomic$<$ bool $>$ \doxymbox{\hyperlink{class_internal_game_server_aec051721fa9f844797ee6cb97726ee23}{keep\+Running}}
 \item 
 SOCKET \doxymbox{\hyperlink{class_internal_game_server_a298fe4d3de49f696ef74dd95d526abde}{listen\+Socket}}
+\item 
+int \doxymbox{\hyperlink{class_internal_game_server_aacffaa2ee6190467bd01a1b9220682ea}{server\+Port}}
 \item 
 std::\+atomic$<$ long long $>$ \doxymbox{\hyperlink{class_internal_game_server_a0e5b79a31e05c4bd093d3d9575ae7c22}{tick}} = 0
 \item 
@@ -148,16 +159,14 @@ Sends a packet to ALL connected clients.
 {\em data} & The payload struct. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=322pt]{class_internal_game_server_a9f7cd641abc4087fbba9a59e72c025f3_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -201,8 +210,7 @@ Retrieves and removes the next available piece type from the pool.
 \begin{DoxyReturn}{Returns}
 The piece type. 
 \end{DoxyReturn}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -240,8 +248,7 @@ Determines whose turn it is based on the round/\+turn counters.
 \begin{DoxyReturn}{Returns}
 The ID of the acting player. 
 \end{DoxyReturn}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -260,14 +267,19 @@ uint8\+\_\+t Internal\+Game\+Server::\+get\+Next\+Player\+Id (\begin{DoxyParamCa
 {\footnotesize\ttfamily \label{class_internal_game_server_ad36cc65394c1ceb1a7294a05a007c6bb} 
 std::\+vector$<$ \doxymbox{\hyperlink{struct_player}{Player}} $>$ Internal\+Game\+Server::\+get\+Players (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=348pt]{class_internal_game_server_ad36cc65394c1ceb1a7294a05a007c6bb_cgraph}
 \end{center}
 \end{figure}
+\Hypertarget{class_internal_game_server_ac50992b849bee320601b7060030845fa}\index{InternalGameServer@{InternalGameServer}!getServerPort@{getServerPort}}
+\index{getServerPort@{getServerPort}!InternalGameServer@{InternalGameServer}}
+\doxysubsubsection{\texorpdfstring{getServerPort()}{getServerPort()}}
+{\footnotesize\ttfamily \label{class_internal_game_server_ac50992b849bee320601b7060030845fa} 
+int Internal\+Game\+Server::\+get\+Server\+Port (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
 \Hypertarget{class_internal_game_server_a61c010a8dc8ae5deded65b97ae4829cb}\index{InternalGameServer@{InternalGameServer}!getTick@{getTick}}
 \index{getTick@{getTick}!InternalGameServer@{InternalGameServer}}
 \doxysubsubsection{\texorpdfstring{getTick()}{getTick()}}
@@ -291,20 +303,78 @@ Reads incoming data from a specific client. ~\newline
 {\em client} & The client connection to poll. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=322pt]{class_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_internal_game_server_ab365960df838baeadc089d25f89ca3c9}\index{InternalGameServer@{InternalGameServer}!handleGameStartRequestPacket@{handleGameStartRequestPacket}}
+\index{handleGameStartRequestPacket@{handleGameStartRequestPacket}!InternalGameServer@{InternalGameServer}}
+\doxysubsubsection{\texorpdfstring{handleGameStartRequestPacket()}{handleGameStartRequestPacket()}}
+{\footnotesize\ttfamily \label{class_internal_game_server_ab365960df838baeadc089d25f89ca3c9} 
+bool Internal\+Game\+Server::\+handle\+Game\+Start\+Request\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_game_start_request_packet}{Game\+Start\+Request\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the GAME\+\_\+\+START\+\_\+\+REQ packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_game_start_request_packet}{Game\+Start\+Request\+Packet} packet. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_internal_game_server_ab365960df838baeadc089d25f89ca3c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_internal_game_server_ab365960df838baeadc089d25f89ca3c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c}\index{InternalGameServer@{InternalGameServer}!handleMoveRequestPacket@{handleMoveRequestPacket}}
+\index{handleMoveRequestPacket@{handleMoveRequestPacket}!InternalGameServer@{InternalGameServer}}
+\doxysubsubsection{\texorpdfstring{handleMoveRequestPacket()}{handleMoveRequestPacket()}}
+{\footnotesize\ttfamily \label{class_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c} 
+bool Internal\+Game\+Server::\+handle\+Move\+Request\+Packet (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_client_context}{Client\+Context}} \&}]{client}{, }\item[{const \doxymbox{\hyperlink{struct_move_request_packet}{Move\+Request\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the MOVE\+\_\+\+REQ packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & The client from which we received the packet. \\
+\hline
+{\em packet} & The parsed \doxylink{struct_move_request_packet}{Move\+Request\+Packet} packet. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_internal_game_server_a11de7172fe0c184675de6a4b6de586d7}\index{InternalGameServer@{InternalGameServer}!handleNewConnection@{handleNewConnection}}
@@ -318,20 +388,78 @@ void Internal\+Game\+Server::\+handle\+New\+Connection (\begin{DoxyParamCaption}
 Accepts and processes a new connection. ~\newline
  If a client connects, creates a new {\ttfamily \doxylink{struct_client_context}{Client\+Context}}, assigns an ID, and sends {\ttfamily SERVER\+\_\+\+HELLO}. 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=339pt]{class_internal_game_server_a11de7172fe0c184675de6a4b6de586d7_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=339pt]{class_internal_game_server_a11de7172fe0c184675de6a4b6de586d7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_internal_game_server_a38c4d6d073d4fc872bc03c365472836c}\index{InternalGameServer@{InternalGameServer}!handleSettingsChangeRequestPacket@{handleSettingsChangeRequestPacket}}
+\index{handleSettingsChangeRequestPacket@{handleSettingsChangeRequestPacket}!InternalGameServer@{InternalGameServer}}
+\doxysubsubsection{\texorpdfstring{handleSettingsChangeRequestPacket()}{handleSettingsChangeRequestPacket()}}
+{\footnotesize\ttfamily \label{class_internal_game_server_a38c4d6d073d4fc872bc03c365472836c} 
+bool Internal\+Game\+Server::\+handle\+Settings\+Change\+Request\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_settings_change_req_packet}{Settings\+Change\+Req\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the SETTINGS\+\_\+\+CHANGE\+\_\+\+REQ packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_settings_change_req_packet}{Settings\+Change\+Req\+Packet} packet. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_internal_game_server_af76f44761a706d22bbf2e34094c97992}\index{InternalGameServer@{InternalGameServer}!handleSetupRequestPacket@{handleSetupRequestPacket}}
+\index{handleSetupRequestPacket@{handleSetupRequestPacket}!InternalGameServer@{InternalGameServer}}
+\doxysubsubsection{\texorpdfstring{handleSetupRequestPacket()}{handleSetupRequestPacket()}}
+{\footnotesize\ttfamily \label{class_internal_game_server_af76f44761a706d22bbf2e34094c97992} 
+void Internal\+Game\+Server::\+handle\+Setup\+Request\+Packet (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_client_context}{Client\+Context}} \&}]{client}{, }\item[{const \doxymbox{\hyperlink{struct_setup_req_packet}{Setup\+Req\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the SETUP\+\_\+\+REQ packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & The client from which we received the packet. \\
+\hline
+{\em packet} & The parsed \doxylink{struct_setup_req_packet}{Setup\+Req\+Packet} packet. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_internal_game_server_af76f44761a706d22bbf2e34094c97992_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_internal_game_server_af76f44761a706d22bbf2e34094c97992_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_internal_game_server_a23233f46e01aa0aa1306fd11ec115aed}\index{InternalGameServer@{InternalGameServer}!processPacket@{processPacket}}
@@ -354,16 +482,14 @@ The core logic dispatcher. ~\newline
 {\em payload} & The raw byte data of the packet body. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_internal_game_server_a23233f46e01aa0aa1306fd11ec115aed_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -390,8 +516,7 @@ Sends a structured packet to a specific client.
 {\em data} & The payload struct. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -414,8 +539,7 @@ Starts the server loop. ~\newline
 {\em port} & The port number to listen on. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -497,6 +621,12 @@ std::\+vector$<$\doxymbox{\hyperlink{struct_move}{Move}}$>$ Internal\+Game\+Serv
 \doxysubsubsection{\texorpdfstring{nextPlayerId}{nextPlayerId}}
 {\footnotesize\ttfamily \label{class_internal_game_server_a00dfbffc5ed29156348e829230bf2402} 
 uint8\+\_\+t Internal\+Game\+Server::\+next\+Player\+Id = 1\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_internal_game_server_aacffaa2ee6190467bd01a1b9220682ea}\index{InternalGameServer@{InternalGameServer}!serverPort@{serverPort}}
+\index{serverPort@{serverPort}!InternalGameServer@{InternalGameServer}}
+\doxysubsubsection{\texorpdfstring{serverPort}{serverPort}}
+{\footnotesize\ttfamily \label{class_internal_game_server_aacffaa2ee6190467bd01a1b9220682ea} 
+int Internal\+Game\+Server::\+server\+Port\hspace{0.3cm}{\ttfamily [private]}}
 
 \Hypertarget{class_internal_game_server_a0e5b79a31e05c4bd093d3d9575ae7c22}\index{InternalGameServer@{InternalGameServer}!tick@{tick}}
 \index{tick@{tick}!InternalGameServer@{InternalGameServer}}

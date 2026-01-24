@@ -49,7 +49,7 @@
 \DoxyCodeLine{00063\ \ \ \ \ sf::Font\ \doxymbox{\hyperlink{class_game_client_ae472b91cf508252769cb3440361e0149}{font}};}
 \DoxyCodeLine{00064\ \ \ \ \ \doxymbox{\hyperlink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}{ClientState}}\ \doxymbox{\hyperlink{class_game_client_a55cf89c018cabbdfc7339aa33d87ac36}{clientState}};}
 \DoxyCodeLine{00065\ \ \ \ \ std::map<std::string,\ std::unique\_ptr<Widget>\ >\ \doxymbox{\hyperlink{class_game_client_a0fdcf3da730e98cbd19ca61640b6f834}{widgets}};}
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_game_client_a6a78afc5ca235cb2bc924256502bee30}{debugEnabled}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_game_client_a6a78afc5ca235cb2bc924256502bee30}{debugEnabled}}\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00067\ }
 \DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//Menu\ Coordinates}}
 \DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ sf::Vector2f\ \doxymbox{\hyperlink{class_game_client_abad022665e205c74966fbe6e7cf092d7}{MAIN\_MENU\_POSITION}}\{36,\ 36\};\ \textcolor{comment}{//left\ corner}}
@@ -114,30 +114,48 @@
 \DoxyCodeLine{00158\ }
 \DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4}{handleGameInput}}(\textcolor{keyword}{const}\ std::optional<sf::Event>\ \&event,\ \textcolor{keyword}{const}\ sf::Vector2i\ \&mousePos);}
 \DoxyCodeLine{00166\ }
-\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_ad5b49b36503c47beb1b3bb73a16b2859}{renderMenu}}();}
-\DoxyCodeLine{00168\ }
-\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_abc5fbf39980e740820e141eeced44d30}{renderGameRoom}}();}
-\DoxyCodeLine{00170\ }
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_ac43af34d16f934ccf691a400f198d047}{renderGame}}();}
-\DoxyCodeLine{00172\ }
-\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a6307255e5ee2ec7a662314d2bda4ff4e}{renderDebugMenu}}();}
-\DoxyCodeLine{00177\ }
-\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a4946acc9956541a62556e2387210269e}{startInternalServerThread}}();}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a2be0d0e513ac5ab73854c9772e554bec}{stopInternalServerThread}}();}
-\DoxyCodeLine{00188\ }
-\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_aa0b571b488823b97da2778baf3bd6476}{connectAndSetup}}();}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_aaa7e7f9e3b084bc691b24df34186ffec}{handleServerHelloPacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_server_hello_packet}{ServerHelloPacket}}\ *packet);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a03d226485ec0fbdbeb13b422552fa51b}{handleSetupAckPacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_setup_ack_packet}{SetupAckPacket}}\ *packet);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_ada899661c36273a2a77d34b981c5c32d}{handleNewPlayerJoinPacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_new_player_join_packet}{NewPlayerJoinPacket}}\ *packet);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a5e09a302e419a0906b634ee7b4a740fd}{handleSettingsUpdatePacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_settings_update_packet}{SettingsUpdatePacket}}\ *packet);}
 \DoxyCodeLine{00194\ }
-\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a13407d2e7e53e4fdae463705173cf4ad}{disconnect}}();}
-\DoxyCodeLine{00199\ }
-\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a862ce486628be1fcb0dfc153c843ae5b}{requestBoardSettingsUpdate}}(uint8\_t\ newBoardSize,\ uint8\_t\ newWinConditionLength);}
-\DoxyCodeLine{00207\ }
-\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a8351c3139c72a30cf243067c5949d69c}{startGame}}(\textcolor{keywordtype}{bool}\ newGame);}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a690f67706963732d7dbddd7144104e28}{sendMove}}(uint8\_t\ posX,\ uint8\_t\ posY);}
-\DoxyCodeLine{00222\ \};}
-\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_abb7e0f91ccfa09a0fa0f0c068f824931}{handlePlayerDisconnectedPacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_player_disconnected_packet}{PlayerDisconnectedPacket}}\ *packet);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_ae0c8e785397e3bd691cbf58d8292b644}{handleGameStartPacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_game_start_packet}{GameStartPacket}}\ *packet);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_game_client_ab3a19b5a3fb0970a4348272490fb3ebf}{handleBoardStateUpdatePacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_board_state_update_packet}{BoardStateUpdatePacket}}\ *packet);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a00d24024ddad124a6a3653dfdaa782a7}{handleGameEndPacket}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_game_end_packet}{GameEndPacket}}\ *packet);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_ad5b49b36503c47beb1b3bb73a16b2859}{renderMenu}}();}
 \DoxyCodeLine{00224\ }
-\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_GAMECLIENT\_H}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_abc5fbf39980e740820e141eeced44d30}{renderGameRoom}}();}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_ac43af34d16f934ccf691a400f198d047}{renderGame}}();}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a6307255e5ee2ec7a662314d2bda4ff4e}{renderDebugMenu}}();}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a4946acc9956541a62556e2387210269e}{startInternalServerThread}}();}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a2be0d0e513ac5ab73854c9772e554bec}{stopInternalServerThread}}();}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_aa0b571b488823b97da2778baf3bd6476}{connectAndSetup}}();}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00256\ \ \ \ \ std::optional<std::pair<std::string,\ std::string>>\ \doxymbox{\hyperlink{class_game_client_ab83ca5c4ba95c4effaa72808f32317e2}{parseServerAddrAndPortFromTextField}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a13407d2e7e53e4fdae463705173cf4ad}{disconnect}}();}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a862ce486628be1fcb0dfc153c843ae5b}{requestBoardSettingsUpdate}}(uint8\_t\ newBoardSize,\ uint8\_t\ newWinConditionLength);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a8351c3139c72a30cf243067c5949d69c}{startGame}}(\textcolor{keywordtype}{bool}\ newGame);}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_game_client_a690f67706963732d7dbddd7144104e28}{sendMove}}(uint8\_t\ posX,\ uint8\_t\ posY);}
+\DoxyCodeLine{00285\ \};}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//TICTACTOEOVERLAN\_GAMECLIENT\_H}}
 
 \end{DoxyCode}

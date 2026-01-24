@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="TicTacToeOverLan-Draft1.png"/></td>
   <td id="projectalign">
-   <div id="projectname">TicTacToeOverLan<span id="projectnumber">&#160;1.0.16</span>
+   <div id="projectname">TicTacToeOverLan<span id="projectnumber">&#160;1.0.17</span>
    </div>
    <div id="projectbrief">TicTacToe Ultimate Edition supporting up to 6 players and a board of 32x32. Allows connections from multiple devices.</div>
   </td>
@@ -180,13 +180,18 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_utils_a9bc7096ff5339947893e3d02d58410b2_icgraph.png" border="0" usemap="#aclass_utils_a9bc7096ff5339947893e3d02d58410b2_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_utils_a9bc7096ff5339947893e3d02d58410b2_icgraph" id="aclass_utils_a9bc7096ff5339947893e3d02d58410b2_icgraph">
-<area shape="rect" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="452,5,605,32"/>
-<area shape="rect" href="class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="267,5,404,32"/>
-<area shape="poly" title=" " alt="" coords="434,19,405,21,405,16,440,19"/>
-<area shape="rect" href="class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,5,219,32"/>
-<area shape="poly" title=" " alt="" coords="249,19,220,21,219,16,254,19"/>
-<area shape="rect" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,5,55,32"/>
-<area shape="poly" title=" " alt="" coords="84,19,55,21,55,16,90,18"/>
+<area shape="rect" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="702,47,854,73"/>
+<area shape="rect" href="class_game_client.html#ab3a19b5a3fb0970a4348272490fb3ebf" title="Processes the BOARD_STATE_UPDATE packet." alt="" coords="452,5,654,48"/>
+<area shape="poly" title=" " alt="" coords="683,46,654,44,654,39,689,46"/>
+<area shape="rect" href="class_game_client.html#ae0c8e785397e3bd691cbf58d8292b644" title="Processes the GAME_START packet." alt="" coords="453,72,653,115"/>
+<area shape="poly" title=" " alt="" coords="689,73,653,81,653,76,683,74"/>
+<area shape="rect" href="class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="267,47,404,73"/>
+<area shape="poly" title=" " alt="" coords="434,45,405,52,404,47,439,44"/>
+<area shape="rect" href="class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,47,219,73"/>
+<area shape="poly" title=" " alt="" coords="249,60,220,63,219,57,254,60"/>
+<area shape="rect" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,47,55,73"/>
+<area shape="poly" title=" " alt="" coords="85,62,56,63,55,57,89,58"/>
+<area shape="poly" title=" " alt="" coords="436,76,405,73,405,68,441,76"/>
 </map>
 </div>
 
@@ -228,22 +233,26 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_utils_a974571ca9cb0b0cda9f0b56e6583a4a5_icgraph.png" border="0" usemap="#aclass_utils_a974571ca9cb0b0cda9f0b56e6583a4a5_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_utils_a974571ca9cb0b0cda9f0b56e6583a4a5_icgraph" id="aclass_utils_a974571ca9cb0b0cda9f0b56e6583a4a5_icgraph">
-<area shape="rect" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="591,93,764,120"/>
-<area shape="rect" href="class_game_client.html#a22eefb77da4aadc789f9f6a39218f099" title=" " alt="" coords="376,5,543,32"/>
-<area shape="poly" title=" " alt="" coords="634,86,542,46,510,35,510,30,544,42,639,86"/>
-<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="391,56,528,99"/>
-<area shape="poly" title=" " alt="" coords="573,93,529,89,529,84,579,93"/>
-<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,81,143,124"/>
-<area shape="poly" title=" " alt="" coords="573,110,543,113,367,116,191,113,143,111,143,106,191,108,367,111,543,108,578,110"/>
-<area shape="rect" href="class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="391,173,528,200"/>
-<area shape="poly" title=" " alt="" coords="627,125,499,175,498,170,622,126"/>
-<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,56,328,99"/>
-<area shape="poly" title=" " alt="" coords="373,78,329,80,328,75,379,77"/>
-<area shape="poly" title=" " alt="" coords="173,90,144,96,142,91,178,88"/>
-<area shape="rect" href="class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="201,173,318,200"/>
-<area shape="poly" title=" " alt="" coords="373,187,318,189,318,184,378,187"/>
-<area shape="rect" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="49,173,99,200"/>
-<area shape="poly" title=" " alt="" coords="183,188,99,189,99,184,188,185"/>
+<area shape="rect" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="830,97,1002,124"/>
+<area shape="rect" href="class_game_client.html#a22eefb77da4aadc789f9f6a39218f099" title=" " alt="" coords="588,5,755,32"/>
+<area shape="poly" title=" " alt="" coords="876,89,832,68,781,47,744,35,744,30,783,41,834,64,881,90"/>
+<area shape="rect" href="class_game_client.html#ae0c8e785397e3bd691cbf58d8292b644" title="Processes the GAME_START packet." alt="" coords="572,56,771,99"/>
+<area shape="poly" title=" " alt="" coords="812,97,772,94,772,88,817,97"/>
+<area shape="rect" href="class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="561,123,782,165"/>
+<area shape="poly" title=" " alt="" coords="817,124,783,132,782,126,812,125"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,152,143,195"/>
+<area shape="poly" title=" " alt="" coords="884,132,837,160,782,180,694,197,603,206,513,211,424,211,264,201,143,187,143,182,265,196,424,205,513,205,603,201,693,191,781,175,835,155,879,133"/>
+<area shape="rect" href="class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="376,64,513,91"/>
+<area shape="poly" title=" " alt="" coords="553,78,514,80,513,75,559,77"/>
+<area shape="rect" href="class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="201,64,318,91"/>
+<area shape="poly" title=" " alt="" coords="358,78,318,80,317,75,363,77"/>
+<area shape="rect" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="49,64,99,91"/>
+<area shape="poly" title=" " alt="" coords="183,79,100,80,98,75,187,75"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,123,513,165"/>
+<area shape="poly" title=" " alt="" coords="543,144,514,147,514,141,548,144"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,123,328,165"/>
+<area shape="poly" title=" " alt="" coords="358,144,329,147,328,141,363,144"/>
+<area shape="poly" title=" " alt="" coords="173,158,144,165,143,160,178,157"/>
 </map>
 </div>
 
@@ -363,13 +372,18 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_utils_a71b0066a7749e408841c15ee5ff4f490_icgraph.png" border="0" usemap="#aclass_utils_a71b0066a7749e408841c15ee5ff4f490_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_utils_a71b0066a7749e408841c15ee5ff4f490_icgraph" id="aclass_utils_a71b0066a7749e408841c15ee5ff4f490_icgraph">
-<area shape="rect" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="561,13,700,40"/>
-<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,5,513,48"/>
-<area shape="poly" title=" " alt="" coords="543,27,514,29,514,24,549,27"/>
-<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
-<area shape="poly" title=" " alt="" coords="358,27,329,29,328,24,363,27"/>
-<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
-<area shape="poly" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
+<area shape="rect" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="830,47,968,73"/>
+<area shape="rect" href="class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="561,5,782,48"/>
+<area shape="poly" title=" " alt="" coords="812,48,782,46,782,40,817,48"/>
+<area shape="rect" href="class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="577,72,766,115"/>
+<area shape="poly" title=" " alt="" coords="817,72,767,82,766,77,812,73"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,39,513,81"/>
+<area shape="poly" title=" " alt="" coords="548,45,514,53,513,47,543,46"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,39,328,81"/>
+<area shape="poly" title=" " alt="" coords="358,60,329,63,328,57,363,60"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,39,143,81"/>
+<area shape="poly" title=" " alt="" coords="173,61,144,63,143,57,178,59"/>
+<area shape="poly" title=" " alt="" coords="559,77,514,73,514,67,564,77"/>
 </map>
 </div>
 

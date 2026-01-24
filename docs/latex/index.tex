@@ -1,0 +1,290 @@
+\chapter{Tic\+Tac\+Toe\+Over\+Lan }
+\hypertarget{index}{}\label{index}\index{TicTacToeOverLan@{TicTacToeOverLan}}
+\label{index_md__d_1_2_8_clion_projects_2_tic_tac_toe_over_lan_2_r_e_a_d_m_e}%
+\Hypertarget{index_md__d_1_2_8_clion_projects_2_tic_tac_toe_over_lan_2_r_e_a_d_m_e}%
+
+
+
+\begin{DoxyEnumerate}
+\item Overview
+\item Idea
+\item Implementation analysis
+\item User manual
+\item Developer guide
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Overview}{Overview}}\label{index_autotoc_md1}
+Tic\+Tac\+Toe\+Over\+Lan allows for up to 6 simultaneous players connected over the network. With port forwarding It should be possible to play over the internet. Custom board settings allow for a board of size 32x32 with custom win condition length.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{tictactieoverlan-img1.png}%
+\doxyfigcaption{Screenshot of the game running}%
+\end{DoxyImage}
+   
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Idea}{Idea}}\label{index_autotoc_md3}
+The general idea is inspired by how minecraft handles it\textquotesingle{}s worlds. We should have an option to launch an Internal Server by one of the Clients. Others would connect to it via a specified IP and port, or a url. The state of the game should be held and validated on the server. Board updates are going to be sent packaged with the whole board, as it\textquotesingle{}s pretty small and shouldn\textquotesingle{}t pose any performance concerns. The host should be the one managing the board settings, and requesting game starts and restarts.\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{Networking}{Networking}}\label{index_autotoc_md4}
+The connections are going to be handled by Web\+Sockets. The Windows api already contains methods for handling multiple connections at a time, making it quick to set up. Sadly that means, this implementation won\textquotesingle{}t work on linux systems. A custom network protocol needs to be designed, so the server and client know what data is being transmitted and how to handle it.\hypertarget{index_autotoc_md5}{}\doxysubsection{\texorpdfstring{State Management}{State Management}}\label{index_autotoc_md5}
+The server should be the sole authoritative entity in the design. It should hold, manage and update the game state based on validated data, which arrives in the form of packets from the clients. The game state(board state) is going to be sent whole, to the clients for rendering and synchronization on each update. This doesn\textquotesingle{}t pose any performance concerns on this scale.
+
+After each move the server validates the move and checks if it\textquotesingle{}s a winning one. Sending {\ttfamily board\+State\+Update}\textquotesingle{}s or {\ttfamily game\+End} packets accordingly. The win condition is check by ray-\/casting in all directions from the last move and counting same pieces, if they equal or exceed the {\ttfamily win\+Condition\+Length} the server sends out {\ttfamily game\+End} packets, finishing the round.\hypertarget{index_autotoc_md6}{}\doxysubsection{\texorpdfstring{Client Rendering}{Client Rendering}}\label{index_autotoc_md6}
+I chose SFML library for the GUI. It\textquotesingle{}s simple enough, while giving the necessary tools to create a small working GUI application. It comes with built-\/in functions for shapes, text and event handling, but lacks any widget functionality. That means, implementing my own widgets for buttons, text fields and the board itself. I plan to use the minecraft widget implementation as the blueprint, while cutting out unnecessary parts. All widgets would implement the {\ttfamily \doxylink{class_widget}{Widget}} interface, which would contain methods like update, handle\+Input and render. Which is going to simplify the general usage in the game loop. Each widget is going to have a dedicated builder for ease of use. To declutter the render and update functions, each widget is going to get a display\+Condition lambda, to know when and where to show up on screen. Button press or input events are going to launch callbacks for processing.\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Binary Bundling}{Binary Bundling}}\label{index_autotoc_md7}
+The project should work as a standalone binary, which is going to require bundling all libraries statically inside, as well as the images and fonts. Unfortunately, this is going to overly bloat the size of the binary.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md9}{}\doxysection{\texorpdfstring{Implementation analysis}{Implementation analysis}}\label{index_autotoc_md9}
+The final application follows a Client-\/\+Server architecture, even when playing locally. The project was implemented using C++26, using SFML for graphics and Winsock2 for networking.\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{Architecture \& Concurrency}{Architecture \& Concurrency}}\label{index_autotoc_md10}
+
+\begin{DoxyItemize}
+\item {\bfseries{Host-\/as-\/\+Server}}:\+ We avoid a dedicated binary. Instead, when a player chooses to "{}\+Host"{}, the {\ttfamily \doxylink{class_game_client}{Game\+Client}} spins up an {\ttfamily \doxylink{class_internal_game_server}{Internal\+Game\+Server}} on a dedicated {\ttfamily std::\+thread}. Additionally, the current implementation allows for creating a Dedicated server easily, if desired.
+\item {\bfseries{Thread Safety}}:\+ Since the server runs in parallel to the rendering loop, shared resources and state management utilize {\ttfamily std::\+atomic} variables and {\ttfamily std::\+mutex} locks to prevent race conditions. Mainly used in debug logging, game ticks and within {\ttfamily \doxylink{class_rolling_average}{Rolling\+Average}}.
+\item {\bfseries{Game Loop}}:\+ The client operates on a standard {\itshape Input} → {\itshape Update} → {\itshape Render} loop, while the server maintains its own tick rate to process incoming packets and broadcast state updates.
+\end{DoxyItemize}\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{Networking Protocol}{Networking Protocol}}\label{index_autotoc_md11}
+Contrary to the initial Web\+Socket idea, I went for Raw TCP Sockets to better understand how webservers work, also standard Web\+Sockets were a bit overkill for a project like this. The implementation utilizes the Windows Sockets API (Winsock2).
+\begin{DoxyItemize}
+\item {\bfseries{Binary Protocol}}:\+ Communication relies on a custom binary protocol. Data is structured into {\ttfamily Packets} defined with {\ttfamily \#pragma pack(1)} to ensure byte-\/perfect alignment across different architectures.
+\item {\bfseries{Packet Handling}}:\+
+\begin{DoxyItemize}
+\item {\bfseries{Header-\/\+Payload Separation}}:\+ Every transmission is prefixed with a \doxylink{struct_packet_header}{Packet\+Header} (containing {\ttfamily \doxylink{_network_protocol_8h_a0628f13bcd4685c7a4b4a9f1aad83b56}{Packet\+Type}} and {\ttfamily size}), allowing the receiver to determine exactly how many bytes to read next.
+\item {\bfseries{Stream Fragmentation}}:\+ The {\ttfamily \doxylink{class_network_manager}{Network\+Manager}} has a buffering system ({\ttfamily recieve\+Buffer}) to handle fragmented TCP packets, ensuring that partial packets are stored until the full payload arrives.
+\end{DoxyItemize}
+\item {\bfseries{Serialization}}:\+ The dynamic {\ttfamily std::\+vector} board state is "{}flattened"{} into static 1D arrays using {\ttfamily \doxylink{class_utils_a71b0066a7749e408841c15ee5ff4f490}{Utils::\+serialize\+Board}} for network transmission, then reconstructed into 2D vectors upon arrival.
+\end{DoxyItemize}\hypertarget{index_autotoc_md12}{}\doxysubsection{\texorpdfstring{Custom GUI System}{Custom GUI System}}\label{index_autotoc_md12}
+SFML provides the window and drawing primitives(shapes and text), but lacks high-\/level components, like buttons or text fields. A custom \doxylink{class_widget}{Widget} System was implemented to handle that.
+\begin{DoxyItemize}
+\item {\bfseries{Unified}}:\+ All UI elements({\ttfamily \doxylink{class_button_widget}{Button\+Widget}}, {\ttfamily \doxylink{class_text_field_widget}{Text\+Field\+Widget}}) inherit from an abstract {\ttfamily \doxylink{class_widget}{Widget}} base class, enforcing a contract for handle\+Event, update and render methods.
+\item {\bfseries{Builder Pattern}}:\+ To reduce boilerplate in the initialization phase and improve the developer experience, widgets use the {\bfseries{Builder Pattern}} ({\ttfamily \doxylink{class_button_builder}{Button\+Builder}}, {\ttfamily \doxylink{class_text_field_builder}{Text\+Field\+Builder}}). This allows chaining method calls (e.\+g. {\ttfamily \doxylink{class_button_widget_a2d42a2f9e1c33f5c726c827b5814cb05}{Button\+Widget.\+builder()}.set\+Position().set\+Size().build())}) for readable UI creation.
+\item {\bfseries{Callbacks}}:\+ UI logic is decupled from game logic using {\ttfamily std::\+function} lambdas. Widgets trigger callbacks (e.\+g. {\ttfamily on\+Click}, {\ttfamily on\+Text\+Change}) rather than handling game state directly.
+\end{DoxyItemize}\hypertarget{index_autotoc_md13}{}\doxysubsection{\texorpdfstring{Game Logic And State Management}{Game Logic And State Management}}\label{index_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\bfseries{Authoritative State}}:\+ The server holds the "{}\+True"{} state of the board. Clients send {\ttfamily Mover\+Request\+Packet}\textquotesingle{}s, which the server validates before applying.
+\item {\bfseries{Snapshot Synchronization}}:\+ To ensure total consistency, the server broadcasts the {\itshape entire} board state ({\ttfamily \doxylink{struct_board_state_update_packet}{Board\+State\+Update\+Packet}}) after every valid move. This eliminates "{}desync"{} issues where a client might miss a single move packet.
+\item {\bfseries{Win Validator}}:\+ Victory detection uses an optimized {\bfseries{Directional Ray-\/casting}} algorithm ({\ttfamily \doxylink{class_win_validator}{Win\+Validator}}). Instead of scanning the whole board (O(\+N\texorpdfstring{$^\wedge$}{\string^}2)), it scans only the axes originating from the last placed piece, making the check efficient even on larger board sizes(up to 32x32).
+\end{DoxyItemize}\hypertarget{index_autotoc_md14}{}\doxysubsection{\texorpdfstring{Debug Info}{Debug Info}}\label{index_autotoc_md14}
+To help with testing and state verification, a real-\/time Debug Overlay was implemented into the rendering loop. Toggled via the {\ttfamily F3} key, this bypasses the standard widget system and prints raw telemetry data directly onto the screen.
+\begin{DoxyItemize}
+\item {\bfseries{Client Section}}:\+ It displays local state variables, and the local view of the player list.
+\item {\bfseries{Internal Server Section}}:\+ When the client is acting as the Host, the overlay additionally renders a section for the {\ttfamily \doxylink{class_internal_game_server}{Internal\+Game\+Server}}. Displays servers status, tick count, {\ttfamily \doxylink{class_rolling_average}{Rolling\+Average}} tick times and the authoritative game settings. Which allows to verify the data and its synchronization, between the client\textquotesingle{}s local state and the server\textquotesingle{}s without attaching an external debugger.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md16}{}\doxysection{\texorpdfstring{User Manual}{User Manual}}\label{index_autotoc_md16}
+\hypertarget{index_autotoc_md17}{}\doxysubsection{\texorpdfstring{Prerequisites}{Prerequisites}}\label{index_autotoc_md17}
+Before compiling, ensure you have the following tools installed and added to PATH.
+\begin{DoxyEnumerate}
+\item {\bfseries{CMake}}
+\begin{DoxyItemize}
+\item Version 4 or newer
+\end{DoxyItemize}
+\item {\bfseries{Compiler of your choice}}
+\begin{DoxyItemize}
+\item Since the project uses {\bfseries{C++26}}, a very recent version is required (GCC 14 or newer)
+\item For development Min\+GW-\/w64-\/15.\+2.\+0 was used. Acquired from (\href{https://www.mingw-w64.org/downloads/\#mingw-w64-builds}{\texttt{https:\+/\+/\+www.\+mingw-\/w64.\+org/\+downloads/\+\+\#mingw-\/w64-\/builds}}) (\href{https://github.com/niXman/mingw-builds-binaries/releases}{\texttt{https:\+/\+/\+github.\+com/\+ni\+Xman/\+mingw-\/builds-\/binaries/\+releases}})
+\end{DoxyItemize}
+\item {\bfseries{Git}}
+\begin{DoxyItemize}
+\item Required by CMake to automatically download SFML.
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md18}{}\doxysubsection{\texorpdfstring{Compilation}{Compilation}}\label{index_autotoc_md18}
+Optionally the binary can be grabbed from the releases tab in the Git\+Hub repo:\+ \href{https://github.com/Bebomny/TicTacToeOverLan/releases}{\texttt{https:\+/\+/\+github.\+com/\+\+Bebomny/\+\+Tic\+Tac\+Toe\+Over\+Lan/\+releases}}
+
+
+\begin{DoxyEnumerate}
+\item Clone the project 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/Bebomny/TicTacToeOverLan.git\ }
+
+\end{DoxyCode}
+
+\item Navigate into the directory and tell CMake to use Min\+GW as the compiler instead of looking for Visual Studio 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir\ build}
+\DoxyCodeLine{cd\ build}
+\DoxyCodeLine{cmake\ -\/G\ "{}MinGW\ Makefiles"{}\ ..}
+
+\end{DoxyCode}
+
+\item Compile. This may take a minute as CMake needs to compile SFML and Win\+Api. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\ -\/-\/build\ .}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md19}{}\doxysubsection{\texorpdfstring{Launching the Game}{Launching the Game}}\label{index_autotoc_md19}
+After a successful build, the executable will be generated in the {\ttfamily build/\+} folder (or a subfolder inside {\ttfamily build}) As the images and fonts are bundled inside the binary, you\textquotesingle{}re free to move it around, and It should still function as usual.
+
+To launch it either double-\/click the executable, or launch it from the terminal:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.\(\backslash\)TicTacToeOverLan.exe}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md20}{}\doxysubsection{\texorpdfstring{Playing the Game}{Playing the Game}}\label{index_autotoc_md20}
+The game is played in sessions. One player acts as the Host (Server), and others join as Clients.\hypertarget{index_autotoc_md21}{}\doxysubsubsection{\texorpdfstring{Main Menu}{Main Menu}}\label{index_autotoc_md21}
+Upon launching, you will see the Main Menu.
+\begin{DoxyItemize}
+\item {\bfseries{\doxylink{struct_player}{Player} name}}:\+ Here you can set the name of your player.
+\item {\bfseries{Server Address}}:\+ The address of the server to which you\textquotesingle{}d like to connect to. Can be a url or an IP address, the port by default is {\ttfamily 27015}
+\item {\bfseries{Connect Button}}:\+ Connects to the server at which address has been specified, needs to be a valid address in the form of {\ttfamily \{ip/\+url\}:\+\{port\}}
+\item {\bfseries{Host button}}:\+ Clicking the host button, starts an internal server on the port specified in the address bar, by default {\ttfamily 27015}. The server starts on the IP of the host machine. So Its reachable on the host via {\ttfamily localhost}, on LAN via the machines local IP, and over the broader internet if the port is forwarded through the router.
+\end{DoxyItemize}
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{tictactoeoverlan-img2.png}%
+\doxyfigcaption{Main Menu Screen}%
+\end{DoxyImage}
+   \hypertarget{index_autotoc_md22}{}\doxysubsection{\texorpdfstring{Game Room}{Game Room}}\label{index_autotoc_md22}
+Once connected, players gather in the Game Room.
+\begin{DoxyItemize}
+\item {\bfseries{Player\+List}}:\+ Here you can see all connected players and their pieces.
+\end{DoxyItemize}
+
+ 
+\begin{DoxyInlineImage}%
+\includegraphics[height=\baselineskip,keepaspectratio=true]{tictactoeoverlan-img6.png}%Player List%
+\end{DoxyInlineImage}
+   
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Game Settings (Host Only)}}:\+ The Host has exclusive control over the match rules:\+
+\begin{DoxyItemize}
+\item {\bfseries{Board Size}}:\+ Adjust the grid size (from 1x1 up to 32x32).
+\item {\bfseries{Win Condition}}:\+ Set how many consecutive pieces are needed to win (e.\+g. 3, 4, 5).
+\item {\itshape Tip}:\+ For larger boards (20x20), a win condition of 5 is recommended.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+ 
+\begin{DoxyInlineImage}%
+\includegraphics[height=\baselineskip,keepaspectratio=true]{tictactoeoverlan-img5.png}%Game Settings%
+\end{DoxyInlineImage}
+   
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Starting}}:\+
+\begin{DoxyItemize}
+\item Once all players are gathered, the Host can start the game with the "{}\+Start"{} button.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{tictactoeoverlan-img3.png}%
+\doxyfigcaption{Game Room Screen}%
+\end{DoxyImage}
+   \hypertarget{index_autotoc_md23}{}\doxysubsection{\texorpdfstring{Gameplay}{Gameplay}}\label{index_autotoc_md23}
+The game is turn-\/based.
+\begin{DoxyItemize}
+\item {\bfseries{Your Turn}}:\+
+\begin{DoxyItemize}
+\item When it is your turn, your cursor will be able to interact with the board.
+\item Left-\/\+Click on an empty square to place your piece. You can see the piece you are playing as at the top of your screen.
+\item Once placed, your move is sent to the server, and the turn passes to the next player.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+ 
+\begin{DoxyInlineImage}%
+\includegraphics[height=\baselineskip,keepaspectratio=true]{tictactoeoverlan-img8.png}%Your Turn%
+\end{DoxyInlineImage}
+   
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Opponent\textquotesingle{}s Turn}}:\+
+\begin{DoxyItemize}
+\item You cannot place pieces. Wait for the other player to make their move, and for the server to broadcast the change.
+\end{DoxyItemize}
+\item {\bfseries{Winning}}:\+
+\begin{DoxyItemize}
+\item The game ends immediately when a player aligns the required number of pieces horizontally, vertically, or diagonally.
+\item A "{}\+Game End"{} screen will appear announcing the winner, and the current scores for the lobby.
+\item The Host can then choose to start another match or return to the {\bfseries{Game Room}}, returning to the game room resets the leaderboard.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{tictactoeoverlan-img9.png}%
+\doxyfigcaption{Game End Screen}%
+\end{DoxyImage}
+   
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md25}{}\doxysection{\texorpdfstring{Developer Guide}{Developer Guide}}\label{index_autotoc_md25}
+\hypertarget{index_autotoc_md26}{}\doxysubsection{\texorpdfstring{UI}{UI}}\label{index_autotoc_md26}
+All widgets should implement the widget interface, and provide builder methods for ease of use. In the {\ttfamily \doxylink{class_game_client}{Game\+Client}} widgets are placed in a map, for retrieval by name, if necessary later. If it can be done, the condition for displaying and activating a widget should go into the display\+Condition callback.
+
+The board for now has a separate handler than widgets. If necessary It can be made a widget later on.\hypertarget{index_autotoc_md27}{}\doxysubsection{\texorpdfstring{Game\+Client}{Game\+Client}}\label{index_autotoc_md27}
+Widgets are created in the init\+Widget function at the start of the application. Ideally this should be made into a screen system, but for a simple game like this it wasn\textquotesingle{}t necessary. UI elements are put into position using preestablished {\ttfamily sf::\+\+Vector2f} and {\ttfamily sf::\+\+Float\+Rect} structures.
+
+The client follows a {\itshape handle\+Input} → {\itshape update} → {\itshape render} loop. Each screen should have their own handle, update and render functions for readability. A screen system would improve this dramatically when considering expansion or refactoring of the project
+
+The constructor establishes initial values, loads fonts and icons, creates the screen in a contract with SFML and the creates widgets in the {\ttfamily init\+Widgets} function.
+
+Then the client runs in the {\ttfamily run} function calling {\ttfamily handle\+Input}, {\ttfamily update} and {\ttfamily render} functions in order. The loop runs on 60 updates per second, as per the window framerate set in the constructor.
+
+~\newline
+\hypertarget{index_autotoc_md28}{}\doxysubsubsection{\texorpdfstring{Input Handling}{Input Handling}}\label{index_autotoc_md28}
+Here we poll all events that came in on this frame, first we check for the Window Close Event, then for global keyboard events such as the debug {\ttfamily F3} being pressed. Next is distributing events to all widgets, and finally handling non widget events in separate functions for each screen({\ttfamily handle\+Menu\+Input}, {\ttfamily handle\+Game\+Room\+Input}, {\ttfamily handle\+Game\+Input}).
+
+{\ttfamily Handle\+Game\+Input} is also responsible for sending move requests upon the players turn, as the game\+Board isn\textquotesingle{}t a widget its checked here separately.\hypertarget{index_autotoc_md29}{}\doxysubsubsection{\texorpdfstring{Updating}{Updating}}\label{index_autotoc_md29}
+The update function is responsible for handling widget updates, animations, and received packets. Firstly it updates all widgets, then proceeds to loop over all incoming packets, polling the {\ttfamily \doxylink{class_network_manager}{Network\+Manager}} for available full packets.
+
+Then according to the packet header, it handles the data. For readability most packets got their own functions, instead of handling them directly in the switch statement. S2C Packets:\+
+\begin{DoxyItemize}
+\item {\ttfamily SERVER\+\_\+\+HELLO}:\+ Packet received from the server upon initial connection. We receive the player\+ID here, and then send {\ttfamily SETUP\+\_\+\+REQ} with the confirmed ID, player name, initial\+Token, and whether we are the host.
+\item {\ttfamily SETUP\+\_\+\+ACK}:\+ Server accepted our {\ttfamily SETUP\+\_\+\+REQ} and responded with the generated Auth\+Token, player\textquotesingle{}s piece\+Type, and the initial Board settings. We also receive the players currently residing in the lobby.
+\item {\ttfamily NEW\+\_\+\+PLAYER\+\_\+\+JOIN}:\+ When a new player joins we receive this packet, it contains all info about the new player that the client is allowed to know like:\+ {\ttfamily player\+Name}, {\ttfamily piece\+Type}, {\ttfamily is\+Me}, {\ttfamily is\+My\+Turn}, current {\ttfamily wins}, and whether it\textquotesingle{}s the {\ttfamily host}.
+\item {\ttfamily SETTINGS\+\_\+\+UPDATE}:\+ The host changed the board settings, we receive the new parameters here.
+\item {\ttfamily PLAYER\+\_\+\+DISCONNECTED}:\+ Received when a player disconnects, we just erase the corresponding player form the player list.
+\item {\ttfamily GAME\+\_\+\+START}:\+ {\ttfamily \doxylink{struct_game_start_packet}{Game\+Start\+Packet}} also contains all board settings for a final confirmation as well as the starting player, and initial\+Game\+Board. We set this all up for the game, and switch the client into {\ttfamily Client\+State::\+\+Game}.
+\item {\ttfamily BOARD\+\_\+\+STATE\+\_\+\+UPDATE}:\+ We deserialize the new board state, update the turn and round parameters, switching the acting player, and refreshing the player list.
+\item {\ttfamily BACK\+\_\+\+TO\+\_\+\+GAME\+\_\+\+ROOM}:\+ This is sent when the Host chose to return to the Game Room, so the clients can update their state and screens accordingly.
+\item {\ttfamily GAME\+\_\+\+END}:\+ This packet is received upon either a player winning or disconnecting. Finishing the current round. The host can then choose to return to the Game Room or play again.
+\end{DoxyItemize}\hypertarget{index_autotoc_md30}{}\doxysubsubsection{\texorpdfstring{Rendering}{Rendering}}\label{index_autotoc_md30}
+We clear the background, then render each menu\textquotesingle{}s text, or other things in the separate screen functions. The widgets are rendered on top of the text. The debug menu is drawn on the absolute top of the screen, ensuring its always visible.
+
+Text is rendered mostly by reusing one text object, this minimizes font loading calls, and maybe marginally improves performance.\hypertarget{index_autotoc_md31}{}\doxysubsubsection{\texorpdfstring{Server Address Parsing}{Server Address Parsing}}\label{index_autotoc_md31}
+A Reg\+Ex pattern is used for server address and port parsing, it checks if its valid and separates the ip/\+url and port into 2 capturing groups. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\string^((?:\(\backslash\)D+).\(\backslash\)w\{2,8\}|(?:\(\backslash\)b(?:(?:25[0-\/5]|2[0-\/4][0-\/9]|[01]?[0-\/9][0-\/9]?)\(\backslash\).)\{3\}(?:25[0-\/5]|2[0-\/4][0-\/9]|[01]?[0-\/9][0-\/9]?))):(\(\backslash\)d\{1,5\}\(\backslash\)b)\$}
+
+\end{DoxyCode}
+ {\bfseries{Examples:\+}}
+\begin{DoxyItemize}
+\item 192.\+168.\+2.\+32:\+27015 → {\bfseries{valid}} → Group 1:\+ 192.\+168.\+2.\+32 Group 2:\+ 27015
+\item domain.\+example.\+com:\+27015 → {\bfseries{valid}} → Group 1:\+ domain.\+example.\+com Group 2:\+ 27015
+\item 129.\+212.\+913.\+123:\+12312 → {\bfseries{invalid}}
+\item localhost:\+27015 → {\bfseries{valid}} → Group 1:\+ localhost Group 2:\+ 27015
+\end{DoxyItemize}\hypertarget{index_autotoc_md32}{}\doxysubsubsection{\texorpdfstring{Internal Server Handling}{Internal Server Handling}}\label{index_autotoc_md32}
+
+\begin{DoxyItemize}
+\item {\ttfamily start\+Internal\+Server\+Thread}:\+ Grabs the port from the server address field using the above parsing regex, and launches a new thread with the internal server.
+\item {\ttfamily stop\+Internal\+Server\+Thread}:\+ Called either by pressing the HOST button in the main menu again after launching the server, or in the destructor of the \doxylink{class_game_client}{Game\+Client}, to ensure that no zombie orphaned threads are left behind.
+\end{DoxyItemize}\hypertarget{index_autotoc_md33}{}\doxysubsection{\texorpdfstring{Internal Game Server}{Internal Game Server}}\label{index_autotoc_md33}
+The {\ttfamily start} function initializes default values, the initial board state and available pieces. Creates a listing socket on the specified port and spins up a while loop for polling the Windows api for packets, initial timeout is set to 10ms between polls. Should be made dynamic later to keep a constant TPS value instead of trying to reach the 10ms interval.
+
+When a new connection arrives, the server creates a new \doxylink{struct_client_context}{Client\+Context} for the incoming connection and sends a {\ttfamily SERVER\+\_\+\+HELLO} packet with the generated player\+ID. C2S Packets:\+
+\begin{DoxyItemize}
+\item {\ttfamily SETUP\+\_\+\+REQ}:\+ Received after the server sends the initial Hello. The server reads the client\textquotesingle{}s preferred name and {\ttfamily initial\+Token}. It then generates an {\ttfamily Auth\+Token}, assigns a {\ttfamily \doxylink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}} from the available pool, adds the client to the player list and responds with SETUP\+\_\+\+ACK.
+\item {\ttfamily SETTINGS\+\_\+\+CHANGE\+\_\+\+REQ}:\+ {\bfseries{(Host Only)}} If validated, it updates the internal {\ttfamily \doxylink{struct_board_data}{Board\+Data}} and broadcasts a {\ttfamily SETTINGS\+\_\+\+UPDATE} packet to all clients.
+\item {\ttfamily GAME\+\_\+\+START\+\_\+\+REQ}:\+ {\bfseries{(Host Only)}} The server resets the game board, assigns the starting player, zeros out the move history, and broadcasts a {\ttfamily GAME\+\_\+\+START} packet containing the clear grid and final game settings.
+\item {\ttfamily MOVE\+\_\+\+REQ}:\+ The core gameplay packet. The server validate that:\+
+\begin{DoxyItemize}
+\item It is actually this player\textquotesingle{}s turn.
+\item The target square is currently empty.
+\end{DoxyItemize}
+
+If valid, the server updates the {\ttfamily \doxylink{struct_board_data}{Board\+Data}}, appends the move to history, checks for win condition using {\ttfamily \doxylink{class_win_validator}{Win\+Validator}}, and then broadcasts a {\ttfamily BOARD\+\_\+\+STATE\+\_\+\+UPDATE} or {\ttfamily GAME\+\_\+\+END} packet if a win is detected.
+\item {\ttfamily BACK\+\_\+\+TO\+\_\+\+GAME\+\_\+\+ROOM}:\+ {\bfseries{(Host Only)}} Received when the game is over and the host wants to return to the lobby. Relayed to all clients.
+\end{DoxyItemize}
+
+The server additionally exposes multiple functions visible to the hosting game client containing telemetry data:\+ {\ttfamily get\+Tick}, {\ttfamily get\+Last\+Tick\+Time}, {\ttfamily get\+Avg\+Tick\+Time}, {\ttfamily get\+Server\+Port}, {\ttfamily get\+Current\+Turn}, {\ttfamily get\+Hosting\+Player\+Id}, {\ttfamily get\+Next\+Player\+Id}, {\ttfamily get\+Board\+Settings}, {\ttfamily get\+Available\+Pieces}, {\ttfamily get\+Players} and {\ttfamily get\+Moves}.\hypertarget{index_autotoc_md34}{}\doxysubsection{\texorpdfstring{Rolling Average}{Rolling Average}}\label{index_autotoc_md34}
+A custom implementation of a rolling average to track {\ttfamily tick} times on the {\ttfamily \doxylink{class_internal_game_server}{Internal\+Game\+Server}}. Utilizes mutexes for thread safe access, and comes with {\ttfamily min}, {\ttfamily max} and {\ttfamily avg} methods built in. A deque is used for the values with a limited number of entries.\hypertarget{index_autotoc_md35}{}\doxysubsection{\texorpdfstring{Game Definitions}{Game Definitions}}\label{index_autotoc_md35}
+Contains definitions for common objects between the client and server. Like {\ttfamily \doxylink{_game_definitions_8h_a23b5bbcdbdb8bde75298d795943efa86}{Piece\+Type}}, {\ttfamily \doxylink{struct_player}{Player}}, {\ttfamily \doxylink{struct_board_data}{Board\+Data}}, {\ttfamily \doxylink{struct_board_square}{Board\+Square}} or {\ttfamily \doxylink{struct_move}{Move}} structs.\hypertarget{index_autotoc_md36}{}\doxysubsection{\texorpdfstring{Network Protocol}{Network Protocol}}\label{index_autotoc_md36}
+All packet are defined in this file, it also utilizes the {\ttfamily \#pragma pack(push, 1)} macro. This prevents the compiler from messing up the padding in the structs making the network protocol work on most architectures.\hypertarget{index_autotoc_md37}{}\doxysubsection{\texorpdfstring{common/\+resources Directory}{common/\+resources Directory}}\label{index_autotoc_md37}
+Hold the Game Icon as well as the font in byte array form. This makes moving the binary around much easier as there is no need to bundle the resource folder along with it. 

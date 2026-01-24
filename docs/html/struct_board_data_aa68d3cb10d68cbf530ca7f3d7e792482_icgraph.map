@@ -1,11 +1,16 @@
 <map id="BoardData::setSquareAt" name="BoardData::setSquareAt">
-<area shape="rect" id="Node000001" title="Updates the state of a specific grid cell." alt="" coords="653,5,816,32"/>
-<area shape="rect" id="Node000002" href="$class_utils.html#a9bc7096ff5339947893e3d02d58410b2" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="452,5,605,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="634,19,605,21,605,16,640,19"/>
-<area shape="rect" id="Node000003" href="$class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="267,5,404,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="434,19,405,21,405,16,440,19"/>
-<area shape="rect" id="Node000004" href="$class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,5,219,32"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="249,19,220,21,219,16,254,19"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,5,55,32"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="84,19,55,21,55,16,90,18"/>
+<area shape="rect" id="Node000001" title="Updates the state of a specific grid cell." alt="" coords="902,47,1065,73"/>
+<area shape="rect" id="Node000002" href="$class_utils.html#a9bc7096ff5339947893e3d02d58410b2" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="702,47,854,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="884,60,855,63,854,57,889,60"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#ab3a19b5a3fb0970a4348272490fb3ebf" title="Processes the BOARD_STATE_UPDATE packet." alt="" coords="452,5,654,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="683,46,654,44,654,39,689,46"/>
+<area shape="rect" id="Node000007" href="$class_game_client.html#ae0c8e785397e3bd691cbf58d8292b644" title="Processes the GAME_START packet." alt="" coords="453,72,653,115"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="689,73,653,81,653,76,683,74"/>
+<area shape="rect" id="Node000004" href="$class_game_client.html#a6b6587edc0bd96624b375a64e6ae74b1" title="Processes game logic (network packets, state transitions)." alt="" coords="267,47,404,73"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="434,45,405,52,404,47,439,44"/>
+<area shape="rect" id="Node000005" href="$class_game_client.html#a672542ed58818ae9ecd57eb5f00d15c4" title="Main Application Loop. &#160;&#160;Contains the while(window.isOpen()) loop. &#160;&#160;Sequentially calls handleInput()..." alt="" coords="103,47,219,73"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="249,60,220,63,219,57,254,60"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Application Entry Point. &#160;&#160;Initializes the primary GameClient instance and enters the main execution ..." alt="" coords="5,47,55,73"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="85,62,56,63,55,57,89,58"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="436,76,405,73,405,68,441,76"/>
 </map>

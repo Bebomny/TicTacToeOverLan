@@ -1,0 +1,5 @@
+<map id="GameClient::connectAndSetup" name="GameClient::connectAndSetup">
+<area shape="rect" id="Node000001" title="Initiates connection to the server (local or remote). &#160;&#160;Transitions SetupPhase from DISCONNECTED to S..." alt="" coords="5,13,207,40"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#ab83ca5c4ba95c4effaa72808f32317e2" title="Attempts to parse the text from the server address TextFieldWidget as Server IP and Port." alt="" coords="255,5,450,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,24,241,27,236,27,207,29"/>
+</map>

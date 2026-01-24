@@ -1,16 +1,28 @@
 <map id="InternalGameServer::sendPacket" name="InternalGameServer::sendPacket">
-<area shape="rect" id="Node000001" title="Sends a structured packet to a specific client." alt="" coords="770,64,907,107"/>
-<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="584,5,722,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="753,59,722,51,722,46,758,59"/>
-<area shape="rect" id="Node000005" href="$class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="388,60,525,103"/>
-<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="751,85,525,85,525,79,757,84"/>
-<area shape="rect" id="Node000006" href="$class_internal_game_server.html#a11de7172fe0c184675de6a4b6de586d7" title="Accepts and processes a new connection. &#160;&#160;If a client connects, creates a new ClientContext,..." alt="" coords="376,127,536,169"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="757,99,537,138,537,132,751,99"/>
-<area shape="rect" id="Node000003" href="$class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,60,328,103"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="566,29,476,38,376,51,329,62,327,57,376,45,476,32,571,28"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="572,49,526,65,524,60,567,50"/>
-<area shape="rect" id="Node000004" href="$class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,93,143,136"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="173,97,144,105,142,100,178,95"/>
-<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="369,82,328,84,328,79,375,81"/>
-<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="360,142,143,123,143,118,362,137"/>
+<area shape="rect" id="Node000001" title="Sends a structured packet to a specific client." alt="" coords="1038,310,1175,352"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="853,160,990,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1064,299,948,206,950,201,1070,300"/>
+<area shape="rect" id="Node000009" href="$class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992" title="Processes the SETUP_REQ packet." alt="" coords="599,310,790,352"/>
+<area shape="poly" id="edge16_Node000001_Node000009" title=" " alt="" coords="1020,331,791,334,791,328,1025,331"/>
+<area shape="rect" id="Node000010" href="$class_internal_game_server.html#a11de7172fe0c184675de6a4b6de586d7" title="Accepts and processes a new connection. &#160;&#160;If a client connects, creates a new ClientContext,..." alt="" coords="376,298,536,340"/>
+<area shape="poly" id="edge14_Node000001_Node000010" title=" " alt="" coords="1025,348,933,365,822,376,703,378,643,375,584,367,543,357,506,343,507,338,545,352,585,362,643,369,703,373,822,370,932,360,1020,348"/>
+<area shape="rect" id="Node000003" href="$class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,160,328,203"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="902,146,886,118,864,86,837,56,803,33,746,12,698,9,647,19,585,33,500,59,420,94,349,131,296,162,293,158,346,126,417,89,498,54,584,28,646,13,697,4,747,7,806,29,840,52,868,82,891,115,907,148"/>
+<area shape="rect" id="Node000005" href="$class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="584,43,805,86"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="877,151,803,107,763,89,763,83,806,102,883,151"/>
+<area shape="rect" id="Node000006" href="$class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="388,160,525,203"/>
+<area shape="poly" id="edge13_Node000002_Node000006" title=" " alt="" coords="839,156,804,151,743,143,695,141,585,151,526,163,525,158,584,146,695,136,743,138,805,146,844,156"/>
+<area shape="rect" id="Node000007" href="$class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="600,160,789,203"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="834,182,790,184,789,179,840,181"/>
+<area shape="rect" id="Node000008" href="$class_internal_game_server.html#a38c4d6d073d4fc872bc03c365472836c" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="590,227,799,286"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="842,208,786,229,785,224,837,209"/>
+<area shape="poly" id="edge11_Node000002_Node000009" title=" " alt="" coords="897,214,857,260,806,300,783,312,781,306,803,295,853,256,892,216"/>
+<area shape="rect" id="Node000004" href="$class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,194,143,236"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="173,198,144,205,142,200,178,195"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="611,93,586,107,535,134,491,162,488,157,532,130,583,102,615,91"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="369,182,329,184,328,179,374,181"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="581,182,526,184,525,179,587,181"/>
+<area shape="poly" id="edge10_Node000008_Node000006" title=" " alt="" coords="581,222,525,206,525,200,587,222"/>
+<area shape="poly" id="edge12_Node000009_Node000006" title=" " alt="" coords="592,303,583,300,550,278,520,253,475,206,477,201,524,249,554,274,586,295,597,303"/>
+<area shape="poly" id="edge15_Node000010_Node000004" title=" " alt="" coords="359,295,143,236,143,231,363,291"/>
 </map>

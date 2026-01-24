@@ -12,8 +12,7 @@ The main application controller. ~\newline
 
 
 
-Collaboration diagram for Game\+Client:\+
-\nopagebreak
+Collaboration diagram for Game\+Client:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -50,7 +49,7 @@ sf::\+\+Font \doxymbox{\hyperlink{class_game_client_ae472b91cf508252769cb3440361
 \item 
 std::\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_widget}{Widget}} $>$ $>$ \doxymbox{\hyperlink{class_game_client_a0fdcf3da730e98cbd19ca61640b6f834}{widgets}}
 \item 
-bool \doxymbox{\hyperlink{class_game_client_a6a78afc5ca235cb2bc924256502bee30}{debug\+Enabled}} = true
+bool \doxymbox{\hyperlink{class_game_client_a6a78afc5ca235cb2bc924256502bee30}{debug\+Enabled}} = false
 \item 
 \doxymbox{\hyperlink{class_internal_game_server}{Internal\+Game\+Server}} \doxymbox{\hyperlink{class_game_client_a188824d66e2b42517bfc3d8aa09471bc}{server\+Logic}}
 \item 
@@ -123,6 +122,22 @@ void \doxymbox{\hyperlink{class_game_client_a2695419dcc3f78ed346f4f666e1e60c5}{h
 \begin{DoxyCompactList}\small\item\em Processes input when in the Waiting Room. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4}{handle\+Game\+Input}} (const std::\+optional$<$ sf::\+\+Event $>$ \&event, const sf::\+\+Vector2i \&mouse\+Pos)
 \begin{DoxyCompactList}\small\item\em Processes input during active gameplay (Board clicks). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_aaa7e7f9e3b084bc691b24df34186ffec}{handle\+Server\+Hello\+Packet}} (const \doxymbox{\hyperlink{struct_server_hello_packet}{Server\+Hello\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the SERVER\+\_\+\+HELLO packet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a03d226485ec0fbdbeb13b422552fa51b}{handle\+Setup\+Ack\+Packet}} (const \doxymbox{\hyperlink{struct_setup_ack_packet}{Setup\+Ack\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the SETUP\+\_\+\+ACK packet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_ada899661c36273a2a77d34b981c5c32d}{handle\+New\+Player\+Join\+Packet}} (const \doxymbox{\hyperlink{struct_new_player_join_packet}{New\+Player\+Join\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the NEW\+\_\+\+PLAYER\+\_\+\+JOIN packet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a5e09a302e419a0906b634ee7b4a740fd}{handle\+Settings\+Update\+Packet}} (const \doxymbox{\hyperlink{struct_settings_update_packet}{Settings\+Update\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the SETTINGS\+\_\+\+UPDATE packet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_abb7e0f91ccfa09a0fa0f0c068f824931}{handle\+Player\+Disconnected\+Packet}} (const \doxymbox{\hyperlink{struct_player_disconnected_packet}{Player\+Disconnected\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the PLAYER\+\_\+\+DISCONNECTED packet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_ae0c8e785397e3bd691cbf58d8292b644}{handle\+Game\+Start\+Packet}} (const \doxymbox{\hyperlink{struct_game_start_packet}{Game\+Start\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the GAME\+\_\+\+START packet. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_game_client_ab3a19b5a3fb0970a4348272490fb3ebf}{handle\+Board\+State\+Update\+Packet}} (const \doxymbox{\hyperlink{struct_board_state_update_packet}{Board\+State\+Update\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the BOARD\+\_\+\+STATE\+\_\+\+UPDATE packet. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_game_client_a00d24024ddad124a6a3653dfdaa782a7}{handle\+Game\+End\+Packet}} (const \doxymbox{\hyperlink{struct_game_end_packet}{Game\+End\+Packet}} \texorpdfstring{$\ast$}{*}packet)
+\begin{DoxyCompactList}\small\item\em Processes the GAME\+\_\+\+END packet. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_game_client_ad5b49b36503c47beb1b3bb73a16b2859}{render\+Menu}} ()
 \item 
 void \doxymbox{\hyperlink{class_game_client_abc5fbf39980e740820e141eeced44d30}{render\+Game\+Room}} ()
@@ -139,6 +154,8 @@ void \doxymbox{\hyperlink{class_game_client_a2be0d0e513ac5ab73854c9772e554bec}{s
 void \doxymbox{\hyperlink{class_game_client_aa0b571b488823b97da2778baf3bd6476}{connect\+And\+Setup}} ()
 \begin{DoxyCompactList}\small\item\em Initiates connection to the server (local or remote). ~\newline
  Transitions \doxylink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}{Setup\+Phase} from DISCONNECTED to SETTING\+\_\+\+UP. \end{DoxyCompactList}\item 
+std::\+optional$<$ std::\+pair$<$ std::\+string, std::\+string $>$ $>$ \doxymbox{\hyperlink{class_game_client_ab83ca5c4ba95c4effaa72808f32317e2}{parse\+Server\+Addr\+And\+Port\+From\+Text\+Field}} () const
+\begin{DoxyCompactList}\small\item\em Attempts to parse the text from the server address \doxylink{class_text_field_widget}{Text\+Field\+Widget} as Server IP and Port. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_game_client_a13407d2e7e53e4fdae463705173cf4ad}{disconnect}} ()
 \begin{DoxyCompactList}\small\item\em Disconnects from the server and resets networking state. \end{DoxyCompactList}\item 
 void \doxymbox{\hyperlink{class_game_client_a862ce486628be1fcb0dfc153c843ae5b}{request\+Board\+Settings\+Update}} (uint8\+\_\+t new\+Board\+Size, uint8\+\_\+t new\+Win\+Condition\+Length)
@@ -162,8 +179,7 @@ The main application controller. ~\newline
 {\footnotesize\ttfamily \label{class_game_client_a22eefb77da4aadc789f9f6a39218f099} 
 Game\+Client::\+\+Game\+Client (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -176,8 +192,7 @@ Here is the call graph for this function:\+
 {\footnotesize\ttfamily \label{class_game_client_abca673a8fcdb7d2ae8c0da02f91e4e64} 
 Game\+Client::\+\texorpdfstring{$\sim$}{\string~}\+Game\+Client (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -200,8 +215,14 @@ void Game\+Client::\+connect\+And\+Setup (\begin{DoxyParamCaption}{}{}\end{DoxyP
 Initiates connection to the server (local or remote). ~\newline
  Transitions \doxylink{_game_client_8h_a3c58d177865541fcc9d3c97dca903cf5}{Setup\+Phase} from DISCONNECTED to SETTING\+\_\+\+UP. 
 
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_aa0b571b488823b97da2778baf3bd6476_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -218,12 +239,62 @@ void Game\+Client::\+disconnect (\begin{DoxyParamCaption}{}{}\end{DoxyParamCapti
 
 Disconnects from the server and resets networking state. 
 
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a13407d2e7e53e4fdae463705173cf4ad_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_ab3a19b5a3fb0970a4348272490fb3ebf}\index{GameClient@{GameClient}!handleBoardStateUpdatePacket@{handleBoardStateUpdatePacket}}
+\index{handleBoardStateUpdatePacket@{handleBoardStateUpdatePacket}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleBoardStateUpdatePacket()}{handleBoardStateUpdatePacket()}}
+{\footnotesize\ttfamily \label{class_game_client_ab3a19b5a3fb0970a4348272490fb3ebf} 
+bool Game\+Client::\+handle\+Board\+State\+Update\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_board_state_update_packet}{Board\+State\+Update\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the BOARD\+\_\+\+STATE\+\_\+\+UPDATE packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_board_state_update_packet}{Board\+State\+Update\+Packet} packet \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ab3a19b5a3fb0970a4348272490fb3ebf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ab3a19b5a3fb0970a4348272490fb3ebf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a00d24024ddad124a6a3653dfdaa782a7}\index{GameClient@{GameClient}!handleGameEndPacket@{handleGameEndPacket}}
+\index{handleGameEndPacket@{handleGameEndPacket}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleGameEndPacket()}{handleGameEndPacket()}}
+{\footnotesize\ttfamily \label{class_game_client_a00d24024ddad124a6a3653dfdaa782a7} 
+void Game\+Client::\+handle\+Game\+End\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_game_end_packet}{Game\+End\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the GAME\+\_\+\+END packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_game_end_packet}{Game\+End\+Packet} packet \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a00d24024ddad124a6a3653dfdaa782a7_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4}\index{GameClient@{GameClient}!handleGameInput@{handleGameInput}}
@@ -243,16 +314,14 @@ Processes input during active gameplay (Board clicks).
 {\em mouse\+Pos} & Current mouse position. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_ae0e8917d72b9c8a35b6b86c16dd29ba4_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -276,12 +345,40 @@ Processes input when in the Waiting Room.
 {\em mouse\+Pos} & Current mouse position.\\
 \hline
 \end{DoxyParams}
-This function originally handled inputs for widgets too, but after unifying them, it\textquotesingle{}s a leftover. Left as is as, it may become useful later on Here is the caller graph for this function:\+
-\nopagebreak
+This function originally handled inputs for widgets too, but after unifying them, it\textquotesingle{}s a leftover. Left as is as, it may become useful later on Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a2695419dcc3f78ed346f4f666e1e60c5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_ae0c8e785397e3bd691cbf58d8292b644}\index{GameClient@{GameClient}!handleGameStartPacket@{handleGameStartPacket}}
+\index{handleGameStartPacket@{handleGameStartPacket}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleGameStartPacket()}{handleGameStartPacket()}}
+{\footnotesize\ttfamily \label{class_game_client_ae0c8e785397e3bd691cbf58d8292b644} 
+void Game\+Client::\+handle\+Game\+Start\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_game_start_packet}{Game\+Start\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the GAME\+\_\+\+START packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_game_start_packet}{Game\+Start\+Packet} packet \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ae0c8e785397e3bd691cbf58d8292b644_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ae0c8e785397e3bd691cbf58d8292b644_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_game_client_a1002fba127d0627a3ad3dccb68f343f9}\index{GameClient@{GameClient}!handleInput@{handleInput}}
@@ -294,16 +391,14 @@ void Game\+Client::\+handle\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCa
 
 Polls SFML events and delegates them to specific state handlers. 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a1002fba127d0627a3ad3dccb68f343f9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -327,12 +422,121 @@ Processes input when in the Main Menu.
 {\em mouse\+Pos} & Current mouse position.\\
 \hline
 \end{DoxyParams}
-This function originally handled inputs for widgets too, but after unifying them, it\textquotesingle{}s a leftover. Left as is, as it may become useful later on Here is the caller graph for this function:\+
-\nopagebreak
+This function originally handled inputs for widgets too, but after unifying them, it\textquotesingle{}s a leftover. Left as is, as it may become useful later on Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a58701454693e02c2a5a79773d9bcd5fc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_ada899661c36273a2a77d34b981c5c32d}\index{GameClient@{GameClient}!handleNewPlayerJoinPacket@{handleNewPlayerJoinPacket}}
+\index{handleNewPlayerJoinPacket@{handleNewPlayerJoinPacket}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleNewPlayerJoinPacket()}{handleNewPlayerJoinPacket()}}
+{\footnotesize\ttfamily \label{class_game_client_ada899661c36273a2a77d34b981c5c32d} 
+void Game\+Client::\+handle\+New\+Player\+Join\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_new_player_join_packet}{New\+Player\+Join\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the NEW\+\_\+\+PLAYER\+\_\+\+JOIN packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_new_player_join_packet}{New\+Player\+Join\+Packet} packet \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ada899661c36273a2a77d34b981c5c32d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_abb7e0f91ccfa09a0fa0f0c068f824931}\index{GameClient@{GameClient}!handlePlayerDisconnectedPacket@{handlePlayerDisconnectedPacket}}
+\index{handlePlayerDisconnectedPacket@{handlePlayerDisconnectedPacket}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handlePlayerDisconnectedPacket()}{handlePlayerDisconnectedPacket()}}
+{\footnotesize\ttfamily \label{class_game_client_abb7e0f91ccfa09a0fa0f0c068f824931} 
+void Game\+Client::\+handle\+Player\+Disconnected\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_player_disconnected_packet}{Player\+Disconnected\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the PLAYER\+\_\+\+DISCONNECTED packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_player_disconnected_packet}{Player\+Disconnected\+Packet} packet \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_abb7e0f91ccfa09a0fa0f0c068f824931_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_aaa7e7f9e3b084bc691b24df34186ffec}\index{GameClient@{GameClient}!handleServerHelloPacket@{handleServerHelloPacket}}
+\index{handleServerHelloPacket@{handleServerHelloPacket}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleServerHelloPacket()}{handleServerHelloPacket()}}
+{\footnotesize\ttfamily \label{class_game_client_aaa7e7f9e3b084bc691b24df34186ffec} 
+void Game\+Client::\+handle\+Server\+Hello\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_server_hello_packet}{Server\+Hello\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the SERVER\+\_\+\+HELLO packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed Serve\+Hello\+Packet packet \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_aaa7e7f9e3b084bc691b24df34186ffec_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a5e09a302e419a0906b634ee7b4a740fd}\index{GameClient@{GameClient}!handleSettingsUpdatePacket@{handleSettingsUpdatePacket}}
+\index{handleSettingsUpdatePacket@{handleSettingsUpdatePacket}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleSettingsUpdatePacket()}{handleSettingsUpdatePacket()}}
+{\footnotesize\ttfamily \label{class_game_client_a5e09a302e419a0906b634ee7b4a740fd} 
+void Game\+Client::\+handle\+Settings\+Update\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_settings_update_packet}{Settings\+Update\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the SETTINGS\+\_\+\+UPDATE packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_settings_update_packet}{Settings\+Update\+Packet} packet \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a5e09a302e419a0906b634ee7b4a740fd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_a03d226485ec0fbdbeb13b422552fa51b}\index{GameClient@{GameClient}!handleSetupAckPacket@{handleSetupAckPacket}}
+\index{handleSetupAckPacket@{handleSetupAckPacket}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{handleSetupAckPacket()}{handleSetupAckPacket()}}
+{\footnotesize\ttfamily \label{class_game_client_a03d226485ec0fbdbeb13b422552fa51b} 
+void Game\+Client::\+handle\+Setup\+Ack\+Packet (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_setup_ack_packet}{Setup\+Ack\+Packet}} \texorpdfstring{$\ast$}{*}}]{packet}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the SETUP\+\_\+\+ACK packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The parsed \doxylink{struct_setup_ack_packet}{Setup\+Ack\+Packet} packet \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_a03d226485ec0fbdbeb13b422552fa51b_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_game_client_a0ed542437a49af2a1257a22bc3be66a6}\index{GameClient@{GameClient}!initWidgets@{initWidgets}}
@@ -346,20 +550,38 @@ void Game\+Client::\+init\+Widgets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCa
 Initializes all UI widgets (Buttons, Text\+Fields) via their Builders. ~\newline
  Called in the constructor, before the main loop starts. 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a0ed542437a49af2a1257a22bc3be66a6_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a0ed542437a49af2a1257a22bc3be66a6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_game_client_ab83ca5c4ba95c4effaa72808f32317e2}\index{GameClient@{GameClient}!parseServerAddrAndPortFromTextField@{parseServerAddrAndPortFromTextField}}
+\index{parseServerAddrAndPortFromTextField@{parseServerAddrAndPortFromTextField}!GameClient@{GameClient}}
+\doxysubsubsection{\texorpdfstring{parseServerAddrAndPortFromTextField()}{parseServerAddrAndPortFromTextField()}}
+{\footnotesize\ttfamily \label{class_game_client_ab83ca5c4ba95c4effaa72808f32317e2} 
+std::\+optional$<$ std::\+pair$<$ std::\+string, std::\+string $>$ $>$ Game\+Client::\+parse\+Server\+Addr\+And\+Port\+From\+Text\+Field (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Attempts to parse the text from the server address \doxylink{class_text_field_widget}{Text\+Field\+Widget} as Server IP and Port. 
+
+\begin{DoxyReturn}{Returns}
+An optional that may contain a pair of server address and port. 
+\end{DoxyReturn}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_game_client_ab83ca5c4ba95c4effaa72808f32317e2_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_game_client_a6707e6e3f99fa676180e6276fd7cd972}\index{GameClient@{GameClient}!render@{render}}
@@ -372,16 +594,14 @@ void Game\+Client::\+render (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})
 
 Clears the window and calls the appropriate render method for the current \doxylink{_game_client_8h_a5cb562a6bac6b4b7a20e53a4558998e0}{Client\+State}. 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a6707e6e3f99fa676180e6276fd7cd972_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -398,16 +618,14 @@ void Game\+Client::\+render\+Debug\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyP
 
 Overlays debug information (FPS, network stats, etc.) in a separate menu. 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a6307255e5ee2ec7a662314d2bda4ff4e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -420,16 +638,14 @@ Here is the caller graph for this function:\+
 {\footnotesize\ttfamily \label{class_game_client_ac43af34d16f934ccf691a400f198d047} 
 void Game\+Client::\+render\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_ac43af34d16f934ccf691a400f198d047_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -442,16 +658,14 @@ Here is the caller graph for this function:\+
 {\footnotesize\ttfamily \label{class_game_client_abc5fbf39980e740820e141eeced44d30} 
 void Game\+Client::\+render\+Game\+Room (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_abc5fbf39980e740820e141eeced44d30_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -464,8 +678,7 @@ Here is the caller graph for this function:\+
 {\footnotesize\ttfamily \label{class_game_client_ad5b49b36503c47beb1b3bb73a16b2859} 
 void Game\+Client::\+render\+Menu (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -489,8 +702,7 @@ Sends a request to the server to change game rules (Waiting Room Phase).
 {\em new\+Win\+Condition\+Length} & The number of tokens in a row needed to win. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -509,16 +721,14 @@ Main Application Loop. ~\newline
  Contains the {\ttfamily while(window.\+is\+Open())} loop. ~\newline
  Sequentially calls {\ttfamily \doxylink{class_game_client_a1002fba127d0627a3ad3dccb68f343f9}{handle\+Input()}}, {\ttfamily \doxylink{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1}{update()}}, and {\ttfamily \doxylink{class_game_client_a6707e6e3f99fa676180e6276fd7cd972}{render()}}. 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a672542ed58818ae9ecd57eb5f00d15c4_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -542,8 +752,7 @@ Transmits a move action to the server.
 {\em posY} & Grid Y coordinate. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -565,8 +774,7 @@ Sends a start request packet to the server.
 {\em new\+Game} & If true, resets player wins and data on the server. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -584,16 +792,14 @@ void Game\+Client::\+start\+Internal\+Server\+Thread (\begin{DoxyParamCaption}{}
 Spins up the internal server instance in a separate thread. ~\newline
  Called when the user chooses "{}\+Host Game"{}. 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=336pt]{class_game_client_a4946acc9956541a62556e2387210269e_cgraph}
+\includegraphics[width=350pt]{class_game_client_a4946acc9956541a62556e2387210269e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -610,16 +816,14 @@ void Game\+Client::\+stop\+Internal\+Server\+Thread (\begin{DoxyParamCaption}{}{
 
 Signals the internal server to stop. 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=335pt]{class_game_client_a2be0d0e513ac5ab73854c9772e554bec_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -636,16 +840,14 @@ void Game\+Client::\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})
 
 Processes game logic (network packets, state transitions). 
 
-Here is the call graph for this function:\+
-\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_game_client_a6b6587edc0bd96624b375a64e6ae74b1_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+
-\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -699,7 +901,7 @@ sf::\+\+Clock Game\+Client::\+clock}
 \index{debugEnabled@{debugEnabled}!GameClient@{GameClient}}
 \doxysubsubsection{\texorpdfstring{debugEnabled}{debugEnabled}}
 {\footnotesize\ttfamily \label{class_game_client_a6a78afc5ca235cb2bc924256502bee30} 
-bool Game\+Client::\+debug\+Enabled = true}
+bool Game\+Client::\+debug\+Enabled = false}
 
 \Hypertarget{class_game_client_adb18d67df0085bead9e1f249630c6c00}\index{GameClient@{GameClient}!DEFAULT\_TEXT\_SIZE@{DEFAULT\_TEXT\_SIZE}}
 \index{DEFAULT\_TEXT\_SIZE@{DEFAULT\_TEXT\_SIZE}!GameClient@{GameClient}}

@@ -1,0 +1,12 @@
+<map id="GameClient::parseServerAddrAndPortFromTextField" name="GameClient::parseServerAddrAndPortFromTextField">
+<area shape="rect" id="Node000001" title="Attempts to parse the text from the server address TextFieldWidget as Server IP and Port." alt="" coords="681,27,877,69"/>
+<area shape="rect" id="Node000002" href="$class_game_client.html#aa0b571b488823b97da2778baf3bd6476" title="Initiates connection to the server (local or remote). &#160;&#160;Transitions SetupPhase from DISCONNECTED to S..." alt="" coords="432,5,633,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="663,35,634,33,634,28,669,35"/>
+<area shape="rect" id="Node000005" href="$class_game_client.html#a4946acc9956541a62556e2387210269e" title="Spins up the internal server instance in a separate thread. &#160;&#160;Called when the user chooses &quot;Host Game..." alt="" coords="449,56,616,99"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="669,61,617,70,617,65,663,62"/>
+<area shape="rect" id="Node000003" href="$class_game_client.html#a0ed542437a49af2a1257a22bc3be66a6" title="Initializes all UI widgets (Buttons, TextFields) via their Builders. &#160;&#160;Called in the constructor,..." alt="" coords="221,35,384,61"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="414,34,385,40,384,35,419,33"/>
+<area shape="rect" id="Node000004" href="$class_game_client.html#a22eefb77da4aadc789f9f6a39218f099" title=" " alt="" coords="5,35,173,61"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="203,48,173,51,173,45,208,48"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="431,65,384,61,385,56,436,65"/>
+</map>

@@ -1,29 +1,44 @@
 <map id="InternalGameServer::processPacket" name="InternalGameServer::processPacket">
-<area shape="rect" id="Node000001" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="5,182,143,225"/>
-<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="208,44,346,86"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,180,137,142,189,103,212,92,208,96,192,107,141,146,99,183"/>
-<area shape="rect" id="Node000003" href="$class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="412,14,549,57"/>
-<area shape="poly" id="edge13_Node000001_Node000003" title=" " alt="" coords="80,181,94,145,117,103,148,61,168,44,189,29,240,11,294,3,348,5,399,13,394,15,347,10,294,9,241,16,192,34,171,48,152,65,121,106,99,147,85,182"/>
-<area shape="rect" id="Node000004" href="$class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="197,161,357,188"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,191,183,186,179,190,144,196"/>
-<area shape="rect" id="Node000008" href="$class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="191,212,362,254"/>
-<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="142,211,178,217,173,220,144,216"/>
-<area shape="rect" id="Node000009" href="$class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="197,278,356,321"/>
-<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="113,223,192,264,206,271,201,272,190,269,113,228"/>
-<area shape="rect" id="Node000010" href="$class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="197,345,357,388"/>
-<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="90,223,133,277,161,305,192,331,200,337,194,337,189,335,158,309,129,280,89,228"/>
-<area shape="rect" id="Node000011" href="$class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="191,412,363,438"/>
-<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="83,223,99,262,122,309,153,357,192,398,200,404,194,403,189,402,148,360,117,311,94,264,82,228"/>
-<area shape="rect" id="Node000012" href="$class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="411,110,549,137"/>
-<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="111,180,149,161,190,146,242,135,296,127,398,122,393,125,297,132,243,140,191,151,151,166,114,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,53,398,46,394,49,347,57"/>
-<area shape="rect" id="Node000005" href="$class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="413,236,547,262"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="328,186,364,197,437,228,432,229,362,202,329,191"/>
-<area shape="rect" id="Node000006" href="$struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="597,161,761,188"/>
-<area shape="poly" id="edge8_Node000004_Node000006" title=" " alt="" coords="357,172,584,173,579,176,358,177"/>
-<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="446,234,440,227,444,217,458,211,480,209,504,211,518,220,513,220,502,217,480,214,459,216,448,221,446,226,451,236"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="517,233,630,192,625,194,519,238"/>
-<area shape="rect" id="Node000007" href="$class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="609,236,749,262"/>
-<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="548,246,596,248,591,249,548,252"/>
-<area shape="poly" id="edge15_Node000012_Node000006" title=" " alt="" coords="535,135,612,156,607,157,536,140"/>
+<area shape="rect" id="Node000001" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="5,224,143,267"/>
+<area shape="rect" id="Node000002" href="$class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="476,224,614,267"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,265,191,284,252,293,301,296,349,293,411,284,475,271,469,273,411,289,350,298,301,301,252,298,190,289,125,270"/>
+<area shape="rect" id="Node000004" href="$class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="191,83,411,125"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="91,222,133,178,160,155,189,135,202,130,198,134,192,140,163,159,137,182,95,225"/>
+<area shape="rect" id="Node000009" href="$class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="206,149,396,192"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="134,221,190,201,214,196,209,199,192,207,136,226"/>
+<area shape="rect" id="Node000014" href="$class_internal_game_server.html#a38c4d6d073d4fc872bc03c365472836c" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="196,216,406,275"/>
+<area shape="poly" id="edge20_Node000001_Node000014" title=" " alt="" coords="142,243,183,244,178,247,144,248"/>
+<area shape="rect" id="Node000015" href="$class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992" title="Processes the SETUP_REQ packet." alt="" coords="205,349,396,392"/>
+<area shape="poly" id="edge22_Node000001_Node000015" title=" " alt="" coords="101,265,143,297,192,328,219,343,214,343,189,333,140,301,100,270"/>
+<area shape="rect" id="Node000003" href="$class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="679,291,817,333"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="612,265,669,285,664,285,612,270"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="392,123,413,135,430,154,438,173,445,192,461,210,466,216,461,215,457,214,441,195,433,175,425,157,409,139,392,128"/>
+<area shape="rect" id="Node000005" href="$class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="465,107,625,149"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="411,112,452,118,447,119,412,117"/>
+<area shape="rect" id="Node000006" href="$class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="459,5,631,32"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="355,80,458,41,482,36,478,38,460,47,358,84"/>
+<area shape="rect" id="Node000007" href="$class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="476,56,614,83"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="410,86,463,80,458,82,412,91"/>
+<area shape="rect" id="Node000008" href="$struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="865,107,1028,133"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="615,74,817,99,852,105,847,106,816,104,615,80"/>
+<area shape="poly" id="edge10_Node000009_Node000002" title=" " alt="" coords="373,190,412,201,464,219,459,220,410,207,374,195"/>
+<area shape="poly" id="edge18_Node000009_Node000005" title=" " alt="" coords="395,152,452,143,448,146,397,157"/>
+<area shape="poly" id="edge19_Node000009_Node000007" title=" " alt="" coords="385,146,410,135,424,125,433,114,443,103,458,92,473,87,469,90,460,97,446,107,437,118,427,129,412,140,388,151"/>
+<area shape="rect" id="Node000010" href="$class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="465,173,625,200"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="395,174,452,180,447,181,397,179"/>
+<area shape="rect" id="Node000013" href="$class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="460,291,631,333"/>
+<area shape="poly" id="edge17_Node000009_Node000013" title=" " alt="" coords="392,190,413,202,430,221,438,240,445,258,461,277,466,283,461,282,457,281,441,261,433,242,425,224,409,206,392,195"/>
+<area shape="poly" id="edge16_Node000010_Node000008" title=" " alt="" coords="593,170,631,159,679,143,766,129,852,123,847,125,766,134,680,148,632,164,595,175"/>
+<area shape="rect" id="Node000011" href="$class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="681,181,815,208"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="625,187,668,191,663,192,626,192"/>
+<area shape="poly" id="edge14_Node000011_Node000008" title=" " alt="" coords="785,178,892,140,897,138,787,183"/>
+<area shape="poly" id="edge13_Node000011_Node000011" title=" " alt="" coords="714,180,708,173,712,163,726,157,748,155,772,157,786,166,780,166,770,162,748,160,727,162,716,167,714,172,719,182"/>
+<area shape="rect" id="Node000012" href="$class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="876,181,1016,208"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="815,192,864,194,858,195,816,197"/>
+<area shape="poly" id="edge21_Node000014_Node000002" title=" " alt="" coords="406,243,463,245,458,246,407,248"/>
+<area shape="poly" id="edge23_Node000015_Node000002" title=" " alt="" coords="375,346,409,328,424,316,433,303,442,290,457,277,463,276,468,273,461,281,446,294,437,306,428,319,413,333,378,351"/>
+<area shape="poly" id="edge26_Node000015_Node000003" title=" " alt="" coords="397,366,509,359,631,343,662,338,668,337,632,348,510,364,397,371"/>
+<area shape="poly" id="edge24_Node000015_Node000013" title=" " alt="" coords="392,346,447,336,442,337,393,351"/>
+<area shape="rect" id="Node000016" href="$class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="466,408,625,451"/>
+<area shape="poly" id="edge25_Node000015_Node000016" title=" " alt="" coords="393,390,453,407,448,407,392,395"/>
 </map>

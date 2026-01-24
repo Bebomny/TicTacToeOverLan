@@ -1,18 +1,18 @@
 <map id="GameClient" name="GameClient">
-<area shape="rect" id="Node000001" title="The main application controller. &#160;&#160;This class manages the entire lifecycle of the client application,..." alt="" coords="261,1281,480,1969"/>
-<area shape="rect" id="Node000002" href="$class_network_manager.html" title="Manages low&#45;level TCP network communication. &#160;&#160;Wraps the Winsock API to provide a cleaner interface f..." alt="" coords="5,777,135,996"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,993,110,1122,128,1191,150,1256,198,1358,255,1456,249,1457,193,1361,145,1258,122,1192,104,1124,83,999"/>
-<area shape="rect" id="Node000003" href="$class_internal_game_server.html" title="The authoritative server logic for the game. &#160;&#160;Runs on a dedicated thread hosted by one of the client..." alt="" coords="160,564,322,1209"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="262,1207,271,1257,273,1265,267,1264,266,1258,261,1212"/>
-<area shape="rect" id="Node000004" href="$class_long_long_rolling_average.html" title="A thread&#45;safe implementation of RollingAverage for long long integer types. &#160;&#160;Uses a deque (double&#45;en..." alt="" coords="69,231,253,492"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="158,489,165,540,166,547,160,547,159,540,158,494"/>
-<area shape="rect" id="Node000005" href="$class_rolling_average.html" title="Interface for calculating moving statistics over a stream of values. &#160;&#160;Primarily used for performance..." alt="" coords="88,5,234,181"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="161,194,164,231,158,231,161,199"/>
-<area shape="rect" id="Node000006" href="$struct_board_data.html" title="The core data model for the game board. &#160;&#160;Holds the grid state, rules (size/win condition),..." alt="" coords="289,263,427,460"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="361,458,370,1265,364,1264,357,461"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="301,462,282,517,274,548,269,547,277,515,302,457"/>
-<area shape="rect" id="Node000007" href="$struct_move.html" title="Represents a discrete action taken by a player. &#160;&#160;Used for history tracking and network transmission." alt="" coords="470,809,556,964"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="500,962,454,1210,443,1266,438,1264,449,1209,498,966"/>
-<area shape="rect" id="Node000008" href="$struct_player.html" title="Represents a participant in the game. &#160;&#160;Contains identification, statistics, and local state flags." alt="" coords="581,788,675,985"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="617,983,600,1095,570,1210,533,1310,490,1407,485,1404,528,1308,565,1209,595,1093,615,988"/>
+<area shape="rect" id="Node000001" title="The main application controller. &#160;&#160;This class manages the entire lifecycle of the client application,..." alt="" coords="321,1425,540,2113"/>
+<area shape="rect" id="Node000002" href="$class_network_manager.html" title="Manages low&#45;level TCP network communication. &#160;&#160;Wraps the Winsock API to provide a cleaner interface f..." alt="" coords="5,849,135,1068"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,1065,104,1206,123,1280,149,1352,183,1425,224,1496,268,1563,313,1625,308,1625,264,1566,220,1498,179,1427,144,1354,118,1282,99,1207,79,1070"/>
+<area shape="rect" id="Node000003" href="$class_internal_game_server.html" title="The authoritative server logic for the game. &#160;&#160;Runs on a dedicated thread hosted by one of the client..." alt="" coords="159,564,382,1353"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="320,1351,331,1401,333,1409,327,1408,326,1402,319,1356"/>
+<area shape="rect" id="Node000004" href="$class_long_long_rolling_average.html" title="A thread&#45;safe implementation of RollingAverage for long long integer types. &#160;&#160;Uses a deque (double&#45;en..." alt="" coords="129,231,313,492"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="220,489,225,540,225,547,220,547,219,540,220,494"/>
+<area shape="rect" id="Node000005" href="$class_rolling_average.html" title="Interface for calculating moving statistics over a stream of values. &#160;&#160;Primarily used for performance..." alt="" coords="148,5,294,181"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="221,194,224,231,218,231,221,199"/>
+<area shape="rect" id="Node000006" href="$struct_board_data.html" title="The core data model for the game board. &#160;&#160;Holds the grid state, rules (size/win condition),..." alt="" coords="349,263,487,460"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="421,458,430,1408,425,1408,417,461"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="362,462,342,517,333,548,327,547,337,515,364,457"/>
+<area shape="rect" id="Node000007" href="$struct_move.html" title="Represents a discrete action taken by a player. &#160;&#160;Used for history tracking and network transmission." alt="" coords="530,881,616,1036"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="563,1034,514,1354,504,1409,499,1407,509,1353,561,1038"/>
+<area shape="rect" id="Node000008" href="$struct_player.html" title="Represents a participant in the game. &#160;&#160;Contains identification, statistics, and local state flags." alt="" coords="641,860,735,1057"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="682,1055,665,1199,650,1277,630,1354,593,1456,549,1555,545,1552,589,1454,625,1353,645,1276,660,1198,680,1060"/>
 </map>

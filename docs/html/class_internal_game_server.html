@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="TicTacToeOverLan-Draft1.png"/></td>
   <td id="projectalign">
-   <div id="projectname">TicTacToeOverLan<span id="projectnumber">&#160;1.0.16</span>
+   <div id="projectname">TicTacToeOverLan<span id="projectnumber">&#160;1.0.17</span>
    </div>
    <div id="projectbrief">TicTacToe Ultimate Edition supporting up to 6 players and a board of 32x32. Allows connections from multiple devices.</div>
   </td>
@@ -109,13 +109,13 @@ Collaboration diagram for InternalGameServer:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_internal_game_server__coll__graph.png" border="0" usemap="#a_internal_game_server_coll__map" loading="lazy" alt="Collaboration graph"/></div>
 <map name="a_internal_game_server_coll__map" id="a_internal_game_server_coll__map">
-<area shape="rect" title="The authoritative server logic for the game. &#160;&#160;Runs on a dedicated thread hosted by one of the client..." alt="" coords="109,564,272,1209"/>
+<area shape="rect" title="The authoritative server logic for the game. &#160;&#160;Runs on a dedicated thread hosted by one of the client..." alt="" coords="79,564,302,1353"/>
 <area shape="rect" href="class_long_long_rolling_average.html" title="A thread&#45;safe implementation of RollingAverage for long long integer types. &#160;&#160;Uses a deque (double&#45;en..." alt="" coords="5,231,189,492"/>
-<area shape="poly" title=" " alt="" coords="120,489,133,547,128,547,120,495"/>
+<area shape="poly" title=" " alt="" coords="118,489,129,547,124,547,118,494"/>
 <area shape="rect" href="class_rolling_average.html" title="Interface for calculating moving statistics over a stream of values. &#160;&#160;Primarily used for performance..." alt="" coords="24,5,171,181"/>
 <area shape="poly" title=" " alt="" coords="97,194,100,231,95,231,97,199"/>
 <area shape="rect" href="struct_board_data.html" title="The core data model for the game board. &#160;&#160;Holds the grid state, rules (size/win condition),..." alt="" coords="214,263,352,460"/>
-<area shape="poly" title=" " alt="" coords="266,457,253,548,248,547,265,462"/>
+<area shape="poly" title=" " alt="" coords="268,457,257,548,251,547,267,462"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -131,6 +131,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a61c010a8dc8ae5deded65b97ae4829cb" id="r_a61c010a8dc8ae5deded65b97ae4829cb"><td class="memItemLeft">long long&#160;</td><td class="memItemRight"><a class="el" href="#a61c010a8dc8ae5deded65b97ae4829cb">getTick</a> ()</td></tr>
 <tr class="memitem:a7e45533cfc92df0c49f5933620a98a72" id="r_a7e45533cfc92df0c49f5933620a98a72"><td class="memItemLeft">long long&#160;</td><td class="memItemRight"><a class="el" href="#a7e45533cfc92df0c49f5933620a98a72">getLastTickTime</a> ()</td></tr>
 <tr class="memitem:af1946230fb684f1159a227464fc86e0a" id="r_af1946230fb684f1159a227464fc86e0a"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af1946230fb684f1159a227464fc86e0a">getAvgTickTime</a> ()</td></tr>
+<tr class="memitem:ac50992b849bee320601b7060030845fa" id="r_ac50992b849bee320601b7060030845fa"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac50992b849bee320601b7060030845fa">getServerPort</a> () const</td></tr>
 <tr class="memitem:ad25ae6f94d5fc5ecd8eb60fe1134795b" id="r_ad25ae6f94d5fc5ecd8eb60fe1134795b"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#ad25ae6f94d5fc5ecd8eb60fe1134795b">getNextPlayerId</a> () const</td></tr>
 <tr class="memitem:a17c8a65ba03727f2264a4693e5999a97" id="r_a17c8a65ba03727f2264a4693e5999a97"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a17c8a65ba03727f2264a4693e5999a97">getCurrentTurn</a> () const</td></tr>
 <tr class="memitem:aa30c206eceed828697ac79a04537842d" id="r_aa30c206eceed828697ac79a04537842d"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#aa30c206eceed828697ac79a04537842d">getHostingPlayerId</a> () const</td></tr>
@@ -155,6 +156,14 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a23233f46e01aa0aa1306fd11ec115aed" id="r_a23233f46e01aa0aa1306fd11ec115aed"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a23233f46e01aa0aa1306fd11ec115aed">processPacket</a> (<a class="el" href="struct_client_context.html">ClientContext</a> &amp;client, <a class="el" href="_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56">PacketType</a> type, std::vector&lt; char &gt; &amp;payload)</td></tr>
 <tr class="memdesc:a23233f46e01aa0aa1306fd11ec115aed"><td class="mdescLeft">&#160;</td><td class="mdescRight">The core logic dispatcher. <br  />
  Switches on <span class="tt"><a class="el" href="_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56" title="Identifiers for the specific type of payload contained in a packet.   Used by the receiver to cast th...">PacketType</a></span> and executes the corresponding game logic.  <br /></td></tr>
+<tr class="memitem:af76f44761a706d22bbf2e34094c97992" id="r_af76f44761a706d22bbf2e34094c97992"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af76f44761a706d22bbf2e34094c97992">handleSetupRequestPacket</a> (<a class="el" href="struct_client_context.html">ClientContext</a> &amp;client, const <a class="el" href="struct_setup_req_packet.html">SetupReqPacket</a> *packet)</td></tr>
+<tr class="memdesc:af76f44761a706d22bbf2e34094c97992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the SETUP_REQ packet.  <br /></td></tr>
+<tr class="memitem:a38c4d6d073d4fc872bc03c365472836c" id="r_a38c4d6d073d4fc872bc03c365472836c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a38c4d6d073d4fc872bc03c365472836c">handleSettingsChangeRequestPacket</a> (const <a class="el" href="struct_settings_change_req_packet.html">SettingsChangeReqPacket</a> *packet)</td></tr>
+<tr class="memdesc:a38c4d6d073d4fc872bc03c365472836c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the SETTINGS_CHANGE_REQ packet.  <br /></td></tr>
+<tr class="memitem:ab365960df838baeadc089d25f89ca3c9" id="r_ab365960df838baeadc089d25f89ca3c9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab365960df838baeadc089d25f89ca3c9">handleGameStartRequestPacket</a> (const <a class="el" href="struct_game_start_request_packet.html">GameStartRequestPacket</a> *packet)</td></tr>
+<tr class="memdesc:ab365960df838baeadc089d25f89ca3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the GAME_START_REQ packet.  <br /></td></tr>
+<tr class="memitem:aa17c038ffff170fe65fb33c2c4fc6a2c" id="r_aa17c038ffff170fe65fb33c2c4fc6a2c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa17c038ffff170fe65fb33c2c4fc6a2c">handleMoveRequestPacket</a> (<a class="el" href="struct_client_context.html">ClientContext</a> &amp;client, const <a class="el" href="struct_move_request_packet.html">MoveRequestPacket</a> *packet)</td></tr>
+<tr class="memdesc:aa17c038ffff170fe65fb33c2c4fc6a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the MOVE_REQ packet.  <br /></td></tr>
 <tr class="memitem:a9f7cd641abc4087fbba9a59e72c025f3" id="r_a9f7cd641abc4087fbba9a59e72c025f3"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:a9f7cd641abc4087fbba9a59e72c025f3 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9f7cd641abc4087fbba9a59e72c025f3">broadcastPacket</a> (const <a class="el" href="_network_protocol_8h.html#a0628f13bcd4685c7a4b4a9f1aad83b56">PacketType</a> type, const T &amp;data)</td></tr>
 <tr class="memdesc:a9f7cd641abc4087fbba9a59e72c025f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a packet to ALL connected clients.  <br /></td></tr>
@@ -169,6 +178,7 @@ Static Private Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:aec051721fa9f844797ee6cb97726ee23" id="r_aec051721fa9f844797ee6cb97726ee23"><td class="memItemLeft">std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aec051721fa9f844797ee6cb97726ee23">keepRunning</a></td></tr>
 <tr class="memitem:a298fe4d3de49f696ef74dd95d526abde" id="r_a298fe4d3de49f696ef74dd95d526abde"><td class="memItemLeft">SOCKET&#160;</td><td class="memItemRight"><a class="el" href="#a298fe4d3de49f696ef74dd95d526abde">listenSocket</a></td></tr>
+<tr class="memitem:aacffaa2ee6190467bd01a1b9220682ea" id="r_aacffaa2ee6190467bd01a1b9220682ea"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aacffaa2ee6190467bd01a1b9220682ea">serverPort</a></td></tr>
 <tr class="memitem:a0e5b79a31e05c4bd093d3d9575ae7c22" id="r_a0e5b79a31e05c4bd093d3d9575ae7c22"><td class="memItemLeft">std::atomic&lt; long long &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0e5b79a31e05c4bd093d3d9575ae7c22">tick</a> = 0</td></tr>
 <tr class="memitem:af571a6563d93a9361ee16d20e7da755b" id="r_af571a6563d93a9361ee16d20e7da755b"><td class="memItemLeft">std::atomic&lt; long long &gt;&#160;</td><td class="memItemRight"><a class="el" href="#af571a6563d93a9361ee16d20e7da755b">lastTickTime</a> = 0</td></tr>
 <tr class="memitem:ada8cbd572903996bafa2c79cd2df0979" id="r_ada8cbd572903996bafa2c79cd2df0979"><td class="memItemLeft"><a class="el" href="class_long_long_rolling_average.html">LongLongRollingAverage</a>&#160;</td><td class="memItemRight"><a class="el" href="#ada8cbd572903996bafa2c79cd2df0979">avgTickTime</a> {100}</td></tr>
@@ -266,14 +276,26 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_internal_game_server_a9f7cd641abc4087fbba9a59e72c025f3_icgraph.png" border="0" usemap="#aclass_internal_game_server_a9f7cd641abc4087fbba9a59e72c025f3_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_internal_game_server_a9f7cd641abc4087fbba9a59e72c025f3_icgraph" id="aclass_internal_game_server_a9f7cd641abc4087fbba9a59e72c025f3_icgraph">
-<area shape="rect" title="Sends a packet to ALL connected clients." alt="" coords="561,5,699,48"/>
-<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
-<area shape="poly" title=" " alt="" coords="543,24,513,25,376,25,329,27,328,21,376,20,513,20,548,23"/>
-<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,35,513,77"/>
-<area shape="poly" title=" " alt="" coords="549,40,514,48,514,42,543,40"/>
-<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
-<area shape="poly" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
-<area shape="poly" title=" " alt="" coords="358,43,328,40,329,35,363,43"/>
+<area shape="rect" title="Sends a packet to ALL connected clients." alt="" coords="830,135,967,178"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,76,328,119"/>
+<area shape="poly" title=" " alt="" coords="873,121,835,76,809,54,781,37,718,18,653,9,587,10,521,17,459,30,402,46,311,78,309,73,400,41,458,25,521,12,586,4,653,4,719,13,783,33,812,50,839,72,879,123"/>
+<area shape="rect" href="class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="561,47,782,90"/>
+<area shape="poly" title=" " alt="" coords="829,129,781,111,734,93,734,88,783,106,834,129"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,135,513,178"/>
+<area shape="poly" title=" " alt="" coords="811,153,782,155,561,155,514,156,513,151,561,150,782,150,817,153"/>
+<area shape="rect" href="class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="577,164,766,207"/>
+<area shape="poly" title=" " alt="" coords="811,168,767,176,766,171,817,167"/>
+<area shape="rect" href="class_internal_game_server.html#a38c4d6d073d4fc872bc03c365472836c" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="567,231,776,290"/>
+<area shape="poly" title=" " alt="" coords="849,185,783,221,756,233,755,228,781,217,844,186"/>
+<area shape="rect" href="class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992" title="Processes the SETUP_REQ packet." alt="" coords="576,314,767,356"/>
+<area shape="poly" title=" " alt="" coords="880,190,840,250,814,279,783,304,762,316,760,311,780,299,810,275,836,246,876,192"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,76,143,119"/>
+<area shape="poly" title=" " alt="" coords="173,99,144,100,142,95,178,96"/>
+<area shape="poly" title=" " alt="" coords="592,97,562,111,499,137,496,132,560,106,597,95"/>
+<area shape="poly" title=" " alt="" coords="359,131,329,122,328,117,364,130"/>
+<area shape="poly" title=" " alt="" coords="559,172,514,168,514,163,564,171"/>
+<area shape="poly" title=" " alt="" coords="571,224,560,221,483,181,484,176,562,217,577,225"/>
+<area shape="poly" title=" " alt="" coords="566,306,560,304,525,275,496,241,456,180,459,176,500,238,529,271,563,300,571,307"/>
 </map>
 </div>
 
@@ -377,9 +399,11 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_internal_game_server_afad5dfdbecde14a98af06e03013b66e3_icgraph.png" border="0" usemap="#aclass_internal_game_server_afad5dfdbecde14a98af06e03013b66e3_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_internal_game_server_afad5dfdbecde14a98af06e03013b66e3_icgraph" id="aclass_internal_game_server_afad5dfdbecde14a98af06e03013b66e3_icgraph">
-<area shape="rect" title="Retrieves and removes the next available piece type from the pool." alt="" coords="561,5,721,48"/>
+<area shape="rect" title="Retrieves and removes the next available piece type from the pool." alt="" coords="801,5,960,48"/>
+<area shape="rect" href="class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992" title="Processes the SETUP_REQ packet." alt="" coords="561,5,753,48"/>
+<area shape="poly" title=" " alt="" coords="783,27,753,29,753,24,788,27"/>
 <area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,5,513,48"/>
-<area shape="poly" title=" " alt="" coords="543,27,514,29,513,24,548,27"/>
+<area shape="poly" title=" " alt="" coords="543,27,514,29,513,24,549,27"/>
 <area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
 <area shape="poly" title=" " alt="" coords="358,27,329,29,328,24,363,27"/>
 <area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
@@ -470,13 +494,18 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_internal_game_server_ad39a2a920c1f28cde3dda7a8ceab66d2_icgraph.png" border="0" usemap="#aclass_internal_game_server_ad39a2a920c1f28cde3dda7a8ceab66d2_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_internal_game_server_ad39a2a920c1f28cde3dda7a8ceab66d2_icgraph" id="aclass_internal_game_server_ad39a2a920c1f28cde3dda7a8ceab66d2_icgraph">
-<area shape="rect" title="Determines whose turn it is based on the round/turn counters." alt="" coords="561,5,722,48"/>
-<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,5,513,48"/>
-<area shape="poly" title=" " alt="" coords="543,27,514,29,514,24,549,27"/>
-<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
-<area shape="poly" title=" " alt="" coords="358,27,329,29,328,24,363,27"/>
-<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
-<area shape="poly" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
+<area shape="rect" title="Determines whose turn it is based on the round/turn counters." alt="" coords="830,39,990,81"/>
+<area shape="rect" href="class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="561,5,782,48"/>
+<area shape="poly" title=" " alt="" coords="812,47,782,45,782,39,817,47"/>
+<area shape="rect" href="class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="577,72,766,115"/>
+<area shape="poly" title=" " alt="" coords="817,73,767,83,766,77,812,74"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,39,513,81"/>
+<area shape="poly" title=" " alt="" coords="548,45,514,53,513,47,543,46"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,39,328,81"/>
+<area shape="poly" title=" " alt="" coords="358,60,329,63,328,57,363,60"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,39,143,81"/>
+<area shape="poly" title=" " alt="" coords="173,61,144,63,143,57,178,59"/>
+<area shape="poly" title=" " alt="" coords="559,77,514,73,514,67,564,77"/>
 </map>
 </div>
 
@@ -523,6 +552,23 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="143,24,178,26,172,27,143,29"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="ac50992b849bee320601b7060030845fa" name="ac50992b849bee320601b7060030845fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac50992b849bee320601b7060030845fa">&#9670;&#160;</a></span>getServerPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int InternalGameServer::getServerPort </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -580,37 +626,52 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_cgraph.png" border="0" usemap="#aclass_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_cgraph" loading="lazy" alt=""/></div>
 <map name="aclass_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_cgraph" id="aclass_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_cgraph">
-<area shape="rect" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="5,207,143,249"/>
-<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="394,408,531,451"/>
-<area shape="poly" title=" " alt="" coords="110,247,227,318,301,358,377,396,386,402,380,401,375,401,299,363,224,322,109,253"/>
-<area shape="rect" href="class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="376,5,548,48"/>
-<area shape="poly" title=" " alt="" coords="116,204,406,53,406,58,119,208"/>
-<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="191,207,328,249"/>
-<area shape="poly" title=" " alt="" coords="142,226,177,227,173,229,144,230"/>
-<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="597,379,734,421"/>
-<area shape="poly" title=" " alt="" coords="531,417,579,412,584,412,532,422"/>
-<area shape="poly" title=" " alt="" coords="277,247,378,387,393,401,388,399,374,391,275,252"/>
-<area shape="poly" title=" " alt="" coords="276,247,319,297,346,322,377,343,427,365,481,380,533,389,584,397,578,397,532,395,479,385,426,370,375,348,343,326,315,301,275,252"/>
-<area shape="poly" title=" " alt="" coords="269,205,310,138,340,99,374,65,393,54,389,58,378,69,344,103,314,141,273,208"/>
-<area shape="rect" href="class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="382,123,542,149"/>
-<area shape="poly" title=" " alt="" coords="292,204,331,181,375,159,395,153,391,156,377,164,334,186,295,209"/>
-<area shape="rect" href="class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="382,173,542,216"/>
-<area shape="poly" title=" " alt="" coords="327,214,369,209,365,211,329,219"/>
-<area shape="rect" href="class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="382,240,542,283"/>
-<area shape="poly" title=" " alt="" coords="328,237,369,245,364,246,329,242"/>
-<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="376,307,548,333"/>
-<area shape="poly" title=" " alt="" coords="294,247,334,270,377,292,396,301,390,301,375,297,331,275,293,252"/>
-<area shape="rect" href="class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="596,72,735,99"/>
-<area shape="poly" title=" " alt="" coords="273,204,314,154,342,129,375,108,426,90,480,80,533,75,584,77,578,79,533,81,480,85,427,95,377,113,346,133,318,158,277,208"/>
-<area shape="rect" href="class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="598,197,733,224"/>
-<area shape="poly" title=" " alt="" coords="513,147,549,159,623,190,617,191,547,164,514,153"/>
-<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="783,123,946,149"/>
-<area shape="poly" title=" " alt="" coords="542,133,769,135,764,137,543,139"/>
-<area shape="poly" title=" " alt="" coords="631,196,626,189,630,179,643,173,666,171,689,173,703,182,698,182,688,178,665,176,645,178,634,183,631,188,636,198"/>
-<area shape="poly" title=" " alt="" coords="702,194,810,156,815,154,704,199"/>
-<area shape="rect" href="class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="794,197,934,224"/>
-<area shape="poly" title=" " alt="" coords="733,208,781,210,776,211,734,213"/>
-<area shape="poly" title=" " alt="" coords="721,97,797,118,792,119,721,102"/>
+<area shape="rect" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="5,123,143,165"/>
+<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="662,189,799,232"/>
+<area shape="poly" title=" " alt="" coords="142,139,347,142,472,150,597,167,658,184,653,185,596,172,471,155,347,147,144,144"/>
+<area shape="rect" href="class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="645,5,816,48"/>
+<area shape="poly" title=" " alt="" coords="132,120,244,82,309,64,376,49,507,32,631,27,627,29,508,38,376,55,311,69,245,87,135,124"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="191,223,328,265"/>
+<area shape="poly" title=" " alt="" coords="115,163,207,213,202,216,116,169"/>
+<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="865,121,1002,164"/>
+<area shape="poly" title=" " alt="" coords="795,186,856,169,851,170,797,191"/>
+<area shape="poly" title=" " alt="" coords="328,250,454,257,525,256,596,249,660,237,655,238,597,255,525,262,453,263,329,255"/>
+<area shape="rect" href="class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="376,381,596,424"/>
+<area shape="poly" title=" " alt="" coords="276,263,319,316,346,344,377,367,387,375,382,374,375,372,343,348,315,320,274,268"/>
+<area shape="rect" href="class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="392,315,581,357"/>
+<area shape="poly" title=" " alt="" coords="307,263,377,294,411,309,406,309,375,298,307,268"/>
+<area shape="rect" href="class_internal_game_server.html#a38c4d6d073d4fc872bc03c365472836c" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="382,181,591,240"/>
+<area shape="poly" title=" " alt="" coords="328,231,369,227,364,229,329,236"/>
+<area shape="rect" href="class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992" title="Processes the SETUP_REQ packet." alt="" coords="390,64,582,107"/>
+<area shape="poly" title=" " alt="" coords="290,220,444,114,439,118,293,224"/>
+<area shape="poly" title=" " alt="" coords="579,378,595,367,606,354,613,341,619,314,624,285,631,270,642,254,660,242,664,239,646,258,636,272,630,286,624,315,618,343,611,357,598,371,581,383"/>
+<area shape="rect" href="class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="650,319,811,361"/>
+<area shape="poly" title=" " alt="" coords="571,378,633,365,638,364,573,383"/>
+<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="644,436,817,463"/>
+<area shape="poly" title=" " alt="" coords="597,421,645,433,639,432,596,426"/>
+<area shape="rect" href="class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="661,385,800,412"/>
+<area shape="poly" title=" " alt="" coords="597,398,649,400,643,400,597,404"/>
+<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="1050,319,1213,345"/>
+<area shape="poly" title=" " alt="" coords="800,385,1032,348,1037,348,800,390"/>
+<area shape="poly" title=" " alt="" coords="557,312,595,294,619,275,643,254,669,241,673,239,646,258,622,279,598,298,559,317"/>
+<area shape="poly" title=" " alt="" coords="525,312,561,285,594,250,613,214,619,182,625,148,642,109,664,81,688,60,692,57,668,85,647,112,630,150,624,183,618,216,599,254,565,289,528,316"/>
+<area shape="poly" title=" " alt="" coords="581,335,637,338,632,339,581,340"/>
+<area shape="poly" title=" " alt="" coords="572,355,663,381,658,381,572,361"/>
+<area shape="rect" href="class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="650,268,811,295"/>
+<area shape="poly" title=" " alt="" coords="581,312,656,298,650,299,582,317"/>
+<area shape="poly" title=" " alt="" coords="799,293,865,304,1037,325,1032,325,864,309,799,298"/>
+<area shape="rect" href="class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="866,268,1000,295"/>
+<area shape="poly" title=" " alt="" coords="811,279,853,281,848,282,811,284"/>
+<area shape="poly" title=" " alt="" coords="989,293,1065,314,1059,314,988,298"/>
+<area shape="poly" title=" " alt="" coords="899,267,894,259,898,250,911,243,933,241,957,244,971,253,966,252,955,249,933,247,913,249,901,253,899,259,904,269"/>
+<area shape="rect" href="class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="1062,268,1202,295"/>
+<area shape="poly" title=" " alt="" coords="1001,279,1049,281,1044,282,1001,284"/>
+<area shape="poly" title=" " alt="" coords="591,208,649,210,644,211,592,213"/>
+<area shape="poly" title=" " alt="" coords="562,105,598,123,613,137,623,150,632,162,646,175,654,182,648,181,643,179,628,166,618,153,609,140,595,128,562,110"/>
+<area shape="poly" title=" " alt="" coords="582,85,695,93,817,108,852,117,847,118,816,113,695,98,583,90"/>
+<area shape="poly" title=" " alt="" coords="577,61,632,50,627,52,579,66"/>
+<area shape="rect" href="class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="651,123,810,165"/>
+<area shape="poly" title=" " alt="" coords="578,105,639,121,633,122,578,110"/>
 </map>
 </div>
 <div class="dynheader">
@@ -619,6 +680,154 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="class_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_icgraph.png" border="0" usemap="#aclass_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_icgraph" id="aclass_internal_game_server_ac3b1c0191e3d6aa5cb657207bc334fca_icgraph">
 <area shape="rect" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
+<area shape="poly" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab365960df838baeadc089d25f89ca3c9" name="ab365960df838baeadc089d25f89ca3c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab365960df838baeadc089d25f89ca3c9">&#9670;&#160;</a></span>handleGameStartRequestPacket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InternalGameServer::handleGameStartRequestPacket </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_game_start_request_packet.html">GameStartRequestPacket</a> *</td>          <td class="paramname"><span class="paramname"><em>packet</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Processes the GAME_START_REQ packet. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The parsed <a class="el" href="struct_game_start_request_packet.html" title="Request to transition from WAITING_ROOM to GAME.">GameStartRequestPacket</a> packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_internal_game_server_ab365960df838baeadc089d25f89ca3c9_cgraph.png" border="0" usemap="#aclass_internal_game_server_ab365960df838baeadc089d25f89ca3c9_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_internal_game_server_ab365960df838baeadc089d25f89ca3c9_cgraph" id="aclass_internal_game_server_ab365960df838baeadc089d25f89ca3c9_cgraph">
+<area shape="rect" title="Processes the GAME_START_REQ packet." alt="" coords="5,101,226,144"/>
+<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="291,5,428,48"/>
+<area shape="poly" title=" " alt="" coords="170,98,273,58,291,53,286,55,275,62,173,103"/>
+<area shape="rect" href="class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="280,72,440,115"/>
+<area shape="poly" title=" " alt="" coords="225,107,267,104,262,106,227,112"/>
+<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="274,139,446,165"/>
+<area shape="poly" title=" " alt="" coords="226,133,261,139,256,140,226,139"/>
+<area shape="rect" href="class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="291,189,429,216"/>
+<area shape="poly" title=" " alt="" coords="178,142,274,175,299,185,293,184,273,180,177,147"/>
+<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="507,5,644,48"/>
+<area shape="poly" title=" " alt="" coords="428,24,494,26,489,27,429,29"/>
+<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="494,189,657,216"/>
+<area shape="poly" title=" " alt="" coords="429,200,481,203,476,203,429,205"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_internal_game_server_ab365960df838baeadc089d25f89ca3c9_icgraph.png" border="0" usemap="#aclass_internal_game_server_ab365960df838baeadc089d25f89ca3c9_icgraph" loading="lazy" alt=""/></div>
+<map name="aclass_internal_game_server_ab365960df838baeadc089d25f89ca3c9_icgraph" id="aclass_internal_game_server_ab365960df838baeadc089d25f89ca3c9_icgraph">
+<area shape="rect" title="Processes the GAME_START_REQ packet." alt="" coords="561,5,782,48"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,5,513,48"/>
+<area shape="poly" title=" " alt="" coords="543,27,514,29,514,24,548,27"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
+<area shape="poly" title=" " alt="" coords="358,27,329,29,328,24,363,27"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
+<area shape="poly" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa17c038ffff170fe65fb33c2c4fc6a2c" name="aa17c038ffff170fe65fb33c2c4fc6a2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa17c038ffff170fe65fb33c2c4fc6a2c">&#9670;&#160;</a></span>handleMoveRequestPacket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InternalGameServer::handleMoveRequestPacket </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_client_context.html">ClientContext</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>client</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_move_request_packet.html">MoveRequestPacket</a> *</td>          <td class="paramname"><span class="paramname"><em>packet</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Processes the MOVE_REQ packet. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>The client from which we received the packet. </td></tr>
+    <tr><td class="paramname">packet</td><td>The parsed <a class="el" href="struct_move_request_packet.html" title="Client intent to place a piece.">MoveRequestPacket</a> packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_cgraph.png" border="0" usemap="#aclass_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_cgraph" id="aclass_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_cgraph">
+<area shape="rect" title="Processes the MOVE_REQ packet." alt="" coords="5,123,195,165"/>
+<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="260,5,397,48"/>
+<area shape="poly" title=" " alt="" coords="139,120,241,64,268,54,263,57,244,69,141,124"/>
+<area shape="rect" href="class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="248,256,408,283"/>
+<area shape="poly" title=" " alt="" coords="127,163,180,203,244,242,260,251,254,250,241,246,177,208,126,169"/>
+<area shape="rect" href="class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="243,123,414,165"/>
+<area shape="poly" title=" " alt="" coords="194,141,229,143,224,145,196,147"/>
+<area shape="rect" href="class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="248,189,408,232"/>
+<area shape="poly" title=" " alt="" coords="175,163,241,184,236,185,175,168"/>
+<area shape="rect" href="class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="462,101,600,128"/>
+<area shape="poly" title=" " alt="" coords="179,120,242,108,291,104,328,104,414,108,449,111,444,112,414,113,328,110,291,109,243,113,181,125"/>
+<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="462,5,600,48"/>
+<area shape="poly" title=" " alt="" coords="397,24,450,26,445,28,398,29"/>
+<area shape="rect" href="class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="464,256,598,283"/>
+<area shape="poly" title=" " alt="" coords="409,267,451,269,446,269,409,272"/>
+<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="648,181,812,208"/>
+<area shape="poly" title=" " alt="" coords="380,253,413,242,437,229,461,217,549,200,636,195,630,196,549,205,463,223,439,234,415,246,382,258"/>
+<area shape="poly" title=" " alt="" coords="497,254,491,247,495,238,509,231,531,229,555,232,569,241,564,240,553,237,531,235,510,237,499,241,497,247,502,257"/>
+<area shape="poly" title=" " alt="" coords="568,253,676,214,681,213,570,258"/>
+<area shape="rect" href="class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="660,256,800,283"/>
+<area shape="poly" title=" " alt="" coords="599,267,647,269,642,269,599,272"/>
+<area shape="poly" title=" " alt="" coords="567,126,684,175,678,175,566,131"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_icgraph.png" border="0" usemap="#aclass_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_icgraph" loading="lazy" alt=""/></div>
+<map name="aclass_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_icgraph" id="aclass_internal_game_server_aa17c038ffff170fe65fb33c2c4fc6a2c_icgraph">
+<area shape="rect" title="Processes the MOVE_REQ packet." alt="" coords="561,5,751,48"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,5,513,48"/>
+<area shape="poly" title=" " alt="" coords="543,27,514,29,514,24,548,27"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
+<area shape="poly" title=" " alt="" coords="358,27,329,29,328,24,363,27"/>
 <area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
 <area shape="poly" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
 </map>
@@ -674,6 +883,134 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a38c4d6d073d4fc872bc03c365472836c" name="a38c4d6d073d4fc872bc03c365472836c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38c4d6d073d4fc872bc03c365472836c">&#9670;&#160;</a></span>handleSettingsChangeRequestPacket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InternalGameServer::handleSettingsChangeRequestPacket </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_settings_change_req_packet.html">SettingsChangeReqPacket</a> *</td>          <td class="paramname"><span class="paramname"><em>packet</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Processes the SETTINGS_CHANGE_REQ packet. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The parsed <a class="el" href="struct_settings_change_req_packet.html" title="Request to modify game rules.   Only valid when in the Lobby/Waiting Room.">SettingsChangeReqPacket</a> packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_cgraph.png" border="0" usemap="#aclass_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_cgraph" id="aclass_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_cgraph">
+<area shape="rect" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="5,5,215,64"/>
+<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="263,13,400,56"/>
+<area shape="poly" title=" " alt="" coords="215,32,250,34,245,35,215,37"/>
+<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="448,13,585,56"/>
+<area shape="poly" title=" " alt="" coords="400,32,435,35,430,35,400,37"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_icgraph.png" border="0" usemap="#aclass_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_icgraph" loading="lazy" alt=""/></div>
+<map name="aclass_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_icgraph" id="aclass_internal_game_server_a38c4d6d073d4fc872bc03c365472836c_icgraph">
+<area shape="rect" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="561,5,771,64"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,13,513,56"/>
+<area shape="poly" title=" " alt="" coords="543,35,514,37,514,32,549,35"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,13,328,56"/>
+<area shape="poly" title=" " alt="" coords="358,35,329,37,328,32,363,35"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,13,143,56"/>
+<area shape="poly" title=" " alt="" coords="173,35,143,37,143,32,178,34"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af76f44761a706d22bbf2e34094c97992" name="af76f44761a706d22bbf2e34094c97992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af76f44761a706d22bbf2e34094c97992">&#9670;&#160;</a></span>handleSetupRequestPacket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InternalGameServer::handleSetupRequestPacket </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_client_context.html">ClientContext</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>client</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_setup_req_packet.html">SetupReqPacket</a> *</td>          <td class="paramname"><span class="paramname"><em>packet</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Processes the SETUP_REQ packet. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>The client from which we received the packet. </td></tr>
+    <tr><td class="paramname">packet</td><td>The parsed <a class="el" href="struct_setup_req_packet.html" title="Login request.   Sent by the client to finalize the connection setup.">SetupReqPacket</a> packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_internal_game_server_af76f44761a706d22bbf2e34094c97992_cgraph.png" border="0" usemap="#aclass_internal_game_server_af76f44761a706d22bbf2e34094c97992_cgraph" loading="lazy" alt=""/></div>
+<map name="aclass_internal_game_server_af76f44761a706d22bbf2e34094c97992_cgraph" id="aclass_internal_game_server_af76f44761a706d22bbf2e34094c97992_cgraph">
+<area shape="rect" title="Processes the SETUP_REQ packet." alt="" coords="5,93,197,136"/>
+<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="262,5,399,48"/>
+<area shape="poly" title=" " alt="" coords="158,90,260,52,256,56,160,95"/>
+<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="464,35,601,77"/>
+<area shape="poly" title=" " alt="" coords="196,99,450,65,448,70,198,104"/>
+<area shape="rect" href="class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="245,123,416,165"/>
+<area shape="poly" title=" " alt="" coords="197,124,232,130,227,132,197,130"/>
+<area shape="rect" href="class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="251,189,410,232"/>
+<area shape="poly" title=" " alt="" coords="151,134,246,175,261,183,256,183,244,180,150,139"/>
+<area shape="poly" title=" " alt="" coords="399,34,451,43,446,44,400,39"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_internal_game_server_af76f44761a706d22bbf2e34094c97992_icgraph.png" border="0" usemap="#aclass_internal_game_server_af76f44761a706d22bbf2e34094c97992_icgraph" loading="lazy" alt=""/></div>
+<map name="aclass_internal_game_server_af76f44761a706d22bbf2e34094c97992_icgraph" id="aclass_internal_game_server_af76f44761a706d22bbf2e34094c97992_icgraph">
+<area shape="rect" title="Processes the SETUP_REQ packet." alt="" coords="561,5,753,48"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="376,5,513,48"/>
+<area shape="poly" title=" " alt="" coords="543,27,514,29,513,24,549,27"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,5,328,48"/>
+<area shape="poly" title=" " alt="" coords="358,27,329,29,328,24,363,27"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,5,143,48"/>
+<area shape="poly" title=" " alt="" coords="173,27,143,29,143,24,178,26"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a23233f46e01aa0aa1306fd11ec115aed" name="a23233f46e01aa0aa1306fd11ec115aed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a23233f46e01aa0aa1306fd11ec115aed">&#9670;&#160;</a></span>processPacket()</h2>
 
@@ -721,33 +1058,48 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_internal_game_server_a23233f46e01aa0aa1306fd11ec115aed_cgraph.png" border="0" usemap="#aclass_internal_game_server_a23233f46e01aa0aa1306fd11ec115aed_cgraph" loading="lazy" alt=""/></div>
 <map name="aclass_internal_game_server_a23233f46e01aa0aa1306fd11ec115aed_cgraph" id="aclass_internal_game_server_a23233f46e01aa0aa1306fd11ec115aed_cgraph">
-<area shape="rect" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="5,182,143,225"/>
-<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="208,44,346,86"/>
-<area shape="poly" title=" " alt="" coords="95,180,137,142,189,103,212,92,208,96,192,107,141,146,99,183"/>
-<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="412,14,549,57"/>
-<area shape="poly" title=" " alt="" coords="80,181,94,145,117,103,148,61,168,44,189,29,240,11,294,3,348,5,399,13,394,15,347,10,294,9,241,16,192,34,171,48,152,65,121,106,99,147,85,182"/>
-<area shape="rect" href="class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="197,161,357,188"/>
-<area shape="poly" title=" " alt="" coords="142,191,183,186,179,190,144,196"/>
-<area shape="rect" href="class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="191,212,362,254"/>
-<area shape="poly" title=" " alt="" coords="142,211,178,217,173,220,144,216"/>
-<area shape="rect" href="class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="197,278,356,321"/>
-<area shape="poly" title=" " alt="" coords="113,223,192,264,206,271,201,272,190,269,113,228"/>
-<area shape="rect" href="class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="197,345,357,388"/>
-<area shape="poly" title=" " alt="" coords="90,223,133,277,161,305,192,331,200,337,194,337,189,335,158,309,129,280,89,228"/>
-<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="191,412,363,438"/>
-<area shape="poly" title=" " alt="" coords="83,223,99,262,122,309,153,357,192,398,200,404,194,403,189,402,148,360,117,311,94,264,82,228"/>
-<area shape="rect" href="class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="411,110,549,137"/>
-<area shape="poly" title=" " alt="" coords="111,180,149,161,190,146,242,135,296,127,398,122,393,125,297,132,243,140,191,151,151,166,114,184"/>
-<area shape="poly" title=" " alt="" coords="345,53,398,46,394,49,347,57"/>
-<area shape="rect" href="class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="413,236,547,262"/>
-<area shape="poly" title=" " alt="" coords="328,186,364,197,437,228,432,229,362,202,329,191"/>
-<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="597,161,761,188"/>
-<area shape="poly" title=" " alt="" coords="357,172,584,173,579,176,358,177"/>
-<area shape="poly" title=" " alt="" coords="446,234,440,227,444,217,458,211,480,209,504,211,518,220,513,220,502,217,480,214,459,216,448,221,446,226,451,236"/>
-<area shape="poly" title=" " alt="" coords="517,233,630,192,625,194,519,238"/>
-<area shape="rect" href="class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="609,236,749,262"/>
-<area shape="poly" title=" " alt="" coords="548,246,596,248,591,249,548,252"/>
-<area shape="poly" title=" " alt="" coords="535,135,612,156,607,157,536,140"/>
+<area shape="rect" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="5,224,143,267"/>
+<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="476,224,614,267"/>
+<area shape="poly" title=" " alt="" coords="125,265,191,284,252,293,301,296,349,293,411,284,475,271,469,273,411,289,350,298,301,301,252,298,190,289,125,270"/>
+<area shape="rect" href="class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="191,83,411,125"/>
+<area shape="poly" title=" " alt="" coords="91,222,133,178,160,155,189,135,202,130,198,134,192,140,163,159,137,182,95,225"/>
+<area shape="rect" href="class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="206,149,396,192"/>
+<area shape="poly" title=" " alt="" coords="134,221,190,201,214,196,209,199,192,207,136,226"/>
+<area shape="rect" href="class_internal_game_server.html#a38c4d6d073d4fc872bc03c365472836c" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="196,216,406,275"/>
+<area shape="poly" title=" " alt="" coords="142,243,183,244,178,247,144,248"/>
+<area shape="rect" href="class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992" title="Processes the SETUP_REQ packet." alt="" coords="205,349,396,392"/>
+<area shape="poly" title=" " alt="" coords="101,265,143,297,192,328,219,343,214,343,189,333,140,301,100,270"/>
+<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="679,291,817,333"/>
+<area shape="poly" title=" " alt="" coords="612,265,669,285,664,285,612,270"/>
+<area shape="poly" title=" " alt="" coords="392,123,413,135,430,154,438,173,445,192,461,210,466,216,461,215,457,214,441,195,433,175,425,157,409,139,392,128"/>
+<area shape="rect" href="class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="465,107,625,149"/>
+<area shape="poly" title=" " alt="" coords="411,112,452,118,447,119,412,117"/>
+<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="459,5,631,32"/>
+<area shape="poly" title=" " alt="" coords="355,80,458,41,482,36,478,38,460,47,358,84"/>
+<area shape="rect" href="class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="476,56,614,83"/>
+<area shape="poly" title=" " alt="" coords="410,86,463,80,458,82,412,91"/>
+<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="865,107,1028,133"/>
+<area shape="poly" title=" " alt="" coords="615,74,817,99,852,105,847,106,816,104,615,80"/>
+<area shape="poly" title=" " alt="" coords="373,190,412,201,464,219,459,220,410,207,374,195"/>
+<area shape="poly" title=" " alt="" coords="395,152,452,143,448,146,397,157"/>
+<area shape="poly" title=" " alt="" coords="385,146,410,135,424,125,433,114,443,103,458,92,473,87,469,90,460,97,446,107,437,118,427,129,412,140,388,151"/>
+<area shape="rect" href="class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="465,173,625,200"/>
+<area shape="poly" title=" " alt="" coords="395,174,452,180,447,181,397,179"/>
+<area shape="rect" href="class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="460,291,631,333"/>
+<area shape="poly" title=" " alt="" coords="392,190,413,202,430,221,438,240,445,258,461,277,466,283,461,282,457,281,441,261,433,242,425,224,409,206,392,195"/>
+<area shape="poly" title=" " alt="" coords="593,170,631,159,679,143,766,129,852,123,847,125,766,134,680,148,632,164,595,175"/>
+<area shape="rect" href="class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="681,181,815,208"/>
+<area shape="poly" title=" " alt="" coords="625,187,668,191,663,192,626,192"/>
+<area shape="poly" title=" " alt="" coords="785,178,892,140,897,138,787,183"/>
+<area shape="poly" title=" " alt="" coords="714,180,708,173,712,163,726,157,748,155,772,157,786,166,780,166,770,162,748,160,727,162,716,167,714,172,719,182"/>
+<area shape="rect" href="class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="876,181,1016,208"/>
+<area shape="poly" title=" " alt="" coords="815,192,864,194,858,195,816,197"/>
+<area shape="poly" title=" " alt="" coords="406,243,463,245,458,246,407,248"/>
+<area shape="poly" title=" " alt="" coords="375,346,409,328,424,316,433,303,442,290,457,277,463,276,468,273,461,281,446,294,437,306,428,319,413,333,378,351"/>
+<area shape="poly" title=" " alt="" coords="397,366,509,359,631,343,662,338,668,337,632,348,510,364,397,371"/>
+<area shape="poly" title=" " alt="" coords="392,346,447,336,442,337,393,351"/>
+<area shape="rect" href="class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="466,408,625,451"/>
+<area shape="poly" title=" " alt="" coords="393,390,453,407,448,407,392,395"/>
 </map>
 </div>
 <div class="dynheader">
@@ -813,20 +1165,32 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_internal_game_server_a71b08679b9859ef55931354365be3923_icgraph.png" border="0" usemap="#aclass_internal_game_server_a71b08679b9859ef55931354365be3923_icgraph" loading="lazy" alt=""/></div>
 <map name="aclass_internal_game_server_a71b08679b9859ef55931354365be3923_icgraph" id="aclass_internal_game_server_a71b08679b9859ef55931354365be3923_icgraph">
-<area shape="rect" title="Sends a structured packet to a specific client." alt="" coords="770,64,907,107"/>
-<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="584,5,722,48"/>
-<area shape="poly" title=" " alt="" coords="753,59,722,51,722,46,758,59"/>
-<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="388,60,525,103"/>
-<area shape="poly" title=" " alt="" coords="751,85,525,85,525,79,757,84"/>
-<area shape="rect" href="class_internal_game_server.html#a11de7172fe0c184675de6a4b6de586d7" title="Accepts and processes a new connection. &#160;&#160;If a client connects, creates a new ClientContext,..." alt="" coords="376,127,536,169"/>
-<area shape="poly" title=" " alt="" coords="757,99,537,138,537,132,751,99"/>
-<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,60,328,103"/>
-<area shape="poly" title=" " alt="" coords="566,29,476,38,376,51,329,62,327,57,376,45,476,32,571,28"/>
-<area shape="poly" title=" " alt="" coords="572,49,526,65,524,60,567,50"/>
-<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,93,143,136"/>
-<area shape="poly" title=" " alt="" coords="173,97,144,105,142,100,178,95"/>
-<area shape="poly" title=" " alt="" coords="369,82,328,84,328,79,375,81"/>
-<area shape="poly" title=" " alt="" coords="360,142,143,123,143,118,362,137"/>
+<area shape="rect" title="Sends a structured packet to a specific client." alt="" coords="1038,310,1175,352"/>
+<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="853,160,990,203"/>
+<area shape="poly" title=" " alt="" coords="1064,299,948,206,950,201,1070,300"/>
+<area shape="rect" href="class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992" title="Processes the SETUP_REQ packet." alt="" coords="599,310,790,352"/>
+<area shape="poly" title=" " alt="" coords="1020,331,791,334,791,328,1025,331"/>
+<area shape="rect" href="class_internal_game_server.html#a11de7172fe0c184675de6a4b6de586d7" title="Accepts and processes a new connection. &#160;&#160;If a client connects, creates a new ClientContext,..." alt="" coords="376,298,536,340"/>
+<area shape="poly" title=" " alt="" coords="1025,348,933,365,822,376,703,378,643,375,584,367,543,357,506,343,507,338,545,352,585,362,643,369,703,373,822,370,932,360,1020,348"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,160,328,203"/>
+<area shape="poly" title=" " alt="" coords="902,146,886,118,864,86,837,56,803,33,746,12,698,9,647,19,585,33,500,59,420,94,349,131,296,162,293,158,346,126,417,89,498,54,584,28,646,13,697,4,747,7,806,29,840,52,868,82,891,115,907,148"/>
+<area shape="rect" href="class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="584,43,805,86"/>
+<area shape="poly" title=" " alt="" coords="877,151,803,107,763,89,763,83,806,102,883,151"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="388,160,525,203"/>
+<area shape="poly" title=" " alt="" coords="839,156,804,151,743,143,695,141,585,151,526,163,525,158,584,146,695,136,743,138,805,146,844,156"/>
+<area shape="rect" href="class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="600,160,789,203"/>
+<area shape="poly" title=" " alt="" coords="834,182,790,184,789,179,840,181"/>
+<area shape="rect" href="class_internal_game_server.html#a38c4d6d073d4fc872bc03c365472836c" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="590,227,799,286"/>
+<area shape="poly" title=" " alt="" coords="842,208,786,229,785,224,837,209"/>
+<area shape="poly" title=" " alt="" coords="897,214,857,260,806,300,783,312,781,306,803,295,853,256,892,216"/>
+<area shape="rect" href="class_internal_game_server.html#a5e2b74d5a33da9d7072ca953f6948916" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,194,143,236"/>
+<area shape="poly" title=" " alt="" coords="173,198,144,205,142,200,178,195"/>
+<area shape="poly" title=" " alt="" coords="611,93,586,107,535,134,491,162,488,157,532,130,583,102,615,91"/>
+<area shape="poly" title=" " alt="" coords="369,182,329,184,328,179,374,181"/>
+<area shape="poly" title=" " alt="" coords="581,182,526,184,525,179,587,181"/>
+<area shape="poly" title=" " alt="" coords="581,222,525,206,525,200,587,222"/>
+<area shape="poly" title=" " alt="" coords="592,303,583,300,550,278,520,253,475,206,477,201,524,249,554,274,586,295,597,303"/>
+<area shape="poly" title=" " alt="" coords="359,295,143,236,143,231,363,291"/>
 </map>
 </div>
 
@@ -860,43 +1224,58 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_internal_game_server_a5e2b74d5a33da9d7072ca953f6948916_cgraph.png" border="0" usemap="#aclass_internal_game_server_a5e2b74d5a33da9d7072ca953f6948916_cgraph" loading="lazy" alt=""/></div>
 <map name="aclass_internal_game_server_a5e2b74d5a33da9d7072ca953f6948916_cgraph" id="aclass_internal_game_server_a5e2b74d5a33da9d7072ca953f6948916_cgraph">
-<area shape="rect" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,408,143,451"/>
-<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,291,328,333"/>
-<area shape="poly" title=" " alt="" coords="108,405,213,339,210,344,111,410"/>
-<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="584,424,757,451"/>
-<area shape="poly" title=" " alt="" coords="143,428,569,433,569,439,143,433"/>
-<area shape="rect" href="class_internal_game_server.html#a11de7172fe0c184675de6a4b6de586d7" title="Accepts and processes a new connection. &#160;&#160;If a client connects, creates a new ClientContext,..." alt="" coords="376,467,536,509"/>
-<area shape="poly" title=" " alt="" coords="143,438,191,445,363,472,359,476,190,451,143,443"/>
-<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="602,357,739,400"/>
-<area shape="poly" title=" " alt="" coords="329,320,589,364,584,367,329,326"/>
-<area shape="rect" href="class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="585,5,756,48"/>
-<area shape="poly" title=" " alt="" coords="282,288,374,210,476,138,583,72,618,55,614,57,586,77,479,142,378,214,285,292"/>
-<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="388,224,525,267"/>
-<area shape="poly" title=" " alt="" coords="323,288,379,271,374,273,325,293"/>
-<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="805,357,942,400"/>
-<area shape="poly" title=" " alt="" coords="740,376,792,378,787,379,740,381"/>
-<area shape="poly" title=" " alt="" coords="481,265,529,304,586,343,596,350,591,350,583,348,525,308,480,270"/>
-<area shape="poly" title=" " alt="" coords="506,221,561,203,625,191,659,188,693,190,726,197,758,210,794,236,823,271,846,308,862,344,857,341,841,310,819,274,791,240,755,214,725,202,692,196,659,194,626,196,562,208,508,226"/>
-<area shape="poly" title=" " alt="" coords="470,222,532,131,582,65,601,55,597,58,586,69,536,134,474,225"/>
-<area shape="rect" href="class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="590,123,751,149"/>
-<area shape="poly" title=" " alt="" coords="488,221,532,193,583,166,616,154,611,157,586,170,535,198,491,226"/>
-<area shape="rect" href="class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="591,224,750,267"/>
-<area shape="poly" title=" " alt="" coords="525,243,578,245,573,246,526,248"/>
-<area shape="rect" href="class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="590,291,751,333"/>
-<area shape="poly" title=" " alt="" coords="525,264,588,285,582,286,525,269"/>
-<area shape="poly" title=" " alt="" coords="469,265,515,337,547,376,586,410,595,417,590,416,583,414,543,380,510,340,467,270"/>
-<area shape="rect" href="class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="805,72,943,99"/>
-<area shape="poly" title=" " alt="" coords="469,222,514,163,546,132,583,108,634,90,688,79,741,75,792,77,787,78,741,80,689,84,636,95,586,113,549,137,518,167,473,225"/>
-<area shape="rect" href="class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="807,197,941,224"/>
-<area shape="poly" title=" " alt="" coords="709,147,823,191,818,192,709,153"/>
-<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="991,123,1154,149"/>
-<area shape="poly" title=" " alt="" coords="751,133,978,135,973,137,752,139"/>
-<area shape="poly" title=" " alt="" coords="840,196,834,189,838,179,852,173,874,171,898,173,912,182,906,182,896,178,874,176,853,178,842,183,839,188,845,198"/>
-<area shape="poly" title=" " alt="" coords="911,194,1019,156,1024,154,913,199"/>
-<area shape="rect" href="class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="1002,197,1143,224"/>
-<area shape="poly" title=" " alt="" coords="941,208,990,210,984,211,942,213"/>
-<area shape="poly" title=" " alt="" coords="929,97,1005,118,1000,119,929,102"/>
-<area shape="poly" title=" " alt="" coords="537,490,643,485,700,476,756,460,800,437,837,411,842,410,803,442,758,465,702,481,644,491,537,495"/>
+<area shape="rect" title="Starts the server loop. &#160;&#160;Binds to the specified port and enters the main while(keepRunning) loop." alt="" coords="5,407,143,449"/>
+<area shape="rect" href="class_internal_game_server.html#ac3b1c0191e3d6aa5cb657207bc334fca" title="Reads incoming data from a specific client. &#160;&#160;Appends data to the client&#39;s receiveBuffer...." alt="" coords="191,199,328,241"/>
+<area shape="poly" title=" " alt="" coords="92,404,228,250,230,255,97,408"/>
+<area shape="rect" href="class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="853,471,1025,497"/>
+<area shape="poly" title=" " alt="" coords="143,434,376,459,625,473,840,482,835,482,625,478,376,464,143,440"/>
+<area shape="rect" href="class_internal_game_server.html#a11de7172fe0c184675de6a4b6de586d7" title="Accepts and processes a new connection. &#160;&#160;If a client connects, creates a new ClientContext,..." alt="" coords="376,407,536,449"/>
+<area shape="poly" title=" " alt="" coords="143,425,361,426,359,430,143,431"/>
+<area shape="rect" href="class_internal_game_server.html#a9f7cd641abc4087fbba9a59e72c025f3" title="Sends a packet to ALL connected clients." alt="" coords="870,215,1008,257"/>
+<area shape="poly" title=" " alt="" coords="328,206,422,193,542,183,673,181,740,185,805,192,868,209,863,210,804,197,739,190,673,186,542,189,423,199,330,211"/>
+<area shape="rect" href="class_server_utils.html#ace9fe34a36fea92d5e381de21c656dd4" title="Converts the server&#45;side internal client representation into a public Player struct...." alt="" coords="853,123,1024,165"/>
+<area shape="poly" title=" " alt="" coords="305,196,339,183,375,172,499,152,624,141,740,137,840,139,835,141,740,142,624,146,499,157,377,177,341,188,308,200"/>
+<area shape="rect" href="class_internal_game_server.html#a23233f46e01aa0aa1306fd11ec115aed" title="The core logic dispatcher. &#160;&#160;Switches on PacketType and executes the corresponding game logic." alt="" coords="388,248,525,291"/>
+<area shape="poly" title=" " alt="" coords="328,235,375,248,370,249,329,240"/>
+<area shape="rect" href="class_internal_game_server.html#a71b08679b9859ef55931354365be3923" title="Sends a structured packet to a specific client." alt="" coords="1073,212,1210,255"/>
+<area shape="poly" title=" " alt="" coords="1008,232,1060,234,1055,235,1008,238"/>
+<area shape="poly" title=" " alt="" coords="525,275,655,283,730,282,804,275,868,262,863,263,805,280,730,287,655,288,526,280"/>
+<area shape="rect" href="class_internal_game_server.html#ab365960df838baeadc089d25f89ca3c9" title="Processes the GAME_START_REQ packet." alt="" coords="584,407,805,449"/>
+<area shape="poly" title=" " alt="" coords="475,289,522,341,552,369,586,392,597,400,591,400,583,397,549,373,518,345,473,294"/>
+<area shape="rect" href="class_internal_game_server.html#aa17c038ffff170fe65fb33c2c4fc6a2c" title="Processes the MOVE_REQ packet." alt="" coords="600,340,789,383"/>
+<area shape="poly" title=" " alt="" coords="510,289,585,319,621,334,616,334,583,324,510,294"/>
+<area shape="rect" href="class_internal_game_server.html#a38c4d6d073d4fc872bc03c365472836c" title="Processes the SETTINGS_CHANGE_REQ packet." alt="" coords="590,207,799,265"/>
+<area shape="poly" title=" " alt="" coords="524,257,577,252,572,254,526,262"/>
+<area shape="rect" href="class_internal_game_server.html#af76f44761a706d22bbf2e34094c97992" title="Processes the SETUP_REQ packet." alt="" coords="599,39,790,81"/>
+<area shape="poly" title=" " alt="" coords="480,246,656,93,660,90,484,250"/>
+<area shape="poly" title=" " alt="" coords="788,404,803,393,814,380,821,368,828,342,834,314,851,285,874,267,879,265,855,288,838,316,833,343,826,370,819,383,806,397,790,408"/>
+<area shape="rect" href="class_internal_game_server.html#ad39a2a920c1f28cde3dda7a8ceab66d2" title="Determines whose turn it is based on the round/turn counters." alt="" coords="859,349,1019,392"/>
+<area shape="poly" title=" " alt="" coords="788,403,841,393,846,392,789,409"/>
+<area shape="poly" title=" " alt="" coords="791,447,866,467,860,467,790,453"/>
+<area shape="rect" href="class_utils.html#a71b0066a7749e408841c15ee5ff4f490" title="Flattens the 2D dynamic grid into a 1D static array for networking. &#160;&#160;Converts the logical std::vecto..." alt="" coords="870,416,1008,443"/>
+<area shape="poly" title=" " alt="" coords="805,426,857,429,852,429,805,431"/>
+<area shape="rect" href="struct_board_data.html#a6c04548422ccdd5b690a4128964eb503" title="Accessor for grid cells." alt="" coords="1258,353,1422,380"/>
+<area shape="poly" title=" " alt="" coords="1008,416,1240,382,1245,381,1009,421"/>
+<area shape="poly" title=" " alt="" coords="763,337,803,319,828,303,851,284,884,267,889,264,854,289,831,307,806,324,765,342"/>
+<area shape="poly" title=" " alt="" coords="729,337,766,309,803,276,817,256,826,239,835,221,851,201,884,176,889,173,855,205,840,224,831,241,822,259,807,279,769,314,731,342"/>
+<area shape="poly" title=" " alt="" coords="789,362,846,367,840,367,790,368"/>
+<area shape="poly" title=" " alt="" coords="774,381,876,411,871,411,774,386"/>
+<area shape="rect" href="class_win_validator.html#ac5d6cd0474130abe79cba7e1fd6d4555" title="Determines if the last move resulted in a win. &#160;&#160;Scans four axes (Horizontal, Vertical,..." alt="" coords="859,299,1019,325"/>
+<area shape="poly" title=" " alt="" coords="789,340,857,328,852,330,790,345"/>
+<area shape="poly" title=" " alt="" coords="996,323,1073,339,1246,360,1241,361,1073,344,996,329"/>
+<area shape="rect" href="class_win_validator.html#a6dd36d4068bb7086068220efbe5ba33e" title="Counts consecutive identical pieces in a specific direction. &#160;&#160;Steps through the grid by (dx,..." alt="" coords="1074,303,1209,329"/>
+<area shape="poly" title=" " alt="" coords="1019,311,1062,314,1056,315,1020,316"/>
+<area shape="poly" title=" " alt="" coords="1197,327,1273,349,1268,349,1197,333"/>
+<area shape="poly" title=" " alt="" coords="1108,301,1102,294,1106,284,1120,278,1142,276,1165,279,1179,288,1174,287,1164,284,1142,281,1121,283,1110,288,1107,293,1113,303"/>
+<area shape="rect" href="class_win_validator.html#a50345830cd1ef99e99f77cd8dbe2e9b6" title="Bounds checking helper. &#160;&#160;Ensures the scanning algorithm doesn&#39;t try to access grid coordinates outsi..." alt="" coords="1270,303,1410,329"/>
+<area shape="poly" title=" " alt="" coords="1209,313,1257,316,1252,316,1209,319"/>
+<area shape="poly" title=" " alt="" coords="799,233,857,235,852,237,800,239"/>
+<area shape="poly" title=" " alt="" coords="725,79,854,175,896,206,890,205,851,179,724,85"/>
+<area shape="poly" title=" " alt="" coords="790,56,846,60,907,69,968,84,1026,108,1055,127,1080,150,1121,200,1115,199,1077,154,1052,131,1024,113,967,89,906,74,846,65,791,61"/>
+<area shape="poly" title=" " alt="" coords="759,79,863,117,858,118,759,85"/>
+<area shape="rect" href="class_internal_game_server.html#afad5dfdbecde14a98af06e03013b66e3" title="Retrieves and removes the next available piece type from the pool." alt="" coords="859,5,1018,48"/>
+<area shape="poly" title=" " alt="" coords="790,44,846,39,841,41,792,49"/>
+<area shape="poly" title=" " alt="" coords="495,447,597,499,664,525,737,547,813,560,888,561,925,555,959,544,993,529,1023,507,1046,481,1056,454,1057,425,1053,395,1048,364,1047,331,1053,298,1071,265,1072,267,1076,264,1075,268,1058,300,1052,332,1054,363,1058,394,1063,425,1062,455,1051,484,1027,511,995,533,961,549,926,560,889,566,813,565,736,552,662,530,595,504,493,453"/>
 </map>
 </div>
 
@@ -1132,6 +1511,28 @@ Here is the call graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">uint8_t InternalGameServer::nextPlayerId = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aacffaa2ee6190467bd01a1b9220682ea" name="aacffaa2ee6190467bd01a1b9220682ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacffaa2ee6190467bd01a1b9220682ea">&#9670;&#160;</a></span>serverPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int InternalGameServer::serverPort</td>
         </tr>
       </table>
   </td>

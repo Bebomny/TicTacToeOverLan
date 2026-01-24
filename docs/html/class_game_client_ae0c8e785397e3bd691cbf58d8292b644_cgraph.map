@@ -1,0 +1,9 @@
+<map id="GameClient::handleGameStartPacket" name="GameClient::handleGameStartPacket">
+<area shape="rect" id="Node000001" title="Processes the GAME_START packet." alt="" coords="5,23,205,65"/>
+<area shape="rect" id="Node000002" href="$class_utils.html#a9bc7096ff5339947893e3d02d58410b2" title="Reconstructs the 2D grid from a received 1D network array. &#160;&#160;Reverses the serialization process,..." alt="" coords="263,5,415,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,31,250,28,245,29,205,36"/>
+<area shape="rect" id="Node000004" href="$class_utils.html#a974571ca9cb0b0cda9f0b56e6583a4a5" title="Allocates and resets the game grid. &#160;&#160;Resizes the 2D grid vector within BoardData based on the config..." alt="" coords="253,56,425,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="205,52,240,58,235,58,205,57"/>
+<area shape="rect" id="Node000003" href="$struct_board_data.html#aa68d3cb10d68cbf530ca7f3d7e792482" title="Updates the state of a specific grid cell." alt="" coords="473,5,636,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="415,16,460,18,455,19,415,21"/>
+</map>
